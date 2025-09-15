@@ -1,0 +1,54 @@
+{
+  "id": "creation_01",
+  "title": "La Création du monde",
+  "path": "Le Pentateuque",
+  "book": "Genèse",
+  "reading": [
+    "Au commencement, Dieu créa le ciel et la terre.",
+    "La terre était vide et dans les ténèbres. L'Esprit de Dieu planait au-dessus des eaux.",
+    "Dieu dit : 'Que la lumière soit !' Et la lumière fut. Dieu vit que c'était bon.",
+    "En six jours, Dieu créa tout : la lumière, le ciel, la terre et les mers, les plantes.",
+    "Puis les astres, les poissons et les oiseaux, les animaux terrestres.",
+    "Enfin, Dieu créa l'homme et la femme à son image pour régner sur la création.",
+    "Le septième jour, Dieu se reposa et bénit ce jour pour qu'il soit saint."
+  ],
+  "key_verse": "Dieu créa l'homme à son image, il le créa à l'image de Dieu.",
+  "vocab": [
+    { "word": "création", "hint": "L'acte par lequel Dieu fait exister toutes choses." },
+    { "word": "image de Dieu", "hint": "L'homme ressemble à Dieu par son âme et sa capacité d'aimer." },
+    { "word": "bénir", "hint": "Donner la grâce et la protection de Dieu." },
+    { "word": "sabbat", "hint": "Jour de repos consacré à Dieu." }
+  ],
+  "quiz": [
+    { 
+      "q": "En combien de jours Dieu a-t-il créé le monde ?", 
+      "choices": ["5 jours", "6 jours", "7 jours"], 
+      "answer": 1 
+    },
+    { 
+      "q": "Qu'est-ce que Dieu créa en premier ?", 
+      "choices": ["Les animaux", "La lumière", "L'homme"], 
+      "answer": 1 
+    },
+    { 
+      "q": "À l'image de qui l'homme fut-il créé ?", 
+      "choices": ["Des anges", "De Dieu", "Des animaux"], 
+      "answer": 1 
+    },
+    { 
+      "q": "Que fit Dieu le septième jour ?", 
+      "choices": ["Il créa l'homme", "Il se reposa", "Il créa les animaux"], 
+      "answer": 1 
+    }
+  ],
+  "mini_games": ["order_events", "quiz"],
+  "assets": ["creation_1.png", "creation_2.png", "creation_3.png", "creation_4.png"],
+  "story_steps": [
+    "Dieu sépare lumière et ténèbres",
+    "Dieu créa la terre et les mers",
+    "Dieu créa les plantes et animaux", 
+    "Dieu créa l'homme et la femme"
+  ],
+  "theological_message": "Dieu est le créateur de toutes choses et l'homme a une place spéciale dans la création.",
+  "life_application": "Nous devons respecter et protéger la création de Dieu comme de bons intendants."
+}

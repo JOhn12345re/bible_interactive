@@ -1,0 +1,65 @@
+{
+  "id": "david_01",
+  "title": "David et le géant Goliath",
+  "path": "Ancien Testament",
+  "reading": [
+    "L'armée philistine campe face à l'armée d'Israël dans la vallée.",
+    "Goliath, un géant de plus de 3 mètres, défie chaque jour l'armée d'Israël.",
+    "Tous les soldats israélites ont peur de ce colosse en armure.",
+    "David, un jeune berger, vient apporter des provisions à ses frères soldats.",
+    "Il entend Goliath se moquer de Dieu et du peuple d'Israël.",
+    "David se porte volontaire pour combattre le géant avec juste sa fronde.",
+    "Il refuse l'armure du roi et fait confiance à Dieu qui l'a aidé contre les lions et les ours.",
+    "David lance une pierre qui frappe Goliath au front et le géant s'effondre.",
+    "Toute l'armée philistine s'enfuit et Israël remporte la victoire !"
+  ],
+  "key_verse": "Tu marches contre moi avec l'épée, mais moi je marche contre toi au nom de l'Éternel.",
+  "vocab": [
+    { "word": "géant", "hint": "Personne de très grande taille, ici plus de 3 mètres." },
+    { "word": "fronde", "hint": "Arme simple pour lancer des pierres avec force." },
+    { "word": "berger", "hint": "Personne qui garde et protège les moutons." },
+    { "word": "foi", "hint": "Confiance totale en Dieu et en sa protection." }
+  ],
+  "quiz": [
+    { 
+      "q": "Quelle était la taille approximative de Goliath ?", 
+      "choices": ["2 mètres", "Plus de 3 mètres", "5 mètres"], 
+      "answer": 1 
+    },
+    { 
+      "q": "Quel est le métier de David ?", 
+      "choices": ["Soldat", "Berger", "Forgeron"], 
+      "answer": 1 
+    },
+    { 
+      "q": "Avec quoi David combat-il Goliath ?", 
+      "choices": ["Une épée", "Une fronde et des pierres", "Un arc"], 
+      "answer": 1 
+    },
+    { 
+      "q": "Pourquoi David accepte-t-il de combattre ?", 
+      "choices": ["Il est très fort", "Il fait confiance à Dieu", "Il veut de l'or"], 
+      "answer": 1 
+    },
+    { 
+      "q": "Que nous enseigne cette histoire ?", 
+      "choices": ["La taille ne compte pas", "Dieu aide les courageux fidèles", "Il faut des armes"], 
+      "answer": 1 
+    }
+  ],
+  "mini_games": ["order_events", "quiz"],
+  "assets": ["david_1.png", "david_2.png", "david_3.png", "david_4.png"],
+  "story_steps": [
+    "Goliath défie Israël",
+    "David se porte volontaire", 
+    "David lance sa pierre",
+    "Goliath tombe, victoire !"
+  ],
+  "theological_message": "Avec la foi en Dieu, même les plus petits peuvent accomplir de grandes choses.",
+  "life_application": "Nous pouvons faire face à nos 'géants' (peurs, difficultés) avec l'aide de Dieu.",
+  "historical_context": {
+    "period": "XIe siècle av. J.-C., époque des Juges et des premiers rois",
+    "context": "Conflits entre Israélites et Philistins pour le territoire.",
+    "lesson": "Dieu choisit souvent les plus humbles pour accomplir sa volonté."
+  }
+}

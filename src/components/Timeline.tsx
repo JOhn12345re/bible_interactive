@@ -45,7 +45,7 @@ export default function Timeline() {
 
   useEffect(() => {
     // Charger les données de la timeline
-    fetch('/src/content/timeline.json')
+    fetch('/content/timeline.json')
       .then((response) => response.json())
       .then((data: TimelineData) => {
         setTimelineData(data);

@@ -48,7 +48,7 @@ export default function Lesson() {
       };
       
       const folder = lessonFolders[lessonId] || '';
-      const path = folder ? `/src/content/${folder}/${lessonId}.json` : `/src/content/${lessonId}.json`;
+      const path = folder ? `/content/${folder}/${lessonId}.json` : `/content/${lessonId}.json`;
       
       return fetch(path);
     };

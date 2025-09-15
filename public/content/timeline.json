@@ -1,0 +1,296 @@
+{
+  "timeline": {
+    "title": "Frise chronologique biblique",
+    "description": "Le grand récit de Dieu avec l'humanité",
+    "periods": [
+      {
+        "id": "creation",
+        "title": "Création",
+        "icon": "🌍",
+        "color": "#4ade80",
+        "description": "Les commencements du monde",
+        "biblical_time": "Genèse 1-11",
+        "stories": [
+          {
+            "id": "creation_01",
+            "title": "La Création du monde",
+            "description": "Dieu créé tout en 6 jours",
+            "book": "Genèse 1-2",
+            "available": true
+          },
+          {
+            "id": "adam_eve",
+            "title": "Adam et Ève",
+            "description": "Le premier couple et la chute",
+            "book": "Genèse 3",
+            "available": false
+          },
+          {
+            "id": "noe_arche",
+            "title": "Noé et l'Arche",
+            "description": "Le déluge et l'alliance arc-en-ciel",
+            "book": "Genèse 6-9",
+            "available": false
+          },
+          {
+            "id": "babel",
+            "title": "Tour de Babel",
+            "description": "La confusion des langues",
+            "book": "Genèse 11",
+            "available": false
+          }
+        ]
+      },
+      {
+        "id": "patriarches",
+        "title": "Patriarches",
+        "icon": "👑",
+        "color": "#f59e0b", 
+        "description": "Les pères du peuple élu",
+        "biblical_time": "Genèse 12-50",
+        "stories": [
+          {
+            "id": "abraham",
+            "title": "Abraham et Isaac",
+            "description": "L'appel et l'épreuve de la foi",
+            "book": "Genèse 12-25",
+            "available": false
+          },
+          {
+            "id": "jacob_esau",
+            "title": "Jacob et Ésaü",
+            "description": "Les jumeaux et l'échelle de Jacob",
+            "book": "Genèse 25-35",
+            "available": false
+          },
+          {
+            "id": "joseph",
+            "title": "Joseph en Égypte",
+            "description": "De l'esclavage au pouvoir",
+            "book": "Genèse 37-50",
+            "available": false
+          }
+        ]
+      },
+      {
+        "id": "exode",
+        "title": "Exode & Loi",
+        "icon": "🔥",
+        "color": "#ef4444",
+        "description": "La libération et l'alliance",
+        "biblical_time": "Exode - Deutéronome",
+        "stories": [
+          {
+            "id": "moise_buisson",
+            "title": "Moïse et le buisson ardent",
+            "description": "L'appel du libérateur",
+            "book": "Exode 3",
+            "available": false
+          },
+          {
+            "id": "plaies_egypte",
+            "title": "Les 10 plaies d'Égypte",
+            "description": "Dieu libère son peuple",
+            "book": "Exode 7-12",
+            "available": false
+          },
+          {
+            "id": "mer_rouge",
+            "title": "Traversée de la mer Rouge",
+            "description": "Miracle de la libération",
+            "book": "Exode 14",
+            "available": false
+          },
+          {
+            "id": "commandements",
+            "title": "Les 10 commandements",
+            "description": "L'alliance au Sinaï",
+            "book": "Exode 20",
+            "available": false
+          }
+        ]
+      },
+      {
+        "id": "juges_rois",
+        "title": "Juges & Rois",
+        "icon": "⚔️",
+        "color": "#8b5cf6",
+        "description": "L'installation en Terre Promise",
+        "biblical_time": "Josué - 2 Rois",
+        "stories": [
+          {
+            "id": "josue_01",
+            "title": "Josué et Jéricho",
+            "description": "La conquête par la foi",
+            "book": "Josué 6",
+            "available": true
+          },
+          {
+            "id": "samson",
+            "title": "Samson et Dalila",
+            "description": "Force et faiblesse",
+            "book": "Juges 13-16",
+            "available": false
+          },
+          {
+            "id": "david_01",
+            "title": "David et Goliath",
+            "description": "Le berger devient roi",
+            "book": "1 Samuel 17",
+            "available": true
+          },
+          {
+            "id": "salomon",
+            "title": "Salomon et le Temple",
+            "description": "Sagesse et splendeur",
+            "book": "1 Rois 3-8",
+            "available": false
+          }
+        ]
+      },
+      {
+        "id": "prophetes",
+        "title": "Prophètes",
+        "icon": "📣",
+        "color": "#06b6d4",
+        "description": "Messages et espérance",
+        "biblical_time": "Isaïe - Malachie",
+        "stories": [
+          {
+            "id": "elie",
+            "title": "Élie et les prophètes de Baal",
+            "description": "Duel sur le mont Carmel",
+            "book": "1 Rois 18",
+            "available": false
+          },
+          {
+            "id": "jonas_01",
+            "title": "Jonas et le grand poisson",
+            "description": "Mission universelle",
+            "book": "Jonas",
+            "available": true
+          },
+          {
+            "id": "daniel_01",
+            "title": "Daniel et les lions",
+            "description": "Fidélité récompensée",
+            "book": "Daniel 6",
+            "available": true
+          },
+          {
+            "id": "ezechiel",
+            "title": "Ézéchiel et les ossements",
+            "description": "Vision de résurrection",
+            "book": "Ézéchiel 37",
+            "available": false
+          }
+        ]
+      },
+      {
+        "id": "christ",
+        "title": "Le Christ",
+        "icon": "✝️",
+        "color": "#dc2626",
+        "description": "L'accomplissement des promesses",
+        "biblical_time": "Évangiles",
+        "pivot": true,
+        "stories": [
+          {
+            "id": "naissance",
+            "title": "Naissance de Jésus",
+            "description": "Dieu fait homme",
+            "book": "Luc 1-2",
+            "available": false
+          },
+          {
+            "id": "bapteme",
+            "title": "Baptême de Jésus",
+            "description": "Début du ministère",
+            "book": "Matthieu 3",
+            "available": false
+          },
+          {
+            "id": "miracles",
+            "title": "Miracles de Jésus",
+            "description": "Signes du Royaume",
+            "book": "Évangiles",
+            "available": false
+          },
+          {
+            "id": "crucifixion",
+            "title": "Mort et Résurrection",
+            "description": "Victoire sur la mort",
+            "book": "Évangiles",
+            "available": false
+          }
+        ]
+      },
+      {
+        "id": "eglise",
+        "title": "Naissance Église",
+        "icon": "🔥",
+        "color": "#f97316",
+        "description": "L'Esprit répandu",
+        "biblical_time": "Actes - Épîtres",
+        "stories": [
+          {
+            "id": "pentecote",
+            "title": "Pentecôte",
+            "description": "Don de l'Esprit Saint",
+            "book": "Actes 2",
+            "available": false
+          },
+          {
+            "id": "paul_conversion",
+            "title": "Conversion de Paul",
+            "description": "De persécuteur à apôtre",
+            "book": "Actes 9",
+            "available": false
+          },
+          {
+            "id": "pierre_cornelius",
+            "title": "Pierre et Corneille",
+            "description": "Évangile aux nations",
+            "book": "Actes 10",
+            "available": false
+          }
+        ]
+      },
+      {
+        "id": "apocalypse",
+        "title": "Espérance finale",
+        "icon": "🌟",
+        "color": "#6366f1",
+        "description": "La victoire définitive",
+        "biblical_time": "Apocalypse",
+        "stories": [
+          {
+            "id": "sept_eglises",
+            "title": "Lettres aux 7 Églises",
+            "description": "Messages du Christ ressuscité",
+            "book": "Apocalypse 1-3",
+            "available": false
+          },
+          {
+            "id": "nouvelle_jerusalem",
+            "title": "Nouvelle Jérusalem",
+            "description": "Cieux nouveaux et terre nouvelle",
+            "book": "Apocalypse 21-22",
+            "available": false
+          }
+        ]
+      }
+    ]
+  },
+  "navigation": {
+    "current_period": "creation",
+    "unlocked_periods": ["creation", "juges_rois", "prophetes"],
+    "completion_percentage": 12
+  },
+  "educational_goals": [
+    "Comprendre la continuité du plan de Dieu",
+    "Voir les liens entre Ancien et Nouveau Testament", 
+    "Découvrir la progression de la révélation",
+    "Apprécier l'unité de l'Écriture"
+  ]
+}
