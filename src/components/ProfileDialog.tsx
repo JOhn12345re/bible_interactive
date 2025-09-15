@@ -92,11 +92,18 @@ export default function ProfileDialog({ isOpen, onClose }: ProfileDialogProps) {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div className={`max-w-md w-full rounded-2xl p-6 ${
-        contrastHigh 
-          ? 'bg-contrast-bg border-2 border-contrast-text' 
-          : 'bg-white shadow-xl'
-      }`}>
+      <div 
+        className={`max-w-md w-full rounded-2xl p-6 ${
+          contrastHigh 
+            ? 'bg-contrast-bg border-2 border-contrast-text' 
+            : 'bg-white shadow-xl'
+        }`}
+        role="dialog"
+        aria-labelledby="profile-dialog-title"
+        aria-describedby="profile-dialog-description"
+      >
+        <h2 id="profile-dialog-title" className="sr-only">Configuration du profil utilisateur</h2>
+        <p id="profile-dialog-description" className="sr-only">Remplissez vos informations personnelles pour personnaliser votre expérience</p>
         {/* En-tête */}
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center space-x-3">

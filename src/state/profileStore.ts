@@ -56,7 +56,18 @@ export const useProfileStore = create<ProfileState>()(
 
       saveProfileToServer: async (profile) => {
         try {
-          // Essayer d'abord l'API PHP
+          // En production (Vercel), utiliser directement le service mock
+          if (import.meta.env.PROD) {
+            console.log('Mode production: sauvegarde avec le service mock')
+            const mockResult = await mockApi.saveProfile(profile as MockUserProfile)
+            if (mockResult.success) {
+              set({ profile: { ...profile, id: mockResult.id } })
+              return true
+            }
+            return false
+          }
+
+          // En développement, essayer d'abord l'API PHP
           const response = await fetch('/api/profile.php', {
             method: 'POST',
             headers: {
@@ -103,7 +114,20 @@ export const useProfileStore = create<ProfileState>()(
 
       loadProfileFromServer: async (userId) => {
         try {
-          // Essayer d'abord l'API PHP
+          // En production (Vercel), utiliser directement le service mock
+          // car l'API PHP n'est pas disponible
+          if (import.meta.env.PROD) {
+            console.log('Mode production: utilisation du service mock')
+            const mockResult = await mockApi.loadProfile(userId)
+            if (mockResult.success && mockResult.profile) {
+              const isComplete = !!(mockResult.profile.firstName && mockResult.profile.lastName && mockResult.profile.age > 0 && mockResult.profile.church)
+              set({ profile: mockResult.profile, isProfileComplete: isComplete })
+              return true
+            }
+            return false
+          }
+
+          // En développement, essayer d'abord l'API PHP
           const url = userId ? `/api/profile.php?id=${userId}` : '/api/profile.php'
           const response = await fetch(url)
           
