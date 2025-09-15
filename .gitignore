@@ -53,6 +53,8 @@ tmp/
 
 # Vercel
 .vercel/
+.vercelignore
 
 # Local development
 *.local
+.vercel
