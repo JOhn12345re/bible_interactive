@@ -1,0 +1,22 @@
+{
+  "id": "jonas_01",
+  "title": "Jonas et le grand poisson",
+  "path": "Ancien Testament",
+  "book": "Jonas",
+  "reading": [
+    "Dieu dit à Jonas d'aller à Ninive.",
+    "Jonas s'enfuit par la mer et une tempête se lève.",
+    "Jonas est avalé par un grand poisson pendant trois jours.",
+    "Il prie Dieu, puis est rejeté sur le rivage et obéit."
+  ],
+  "key_verse": "La délivrance vient du Seigneur.",
+  "vocab": [
+    { "word": "prophète", "hint": "Quelqu'un qui parle pour Dieu." },
+    { "word": "Ninive", "hint": "Grande ville ancienne." }
+  ],
+  "quiz": [
+    { "q": "Pourquoi Jonas a-t-il fui ?", "choices": ["Par peur", "Par joie"], "answer": 0 }
+  ],
+  "mini_games": ["order_events"],
+  "assets": ["jonas_1.png", "jonas_2.png", "jonas_3.png", "jonas_4.png"]
+}

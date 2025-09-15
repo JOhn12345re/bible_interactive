@@ -1,0 +1,30 @@
+{
+  "id": "naissance_jesus",
+  "title": "La naissance de Jésus",
+  "path": "Vie du Christ",
+  "reading": [
+    "L'ange Gabriel apparut à Marie pour lui annoncer qu'elle donnerait naissance au Fils de Dieu.",
+    "Marie et Joseph durent se rendre à Bethléem pour le recensement.",
+    "Ils ne trouvèrent pas de place dans l'auberge, Marie accoucha dans une étable.",
+    "Elle déposa le petit Jésus dans une mangeoire remplie de paille.",
+    "Des bergers gardaient leurs troupeaux dans les champs cette nuit-là.",
+    "Un ange leur apparut pour leur annoncer la naissance du Sauveur.",
+    "Les bergers se rendirent à Bethléem et trouvèrent l'enfant comme l'ange l'avait dit.",
+    "Des mages d'Orient suivirent une étoile qui les conduisit jusqu'à Jésus.",
+    "Ils lui offrirent de l'or, de l'encens et de la myrrhe."
+  ],
+  "key_verse": "Gloire à Dieu au plus haut des cieux, et paix sur la terre aux hommes qu'il agrée !",
+  "vocab": [
+    { "word": "Annonciation", "hint": "Message de l'ange Gabriel à Marie." },
+    { "word": "Bethléem", "hint": "Ville où est né Jésus." },
+    { "word": "Mages", "hint": "Sages venus d'Orient pour adorer Jésus." },
+    { "word": "Sauveur", "hint": "Celui qui vient sauver l'humanité." }
+  ],
+  "quiz": [
+    { "q": "Où est né Jésus ?", "choices": ["Nazareth", "Bethléem", "Jérusalem"], "answer": 1 },
+    { "q": "Qui a annoncé la naissance aux bergers ?", "choices": ["Marie", "Un ange", "Joseph"], "answer": 1 },
+    { "q": "Qu'offrirent les mages ?", "choices": ["Des jouets", "Or, encens, myrrhe", "Des vêtements"], "answer": 1 }
+  ],
+  "mini_games": ["order_events"],
+  "assets": ["naissance_1.png", "naissance_2.png", "naissance_3.png", "naissance_4.png"]
+}
