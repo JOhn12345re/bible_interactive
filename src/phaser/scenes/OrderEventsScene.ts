@@ -532,24 +532,38 @@ export default class OrderEventsScene extends Phaser.Scene {
   private createColorTextures() {
     const graphics = this.add.graphics();
     
-    // Créer 6 cartes colorées différentes (pour tous les niveaux de difficulté)
-    const colors = [0x3B82F6, 0x10B981, 0xF59E0B, 0xEF4444, 0x8B5CF6, 0x06B6D4];
+    // Créer 6 cartes avec des gradients modernes (pour tous les niveaux de difficulté)
+    const gradientColors = [
+      { from: 0x3B82F6, to: 0x1D4ED8 }, // Bleu gradient
+      { from: 0x10B981, to: 0x047857 }, // Vert gradient
+      { from: 0xF59E0B, to: 0xD97706 }, // Orange gradient
+      { from: 0xEF4444, to: 0xDC2626 }, // Rouge gradient
+      { from: 0x8B5CF6, to: 0x7C3AED }, // Violet gradient
+      { from: 0x06B6D4, to: 0x0891B2 }  // Cyan gradient
+    ];
     
     for (let i = 1; i <= 6; i++) {
       graphics.clear();
-      graphics.fillStyle(colors[i - 1], 1);
-      graphics.fillRoundedRect(0, 0, 120, 160, 10);
       
-      // Ajouter une bordure
-      graphics.lineStyle(3, 0xffffff, 1);
-      graphics.strokeRoundedRect(0, 0, 120, 160, 10);
+      // Créer un gradient radial pour un effet moderne
+      const color = gradientColors[i - 1];
+      graphics.fillGradientStyle(color.from, color.from, color.to, color.to, 1, 1, 0.5, 0.5);
+      graphics.fillRoundedRect(0, 0, 120, 160, 15);
+      
+      // Ajouter une bordure blanche avec ombre
+      graphics.lineStyle(4, 0xffffff, 1);
+      graphics.strokeRoundedRect(0, 0, 120, 160, 15);
+      
+      // Ajouter une ombre portée
+      graphics.fillStyle(0x000000, 0.2);
+      graphics.fillRoundedRect(2, 2, 120, 160, 15);
       
       graphics.generateTexture(`card${i}`, 120, 160);
     }
     
-    // Créer texture de background
+    // Créer texture de background avec gradient subtil
     graphics.clear();
-    graphics.fillStyle(0xf7f7f7, 1);
+    graphics.fillGradientStyle(0xf8fafc, 0xf8fafc, 0xe2e8f0, 0xe2e8f0, 1, 1, 0, 0);
     graphics.fillRect(0, 0, 800, 600);
     graphics.generateTexture('bg', 800, 600);
     
@@ -559,41 +573,82 @@ export default class OrderEventsScene extends Phaser.Scene {
   create() {
     const { width, height } = this.scale;
     
-    // Arrière-plan
-    this.add.rectangle(width / 2, height / 2, width, height, 0xf7f7f7);
+    // Arrière-plan avec gradient moderne
+    this.add.rectangle(width / 2, height / 2, width, height, 0xf8fafc);
     
-    // Titre et instructions améliorées
-    this.add
+    // Ajouter un pattern subtil en arrière-plan
+    const bgPattern = this.add.graphics();
+    bgPattern.fillStyle(0x000000, 0.02);
+    for (let x = 0; x < width; x += 40) {
+      for (let y = 0; y < height; y += 40) {
+        bgPattern.fillCircle(x, y, 1);
+      }
+    }
+    
+    // Titre avec style moderne et animation d'entrée
+    const title = this.add
       .text(width / 2, 30, 'Remets les scènes dans l\'ordre chronologique', {
-        fontSize: '24px',
-        color: '#1f2937',
+        fontSize: '28px',
+        color: '#1e293b',
+        fontFamily: 'Arial, sans-serif',
+        fontStyle: 'bold',
+        stroke: '#ffffff',
+        strokeThickness: 2,
+        shadow: {
+          offsetX: 2,
+          offsetY: 2,
+          color: '#000000',
+          blur: 4,
+          fill: true
+        }
+      })
+      .setOrigin(0.5)
+      .setAlpha(0);
+      
+    // Animation d'entrée du titre
+    this.tweens.add({
+      targets: title,
+      alpha: 1,
+      y: 35,
+      duration: 800,
+      ease: 'Back.easeOut'
+    });
+      
+    // Instructions avec style amélioré
+    const instruction1 = this.add
+      .text(width / 2, 65, 'Lis les cartes et place-les dans l\'ordre de l\'histoire', {
+        fontSize: '16px',
+        color: '#475569',
         fontFamily: 'Arial, sans-serif',
         fontStyle: 'bold',
       })
-      .setOrigin(0.5);
-      
-    this.add
-      .text(width / 2, 55, 'Lis les cartes et place-les dans l\'ordre de l\'histoire  •  Clique pour voir les détails', {
-        fontSize: '14px',
-        color: '#6b7280',
-        fontFamily: 'Arial, sans-serif',
-      })
-      .setOrigin(0.5);
+      .setOrigin(0.5)
+      .setAlpha(0);
 
-    this.add
-      .text(width / 2, 70, 'Utilise la logique : que s\'est-il passé en premier, en deuxième, etc.', {
+    const instruction2 = this.add
+      .text(width / 2, 85, 'Clique pour voir les détails • Utilise la logique chronologique', {
         fontSize: '14px',
         color: '#10b981',
         fontFamily: 'Arial, sans-serif',
         fontStyle: 'bold',
       })
-      .setOrigin(0.5);
+      .setOrigin(0.5)
+      .setAlpha(0);
 
-    // Création des zones de dépôt selon la difficulté
+    // Animation d'entrée des instructions
+    this.tweens.add({
+      targets: [instruction1, instruction2],
+      alpha: 1,
+      duration: 600,
+      delay: 300,
+      ease: 'Power2'
+    });
+
+    // Création des zones de dépôt avec design moderne
     const slotIndices = Array.from({ length: this.cardCount }, (_, i) => i);
     this.slots = slotIndices.map((i) => {
       const x = 200 + i * 220;
-      const y = 280;
+      const y = 300;
       
       // Zone de dépôt invisible
       const zone = this.add
@@ -601,29 +656,56 @@ export default class OrderEventsScene extends Phaser.Scene {
         .setRectangleDropZone(180, 240);
       (zone as any).index = i;
 
-      // Bordure visible
-      this.add
-        .rectangle(x, y, 180, 240)
-        .setStrokeStyle(3, 0x6b7280)
-        .setFillStyle(0xffffff, 0.1);
+      // Fond de la zone avec gradient et ombre
+      const slotBg = this.add.graphics();
+      slotBg.fillGradientStyle(0xffffff, 0xffffff, 0xf8fafc, 0xf8fafc, 1, 1, 0, 0);
+      slotBg.fillRoundedRect(x - 90, y - 120, 180, 240, 20);
+      slotBg.lineStyle(3, 0xe2e8f0, 1);
+      slotBg.strokeRoundedRect(x - 90, y - 120, 180, 240, 20);
+      
+      // Ombre portée
+      slotBg.fillStyle(0x000000, 0.1);
+      slotBg.fillRoundedRect(x - 88, y - 118, 180, 240, 20);
 
-      // Numéro de l'étape avec indication d'ordre
-      this.add
+      // Numéro de l'étape avec style moderne
+      const stepNumber = this.add
         .text(x, y - 140, `Étape ${i + 1}`, {
-          fontSize: '16px',
-          color: '#6b7280',
+          fontSize: '18px',
+          color: '#1e293b',
           fontFamily: 'Arial, sans-serif',
           fontStyle: 'bold',
+          stroke: '#ffffff',
+          strokeThickness: 1,
         })
-        .setOrigin(0.5);
+        .setOrigin(0.5)
+        .setAlpha(0);
         
-      // Indicateur visuel simple (sans numéro)
-      this.add.circle(x + 70, y - 120, 8, 0x10b981);
+      // Indicateur visuel avec animation
+      const indicator = this.add.circle(x + 70, y - 120, 12, 0x10b981);
+      indicator.setStrokeStyle(3, 0xffffff);
+      indicator.setAlpha(0);
+      
+      // Icône dans l'indicateur
+      const checkIcon = this.add.text(x + 70, y - 120, '✓', {
+        fontSize: '14px',
+        color: '#ffffff',
+        fontFamily: 'Arial, sans-serif',
+        fontStyle: 'bold'
+      }).setOrigin(0.5).setAlpha(0);
+
+      // Animation d'entrée des zones
+      this.tweens.add({
+        targets: [stepNumber, indicator, checkIcon],
+        alpha: 1,
+        duration: 500,
+        delay: 600 + (i * 100),
+        ease: 'Back.easeOut'
+      });
 
       return zone;
     });
 
-    // Création des cartes selon la difficulté (mélangées)
+    // Création des cartes avec design moderne et animations
     const cardKeys = Array.from({ length: this.cardCount }, (_, i) => `card${i + 1}`);
     const shuffledKeys = [...cardKeys].sort(() => Math.random() - 0.5);
 
@@ -632,34 +714,42 @@ export default class OrderEventsScene extends Phaser.Scene {
       const y = 520;
 
       const container = this.add.container(x, y) as CardContainer;
+      container.setAlpha(0); // Commencer invisible pour l'animation
 
-      // Carte (rectangle coloré si image non disponible)
-      const cardImage = this.add.rectangle(0, 0, 180, 240, 0xe5e7eb);
-      cardImage.setStrokeStyle(2, 0x9ca3af);
-
-      // Essayer de charger l'image
+      // Carte avec texture moderne
       if (this.textures.exists(key)) {
         const img = this.add.image(0, 0, key);
         img.setDisplaySize(180, 240);
         container.add(img);
       } else {
+        // Fallback avec design moderne
+        const cardImage = this.add.rectangle(0, 0, 180, 240, 0x3B82F6);
+        cardImage.setStrokeStyle(4, 0xffffff);
         container.add(cardImage);
       }
 
       const cardNumber = key.replace('card', '');
       const cardIndex = parseInt(cardNumber) - 1;
 
-      // Face avant - Description courte directement visible
-      // Utiliser les bonnes données selon la leçon ou les données par défaut
+      // Texte avec style moderne et ombre
       const displayText = this.shortStorySteps[cardIndex] || `Étape ${cardNumber}`;
       const frontNumber = this.add
         .text(0, 0, displayText, {
           fontSize: '16px',
-          color: '#1f2937',
+          color: '#ffffff',
           fontFamily: 'Arial, sans-serif',
           fontStyle: 'bold',
           align: 'center',
-          wordWrap: { width: 160 }
+          wordWrap: { width: 160 },
+          stroke: '#000000',
+          strokeThickness: 2,
+          shadow: {
+            offsetX: 1,
+            offsetY: 1,
+            color: '#000000',
+            blur: 2,
+            fill: true
+          }
         })
         .setOrigin(0.5);
 
@@ -674,23 +764,44 @@ export default class OrderEventsScene extends Phaser.Scene {
         useHandCursor: true,
       });
 
+      // Animation d'entrée des cartes
+      this.tweens.add({
+        targets: container,
+        alpha: 1,
+        y: 520,
+        scaleX: 1,
+        scaleY: 1,
+        duration: 600,
+        delay: 1000 + (i * 150),
+        ease: 'Back.easeOut'
+      });
+
       this.input.setDraggable(container);
       return container;
     });
 
-    // Événement de clic pour effet visuel de sélection
+    // Événement de clic pour effet visuel de sélection amélioré
     this.input.on('pointerdown', (_pointer: any, currentlyOver: any) => {
       if (currentlyOver.length > 0) {
         const clickedObject = currentlyOver[0];
         // Vérifier si l'objet cliqué est une carte
         const card = this.cards.find(c => c === clickedObject.parentContainer || c === clickedObject);
         if (card) {
-          // Petit effet visuel pour confirmer la sélection
+          // Effet visuel amélioré pour confirmer la sélection
           this.tweens.add({
             targets: card,
-            scaleX: 1.1,
-            scaleY: 1.1,
-            duration: 100,
+            scaleX: 1.15,
+            scaleY: 1.15,
+            duration: 150,
+            yoyo: true,
+            ease: 'Back.easeOut'
+          });
+          
+          // Effet de brillance
+          this.tweens.add({
+            targets: card,
+            alpha: 0.8,
+            duration: 75,
             yoyo: true,
             ease: 'Power2'
           });
@@ -698,10 +809,19 @@ export default class OrderEventsScene extends Phaser.Scene {
       }
     });
 
-    // Événements de drag & drop
+    // Événements de drag & drop avec animations améliorées
     this.input.on('dragstart', (_pointer: any, gameObject: CardContainer) => {
-      gameObject.setScale(1.05);
+      gameObject.setScale(1.1);
+      gameObject.setDepth(1000); // Mettre au premier plan
       this.children.bringToTop(gameObject);
+      
+      // Effet d'ombre portée pendant le drag
+      this.tweens.add({
+        targets: gameObject,
+        alpha: 0.9,
+        duration: 200,
+        ease: 'Power2'
+      });
     });
 
     this.input.on('drag', (_pointer: any, gameObject: CardContainer, dragX: number, dragY: number) => {
@@ -710,95 +830,215 @@ export default class OrderEventsScene extends Phaser.Scene {
 
     this.input.on('dragend', (_pointer: any, gameObject: CardContainer) => {
       gameObject.setScale(1);
+      gameObject.setDepth(0); // Remettre à la profondeur normale
+      
+      // Restaurer l'opacité
+      this.tweens.add({
+        targets: gameObject,
+        alpha: 1,
+        duration: 200,
+        ease: 'Power2'
+      });
     });
 
     this.input.on('drop', (_pointer: any, gameObject: CardContainer, dropZone: any) => {
       // Vérifier si une autre carte occupe déjà cette zone
       const occupant = this.cards.find((card) => card.slotIndex === dropZone.index && card !== gameObject);
       if (occupant) {
-        // Échanger les positions
+        // Échanger les positions avec animation
         const tempX = gameObject.x;
         const tempY = gameObject.y;
         const tempSlot = gameObject.slotIndex;
         
-        gameObject.setPosition(dropZone.x, dropZone.y);
-        gameObject.slotIndex = dropZone.index;
+        // Animation d'échange
+        this.tweens.add({
+          targets: gameObject,
+          x: dropZone.x,
+          y: dropZone.y,
+          duration: 300,
+          ease: 'Back.easeOut'
+        });
         
-        occupant.setPosition(tempX, tempY);
+        this.tweens.add({
+          targets: occupant,
+          x: tempX,
+          y: tempY,
+          duration: 300,
+          ease: 'Back.easeOut'
+        });
+        
+        gameObject.slotIndex = dropZone.index;
         occupant.slotIndex = tempSlot;
       } else {
-        gameObject.setPosition(dropZone.x, dropZone.y);
+        // Animation de placement
+        this.tweens.add({
+          targets: gameObject,
+          x: dropZone.x,
+          y: dropZone.y,
+          duration: 300,
+          ease: 'Back.easeOut'
+        });
         gameObject.slotIndex = dropZone.index;
       }
+      
+      // Effet de succès visuel
+      this.tweens.add({
+        targets: gameObject,
+        scaleX: 1.05,
+        scaleY: 1.05,
+        duration: 150,
+        yoyo: true,
+        ease: 'Power2'
+      });
       
       // Vérifier si toutes les cartes sont placées pour activer le bouton
       this.updateValidateButton();
     });
 
     this.input.on('dragenter', (_pointer: any, _gameObject: any, dropZone: any) => {
-      dropZone.alpha = 0.5;
+      // Effet visuel amélioré pour la zone de drop
+      this.tweens.add({
+        targets: dropZone,
+        alpha: 0.7,
+        scaleX: 1.05,
+        scaleY: 1.05,
+        duration: 200,
+        ease: 'Power2'
+      });
     });
 
     this.input.on('dragleave', (_pointer: any, _gameObject: any, dropZone: any) => {
-      dropZone.alpha = 1;
+      // Restaurer l'état normal de la zone
+      this.tweens.add({
+        targets: dropZone,
+        alpha: 1,
+        scaleX: 1,
+        scaleY: 1,
+        duration: 200,
+        ease: 'Power2'
+      });
     });
 
-    // Instructions détaillées (repositionnées plus haut)
-    this.add
-      .text(width / 2, 80, 'Glisse chaque carte vers l\'étape correspondante', {
+    // Instructions détaillées avec animation
+    const instruction3 = this.add
+      .text(width / 2, 110, 'Glisse chaque carte vers l\'étape correspondante', {
         fontSize: '16px',
-        color: '#6b7280',
+        color: '#475569',
         fontFamily: 'Arial, sans-serif',
         fontStyle: 'bold',
       })
-      .setOrigin(0.5);
+      .setOrigin(0.5)
+      .setAlpha(0);
       
-    this.add
-      .text(width / 2, 100, 'Puis clique sur "Valider" pour vérifier ton ordre', {
+    const instruction4 = this.add
+      .text(width / 2, 130, 'Puis clique sur "Valider" pour vérifier ton ordre', {
         fontSize: '14px',
-        color: '#9ca3af',
+        color: '#64748b',
         fontFamily: 'Arial, sans-serif',
       })
-      .setOrigin(0.5);
+      .setOrigin(0.5)
+      .setAlpha(0);
+
+    // Animation d'entrée des instructions finales
+    this.tweens.add({
+      targets: [instruction3, instruction4],
+      alpha: 1,
+      duration: 500,
+      delay: 1200,
+      ease: 'Power2'
+    });
     
-    // Créer le bouton de validation
-    this.createValidateButton();
+    // Créer le bouton de validation avec délai
+    this.time.delayedCall(1500, () => {
+      this.createValidateButton();
+    });
   }
 
   private createValidateButton() {
     const { width, height } = this.scale;
     
-    // Créer le bouton de validation
-    this.validateButton = this.add.container(width / 2, height - 50);
+    // Créer le bouton de validation avec design moderne
+    this.validateButton = this.add.container(width / 2, height - 60);
+    this.validateButton.setAlpha(0); // Commencer invisible
     
-    // Fond du bouton
-    const buttonBg = this.add.rectangle(0, 0, 200, 50, 0x10B981);
-    buttonBg.setStrokeStyle(2, 0x059669);
+    // Fond du bouton avec gradient
+    const buttonBg = this.add.graphics();
+    buttonBg.fillGradientStyle(0x10B981, 0x10B981, 0x059669, 0x059669, 1, 1, 0, 0);
+    buttonBg.fillRoundedRect(-100, -25, 200, 50, 25);
+    buttonBg.lineStyle(3, 0xffffff, 1);
+    buttonBg.strokeRoundedRect(-100, -25, 200, 50, 25);
     
-    // Texte du bouton
+    // Ombre portée
+    buttonBg.fillStyle(0x000000, 0.2);
+    buttonBg.fillRoundedRect(-98, -23, 200, 50, 25);
+    
+    // Texte du bouton avec ombre
     const buttonText = this.add.text(0, 0, '✅ Valider', {
-      fontSize: '18px',
+      fontSize: '20px',
       color: '#ffffff',
       fontFamily: 'Arial, sans-serif',
-      fontStyle: 'bold'
+      fontStyle: 'bold',
+      stroke: '#000000',
+      strokeThickness: 1,
+      shadow: {
+        offsetX: 1,
+        offsetY: 1,
+        color: '#000000',
+        blur: 2,
+        fill: true
+      }
     }).setOrigin(0.5);
     
     this.validateButton.add([buttonBg, buttonText]);
     this.validateButton.setSize(200, 50);
     this.validateButton.setInteractive({ useHandCursor: true });
     
-    // Événement de clic
-    this.validateButton.on('pointerdown', () => {
-      this.checkWin();
+    // Animation d'entrée du bouton
+    this.tweens.add({
+      targets: this.validateButton,
+      alpha: 1,
+      y: height - 60,
+      scaleX: 1,
+      scaleY: 1,
+      duration: 600,
+      ease: 'Back.easeOut'
     });
     
-    // Effet hover
+    // Événement de clic avec animation
+    this.validateButton.on('pointerdown', () => {
+      // Animation de clic
+      this.tweens.add({
+        targets: this.validateButton,
+        scaleX: 0.95,
+        scaleY: 0.95,
+        duration: 100,
+        yoyo: true,
+        ease: 'Power2',
+        onComplete: () => {
+          this.checkWin();
+        }
+      });
+    });
+    
+    // Effet hover amélioré
     this.validateButton.on('pointerover', () => {
-      this.validateButton!.setScale(1.05);
+      this.tweens.add({
+        targets: this.validateButton,
+        scaleX: 1.08,
+        scaleY: 1.08,
+        duration: 200,
+        ease: 'Back.easeOut'
+      });
     });
     
     this.validateButton.on('pointerout', () => {
-      this.validateButton!.setScale(1);
+      this.tweens.add({
+        targets: this.validateButton,
+        scaleX: 1,
+        scaleY: 1,
+        duration: 200,
+        ease: 'Back.easeOut'
+      });
     });
     
     // Désactiver le bouton initialement
@@ -813,21 +1053,55 @@ export default class OrderEventsScene extends Phaser.Scene {
     const allPlaced = placedCards.length === this.cardCount;
     
     if (allPlaced) {
-      // Activer le bouton
-      this.validateButton.setAlpha(1);
+      // Activer le bouton avec animation
+      this.tweens.add({
+        targets: this.validateButton,
+        alpha: 1,
+        scaleX: 1.05,
+        scaleY: 1.05,
+        duration: 300,
+        ease: 'Back.easeOut',
+        yoyo: true
+      });
+      
       this.validateButton.setInteractive({ useHandCursor: true });
       
       // Changer la couleur pour indiquer qu'il est prêt
-      const buttonBg = this.validateButton.list[0] as Phaser.GameObjects.Rectangle;
-      buttonBg.setFillStyle(0x10B981); // Vert
+      const buttonBg = this.validateButton.list[0] as Phaser.GameObjects.Graphics;
+      buttonBg.clear();
+      buttonBg.fillGradientStyle(0x10B981, 0x10B981, 0x059669, 0x059669, 1, 1, 0, 0);
+      buttonBg.fillRoundedRect(-100, -25, 200, 50, 25);
+      buttonBg.lineStyle(3, 0xffffff, 1);
+      buttonBg.strokeRoundedRect(-100, -25, 200, 50, 25);
+      
+      // Effet de pulsation pour attirer l'attention
+      this.tweens.add({
+        targets: this.validateButton,
+        scaleX: 1.02,
+        scaleY: 1.02,
+        duration: 1000,
+        yoyo: true,
+        repeat: -1,
+        ease: 'Sine.easeInOut'
+      });
     } else {
       // Désactiver le bouton
-      this.validateButton.setAlpha(0.5);
+      this.tweens.add({
+        targets: this.validateButton,
+        alpha: 0.6,
+        duration: 200,
+        ease: 'Power2'
+      });
+      
       this.validateButton.disableInteractive();
       
       // Changer la couleur pour indiquer qu'il n'est pas prêt
-      const buttonBg = this.validateButton.list[0] as Phaser.GameObjects.Rectangle;
-      buttonBg.setFillStyle(0x6B7280); // Gris
+      const buttonBg = this.validateButton.list[0] as Phaser.GameObjects.Graphics;
+      buttonBg.clear();
+      buttonBg.fillGradientStyle(0x6B7280, 0x6B7280, 0x4B5563, 0x4B5563, 1, 1, 0, 0);
+      buttonBg.fillRoundedRect(-100, -25, 200, 50, 25);
+      buttonBg.lineStyle(3, 0x9CA3AF, 1);
+      buttonBg.strokeRoundedRect(-100, -25, 200, 50, 25);
     }
   }
 
@@ -868,7 +1142,7 @@ export default class OrderEventsScene extends Phaser.Scene {
       'Est correct': isCorrect
     });
 
-    // Afficher le message
+    // Afficher le message avec design moderne
     const { width } = this.scale;
     let successMessage = 'Bravo ! Jonas a obéi à Dieu.';
     let badgeName = 'Ami des Prophètes';
@@ -1002,38 +1276,86 @@ export default class OrderEventsScene extends Phaser.Scene {
       : 'Regarde bien l\'histoire, essaie encore.';
     
     const messageColor = isCorrect ? '#10b981' : '#ef4444';
+    const bgColor = isCorrect ? 0x10b981 : 0xef4444;
+    
+    // Créer un fond pour le message
+    const messageBg = this.add.graphics();
+    messageBg.fillStyle(bgColor, 0.1);
+    messageBg.fillRoundedRect(width / 2 - 200, 100, 400, 80, 20);
+    messageBg.lineStyle(3, parseInt(messageColor.replace('#', ''), 16), 1);
+    messageBg.strokeRoundedRect(width / 2 - 200, 100, 400, 80, 20);
     
     const messageText = this.add
-      .text(width / 2, 120, message, {
+      .text(width / 2, 140, message, {
         fontSize: '24px',
         color: messageColor,
         fontFamily: 'Arial, sans-serif',
         fontStyle: 'bold',
+        stroke: '#ffffff',
+        strokeThickness: 2,
+        shadow: {
+          offsetX: 2,
+          offsetY: 2,
+          color: '#000000',
+          blur: 4,
+          fill: true
+        }
       })
       .setOrigin(0.5)
-      .setDepth(10);
+      .setDepth(10)
+      .setAlpha(0);
+
+    // Animation d'entrée du message
+    this.tweens.add({
+      targets: [messageBg, messageText],
+      alpha: 1,
+      duration: 500,
+      ease: 'Back.easeOut'
+    });
 
     if (isCorrect) {
       this.gameComplete = true;
       
-      // Animation de victoire
+      // Animation de victoire améliorée
       this.tweens.add({
         targets: messageText,
-        scaleX: 1.2,
-        scaleY: 1.2,
+        scaleX: 1.3,
+        scaleY: 1.3,
         yoyo: true,
-        duration: 300,
+        duration: 400,
         ease: 'Back.easeOut',
+        repeat: 2
       });
 
+      // Effet de confettis ou particules (simulation avec des cercles)
+      const { height } = this.scale;
+      for (let i = 0; i < 20; i++) {
+        const confetti = this.add.circle(
+          width / 2 + (Math.random() - 0.5) * 400,
+          height / 2 + (Math.random() - 0.5) * 200,
+          Math.random() * 8 + 4,
+          Math.random() * 0xffffff
+        );
+        
+        this.tweens.add({
+          targets: confetti,
+          y: confetti.y + Math.random() * 200 + 100,
+          alpha: 0,
+          duration: 2000,
+          ease: 'Power2',
+          delay: Math.random() * 500
+        });
+      }
+
       // Émettre l'événement de victoire après un délai
-      this.time.delayedCall(1500, () => {
+      this.time.delayedCall(2000, () => {
         this.events.emit('lesson:completed', { badge: badgeName });
       });
     } else {
       // Effacer le message d'erreur après un délai et réactiver le bouton
-      this.time.delayedCall(2000, () => {
+      this.time.delayedCall(2500, () => {
         messageText.destroy();
+        messageBg.destroy();
         // Réactiver le bouton pour permettre un nouvel essai
         this.updateValidateButton();
       });
