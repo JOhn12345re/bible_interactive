@@ -279,6 +279,23 @@ class BibleApiService {
       console.log('📖 Exemples de versets Romains 8:', romains8Verses.slice(0, 3));
     }
     
+    // Rechercher spécifiquement Jean
+    const jeanBooks = books.filter(book => 
+      book.toLowerCase().includes('jean') || 
+      book.toLowerCase().includes('john')
+    );
+    console.log(`📖 Livres contenant "jean/john":`, jeanBooks);
+    
+    // Chercher des versets de Jean 3
+    const jean3Verses = this.bibleData.verses.filter(v => 
+      (v.book_name.toLowerCase().includes('jean') || v.book_name.toLowerCase().includes('john')) &&
+      v.chapter === 3
+    );
+    console.log(`📋 Versets de Jean 3 trouvés: ${jean3Verses.length}`);
+    if (jean3Verses.length > 0) {
+      console.log('📖 Exemples de versets Jean 3:', jean3Verses.slice(0, 3));
+    }
+    
     // Analyser la structure d'un verset
     if (this.bibleData.verses.length > 0) {
       const sampleVerse = this.bibleData.verses[0];
@@ -1970,6 +1987,35 @@ class BibleApiService {
       
       // Essayer différents noms possibles
       const possibleNames = ['Romains', 'Romans', 'ROMAINS', 'ROMANS'];
+      
+      for (const name of possibleNames) {
+        console.log(`🔄 Test avec le nom: "${name}"`);
+        const verses = await this.getVersesFromLocalData(
+          name, 
+          parseInt(ch), 
+          parseInt(vStart), 
+          vEnd ? parseInt(vEnd) : undefined
+        );
+        
+        if (verses.length > 0) {
+          console.log(`✅ Versets trouvés avec "${name}": ${verses.length}`);
+          return verses[0];
+        } else {
+          console.log(`❌ Aucun verset trouvé avec "${name}"`);
+        }
+      }
+      
+      console.log('⚠️ Aucun verset trouvé avec aucun nom testé');
+      return null;
+    }
+    
+    // Gestion spéciale pour Jean (debug)
+    if (rawBook.toLowerCase().includes('jean')) {
+      console.log('📖 Détection de Jean, debug spécial activé');
+      console.log('🔍 Recherche avec différents noms possibles...');
+      
+      // Essayer différents noms possibles
+      const possibleNames = ['Jean', 'John', 'JEAN', 'JOHN'];
       
       for (const name of possibleNames) {
         console.log(`🔄 Test avec le nom: "${name}"`);
