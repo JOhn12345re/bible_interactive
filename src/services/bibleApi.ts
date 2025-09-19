@@ -262,6 +262,23 @@ class BibleApiService {
     );
     console.log(`🎵 Livres de psaumes trouvés:`, psalmBooks);
     
+    // Rechercher spécifiquement Romains
+    const romainsBooks = books.filter(book => 
+      book.toLowerCase().includes('romain') || 
+      book.toLowerCase().includes('roman')
+    );
+    console.log(`📖 Livres contenant "romain/roman":`, romainsBooks);
+    
+    // Chercher des versets de Romains 8
+    const romains8Verses = this.bibleData.verses.filter(v => 
+      (v.book_name.toLowerCase().includes('romain') || v.book_name.toLowerCase().includes('roman')) &&
+      v.chapter === 8
+    );
+    console.log(`📋 Versets de Romains 8 trouvés: ${romains8Verses.length}`);
+    if (romains8Verses.length > 0) {
+      console.log('📖 Exemples de versets Romains 8:', romains8Verses.slice(0, 3));
+    }
+    
     // Analyser la structure d'un verset
     if (this.bibleData.verses.length > 0) {
       const sampleVerse = this.bibleData.verses[0];
@@ -1944,6 +1961,35 @@ class BibleApiService {
       
       console.log(`📋 ${verses.length} versets du psaume trouvés`);
       return verses[0] || null;
+    }
+    
+    // Gestion spéciale pour Romains (debug)
+    if (rawBook.toLowerCase().includes('romains')) {
+      console.log('📖 Détection de Romains, debug spécial activé');
+      console.log('🔍 Recherche avec différents noms possibles...');
+      
+      // Essayer différents noms possibles
+      const possibleNames = ['Romains', 'Romans', 'ROMAINS', 'ROMANS'];
+      
+      for (const name of possibleNames) {
+        console.log(`🔄 Test avec le nom: "${name}"`);
+        const verses = await this.getVersesFromLocalData(
+          name, 
+          parseInt(ch), 
+          parseInt(vStart), 
+          vEnd ? parseInt(vEnd) : undefined
+        );
+        
+        if (verses.length > 0) {
+          console.log(`✅ Versets trouvés avec "${name}": ${verses.length}`);
+          return verses[0];
+        } else {
+          console.log(`❌ Aucun verset trouvé avec "${name}"`);
+        }
+      }
+      
+      console.log('⚠️ Aucun verset trouvé avec aucun nom testé');
+      return null;
     }
     
     const normalizedBook = this.normalizeBookName(rawBook);
