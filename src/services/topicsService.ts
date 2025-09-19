@@ -25,15 +25,38 @@ class TopicsService {
     if (this.topicsData) return;
     
     try {
+      console.log('🔄 Chargement des topics depuis /api/topics.json...');
       const response = await fetch('/api/topics.json');
       if (!response.ok) {
         throw new Error(`Erreur HTTP: ${response.status}`);
       }
       this.topicsData = await response.json();
+      console.log('✅ Topics chargés avec succès:', Object.keys(this.topicsData).length, 'thèmes');
       this.initializeTopics();
     } catch (error) {
-      console.error('Erreur lors du chargement des topics:', error);
-      // Fallback avec des données de base
+      console.error('❌ Erreur lors du chargement des topics:', error);
+      console.log('🔄 Tentative de chargement direct...');
+      
+      // Essayer de charger directement depuis le fichier local
+      try {
+        const response = await fetch('/api/topics.json', { 
+          cache: 'no-cache',
+          headers: {
+            'Cache-Control': 'no-cache'
+          }
+        });
+        if (response.ok) {
+          this.topicsData = await response.json();
+          console.log('✅ Topics chargés en retry:', Object.keys(this.topicsData).length, 'thèmes');
+          this.initializeTopics();
+          return;
+        }
+      } catch (retryError) {
+        console.error('❌ Échec du retry:', retryError);
+      }
+      
+      // Fallback avec des données de base (seulement en dernier recours)
+      console.warn('⚠️ Utilisation des données de fallback');
       this.topicsData = {
         "joie": [
           { "ref": "Philippiens 4:4", "texte": "Réjouissez-vous toujours dans le Seigneur ; je le répète, réjouissez-vous." }
@@ -173,6 +196,24 @@ class TopicsService {
       topic.description.toLowerCase().includes(lowerKeyword) ||
       topic.slug.toLowerCase().includes(lowerKeyword)
     );
+  }
+
+  // Forcer le rechargement des données
+  async reloadTopics(): Promise<void> {
+    console.log('🔄 Rechargement forcé des topics...');
+    this.topicsData = null;
+    this.topics = [];
+    this.initialized = false;
+    await this.loadTopicsData();
+  }
+
+  // Obtenir le statut de chargement
+  getLoadingStatus(): { initialized: boolean; topicsCount: number; dataSource: string } {
+    return {
+      initialized: this.initialized,
+      topicsCount: this.topics.length,
+      dataSource: this.topicsData ? 'loaded' : 'fallback'
+    };
   }
 }
 

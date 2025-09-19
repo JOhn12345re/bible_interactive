@@ -53,6 +53,20 @@ const TopicsExplorer: React.FC = () => {
     }
   };
 
+  const debugTopicsService = async () => {
+    console.log('🔍 Debug du service Topics:');
+    const status = topicsService.getLoadingStatus();
+    console.log('📊 Statut:', status);
+    
+    if (status.topicsCount < 10) {
+      console.log('⚠️ Peu de topics chargés, tentative de rechargement...');
+      await topicsService.reloadTopics();
+      const newTopics = await topicsService.getAllTopics();
+      setTopics(newTopics);
+      console.log('✅ Rechargement terminé:', newTopics.length, 'topics');
+    }
+  };
+
   if (loading) {
     return (
       <div className="flex items-center justify-center p-8">
@@ -64,14 +78,20 @@ const TopicsExplorer: React.FC = () => {
 
   return (
     <div className="max-w-6xl mx-auto p-6">
-      <div className="text-center mb-8">
-        <h1 className="text-4xl font-bold text-gray-800 mb-4">
-          📚 Explorateur de Thèmes Bibliques
-        </h1>
-        <p className="text-lg text-gray-600">
-          Découvrez des versets organisés par thème pour enrichir votre foi
-        </p>
-      </div>
+        <div className="text-center mb-8">
+          <h1 className="text-4xl font-bold text-gray-800 mb-4">
+            📚 Explorateur de Thèmes Bibliques
+          </h1>
+          <p className="text-lg text-gray-600 mb-4">
+            Découvrez des versets organisés par thème pour enrichir votre foi
+          </p>
+          <button
+            onClick={debugTopicsService}
+            className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm"
+          >
+            🔍 Debug Topics ({topics.length} chargés)
+          </button>
+        </div>
 
       {/* Verset du jour */}
       {verseOfTheDay && (
