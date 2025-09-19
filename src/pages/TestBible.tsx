@@ -56,6 +56,11 @@ const TestBible: React.FC = () => {
     (bibleApi as any).debugBibleData();
   };
 
+  const testAllVerses = async () => {
+    console.log('🧪 Démarrage du test automatique de tous les versets...');
+    await (bibleApi as any).testAllPopularVerses();
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-8">
       <div className="max-w-6xl mx-auto px-4">
@@ -154,12 +159,19 @@ const TestBible: React.FC = () => {
                 Test méthodes spécialisées
               </button>
 
-              <button
-                onClick={debugBibleData}
-                className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 transition-colors button-interactive"
-              >
-                🔍 Debug données
-              </button>
+            <button
+              onClick={debugBibleData}
+              className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 transition-colors button-interactive"
+            >
+              🔍 Debug données
+            </button>
+
+            <button
+              onClick={testAllVerses}
+              className="px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700 transition-colors button-interactive"
+            >
+              🧪 Test tous les versets
+            </button>
             </div>
 
             {error && (

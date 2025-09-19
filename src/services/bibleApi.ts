@@ -241,6 +241,79 @@ class BibleApiService {
     return this.defaultTranslation;
   }
 
+  // Méthode de test automatique pour tous les versets populaires
+  async testAllPopularVerses(): Promise<void> {
+    console.log('🧪 === TEST AUTOMATIQUE DE TOUS LES VERSETS POPULAIRES ===');
+    
+    const testVerses = [
+      'Genèse 1:1',
+      'Exode 3:14',
+      'Psaume 23:1',
+      'Psaume 91:1',
+      'Proverbes 3:5-6',
+      'Ésaïe 40:31',
+      'Jérémie 29:11',
+      'Matthieu 5:3-4',
+      'Matthieu 6:9-10',
+      'Matthieu 28:19-20',
+      'Marc 16:15',
+      'Luc 2:11',
+      'Jean 3:16',
+      'Jean 14:6',
+      'Actes 1:8',
+      'Romains 8:28',
+      'Romains 10:9-10',
+      '1 Corinthiens 13:4-5',
+      'Galates 5:22-23',
+      'Éphésiens 2:8-9',
+      'Philippiens 4:13',
+      'Colossiens 3:23',
+      '1 Thessaloniciens 5:16-18',
+      '2 Timothée 3:16-17',
+      'Hébreux 11:1',
+      'Jacques 1:2-3',
+      '1 Pierre 5:7',
+      '1 Jean 4:8',
+      'Apocalypse 21:4'
+    ];
+
+    let successCount = 0;
+    let failCount = 0;
+    const failedVerses: string[] = [];
+
+    for (const verse of testVerses) {
+      console.log(`\n🔍 Test de: ${verse}`);
+      try {
+        const result = await this.getVerseByReference(verse);
+        if (result) {
+          console.log(`✅ SUCCÈS: ${verse} trouvé`);
+          successCount++;
+        } else {
+          console.log(`❌ ÉCHEC: ${verse} non trouvé`);
+          failCount++;
+          failedVerses.push(verse);
+        }
+      } catch (error) {
+        console.log(`❌ ERREUR: ${verse} - ${error}`);
+        failCount++;
+        failedVerses.push(verse);
+      }
+    }
+
+    console.log('\n📊 === RÉSULTATS DU TEST ===');
+    console.log(`✅ Versets trouvés: ${successCount}`);
+    console.log(`❌ Versets non trouvés: ${failCount}`);
+    console.log(`📈 Taux de réussite: ${((successCount / testVerses.length) * 100).toFixed(1)}%`);
+    
+    if (failedVerses.length > 0) {
+      console.log('\n❌ Versets qui ont échoué:');
+      failedVerses.forEach(verse => console.log(`   - ${verse}`));
+    }
+
+    console.log('\n🔍 === ANALYSE DES LIVRES DISPONIBLES ===');
+    this.debugBibleData();
+  }
+
   // Méthode de debug pour analyser les données
   debugBibleData(): void {
     if (!this.bibleData) {
