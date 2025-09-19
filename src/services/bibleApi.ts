@@ -253,6 +253,7 @@ class BibleApiService {
       'Proverbes 3:5-6',
       'Ésaïe 40:31',
       'Jérémie 29:11',
+      'Jonas 2:9',
       'Matthieu 5:3-4',
       'Matthieu 6:9-10',
       'Matthieu 28:19-20',
@@ -384,6 +385,23 @@ class BibleApiService {
     console.log(`📋 Versets de Matthieu 28 trouvés: ${matthieu28Verses.length}`);
     if (matthieu28Verses.length > 0) {
       console.log('📖 Exemples de versets Matthieu 28:', matthieu28Verses.slice(0, 3));
+    }
+    
+    // Rechercher spécifiquement Jonas
+    const jonasBooks = books.filter(book => 
+      book.toLowerCase().includes('jonas') || 
+      book.toLowerCase().includes('jonah')
+    );
+    console.log(`📖 Livres contenant "jonas/jonah":`, jonasBooks);
+    
+    // Chercher des versets de Jonas 2
+    const jonas2Verses = this.bibleData.verses.filter(v => 
+      (v.book_name.toLowerCase().includes('jonas') || v.book_name.toLowerCase().includes('jonah')) &&
+      v.chapter === 2
+    );
+    console.log(`📋 Versets de Jonas 2 trouvés: ${jonas2Verses.length}`);
+    if (jonas2Verses.length > 0) {
+      console.log('📖 Exemples de versets Jonas 2:', jonas2Verses.slice(0, 3));
     }
     
     // Analyser la structure d'un verset
@@ -2135,6 +2153,35 @@ class BibleApiService {
       
       // Essayer différents noms possibles
       const possibleNames = ['Matthieu', 'Matthew', 'MATTHIEU', 'MATTHEW'];
+      
+      for (const name of possibleNames) {
+        console.log(`🔄 Test avec le nom: "${name}"`);
+        const verses = await this.getVersesFromLocalData(
+          name, 
+          parseInt(ch), 
+          parseInt(vStart), 
+          vEnd ? parseInt(vEnd) : undefined
+        );
+        
+        if (verses.length > 0) {
+          console.log(`✅ Versets trouvés avec "${name}": ${verses.length}`);
+          return verses[0];
+        } else {
+          console.log(`❌ Aucun verset trouvé avec "${name}"`);
+        }
+      }
+      
+      console.log('⚠️ Aucun verset trouvé avec aucun nom testé');
+      return null;
+    }
+    
+    // Gestion spéciale pour Jonas (debug)
+    if (rawBook.toLowerCase().includes('jonas')) {
+      console.log('📖 Détection de Jonas, debug spécial activé');
+      console.log('🔍 Recherche avec différents noms possibles...');
+      
+      // Essayer différents noms possibles
+      const possibleNames = ['Jonas', 'Jonah', 'JONAS', 'JONAH'];
       
       for (const name of possibleNames) {
         console.log(`🔄 Test avec le nom: "${name}"`);
