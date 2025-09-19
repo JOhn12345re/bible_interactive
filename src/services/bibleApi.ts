@@ -1918,16 +1918,48 @@ class BibleApiService {
 
   // Méthode pour obtenir un verset spécifique par référence
   async getVerseByReference(reference: string): Promise<BibleVerse | null> {
+    console.log(`🔍 Recherche de verset par référence: "${reference}"`);
+    
     const match = reference.match(/(\w+)\s+(\d+):(\d+)(?:-(\d+))?/);
-    if (!match) return null;
+    if (!match) {
+      console.log('❌ Format de référence invalide');
+      return null;
+    }
 
     const [, rawBook, ch, vStart, vEnd] = match;
+    console.log(`📖 Livre: "${rawBook}", Chapitre: ${ch}, Verset: ${vStart}${vEnd ? `-${vEnd}` : ''}`);
+    
+    // Gestion spéciale pour les psaumes
+    if (rawBook.toLowerCase().includes('psaume')) {
+      console.log('🎵 Détection d\'un psaume, utilisation de la méthode spécialisée');
+      const psalmNumber = parseInt(ch);
+      const verses = await this.getPsalm(psalmNumber);
+      
+      // Filtrer le verset spécifique si demandé
+      if (vStart) {
+        const specificVerse = verses.find(v => v.verse_start === parseInt(vStart));
+        console.log(`📋 Verset spécifique trouvé: ${specificVerse ? 'Oui' : 'Non'}`);
+        return specificVerse || null;
+      }
+      
+      console.log(`📋 ${verses.length} versets du psaume trouvés`);
+      return verses[0] || null;
+    }
+    
+    const normalizedBook = this.normalizeBookName(rawBook);
+    console.log(`🔄 Livre normalisé: "${normalizedBook}"`);
+    
     const verses = await this.getVersesDefault(
-      this.normalizeBookName(rawBook), 
+      normalizedBook, 
       parseInt(ch), 
       parseInt(vStart), 
       vEnd ? parseInt(vEnd) : undefined
     );
+
+    console.log(`📋 ${verses.length} versets trouvés`);
+    if (verses.length > 0) {
+      console.log(`✅ Premier verset: ${verses[0].book_id} ${verses[0].chapter}:${verses[0].verse_start}`);
+    }
 
     return verses[0] || null;
   }
