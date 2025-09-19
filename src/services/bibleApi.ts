@@ -296,6 +296,23 @@ class BibleApiService {
       console.log('📖 Exemples de versets Jean 3:', jean3Verses.slice(0, 3));
     }
     
+    // Rechercher spécifiquement Matthieu
+    const matthieuBooks = books.filter(book => 
+      book.toLowerCase().includes('matthieu') || 
+      book.toLowerCase().includes('matthew')
+    );
+    console.log(`📖 Livres contenant "matthieu/matthew":`, matthieuBooks);
+    
+    // Chercher des versets de Matthieu 28
+    const matthieu28Verses = this.bibleData.verses.filter(v => 
+      (v.book_name.toLowerCase().includes('matthieu') || v.book_name.toLowerCase().includes('matthew')) &&
+      v.chapter === 28
+    );
+    console.log(`📋 Versets de Matthieu 28 trouvés: ${matthieu28Verses.length}`);
+    if (matthieu28Verses.length > 0) {
+      console.log('📖 Exemples de versets Matthieu 28:', matthieu28Verses.slice(0, 3));
+    }
+    
     // Analyser la structure d'un verset
     if (this.bibleData.verses.length > 0) {
       const sampleVerse = this.bibleData.verses[0];
@@ -2016,6 +2033,35 @@ class BibleApiService {
       
       // Essayer différents noms possibles
       const possibleNames = ['Jean', 'John', 'JEAN', 'JOHN'];
+      
+      for (const name of possibleNames) {
+        console.log(`🔄 Test avec le nom: "${name}"`);
+        const verses = await this.getVersesFromLocalData(
+          name, 
+          parseInt(ch), 
+          parseInt(vStart), 
+          vEnd ? parseInt(vEnd) : undefined
+        );
+        
+        if (verses.length > 0) {
+          console.log(`✅ Versets trouvés avec "${name}": ${verses.length}`);
+          return verses[0];
+        } else {
+          console.log(`❌ Aucun verset trouvé avec "${name}"`);
+        }
+      }
+      
+      console.log('⚠️ Aucun verset trouvé avec aucun nom testé');
+      return null;
+    }
+    
+    // Gestion spéciale pour Matthieu (debug)
+    if (rawBook.toLowerCase().includes('matthieu')) {
+      console.log('📖 Détection de Matthieu, debug spécial activé');
+      console.log('🔍 Recherche avec différents noms possibles...');
+      
+      // Essayer différents noms possibles
+      const possibleNames = ['Matthieu', 'Matthew', 'MATTHIEU', 'MATTHEW'];
       
       for (const name of possibleNames) {
         console.log(`🔄 Test avec le nom: "${name}"`);
