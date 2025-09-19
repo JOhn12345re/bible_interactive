@@ -404,6 +404,23 @@ class BibleApiService {
       console.log('📖 Exemples de versets Jonas 2:', jonas2Verses.slice(0, 3));
     }
     
+    // Rechercher spécifiquement Philippiens
+    const philippiensBooks = books.filter(book => 
+      book.toLowerCase().includes('philippiens') || 
+      book.toLowerCase().includes('philippians')
+    );
+    console.log(`📖 Livres contenant "philippiens/philippians":`, philippiensBooks);
+    
+    // Chercher des versets de Philippiens 4
+    const philippiens4Verses = this.bibleData.verses.filter(v => 
+      (v.book_name.toLowerCase().includes('philippiens') || v.book_name.toLowerCase().includes('philippians')) &&
+      v.chapter === 4
+    );
+    console.log(`📋 Versets de Philippiens 4 trouvés: ${philippiens4Verses.length}`);
+    if (philippiens4Verses.length > 0) {
+      console.log('📖 Exemples de versets Philippiens 4:', philippiens4Verses.slice(0, 3));
+    }
+    
     // Analyser la structure d'un verset
     if (this.bibleData.verses.length > 0) {
       const sampleVerse = this.bibleData.verses[0];
@@ -2182,6 +2199,35 @@ class BibleApiService {
       
       // Essayer différents noms possibles
       const possibleNames = ['Jonas', 'Jonah', 'JONAS', 'JONAH'];
+      
+      for (const name of possibleNames) {
+        console.log(`🔄 Test avec le nom: "${name}"`);
+        const verses = await this.getVersesFromLocalData(
+          name, 
+          parseInt(ch), 
+          parseInt(vStart), 
+          vEnd ? parseInt(vEnd) : undefined
+        );
+        
+        if (verses.length > 0) {
+          console.log(`✅ Versets trouvés avec "${name}": ${verses.length}`);
+          return verses[0];
+        } else {
+          console.log(`❌ Aucun verset trouvé avec "${name}"`);
+        }
+      }
+      
+      console.log('⚠️ Aucun verset trouvé avec aucun nom testé');
+      return null;
+    }
+    
+    // Gestion spéciale pour Philippiens (debug)
+    if (rawBook.toLowerCase().includes('philippiens')) {
+      console.log('📖 Détection de Philippiens, debug spécial activé');
+      console.log('🔍 Recherche avec différents noms possibles...');
+      
+      // Essayer différents noms possibles
+      const possibleNames = ['Philippiens', 'Philippians', 'PHILIPPIENS', 'PHILIPPIANS'];
       
       for (const name of possibleNames) {
         console.log(`🔄 Test avec le nom: "${name}"`);
