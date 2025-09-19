@@ -6,6 +6,7 @@ import TimelinePage from './pages/TimelinePage';
 import BibleExplorer from './pages/BibleExplorer';
 import SermonSection from './components/SermonSection';
 import TestBible from './pages/TestBible';
+import TopicsExplorer from './components/TopicsExplorer';
 
 function App() {
   const { fontScale, contrastHigh, fontFamily } = useSettings();
@@ -42,9 +43,10 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/lesson/:id" element={<Lesson />} />
           <Route path="/timeline" element={<TimelinePage />} />
-          <Route path="/bible" element={<BibleExplorer />} />
-          <Route path="/sermons" element={<SermonSection />} />
-          <Route path="/test-bible" element={<TestBible />} />
+               <Route path="/bible" element={<BibleExplorer />} />
+               <Route path="/sermons" element={<SermonSection />} />
+               <Route path="/test-bible" element={<TestBible />} />
+               <Route path="/topics" element={<TopicsExplorer />} />
         </Routes>
       </Router>
       </div>

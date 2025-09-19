@@ -51,6 +51,11 @@ const TestBible: React.FC = () => {
     }
   };
 
+  const debugBibleData = () => {
+    console.log('🔍 Démarrage du debug des données...');
+    (bibleApi as any).debugBibleData();
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-8">
       <div className="max-w-6xl mx-auto px-4">
@@ -132,11 +137,11 @@ const TestBible: React.FC = () => {
               </div>
             </div>
 
-            <div className="space-x-4">
+            <div className="flex flex-wrap gap-4">
               <button
                 onClick={loadVerses}
                 disabled={loading}
-                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 transition-colors"
+                className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 transition-colors button-interactive"
               >
                 {loading ? 'Chargement...' : 'Charger les versets'}
               </button>
@@ -144,9 +149,16 @@ const TestBible: React.FC = () => {
               <button
                 onClick={testSpecificMethods}
                 disabled={loading}
-                className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 disabled:opacity-50 transition-colors"
+                className="px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700 disabled:opacity-50 transition-colors button-interactive"
               >
                 Test méthodes spécialisées
+              </button>
+
+              <button
+                onClick={debugBibleData}
+                className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 transition-colors button-interactive"
+              >
+                🔍 Debug données
               </button>
             </div>
 

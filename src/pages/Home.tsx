@@ -231,6 +231,20 @@ export default function Home() {
                 <span>Test Bible LSG</span>
               </Link>
 
+              {/* Bouton Explorateur de Thèmes */}
+              <Link
+                to="/topics"
+                className={`group flex items-center space-x-3 px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
+                  contrastHigh
+                    ? 'bg-contrast-text text-contrast-bg border-2 border-contrast-text hover:bg-contrast-bg hover:text-contrast-text'
+                    : 'bg-gradient-to-r from-purple-500 to-pink-600 text-white hover:from-purple-600 hover:to-pink-700'
+                }`}
+                aria-label="Explorer les thèmes bibliques"
+              >
+                <span className="text-xl group-hover:scale-110 transition-transform duration-300">📚</span>
+                <span>Thèmes Bibliques</span>
+              </Link>
+
               {/* Bouton Réglages modernisé */}
               <button
                 onClick={() => setShowSettings(true)}

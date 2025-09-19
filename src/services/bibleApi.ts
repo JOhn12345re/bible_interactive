@@ -166,25 +166,40 @@ class BibleApiService {
     }
 
     const cacheKey = `local_${book.toLowerCase()}_${chapter}_${startVerse || 'all'}_${endVerse || 'all'}`;
-    
-    // Vérifier le cache
-    if (this.cache.has(cacheKey)) {
-      return this.cache.get(cacheKey);
-    }
+      
+      // Vérifier le cache
+      if (this.cache.has(cacheKey)) {
+        return this.cache.get(cacheKey);
+      }
 
     try {
       // Normaliser le nom du livre
       const normalizedBook = this.normalizeBookName(book);
       
+      console.log(`🔍 Recherche: livre="${book}", normalisé="${normalizedBook}", chapitre=${chapter}`);
+      console.log(`📊 Total de versets dans les données: ${this.bibleData.verses.length}`);
+      
+      // Afficher quelques exemples de noms de livres pour debug
+      const uniqueBooks = [...new Set(this.bibleData.verses.map(v => v.book_name))];
+      console.log(`📚 Livres disponibles:`, uniqueBooks.slice(0, 10));
+      
       // Filtrer les versets selon les critères
       const filteredVerses = this.bibleData.verses.filter(verse => {
         const bookMatch = verse.book_name.toLowerCase().includes(normalizedBook.toLowerCase()) ||
-                         verse.book_name.toLowerCase().includes(book.toLowerCase());
+                         verse.book_name.toLowerCase().includes(book.toLowerCase()) ||
+                         normalizedBook.toLowerCase().includes(verse.book_name.toLowerCase()) ||
+                         book.toLowerCase().includes(verse.book_name.toLowerCase());
         const chapterMatch = verse.chapter === chapter;
         const verseMatch = !startVerse || (verse.verse >= startVerse && (!endVerse || verse.verse <= endVerse));
         
+        if (bookMatch && chapterMatch) {
+          console.log(`✅ Verset trouvé: ${verse.book_name} ${verse.chapter}:${verse.verse}`);
+        }
+        
         return bookMatch && chapterMatch && verseMatch;
       });
+
+      console.log(`📋 ${filteredVerses.length} versets trouvés après filtrage`);
 
       // Convertir vers notre format
       const verses: BibleVerse[] = filteredVerses.map(verse => ({
@@ -226,6 +241,34 @@ class BibleApiService {
     return this.defaultTranslation;
   }
 
+  // Méthode de debug pour analyser les données
+  debugBibleData(): void {
+    if (!this.bibleData) {
+      console.log('❌ Aucune donnée de Bible chargée');
+      return;
+    }
+
+    console.log('🔍 Analyse des données de la Bible:');
+    console.log(`📊 Total de versets: ${this.bibleData.verses.length}`);
+    
+    // Analyser les livres disponibles
+    const books = [...new Set(this.bibleData.verses.map(v => v.book_name))];
+    console.log(`📚 Livres disponibles (${books.length}):`, books);
+    
+    // Chercher spécifiquement les psaumes
+    const psalmBooks = books.filter(book => 
+      book.toLowerCase().includes('psaume') || 
+      book.toLowerCase().includes('psalm')
+    );
+    console.log(`🎵 Livres de psaumes trouvés:`, psalmBooks);
+    
+    // Analyser la structure d'un verset
+    if (this.bibleData.verses.length > 0) {
+      const sampleVerse = this.bibleData.verses[0];
+      console.log('📖 Exemple de verset:', sampleVerse);
+    }
+  }
+
   // Méthode pour obtenir le psaume du jour
   async getPsalmOfTheDay(): Promise<BibleVerse[]> {
     const today = new Date();
@@ -236,7 +279,19 @@ class BibleApiService {
     
     console.log(`📅 Psaume du jour (${today.toLocaleDateString('fr-FR')}): Psaume ${psalmNumber}`);
     
-    return this.getVersesFromLocalData('Psaumes', psalmNumber);
+    // Essayer différents noms possibles pour les Psaumes
+    const possibleNames = ['Psaumes', 'Psaume', 'Psalms', 'Psalm'];
+    
+    for (const name of possibleNames) {
+      const verses = await this.getVersesFromLocalData(name, psalmNumber);
+      if (verses.length > 0) {
+        console.log(`✅ Psaume trouvé avec le nom: ${name}`);
+        return verses;
+      }
+    }
+    
+    console.warn(`⚠️ Aucun psaume trouvé pour le numéro ${psalmNumber}`);
+    return [];
   }
 
   // Méthode pour obtenir un psaume spécifique
@@ -245,7 +300,21 @@ class BibleApiService {
       throw new Error('Le numéro du psaume doit être entre 1 et 150');
     }
     
-    return this.getVersesFromLocalData('Psaumes', psalmNumber);
+    console.log(`📖 Récupération du Psaume ${psalmNumber}`);
+    
+    // Essayer différents noms possibles pour les Psaumes
+    const possibleNames = ['Psaumes', 'Psaume', 'Psalms', 'Psalm'];
+    
+    for (const name of possibleNames) {
+      const verses = await this.getVersesFromLocalData(name, psalmNumber);
+      if (verses.length > 0) {
+        console.log(`✅ Psaume ${psalmNumber} trouvé avec le nom: ${name}`);
+        return verses;
+      }
+    }
+    
+    console.warn(`⚠️ Aucun psaume trouvé pour le numéro ${psalmNumber}`);
+    return [];
   }
 
   // Méthode pour obtenir les psaumes de la semaine
