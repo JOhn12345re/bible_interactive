@@ -13,9 +13,9 @@ const TopicsExplorer: React.FC = () => {
     loadVerseOfTheDay();
   }, []);
 
-  const loadTopics = () => {
+  const loadTopics = async () => {
     try {
-      const allTopics = topicsService.getAllTopics();
+      const allTopics = await topicsService.getAllTopics();
       setTopics(allTopics);
       setLoading(false);
     } catch (error) {
@@ -24,9 +24,9 @@ const TopicsExplorer: React.FC = () => {
     }
   };
 
-  const loadVerseOfTheDay = () => {
+  const loadVerseOfTheDay = async () => {
     try {
-      const verse = topicsService.getVerseOfTheDay();
+      const verse = await topicsService.getVerseOfTheDay();
       setVerseOfTheDay(verse);
     } catch (error) {
       console.error('Erreur lors du chargement du verset du jour:', error);
@@ -42,9 +42,15 @@ const TopicsExplorer: React.FC = () => {
     setSelectedTopic(topic);
   };
 
-  const getRandomVerseFromTopic = (topic: Topic) => {
-    const randomIndex = Math.floor(Math.random() * topic.verses.length);
-    return topic.verses[randomIndex];
+  const getRandomVerseFromTopic = async (topic: Topic) => {
+    try {
+      const verse = await topicsService.getRandomVerseFromTopic(topic.slug);
+      if (verse) {
+        alert(`Verset aléatoire de ${topic.name}:\n\n"${verse.texte}"\n\n— ${verse.ref}`);
+      }
+    } catch (error) {
+      console.error('Erreur lors de la récupération du verset aléatoire:', error);
+    }
   };
 
   if (loading) {
@@ -157,10 +163,7 @@ const TopicsExplorer: React.FC = () => {
 
               <div className="mt-6 pt-6 border-t border-gray-200">
                 <button
-                  onClick={() => {
-                    const randomVerse = getRandomVerseFromTopic(selectedTopic);
-                    alert(`Verset aléatoire de ${selectedTopic.name}:\n\n"${randomVerse.texte}"\n\n— ${randomVerse.ref}`);
-                  }}
+                  onClick={() => getRandomVerseFromTopic(selectedTopic)}
                   className="px-6 py-3 bg-gradient-to-r from-green-500 to-teal-600 text-white rounded-lg hover:from-green-600 hover:to-teal-700 transition-all duration-300 button-interactive"
                 >
                   🎲 Verset aléatoire
