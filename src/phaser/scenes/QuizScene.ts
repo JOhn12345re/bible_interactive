@@ -47,8 +47,17 @@ export default class QuizScene extends Phaser.Scene {
     console.log('🎮 Création du quiz - currentQuestion initialisé à:', this.currentQuestion);
     console.log('🎮 Création du quiz - lessonData:', this.lessonData?.id);
 
-    // Arrière-plan
-    this.add.rectangle(width / 2, height / 2, width, height, 0xf0f8ff);
+    // Arrière-plan avec gradient moderne
+    this.add.rectangle(width / 2, height / 2, width, height, 0xf8fafc);
+    
+    // Ajouter un pattern subtil en arrière-plan
+    const bgPattern = this.add.graphics();
+    bgPattern.fillStyle(0x000000, 0.02);
+    for (let x = 0; x < width; x += 40) {
+      for (let y = 0; y < height; y += 40) {
+        bgPattern.fillCircle(x, y, 1);
+      }
+    }
 
     // Titre spécifique selon la leçon
     let quizTitle = 'Quiz Biblique';
@@ -132,24 +141,63 @@ export default class QuizScene extends Phaser.Scene {
       }
     }
 
-    this.add
+    // Titre avec style moderne et animation d'entrée
+    const title = this.add
       .text(width / 2, 50, quizTitle, {
-        fontSize: '32px',
-        color: '#2563eb',
+        fontSize: '36px',
+        color: '#1e293b',
         fontFamily: 'Arial, sans-serif',
         fontStyle: 'bold',
+        stroke: '#ffffff',
+        strokeThickness: 2,
+        shadow: {
+          offsetX: 2,
+          offsetY: 2,
+          color: '#000000',
+          blur: 4,
+          fill: true
+        }
       })
-      .setOrigin(0.5);
+      .setOrigin(0.5)
+      .setAlpha(0);
+      
+    // Animation d'entrée du titre
+    this.tweens.add({
+      targets: title,
+      alpha: 1,
+      y: 55,
+      duration: 800,
+      ease: 'Back.easeOut'
+    });
 
-    // Score
+    // Score avec style moderne
     this.scoreText = this.add
       .text(width - 50, 50, `Score: ${this.score}/${this.questions.length}`, {
-        fontSize: '20px',
+        fontSize: '22px',
         color: '#059669',
         fontFamily: 'Arial, sans-serif',
         fontStyle: 'bold',
+        stroke: '#ffffff',
+        strokeThickness: 1,
+        shadow: {
+          offsetX: 1,
+          offsetY: 1,
+          color: '#000000',
+          blur: 2,
+          fill: true
+        }
       })
-      .setOrigin(1, 0);
+      .setOrigin(1, 0)
+      .setAlpha(0);
+      
+    // Animation d'entrée du score
+    this.tweens.add({
+      targets: this.scoreText,
+      alpha: 1,
+      duration: 600,
+      delay: 200,
+      ease: 'Power2'
+    });
 
     // Timer visuel
     this.timer = this.add.graphics();
@@ -198,63 +246,123 @@ export default class QuizScene extends Phaser.Scene {
     this.answerButtons.forEach(btn => btn.destroy());
     this.answerButtons = [];
 
-    // Afficher la question
+    // Afficher la question avec style moderne
     this.questionText = this.add
       .text(width / 2, 150, `Question ${this.currentQuestion + 1}: ${question.q}`, {
-        fontSize: '24px',
-        color: '#1f2937',
+        fontSize: '26px',
+        color: '#1e293b',
         fontFamily: 'Arial, sans-serif',
+        fontStyle: 'bold',
         wordWrap: { width: width - 100 },
         align: 'center',
+        stroke: '#ffffff',
+        strokeThickness: 1,
+        shadow: {
+          offsetX: 1,
+          offsetY: 1,
+          color: '#000000',
+          blur: 2,
+          fill: true
+        }
       })
-      .setOrigin(0.5);
+      .setOrigin(0.5)
+      .setAlpha(0);
+      
+    // Animation d'entrée de la question
+    this.tweens.add({
+      targets: this.questionText,
+      alpha: 1,
+      duration: 600,
+      delay: 300,
+      ease: 'Power2'
+    });
 
-    // Créer les boutons de réponse
+    // Créer les boutons de réponse avec design moderne
     question.choices.forEach((choice: string, index: number) => {
-      const y = 280 + index * 80;
+      const y = 300 + index * 90;
       const container = this.add.container(width / 2, y);
+      container.setAlpha(0); // Commencer invisible
 
-      // Bouton background
-      const bg = this.add
-        .rectangle(0, 0, 500, 60, 0xffffff)
-        .setStrokeStyle(3, 0x6b7280)
-        .setInteractive({ useHandCursor: true });
+      // Bouton background avec gradient
+      const bg = this.add.graphics();
+      bg.fillGradientStyle(0xffffff, 0xffffff, 0xf8fafc, 0xf8fafc, 1, 1, 0, 0);
+      bg.fillRoundedRect(-250, -30, 500, 60, 15);
+      bg.lineStyle(3, 0xe2e8f0, 1);
+      bg.strokeRoundedRect(-250, -30, 500, 60, 15);
+      
+      // Ombre portée
+      bg.fillStyle(0x000000, 0.1);
+      bg.fillRoundedRect(-248, -28, 500, 60, 15);
 
-      // Texte de la réponse
+      // Texte de la réponse avec style moderne
       const text = this.add
         .text(0, 0, choice, {
-          fontSize: '18px',
-          color: '#374151',
+          fontSize: '20px',
+          color: '#1e293b',
           fontFamily: 'Arial, sans-serif',
+          fontStyle: 'bold',
+          stroke: '#ffffff',
+          strokeThickness: 1,
         })
         .setOrigin(0.5);
 
       container.add([bg, text]);
       container.setSize(500, 60);
+      container.setInteractive({ useHandCursor: true });
 
-      // Animation hover
-      bg.on('pointerover', () => {
-        bg.setFillStyle(0xe5e7eb);
-        this.tweens.add({
-          targets: container,
-          scaleX: 1.05,
-          scaleY: 1.05,
-          duration: 100,
-        });
+      // Animation d'entrée des boutons
+      this.tweens.add({
+        targets: container,
+        alpha: 1,
+        y: y,
+        scaleX: 1,
+        scaleY: 1,
+        duration: 600,
+        delay: 500 + (index * 100),
+        ease: 'Back.easeOut'
       });
 
-      bg.on('pointerout', () => {
-        bg.setFillStyle(0xffffff);
+      // Animation hover améliorée
+      container.on('pointerover', () => {
+        this.tweens.add({
+          targets: container,
+          scaleX: 1.08,
+          scaleY: 1.08,
+          duration: 200,
+          ease: 'Back.easeOut'
+        });
+        
+        // Changer la couleur du bouton
+        bg.clear();
+        bg.fillGradientStyle(0x3B82F6, 0x3B82F6, 0x1D4ED8, 0x1D4ED8, 1, 1, 0, 0);
+        bg.fillRoundedRect(-250, -30, 500, 60, 15);
+        bg.lineStyle(3, 0xffffff, 1);
+        bg.strokeRoundedRect(-250, -30, 500, 60, 15);
+        
+        text.setColor('#ffffff');
+      });
+
+      container.on('pointerout', () => {
         this.tweens.add({
           targets: container,
           scaleX: 1,
           scaleY: 1,
-          duration: 100,
+          duration: 200,
+          ease: 'Back.easeOut'
         });
+        
+        // Restaurer la couleur originale
+        bg.clear();
+        bg.fillGradientStyle(0xffffff, 0xffffff, 0xf8fafc, 0xf8fafc, 1, 1, 0, 0);
+        bg.fillRoundedRect(-250, -30, 500, 60, 15);
+        bg.lineStyle(3, 0xe2e8f0, 1);
+        bg.strokeRoundedRect(-250, -30, 500, 60, 15);
+        
+        text.setColor('#1e293b');
       });
 
       // Clic sur la réponse
-      bg.on('pointerdown', () => {
+      container.on('pointerdown', () => {
         this.selectAnswer(index, question.answer, bg, text);
       });
 
@@ -266,7 +374,7 @@ export default class QuizScene extends Phaser.Scene {
     this.startTimer();
   }
 
-  private selectAnswer(selectedIndex: number, correctIndex: number, bg: Phaser.GameObjects.Rectangle, text: Phaser.GameObjects.Text) {
+  private selectAnswer(selectedIndex: number, correctIndex: number, bg: Phaser.GameObjects.Graphics, text: Phaser.GameObjects.Text) {
     if (this.gameComplete) return;
 
     console.log('🎯 Réponse sélectionnée:', selectedIndex, 'Correcte:', correctIndex);
@@ -277,38 +385,86 @@ export default class QuizScene extends Phaser.Scene {
     const isCorrect = selectedIndex === correctIndex;
     console.log('✅ Réponse correcte:', isCorrect);
 
-    // Feedback visuel
+    // Feedback visuel amélioré
     if (isCorrect) {
-      bg.setFillStyle(0x10b981);
+      // Animation de succès
+      bg.clear();
+      bg.fillGradientStyle(0x10b981, 0x10b981, 0x059669, 0x059669, 1, 1, 0, 0);
+      bg.fillRoundedRect(-250, -30, 500, 60, 15);
+      bg.lineStyle(3, 0xffffff, 1);
+      bg.strokeRoundedRect(-250, -30, 500, 60, 15);
+      
       text.setColor('#ffffff');
       this.score++;
       
-      // Effet de particules
+      // Effet de particules amélioré
       this.createParticles(bg.x, bg.y);
+      
+      // Animation de victoire
+      this.tweens.add({
+        targets: this.answerButtons[selectedIndex],
+        scaleX: 1.15,
+        scaleY: 1.15,
+        duration: 200,
+        yoyo: true,
+        ease: 'Back.easeOut'
+      });
     } else {
-      bg.setFillStyle(0xef4444);
+      // Animation d'erreur
+      bg.clear();
+      bg.fillGradientStyle(0xef4444, 0xef4444, 0xdc2626, 0xdc2626, 1, 1, 0, 0);
+      bg.fillRoundedRect(-250, -30, 500, 60, 15);
+      bg.lineStyle(3, 0xffffff, 1);
+      bg.strokeRoundedRect(-250, -30, 500, 60, 15);
+      
       text.setColor('#ffffff');
       
-      // Montrer la bonne réponse
+      // Montrer la bonne réponse avec animation
       const correctButton = this.answerButtons[correctIndex];
-      const correctBg = correctButton.list[0] as Phaser.GameObjects.Rectangle;
+      const correctBg = correctButton.list[0] as Phaser.GameObjects.Graphics;
       const correctText = correctButton.list[1] as Phaser.GameObjects.Text;
-      correctBg.setFillStyle(0x10b981);
+      
+      correctBg.clear();
+      correctBg.fillGradientStyle(0x10b981, 0x10b981, 0x059669, 0x059669, 1, 1, 0, 0);
+      correctBg.fillRoundedRect(-250, -30, 500, 60, 15);
+      correctBg.lineStyle(3, 0xffffff, 1);
+      correctBg.strokeRoundedRect(-250, -30, 500, 60, 15);
+      
       correctText.setColor('#ffffff');
+      
+      // Animation de la bonne réponse
+      this.tweens.add({
+        targets: correctButton,
+        scaleX: 1.1,
+        scaleY: 1.1,
+        duration: 300,
+        yoyo: true,
+        ease: 'Back.easeOut'
+      });
     }
 
-    // Mettre à jour le score
-    this.scoreText.setText(`Score: ${this.score}/${this.questions.length}`);
+    // Mettre à jour le score avec animation
+    this.tweens.add({
+      targets: this.scoreText,
+      scaleX: 1.2,
+      scaleY: 1.2,
+      duration: 200,
+      yoyo: true,
+      ease: 'Back.easeOut',
+      onComplete: () => {
+        this.scoreText.setText(`Score: ${this.score}/${this.questions.length}`);
+      }
+    });
+    
     console.log('📊 Score actuel:', this.score, '/', this.questions.length);
 
     // Désactiver tous les boutons
     this.answerButtons.forEach(btn => {
-      const btnBg = btn.list[0] as Phaser.GameObjects.Rectangle;
-      btnBg.removeInteractive();
+      btn.disableInteractive();
     });
 
     // Passer à la question suivante après un délai
-    this.time.delayedCall(2000, () => {
+    this.time.delayedCall(2500, () => {
       this.currentQuestion++;
       console.log('➡️ Question suivante:', this.currentQuestion, '/', this.questions.length);
       this.showQuestion();
@@ -316,24 +472,48 @@ export default class QuizScene extends Phaser.Scene {
   }
 
   private createParticles(x: number, y: number) {
-    // Étoiles de victoire
-    for (let i = 0; i < 8; i++) {
+    // Étoiles de victoire améliorées
+    for (let i = 0; i < 12; i++) {
       const star = this.add.text(x, y, '⭐', {
-        fontSize: '20px',
+        fontSize: '24px',
       }).setOrigin(0.5);
 
-      const angle = (i / 8) * Math.PI * 2;
-      const distance = 50;
+      const angle = (i / 12) * Math.PI * 2;
+      const distance = 80 + Math.random() * 40;
 
       this.tweens.add({
         targets: star,
         x: x + Math.cos(angle) * distance,
         y: y + Math.sin(angle) * distance,
         alpha: 0,
-        scale: 1.5,
-        duration: 800,
+        scale: 2,
+        rotation: Math.PI * 2,
+        duration: 1200,
         ease: 'Power2',
+        delay: Math.random() * 200,
         onComplete: () => star.destroy(),
+      });
+    }
+    
+    // Ajouter des cœurs pour plus de joie
+    for (let i = 0; i < 6; i++) {
+      const heart = this.add.text(x, y, '💚', {
+        fontSize: '20px',
+      }).setOrigin(0.5);
+
+      const angle = (i / 6) * Math.PI * 2;
+      const distance = 60;
+
+      this.tweens.add({
+        targets: heart,
+        x: x + Math.cos(angle) * distance,
+        y: y + Math.sin(angle) * distance - 20,
+        alpha: 0,
+        scale: 1.8,
+        duration: 1000,
+        ease: 'Power2',
+        delay: Math.random() * 300,
+        onComplete: () => heart.destroy(),
       });
     }
   }
@@ -348,9 +528,9 @@ export default class QuizScene extends Phaser.Scene {
         
         if (this.timeLeft <= 0) {
           // Temps écoulé - mauvaise réponse
-          this.selectAnswer(-1, this.questions[this.currentQuestion].answer, 
-            new Phaser.GameObjects.Rectangle(this, 0, 0, 0, 0, 0xef4444),
-            new Phaser.GameObjects.Text(this, 0, 0, '', {}));
+          const dummyBg = this.add.graphics();
+          const dummyText = this.add.text(0, 0, '', {});
+          this.selectAnswer(-1, this.questions[this.currentQuestion].answer, dummyBg, dummyText);
         }
       },
     });
@@ -360,25 +540,65 @@ export default class QuizScene extends Phaser.Scene {
     this.timer.clear();
     
     const { width } = this.scale;
-    const barWidth = 300;
-    const barHeight = 20;
+    const barWidth = 400;
+    const barHeight = 25;
     const x = (width - barWidth) / 2;
     const y = 200;
     
-    // Barre de fond
-    this.timer.fillStyle(0xe5e7eb);
-    this.timer.fillRect(x, y, barWidth, barHeight);
+    // Barre de fond avec gradient
+    this.timer.fillGradientStyle(0xe5e7eb, 0xe5e7eb, 0xf3f4f6, 0xf3f4f6, 1, 1, 0, 0);
+    this.timer.fillRoundedRect(x, y, barWidth, barHeight, 12);
     
-    // Barre de progression
+    // Barre de progression avec gradient
     const progress = this.timeLeft / 15;
-    const color = progress > 0.5 ? 0x10b981 : progress > 0.25 ? 0xf59e0b : 0xef4444;
+    let color1, color2;
     
-    this.timer.fillStyle(color);
-    this.timer.fillRect(x, y, barWidth * progress, barHeight);
+    if (progress > 0.5) {
+      color1 = 0x10b981;
+      color2 = 0x059669;
+    } else if (progress > 0.25) {
+      color1 = 0xf59e0b;
+      color2 = 0xd97706;
+    } else {
+      color1 = 0xef4444;
+      color2 = 0xdc2626;
+    }
     
-    // Bordure
-    this.timer.lineStyle(2, 0x6b7280);
-    this.timer.strokeRect(x, y, barWidth, barHeight);
+    this.timer.fillGradientStyle(color1, color1, color2, color2, 1, 1, 0, 0);
+    this.timer.fillRoundedRect(x, y, barWidth * progress, barHeight, 12);
+    
+    // Bordure moderne
+    this.timer.lineStyle(3, 0xffffff, 1);
+    this.timer.strokeRoundedRect(x, y, barWidth, barHeight, 12);
+    
+    // Ombre portée
+    this.timer.fillStyle(0x000000, 0.1);
+    this.timer.fillRoundedRect(x + 1, y + 1, barWidth, barHeight, 12);
+    
+    // Texte du temps restant
+    const timeText = this.add.text(width / 2, y + barHeight + 10, `${this.timeLeft}s`, {
+      fontSize: '16px',
+      color: progress > 0.5 ? '#059669' : progress > 0.25 ? '#d97706' : '#dc2626',
+      fontFamily: 'Arial, sans-serif',
+      fontStyle: 'bold',
+      stroke: '#ffffff',
+      strokeThickness: 1,
+    }).setOrigin(0.5);
+    
+    // Animation du texte
+    this.tweens.add({
+      targets: timeText,
+      scaleX: 1.1,
+      scaleY: 1.1,
+      duration: 200,
+      yoyo: true,
+      ease: 'Power2'
+    });
+    
+    // Détruire le texte après l'animation
+    this.time.delayedCall(500, () => {
+      timeText.destroy();
+    });
   }
 
   private endQuiz() {
@@ -767,36 +987,79 @@ export default class QuizScene extends Phaser.Scene {
       }
     }
 
-    // Écran de résultats
-    this.add
+    // Écran de résultats avec design moderne
+    const resultsBg = this.add.graphics();
+    resultsBg.fillGradientStyle(0xffffff, 0xffffff, 0xf8fafc, 0xf8fafc, 1, 1, 0, 0);
+    resultsBg.fillRoundedRect(width / 2 - 300, height / 2 - 200, 600, 400, 30);
+    resultsBg.lineStyle(4, 0xe2e8f0, 1);
+    resultsBg.strokeRoundedRect(width / 2 - 300, height / 2 - 200, 600, 400, 30);
+    
+    // Ombre portée
+    resultsBg.fillStyle(0x000000, 0.1);
+    resultsBg.fillRoundedRect(width / 2 - 298, height / 2 - 198, 600, 400, 30);
+
+    const titleText = this.add
       .text(width / 2, height / 2 - 120, `🎉 Quiz terminé !`, {
-        fontSize: '36px',
-        color: '#2563eb',
+        fontSize: '42px',
+        color: '#1e293b',
         fontFamily: 'Arial, sans-serif',
         fontStyle: 'bold',
+        stroke: '#ffffff',
+        strokeThickness: 2,
+        shadow: {
+          offsetX: 2,
+          offsetY: 2,
+          color: '#000000',
+          blur: 4,
+          fill: true
+        }
       })
-      .setOrigin(0.5);
+      .setOrigin(0.5)
+      .setAlpha(0);
 
     // Score avec couleur selon la performance
     const scoreColor = percentage >= 70 ? '#059669' : percentage >= 50 ? '#d97706' : '#ef4444';
-    this.add
+    const scoreText = this.add
       .text(width / 2, height / 2 - 60, `Score: ${this.score}/${this.questions.length} (${percentage}%)`, {
-        fontSize: '24px',
+        fontSize: '28px',
         color: scoreColor,
         fontFamily: 'Arial, sans-serif',
         fontStyle: 'bold',
+        stroke: '#ffffff',
+        strokeThickness: 1,
+        shadow: {
+          offsetX: 1,
+          offsetY: 1,
+          color: '#000000',
+          blur: 2,
+          fill: true
+        }
       })
-      .setOrigin(0.5);
+      .setOrigin(0.5)
+      .setAlpha(0);
 
-    this.add
+    const messageText = this.add
       .text(width / 2, height / 2 - 20, message, {
-        fontSize: '20px',
-        color: '#6b7280',
+        fontSize: '22px',
+        color: '#475569',
         fontFamily: 'Arial, sans-serif',
-        wordWrap: { width: width - 100 },
+        fontStyle: 'bold',
+        wordWrap: { width: width - 150 },
         align: 'center',
+        stroke: '#ffffff',
+        strokeThickness: 1,
       })
-      .setOrigin(0.5);
+      .setOrigin(0.5)
+      .setAlpha(0);
+
+    // Animation d'entrée des résultats
+    this.tweens.add({
+      targets: [titleText, scoreText, messageText],
+      alpha: 1,
+      duration: 800,
+      delay: 500,
+      ease: 'Back.easeOut'
+    });
 
     // Badge obtenu avec emoji selon la leçon
     let badgeEmoji = '🏆';
@@ -810,12 +1073,22 @@ export default class QuizScene extends Phaser.Scene {
 
     const badgeText = this.add
       .text(width / 2, height / 2 + 40, `${badgeEmoji} ${badge}`, {
-        fontSize: '28px',
+        fontSize: '32px',
         color: '#d97706',
         fontFamily: 'Arial, sans-serif',
         fontStyle: 'bold',
+        stroke: '#ffffff',
+        strokeThickness: 2,
+        shadow: {
+          offsetX: 2,
+          offsetY: 2,
+          color: '#000000',
+          blur: 4,
+          fill: true
+        }
       })
-      .setOrigin(0.5);
+      .setOrigin(0.5)
+      .setAlpha(0);
 
     // Message d'encouragement supplémentaire
     let encouragement = '';
@@ -831,24 +1104,59 @@ export default class QuizScene extends Phaser.Scene {
       encouragement = 'Ne te décourage pas, relis la leçon !';
     }
 
-    this.add
+    const encouragementText = this.add
       .text(width / 2, height / 2 + 80, encouragement, {
-        fontSize: '16px',
-        color: '#9ca3af',
+        fontSize: '18px',
+        color: '#64748b',
         fontFamily: 'Arial, sans-serif',
         fontStyle: 'italic',
+        stroke: '#ffffff',
+        strokeThickness: 1,
       })
-      .setOrigin(0.5);
+      .setOrigin(0.5)
+      .setAlpha(0);
 
-    // Animation du badge
+    // Animation d'entrée du badge et encouragement
+    this.tweens.add({
+      targets: [badgeText, encouragementText],
+      alpha: 1,
+      duration: 800,
+      delay: 1000,
+      ease: 'Back.easeOut'
+    });
+
+    // Animation du badge avec effet de pulsation
     this.tweens.add({
       targets: badgeText,
-      scaleX: 1.2,
-      scaleY: 1.2,
+      scaleX: 1.3,
+      scaleY: 1.3,
       yoyo: true,
-      duration: 500,
+      duration: 600,
       ease: 'Back.easeOut',
+      repeat: 2,
+      delay: 1500
     });
+
+    // Effet de confettis pour la victoire
+    if (percentage >= 70) {
+      for (let i = 0; i < 30; i++) {
+        const confetti = this.add.circle(
+          width / 2 + (Math.random() - 0.5) * 600,
+          height / 2 + (Math.random() - 0.5) * 300,
+          Math.random() * 8 + 4,
+          Math.random() * 0xffffff
+        );
+        
+        this.tweens.add({
+          targets: confetti,
+          y: confetti.y + Math.random() * 300 + 200,
+          alpha: 0,
+          duration: 3000,
+          ease: 'Power2',
+          delay: Math.random() * 1000
+        });
+      }
+    }
 
     // Émettre l'événement de fin
     this.time.delayedCall(2000, () => {
