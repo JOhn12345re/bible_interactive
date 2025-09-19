@@ -84,11 +84,19 @@ const PsalmOfTheDay: React.FC<PsalmOfTheDayProps> = ({ className = '' }) => {
   }
 
   return (
-    <div className={`p-6 bg-white rounded-lg shadow-md ${className}`}>
-      <div className="flex items-center justify-between mb-4">
-        <h2 className="text-2xl font-bold text-gray-800">
-          📅 Psaume du jour
-        </h2>
+    <div className={`p-6 bg-gradient-to-br from-white to-blue-50 rounded-xl shadow-lg border border-blue-100 hover-lift ${className}`}>
+      <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center space-x-3">
+          <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center animate-float">
+            <span className="text-2xl">📅</span>
+          </div>
+          <div>
+            <h2 className="text-2xl font-bold text-gray-800">
+              Psaume du jour
+            </h2>
+            <p className="text-sm text-gray-600">Découvrez le psaume quotidien</p>
+          </div>
+        </div>
         <div className="flex items-center space-x-2">
           <input
             type="number"
@@ -96,36 +104,39 @@ const PsalmOfTheDay: React.FC<PsalmOfTheDayProps> = ({ className = '' }) => {
             max="150"
             value={psalmNumber}
             onChange={(e) => setPsalmNumber(parseInt(e.target.value) || 1)}
-            className="w-20 px-2 py-1 border border-gray-300 rounded text-center"
+            className="w-20 px-3 py-2 border border-gray-300 rounded-lg text-center focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+            placeholder="1-150"
           />
           <button
             onClick={() => loadSpecificPsalm(psalmNumber)}
-            className="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors text-sm"
+            className="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-lg hover:from-blue-700 hover:to-purple-700 transition-all duration-300 button-interactive text-sm font-medium"
           >
-            Charger
+            📖 Charger
           </button>
         </div>
       </div>
 
-      <div className="mb-4">
-        <h3 className="text-xl font-semibold text-gray-700 mb-2">
-          Psaume {psalmNumber}
-        </h3>
-        <button
-          onClick={loadPsalmOfTheDay}
-          className="text-sm text-blue-600 hover:text-blue-800 underline"
-        >
-          Retour au psaume du jour
-        </button>
+      <div className="mb-6">
+        <div className="flex items-center justify-between">
+          <h3 className="text-2xl font-bold text-gray-800 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            Psaume {psalmNumber}
+          </h3>
+          <button
+            onClick={loadPsalmOfTheDay}
+            className="px-4 py-2 text-sm text-blue-600 hover:text-blue-800 hover:bg-blue-50 rounded-lg transition-all duration-300 button-interactive"
+          >
+            🔄 Retour au psaume du jour
+          </button>
+        </div>
       </div>
 
-      <div className="space-y-3">
+      <div className="space-y-4 max-h-96 overflow-y-auto">
         {psalm.map((verse, index) => (
-          <div key={index} className="flex items-start space-x-3">
-            <span className="flex-shrink-0 w-8 h-8 bg-blue-100 text-blue-800 rounded-full flex items-center justify-center text-sm font-medium">
+          <div key={index} className="flex items-start space-x-4 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 hover-lift">
+            <span className="flex-shrink-0 w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
               {verse.verse_start}
             </span>
-            <p className="text-gray-700 leading-relaxed">
+            <p className="text-gray-700 leading-relaxed text-lg">
               {verse.verse_text}
             </p>
           </div>

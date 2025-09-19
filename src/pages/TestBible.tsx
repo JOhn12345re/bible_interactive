@@ -52,16 +52,29 @@ const TestBible: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-8">
       <div className="max-w-6xl mx-auto px-4">
-        <h1 className="text-3xl font-bold text-gray-800 mb-8 text-center">
-          🧪 Test du Service Bible
-        </h1>
+        <div className="text-center mb-12">
+          <div className="inline-flex items-center justify-center w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full mb-4 animate-float">
+            <span className="text-3xl">🧪</span>
+          </div>
+          <h1 className="text-4xl font-bold text-gray-800 mb-4">
+            Test du Service Bible
+          </h1>
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Testez le service Bible Louis Segond avec les données locales et découvrez les psaumes par jour
+          </p>
+        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {/* Test des versets génériques */}
-          <div className="bg-white rounded-lg shadow-md p-6">
-            <h2 className="text-xl font-semibold mb-4">Test des versets</h2>
+          <div className="bg-white rounded-xl shadow-lg p-6 hover-lift border border-gray-100">
+            <div className="flex items-center space-x-3 mb-6">
+              <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-teal-600 rounded-full flex items-center justify-center">
+                <span className="text-xl">📖</span>
+              </div>
+              <h2 className="text-2xl font-bold text-gray-800">Test des versets</h2>
+            </div>
             
             <div className="space-y-4 mb-6">
               <div>

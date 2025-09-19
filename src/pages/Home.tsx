@@ -67,11 +67,11 @@ export default function Home() {
               </div>
             </div>
             
-            <div className="flex flex-col lg:flex-row items-center space-y-4 lg:space-y-0 lg:space-x-6 mt-8 lg:mt-0 animate-slide-right">
+            <div className="flex flex-wrap items-center justify-center gap-4 mt-8 lg:mt-0 animate-slide-right">
               {/* Profil utilisateur */}
               <button
                 onClick={() => setShowProfile(true)}
-                className={`group flex items-center space-x-3 px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
+                className={`group flex items-center space-x-3 px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl button-interactive hover-lift ${
                   contrastHigh
                     ? 'bg-contrast-text text-contrast-bg border-2 border-contrast-text hover:bg-contrast-bg hover:text-contrast-text'
                     : isProfileComplete
@@ -83,25 +83,28 @@ export default function Home() {
                 <span className="text-xl group-hover:rotate-12 transition-transform duration-300">
                   {isProfileComplete ? '👤' : '⚠️'}
                 </span>
-                <span>
+                <span className="hidden sm:inline">
                   {isProfileComplete 
                     ? `${profile?.firstName} ${profile?.lastName}` 
                     : 'Compléter profil'
                   }
                 </span>
+                <span className="sm:hidden">
+                  {isProfileComplete ? 'Profil' : 'Profil'}
+                </span>
               </button>
 
               {/* Indicateur de badges avec animation */}
               {badges.length > 0 && (
-                <div className={`flex items-center space-x-3 px-6 py-3 rounded-full transform hover:scale-105 transition-all duration-300 ${
+                <div className={`flex items-center space-x-2 px-4 py-3 rounded-full transform hover:scale-105 transition-all duration-300 ${
                   contrastHigh 
                     ? 'bg-contrast-text text-contrast-bg'
                     : 'bg-gradient-to-r from-yellow-400 to-orange-400 text-white shadow-lg hover:shadow-xl'
                 }`}>
-                  <span className="text-2xl animate-bounce">🏆</span>
+                  <span className="text-xl animate-bounce">🏆</span>
                   <div className="text-center">
-                    <span className="font-bold text-lg">{badges.length}</span>
-                    <p className="text-xs opacity-90">Badge{badges.length > 1 ? 's' : ''}</p>
+                    <span className="font-bold text-sm sm:text-lg">{badges.length}</span>
+                    <p className="text-xs opacity-90 hidden sm:block">Badge{badges.length > 1 ? 's' : ''}</p>
                   </div>
                 </div>
               )}
@@ -109,7 +112,7 @@ export default function Home() {
               {/* Bouton Journal modernisé */}
               <button
                 onClick={() => setShowJournal(true)}
-                className={`group flex items-center space-x-3 px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
+                className={`group flex items-center space-x-2 px-4 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
                   contrastHigh
                     ? 'bg-contrast-text text-contrast-bg border-2 border-contrast-text hover:bg-contrast-bg hover:text-contrast-text'
                     : 'bg-gradient-to-r from-green-500 to-emerald-600 text-white hover:from-green-600 hover:to-emerald-700'
@@ -117,13 +120,14 @@ export default function Home() {
                 aria-label="Ouvrir mon journal"
               >
                 <span className="text-xl group-hover:rotate-12 transition-transform duration-300">📖</span>
-                <span>Mon Journal</span>
+                <span className="hidden sm:inline">Mon Journal</span>
+                <span className="sm:hidden">Journal</span>
               </button>
 
               {/* Bouton Recherche de Versets */}
               <button
                 onClick={() => setShowVerseSearch(true)}
-                className={`group flex items-center space-x-3 px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
+                className={`group flex items-center space-x-2 px-4 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
                   contrastHigh
                     ? 'bg-contrast-text text-contrast-bg border-2 border-contrast-text hover:bg-contrast-bg hover:text-contrast-text'
                     : 'bg-gradient-to-r from-purple-500 to-pink-600 text-white hover:from-purple-600 hover:to-pink-700'
@@ -131,13 +135,14 @@ export default function Home() {
                 aria-label="Rechercher des versets"
               >
                 <span className="text-xl group-hover:scale-110 transition-transform duration-300">🔍</span>
-                <span>Versets</span>
+                <span className="hidden sm:inline">Versets</span>
+                <span className="sm:hidden">Recherche</span>
               </button>
 
               {/* Bouton Sermons & Chants */}
               <Link
                 to="/sermons"
-                className={`group flex items-center space-x-3 px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
+                className={`group flex items-center space-x-2 px-4 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
                   contrastHigh
                     ? 'bg-contrast-text text-contrast-bg border-2 border-contrast-text hover:bg-contrast-bg hover:text-contrast-text'
                     : 'bg-gradient-to-r from-red-500 to-orange-600 text-white hover:from-red-600 hover:to-orange-700'
@@ -145,13 +150,14 @@ export default function Home() {
                 aria-label="Voir les sermons et chants"
               >
                 <span className="text-xl group-hover:scale-110 transition-transform duration-300">🎬</span>
-                <span>Sermons & Chants</span>
+                <span className="hidden sm:inline">Sermons & Chants</span>
+                <span className="sm:hidden">Sermons</span>
               </Link>
 
               {/* Lien Explorateur de la Bible */}
               <Link
                 to="/bible"
-                className={`group flex items-center space-x-3 px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
+                className={`group flex items-center space-x-2 px-4 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
                   contrastHigh
                     ? 'bg-contrast-text text-contrast-bg border-2 border-contrast-text hover:bg-contrast-bg hover:text-contrast-text'
                     : 'bg-gradient-to-r from-indigo-500 to-blue-600 text-white hover:from-indigo-600 hover:to-blue-700'
@@ -159,7 +165,8 @@ export default function Home() {
                 aria-label="Explorer la Bible"
               >
                 <span className="text-xl group-hover:scale-110 transition-transform duration-300">📚</span>
-                <span>Explorer la Bible</span>
+                <span className="hidden sm:inline">Explorer la Bible</span>
+                <span className="sm:hidden">Bible</span>
               </Link>
 
               {/* Bouton Sélecteur de Traduction */}
