@@ -16,6 +16,41 @@ export default function LessonCard({ id, title, path, description, book }: Props
   const completed = isCompleted(id);
   const badge = getBadge(id);
 
+  // Fonction pour obtenir l'emoji approprié selon la leçon
+  const getLessonEmoji = (lessonId: string): string => {
+    const emojiMap: Record<string, string> = {
+      'creation_01': '🌍',
+      'adam_eve_01': '🍎',
+      'noe_01': '🚢',
+      'babel_01': '🏗️',
+      'abraham_01': '⭐',
+      'isaac_01': '💍',
+      'jacob_01': '👬',
+      'joseph_01': '🌾',
+      'commandements_01': '📜',
+      'moise_buisson_01': '🔥',
+      'plaies_egypte_01': '🐸',
+      'mer_rouge_01': '🌊',
+      'david_01': '⚔️',
+      'daniel_01': '🦁',
+      'gedeon_01': '🗡️',
+      'samson_01': '💪',
+      'josue_01': '🏰',
+      'salomon_01': '👑',
+      'jonas_01': '🐋',
+      'jonas_02_fuite': '🌊',
+      'jonas_03_ninive': '🏙️',
+      'jonas_04_ricin': '🌿',
+      'elie_01': '🔥',
+      'ezechiel_01': '💨',
+      'naissance_jesus': '👶',
+      'enfance_jesus': '🧒',
+      'bapteme_jesus': '💦',
+      'tentations_jesus': '😈',
+    };
+    return emojiMap[lessonId] || '📖';
+  };
+
   return (
     <Link
       to={`/lesson/${id}`}
@@ -91,7 +126,7 @@ export default function LessonCard({ id, title, path, description, book }: Props
         <div className={`text-4xl transform group-hover:scale-110 transition-transform duration-300 ${
           contrastHigh ? 'text-contrast-text' : completed ? 'text-green-500' : 'text-blue-500'
         }`}>
-          🐋
+          {getLessonEmoji(id)}
         </div>
       </div>
       

@@ -87,17 +87,70 @@ export function useBibleApi(): UseBibleApiReturn {
         case 'creation_01':
           verses = await bibleApi.getCreationVerses();
           break;
-        case 'noe_01':
-          // Ajouter des versets pour Noé plus tard
-          verses = [];
+        case 'moise_buisson_01':
+          verses = await bibleApi.getMoiseBuissonVerses();
+          break;
+        case 'plaies_egypte_01':
+          verses = await bibleApi.getPlaiesEgypteVerses();
+          break;
+        case 'mer_rouge_01':
+          verses = await bibleApi.getMerRougeVerses();
+          break;
+        case 'samson_01':
+          verses = await bibleApi.getSamsonVerses();
+          break;
+        case 'salomon_01':
+          verses = await bibleApi.getSalomonVerses();
+          break;
+        case 'elie_01':
+          verses = await bibleApi.getElieVerses();
+          break;
+        case 'ezechiel_01':
+          verses = await bibleApi.getEzechielVerses();
+          break;
+        case 'naissance_jesus':
+          verses = await bibleApi.getNaissanceJesusVerses();
+          break;
+        case 'enfance_jesus':
+          verses = await bibleApi.getEnfanceJesusVerses();
+          break;
+        case 'bapteme_jesus':
+          verses = await bibleApi.getBaptemeJesusVerses();
+          break;
+        case 'tentations_jesus':
+          verses = await bibleApi.getTentationsJesusVerses();
           break;
         case 'moise_01':
           // Ajouter des versets pour Moïse plus tard
           verses = [];
           break;
-        case 'naissance_jesus':
-          verses = await bibleApi.getNativityVerses();
+        case 'adam_eve_01':
+          verses = await bibleApi.getAdamEveVerses();
           break;
+          case 'noe_01':
+            verses = await bibleApi.getNoeVerses();
+            break;
+          case 'babel_01':
+            verses = await bibleApi.getBabelVerses();
+            break;
+          case 'abraham_01':
+            verses = await bibleApi.getAbrahamVerses();
+            break;
+          case 'isaac_01':
+            verses = await bibleApi.getIsaacVerses();
+            break;
+          case 'jacob_01':
+            verses = await bibleApi.getJacobVerses();
+            break;
+          case 'joseph_01':
+            verses = await bibleApi.getJosephVerses();
+            break;
+          case 'commandements_01':
+            verses = await bibleApi.getCommandementsVerses();
+            break;
+          case 'gedeon_01':
+            verses = await bibleApi.getGedeonVerses();
+            break;
         default:
           setState(prev => ({ 
             ...prev, 

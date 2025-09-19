@@ -1,30 +1,32 @@
 {
   "id": "naissance_jesus",
-  "title": "La naissance de Jésus",
+  "title": "La naissance de Jésus — Dieu fait homme",
   "path": "Vie du Christ",
   "reading": [
-    "L'ange Gabriel apparut à Marie pour lui annoncer qu'elle donnerait naissance au Fils de Dieu.",
-    "Marie et Joseph durent se rendre à Bethléem pour le recensement.",
-    "Ils ne trouvèrent pas de place dans l'auberge, Marie accoucha dans une étable.",
-    "Elle déposa le petit Jésus dans une mangeoire remplie de paille.",
-    "Des bergers gardaient leurs troupeaux dans les champs cette nuit-là.",
-    "Un ange leur apparut pour leur annoncer la naissance du Sauveur.",
-    "Les bergers se rendirent à Bethléem et trouvèrent l'enfant comme l'ange l'avait dit.",
-    "Des mages d'Orient suivirent une étoile qui les conduisit jusqu'à Jésus.",
-    "Ils lui offrirent de l'or, de l'encens et de la myrrhe."
+    "L'ange Gabriel annonça à Marie, une jeune fille de Nazareth, qu'elle allait concevoir un enfant par l'Esprit Saint.",
+    "Cet enfant serait le Fils de Dieu et il régnerait sur le trône de David.",
+    "Marie accepta la volonté de Dieu avec foi.",
+    "Joseph, son fiancé, apprit la nouvelle, mais après que l'ange lui soit apparu en rêve, il prit Marie chez lui pour être son époux.",
+    "Au moment où Marie devait accoucher, un décret de César obligea toute la population à se rendre dans sa ville natale pour un recensement.",
+    "Marie et Joseph allèrent à Bethléhem, où Jésus naquit dans une étable, faute de place à l'auberge.",
+    "Des bergers venus des champs reçurent l'annonce de la naissance de Jésus par un ange, et ils allèrent voir l'enfant.",
+    "Une étoile guida aussi des mages venus de l'Orient pour lui rendre hommage et lui offrir des présents."
   ],
-  "key_verse": "Gloire à Dieu au plus haut des cieux, et paix sur la terre aux hommes qu'il agrée !",
+  "key_verse": "Jésus, le Fils de Dieu, est venu parmi nous, tout petit, pour nous montrer l'amour de Dieu et nous apporter la paix.",
   "vocab": [
-    { "word": "Annonciation", "hint": "Message de l'ange Gabriel à Marie." },
-    { "word": "Bethléem", "hint": "Ville où est né Jésus." },
-    { "word": "Mages", "hint": "Sages venus d'Orient pour adorer Jésus." },
-    { "word": "Sauveur", "hint": "Celui qui vient sauver l'humanité." }
+    { "word": "Gabriel", "hint": "L'ange qui annonça la naissance de Jésus à Marie." },
+    { "word": "Bethléhem", "hint": "Ville où est né Jésus, la ville de David." },
+    { "word": "Recensement", "hint": "Comptage de la population ordonné par César." },
+    { "word": "Mages", "hint": "Sages venus de l'Orient guidés par une étoile." },
+    { "word": "Étable", "hint": "Endroit où Jésus est né, faute de place à l'auberge." }
   ],
   "quiz": [
-    { "q": "Où est né Jésus ?", "choices": ["Nazareth", "Bethléem", "Jérusalem"], "answer": 1 },
-    { "q": "Qui a annoncé la naissance aux bergers ?", "choices": ["Marie", "Un ange", "Joseph"], "answer": 1 },
-    { "q": "Qu'offrirent les mages ?", "choices": ["Des jouets", "Or, encens, myrrhe", "Des vêtements"], "answer": 1 }
+    { "q": "Qui annonça à Marie qu'elle allait avoir un enfant ?", "choices": ["Joseph", "L'ange Gabriel", "Un berger"], "answer": 1 },
+    { "q": "Pourquoi Marie et Joseph allèrent-ils à Bethléhem ?", "choices": ["Pour visiter", "Pour le recensement", "Pour fuir"], "answer": 1 },
+    { "q": "Où Jésus est-il né ?", "choices": ["Dans un palais", "Dans une étable", "Dans une maison"], "answer": 1 },
+    { "q": "Qui annonça la naissance aux bergers ?", "choices": ["Marie", "Un ange", "Joseph"], "answer": 1 },
+    { "q": "Qu'est-ce qui guida les mages vers Jésus ?", "choices": ["Une carte", "Une étoile", "Un ange"], "answer": 1 }
   ],
-  "mini_games": ["order_events"],
+  "mini_games": ["order_events", "quiz"],
   "assets": ["naissance_1.png", "naissance_2.png", "naissance_3.png", "naissance_4.png"]
 }

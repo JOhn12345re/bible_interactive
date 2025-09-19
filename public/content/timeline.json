@@ -19,26 +19,26 @@
             "available": true
           },
           {
-            "id": "adam_eve",
-            "title": "Adam et Ève",
-            "description": "Le premier couple et la chute",
+            "id": "adam_eve_01",
+            "title": "Adam et Ève — Le premier couple et la chute",
+            "description": "L'histoire du premier couple et comment le péché est entré dans le monde",
             "book": "Genèse 3",
-            "available": false
+            "available": true
           },
-          {
-            "id": "noe_arche",
-            "title": "Noé et l'Arche",
-            "description": "Le déluge et l'alliance arc-en-ciel",
-            "book": "Genèse 6-9",
-            "available": false
-          },
-          {
-            "id": "babel",
-            "title": "Tour de Babel",
-            "description": "La confusion des langues",
-            "book": "Genèse 11",
-            "available": false
-          }
+        {
+          "id": "noe_01",
+          "title": "Noé et l'Arche — Le Déluge et l'Alliance",
+          "description": "L'histoire du déluge et de l'alliance de Dieu avec Noé",
+          "book": "Genèse 6-9",
+          "available": true
+        },
+        {
+          "id": "babel_01",
+          "title": "La Tour de Babel — La confusion des langues",
+          "description": "L'histoire de la tour de Babel et de la confusion des langues",
+          "book": "Genèse 11",
+          "available": true
+        }
         ]
       },
       {
@@ -50,25 +50,32 @@
         "biblical_time": "Genèse 12-50",
         "stories": [
           {
-            "id": "abraham",
-            "title": "Abraham et Isaac",
-            "description": "L'appel et l'épreuve de la foi",
+            "id": "abraham_01",
+            "title": "Abraham et l'Alliance — L'appel et la promesse de Dieu",
+            "description": "L'histoire d'Abraham et de l'alliance de Dieu avec lui",
             "book": "Genèse 12-25",
-            "available": false
+            "available": true
           },
           {
-            "id": "jacob_esau",
-            "title": "Jacob et Ésaü",
-            "description": "Les jumeaux et l'échelle de Jacob",
-            "book": "Genèse 25-35",
-            "available": false
+            "id": "isaac_01",
+            "title": "Isaac et Rebecca — Le mariage et la bénédiction",
+            "description": "L'histoire d'Isaac et Rebecca et de la fidélité de Dieu",
+            "book": "Genèse 24-26",
+            "available": true
           },
           {
-            "id": "joseph",
-            "title": "Joseph en Égypte",
-            "description": "De l'esclavage au pouvoir",
+            "id": "jacob_01",
+            "title": "Jacob et Ésaü — Les jumeaux et la bénédiction",
+            "description": "L'histoire de Jacob et Ésaü et de la réconciliation",
+            "book": "Genèse 25-33",
+            "available": true
+          },
+          {
+            "id": "joseph_01",
+            "title": "Joseph en Égypte — Vendu par ses frères et élevé par Dieu",
+            "description": "L'histoire de Joseph, de la jalousie de ses frères à son élévation en Égypte",
             "book": "Genèse 37-50",
-            "available": false
+            "available": true
           }
         ]
       },
@@ -81,32 +88,32 @@
         "biblical_time": "Exode - Deutéronome",
         "stories": [
           {
-            "id": "moise_buisson",
-            "title": "Moïse et le buisson ardent",
-            "description": "L'appel du libérateur",
+            "id": "moise_buisson_01",
+            "title": "Moïse et le buisson ardent — L'appel de Dieu",
+            "description": "L'appel de Moïse et la révélation du nom de Dieu",
             "book": "Exode 3",
-            "available": false
+            "available": true
           },
           {
-            "id": "plaies_egypte",
-            "title": "Les 10 plaies d'Égypte",
-            "description": "Dieu libère son peuple",
+            "id": "plaies_egypte_01",
+            "title": "Les dix plaies d'Égypte — Dieu libère son peuple",
+            "description": "Les dix plaies envoyées par Dieu pour libérer Israël",
             "book": "Exode 7-12",
-            "available": false
+            "available": true
           },
           {
-            "id": "mer_rouge",
-            "title": "Traversée de la mer Rouge",
-            "description": "Miracle de la libération",
+            "id": "mer_rouge_01",
+            "title": "La traversée de la mer Rouge — Miracle de la libération",
+            "description": "Le miracle de la traversée de la mer Rouge et la délivrance d'Israël",
             "book": "Exode 14",
-            "available": false
+            "available": true
           },
           {
-            "id": "commandements",
-            "title": "Les 10 commandements",
-            "description": "L'alliance au Sinaï",
+            "id": "commandements_01",
+            "title": "Les Dix Commandements — La Loi de Dieu",
+            "description": "Les dix commandements donnés par Dieu à Moïse sur le mont Sinaï",
             "book": "Exode 20",
-            "available": false
+            "available": true
           }
         ]
       },
@@ -126,11 +133,11 @@
             "available": true
           },
           {
-            "id": "samson",
-            "title": "Samson et Dalila",
-            "description": "Force et faiblesse",
+            "id": "samson_01",
+            "title": "Samson et Dalila — Force et faiblesse",
+            "description": "L'histoire de Samson, sa force divine et sa chute",
             "book": "Juges 13-16",
-            "available": false
+            "available": true
           },
           {
             "id": "david_01",
@@ -140,11 +147,11 @@
             "available": true
           },
           {
-            "id": "salomon",
-            "title": "Salomon et le Temple",
-            "description": "Sagesse et splendeur",
+            "id": "salomon_01",
+            "title": "Salomon et le Temple — Sagesse et splendeur",
+            "description": "L'histoire de Salomon, sa sagesse et la construction du Temple",
             "book": "1 Rois 3-8",
-            "available": false
+            "available": true
           }
         ]
       },
@@ -157,11 +164,11 @@
         "biblical_time": "Isaïe - Malachie",
         "stories": [
           {
-            "id": "elie",
-            "title": "Élie et les prophètes de Baal",
-            "description": "Duel sur le mont Carmel",
+            "id": "elie_01",
+            "title": "Élie et les prophètes de Baal — Duel sur le mont Carmel",
+            "description": "L'histoire d'Élie et du duel spectaculaire sur le mont Carmel",
             "book": "1 Rois 18",
-            "available": false
+            "available": true
           },
           {
             "id": "jonas_01",
@@ -178,11 +185,11 @@
             "available": true
           },
           {
-            "id": "ezechiel",
-            "title": "Ézéchiel et les ossements",
-            "description": "Vision de résurrection",
+            "id": "ezechiel_01",
+            "title": "Ézéchiel et les ossements desséchés — Vision de résurrection",
+            "description": "L'histoire d'Ézéchiel et de sa vision des ossements qui reprennent vie",
             "book": "Ézéchiel 37",
-            "available": false
+            "available": true
           }
         ]
       },
@@ -196,18 +203,32 @@
         "pivot": true,
         "stories": [
           {
-            "id": "naissance",
-            "title": "Naissance de Jésus",
-            "description": "Dieu fait homme",
+            "id": "naissance_jesus",
+            "title": "La naissance de Jésus — Dieu fait homme",
+            "description": "L'ange Gabriel annonce à Marie qu'elle aura un enfant par l'Esprit Saint. Jésus naît à Bethléhem dans une étable.",
             "book": "Luc 1-2",
-            "available": false
+            "available": true
           },
           {
-            "id": "bapteme",
-            "title": "Baptême de Jésus",
-            "description": "Début du ministère",
+            "id": "enfance_jesus",
+            "title": "L'enfance de Jésus — À 12 ans dans le temple",
+            "description": "Jésus à 12 ans dans le temple, étonnant les docteurs par sa sagesse et ses questions.",
+            "book": "Luc 2:41-52",
+            "available": true
+          },
+          {
+            "id": "bapteme_jesus",
+            "title": "Le baptême de Jésus — Début du ministère",
+            "description": "Jésus se fait baptiser par Jean-Baptiste, marquant le début de son ministère public.",
             "book": "Matthieu 3",
-            "available": false
+            "available": true
+          },
+          {
+            "id": "tentations_jesus",
+            "title": "Les tentations de Jésus — Victoire sur le mal",
+            "description": "Jésus résiste aux tentations du diable en s'appuyant sur la Parole de Dieu.",
+            "book": "Matthieu 4:1-11",
+            "available": true
           },
           {
             "id": "miracles",
@@ -284,8 +305,8 @@
   },
   "navigation": {
     "current_period": "creation",
-    "unlocked_periods": ["creation", "juges_rois", "prophetes"],
-    "completion_percentage": 12
+    "unlocked_periods": ["creation", "patriarches", "exode", "juges_rois", "prophetes", "christ"],
+    "completion_percentage": 18
   },
   "educational_goals": [
     "Comprendre la continuité du plan de Dieu",

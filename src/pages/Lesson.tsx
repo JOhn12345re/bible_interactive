@@ -17,7 +17,6 @@ export default function Lesson() {
   const [gameCompleted, setGameCompleted] = useState(false);
   const [earnedBadge, setEarnedBadge] = useState<string | null>(null);
   const [selectedGameType, setSelectedGameType] = useState<'order_events' | 'quiz'>('order_events');
-  const [selectedDifficulty, setSelectedDifficulty] = useState<'easy' | 'normal' | 'hard'>('normal');
   
   const { markDone, isCompleted } = useProgress();
   const { contrastHigh } = useSettings();
@@ -42,9 +41,27 @@ export default function Lesson() {
         'david_01': 'historiques',
         'josue_01': 'historiques',
         'creation_01': 'pentateuque',
+        'adam_eve_01': 'pentateuque',
         'noe_01': 'pentateuque',
-        'moise_01': 'pentateuque',
-        'naissance_jesus': 'nouveau_testament',
+    'babel_01': 'pentateuque',
+    'abraham_01': 'pentateuque',
+    'isaac_01': 'pentateuque',
+    'jacob_01': 'pentateuque',
+    'joseph_01': 'pentateuque',
+    'commandements_01': 'pentateuque',
+    'moise_buisson_01': 'pentateuque',
+    'plaies_egypte_01': 'pentateuque',
+    'mer_rouge_01': 'pentateuque',
+    'samson_01': 'historiques',
+    'salomon_01': 'historiques',
+    'elie_01': 'prophetiques',
+    'ezechiel_01': 'prophetiques',
+    'naissance_jesus': 'nouveau_testament',
+    'enfance_jesus': 'nouveau_testament',
+    'bapteme_jesus': 'nouveau_testament',
+    'tentations_jesus': 'nouveau_testament',
+    'gedeon_01': 'historiques',
+    'moise_01': 'pentateuque',
       };
       
       const folder = lessonFolders[lessonId] || '';
@@ -316,47 +333,6 @@ export default function Lesson() {
                 </button>
               </div>
 
-              {/* Sélecteur de difficulté */}
-              <div className="mb-6">
-                <h4 className="text-lg font-medium mb-3">Niveau de difficulté :</h4>
-                <div className="flex justify-center gap-3">
-                  <button
-                    onClick={() => setSelectedDifficulty('easy')}
-                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                      selectedDifficulty === 'easy'
-                        ? 'bg-green-500 text-white'
-                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                    }`}
-                  >
-                    😊 Facile
-                  </button>
-                  <button
-                    onClick={() => setSelectedDifficulty('normal')}
-                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                      selectedDifficulty === 'normal'
-                        ? 'bg-blue-500 text-white'
-                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                    }`}
-                  >
-                    🙂 Normal
-                  </button>
-                  <button
-                    onClick={() => setSelectedDifficulty('hard')}
-                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                      selectedDifficulty === 'hard'
-                        ? 'bg-red-500 text-white'
-                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
-                    }`}
-                  >
-                    😤 Difficile
-                  </button>
-                </div>
-                <p className="text-sm mt-2 text-center text-gray-500">
-                  {selectedDifficulty === 'easy' && '3 cartes, plus de temps'}
-                  {selectedDifficulty === 'normal' && '4 cartes, temps normal'}
-                  {selectedDifficulty === 'hard' && '6 cartes, moins de temps'}
-                </p>
-              </div>
 
               <p className={`mb-6 ${
                 contrastHigh ? 'text-contrast-text' : 'text-gray-600'
@@ -386,7 +362,6 @@ export default function Lesson() {
               onComplete={handleGameComplete}
               lessonData={data}
               gameType={selectedGameType}
-              difficulty={selectedDifficulty}
               width={1280}
               height={720}
             />

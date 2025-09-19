@@ -7,6 +7,9 @@ import SettingsDialog from '../components/SettingsDialog';
 import Journal from '../components/Journal';
 import VerseSearch from '../components/VerseSearch';
 import ProfileDialog from '../components/ProfileDialog';
+import { BibleApiTest } from '../components/BibleApiTest';
+import TranslationSelector from '../components/TranslationSelector';
+import FrenchBibleSelector from '../components/FrenchBibleSelector';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
@@ -14,6 +17,9 @@ export default function Home() {
   const [showJournal, setShowJournal] = useState(false);
   const [showVerseSearch, setShowVerseSearch] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
+  const [showBibleApiTest, setShowBibleApiTest] = useState(false);
+  const [showTranslationSelector, setShowTranslationSelector] = useState(false);
+  const [showFrenchBibleSelector, setShowFrenchBibleSelector] = useState(false);
   const { contrastHigh } = useSettings();
   const { getAllBadges } = useProgress();
   const { profile, isProfileComplete } = useProfileStore();
@@ -128,6 +134,20 @@ export default function Home() {
                 <span>Versets</span>
               </button>
 
+              {/* Bouton Sermons & Chants */}
+              <Link
+                to="/sermons"
+                className={`group flex items-center space-x-3 px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
+                  contrastHigh
+                    ? 'bg-contrast-text text-contrast-bg border-2 border-contrast-text hover:bg-contrast-bg hover:text-contrast-text'
+                    : 'bg-gradient-to-r from-red-500 to-orange-600 text-white hover:from-red-600 hover:to-orange-700'
+                }`}
+                aria-label="Voir les sermons et chants"
+              >
+                <span className="text-xl group-hover:scale-110 transition-transform duration-300">🎬</span>
+                <span>Sermons & Chants</span>
+              </Link>
+
               {/* Lien Explorateur de la Bible */}
               <Link
                 to="/bible"
@@ -140,6 +160,68 @@ export default function Home() {
               >
                 <span className="text-xl group-hover:scale-110 transition-transform duration-300">📚</span>
                 <span>Explorer la Bible</span>
+              </Link>
+
+              {/* Bouton Sélecteur de Traduction */}
+              <button
+                onClick={() => setShowTranslationSelector(true)}
+                className={`group flex items-center space-x-3 px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
+                  contrastHigh
+                    ? 'bg-contrast-text text-contrast-bg border-2 border-contrast-text hover:bg-contrast-bg hover:text-contrast-text'
+                    : 'bg-gradient-to-r from-green-500 to-emerald-600 text-white hover:from-green-600 hover:to-emerald-700'
+                }`}
+                aria-label="Choisir la traduction biblique"
+              >
+                <span className="text-xl group-hover:scale-110 transition-transform duration-300">📚</span>
+                <span>Traduction</span>
+              </button>
+
+
+
+
+              {/* Bouton Bible Louis Segond 1910 */}
+              <button
+                onClick={() => setShowFrenchBibleSelector(true)}
+                className={`group flex items-center space-x-3 px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
+                  contrastHigh
+                    ? 'bg-contrast-text text-contrast-bg border-2 border-contrast-text hover:bg-contrast-bg hover:text-contrast-text'
+                    : 'bg-gradient-to-r from-red-500 to-pink-600 text-white hover:from-red-600 hover:to-pink-700'
+                }`}
+                aria-label="Voir la Bible Louis Segond 1910"
+              >
+                <span className="text-xl group-hover:scale-110 transition-transform duration-300">🇫🇷</span>
+                <span>Bible Louis Segond 1910</span>
+              </button>
+
+
+              {/* Bouton Test API Bible - Temporairement désactivé */}
+              {false && (
+                <button
+                  onClick={() => setShowBibleApiTest(true)}
+                  className={`group flex items-center space-x-3 px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
+                    contrastHigh
+                      ? 'bg-contrast-text text-contrast-bg border-2 border-contrast-text hover:bg-contrast-bg hover:text-contrast-text'
+                      : 'bg-gradient-to-r from-yellow-500 to-orange-600 text-white hover:from-yellow-600 hover:to-orange-700'
+                  }`}
+                  aria-label="Tester l'API Bible"
+                >
+                  <span className="text-xl group-hover:scale-110 transition-transform duration-300">🧪</span>
+                  <span>Test API</span>
+                </button>
+              )}
+
+              {/* Bouton Test Bible Louis Segond */}
+              <Link
+                to="/test-bible"
+                className={`group flex items-center space-x-3 px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
+                  contrastHigh
+                    ? 'bg-contrast-text text-contrast-bg border-2 border-contrast-text hover:bg-contrast-bg hover:text-contrast-text'
+                    : 'bg-gradient-to-r from-green-500 to-teal-600 text-white hover:from-green-600 hover:to-teal-700'
+                }`}
+                aria-label="Tester la Bible Louis Segond"
+              >
+                <span className="text-xl group-hover:scale-110 transition-transform duration-300">📖</span>
+                <span>Test Bible LSG</span>
               </Link>
 
               {/* Bouton Réglages modernisé */}
@@ -278,6 +360,7 @@ export default function Home() {
         {/* Menu des leçons */}
         <Menu />
 
+
         {/* Informations légales modernisées */}
         <footer className={`mt-16 pt-12 border-t animate-slide-up ${
           contrastHigh 
@@ -371,6 +454,68 @@ export default function Home() {
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
           <div className="max-w-4xl w-full max-h-[90vh] overflow-y-auto">
             <VerseSearch onClose={() => setShowVerseSearch(false)} />
+          </div>
+        </div>
+      )}
+
+      {/* Dialog Sélecteur de Traduction */}
+      {showTranslationSelector && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="bg-white rounded-lg p-6">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-2xl font-bold">Choisir la traduction biblique</h2>
+                <button
+                  onClick={() => setShowTranslationSelector(false)}
+                  className="text-gray-500 hover:text-gray-700 text-2xl"
+                >
+                  ×
+                </button>
+              </div>
+              <TranslationSelector />
+            </div>
+          </div>
+        </div>
+      )}
+
+
+      {/* Dialog Sélecteur de Bible Française */}
+      {showFrenchBibleSelector && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="bg-white rounded-lg p-6">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-2xl font-bold">🇫🇷 Bible Louis Segond 1910</h2>
+                <button
+                  onClick={() => setShowFrenchBibleSelector(false)}
+                  className="text-gray-500 hover:text-gray-700 text-2xl"
+                >
+                  ×
+                </button>
+              </div>
+              <FrenchBibleSelector />
+            </div>
+          </div>
+        </div>
+      )}
+
+
+      {/* Dialog de test API Bible - Temporairement désactivé */}
+      {false && showBibleApiTest && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="max-w-4xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="bg-white rounded-lg p-6">
+              <div className="flex justify-between items-center mb-4">
+                <h2 className="text-2xl font-bold">Test de l'API Bible</h2>
+                <button
+                  onClick={() => setShowBibleApiTest(false)}
+                  className="text-gray-500 hover:text-gray-700 text-2xl"
+                >
+                  ×
+                </button>
+              </div>
+              {showBibleApiTest && <BibleApiTest />}
+            </div>
           </div>
         </div>
       )}

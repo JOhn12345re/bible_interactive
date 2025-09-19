@@ -1,0 +1,36 @@
+{
+  "id": "enfance_jesus",
+  "title": "L'enfance de Jésus — À 12 ans dans le temple",
+  "path": "Vie du Christ",
+  "reading": [
+    "Chaque année, Marie et Joseph allaient à Jérusalem pour la fête de la Pâque.",
+    "Quand Jésus eut douze ans, ils l'emmenèrent avec eux comme d'habitude.",
+    "Après la fête, ils repartirent, mais Jésus resta à Jérusalem sans qu'ils s'en aperçoivent.",
+    "Pensant qu'il était avec d'autres voyageurs, ils firent une journée de chemin.",
+    "Ils le cherchèrent parmi leurs parents et leurs connaissances, mais ne le trouvèrent pas.",
+    "Ils retournèrent à Jérusalem pour le chercher.",
+    "Au bout de trois jours, ils le trouvèrent dans le temple, assis au milieu des docteurs.",
+    "Il les écoutait et leur posait des questions, et tous ceux qui l'entendaient étaient étonnés de son intelligence.",
+    "Quand ses parents le virent, ils furent stupéfaits, et sa mère lui dit : « Mon enfant, pourquoi nous as-tu fait cela ? »",
+    "Jésus leur répondit : « Pourquoi me cherchiez-vous ? Ne saviez-vous pas qu'il faut que je m'occupe des affaires de mon Père ? »",
+    "Ils ne comprirent pas ce qu'il leur disait, mais Marie gardait toutes ces choses dans son cœur.",
+    "Jésus retourna avec eux à Nazareth et leur était soumis, et il grandissait en sagesse, en stature et en grâce devant Dieu et devant les hommes."
+  ],
+  "key_verse": "Jésus grandissait en sagesse, en stature et en grâce devant Dieu et devant les hommes.",
+  "vocab": [
+    { "word": "Pâque", "hint": "Fête juive importante célébrée à Jérusalem." },
+    { "word": "Docteurs", "hint": "Sages et enseignants de la loi juive." },
+    { "word": "Temple", "hint": "Lieu saint de Jérusalem où Jésus fut trouvé." },
+    { "word": "Affaires de mon Père", "hint": "Les choses qui concernent Dieu, le Père de Jésus." },
+    { "word": "Sagesse", "hint": "Intelligence et compréhension profonde." }
+  ],
+  "quiz": [
+    { "q": "À quel âge Jésus alla-t-il au temple ?", "choices": ["10 ans", "12 ans", "15 ans"], "answer": 1 },
+    { "q": "Pourquoi Marie et Joseph allaient-ils à Jérusalem ?", "choices": ["Pour visiter", "Pour la fête de la Pâque", "Pour travailler"], "answer": 1 },
+    { "q": "Où trouvèrent-ils Jésus ?", "choices": ["Dans la rue", "Dans le temple", "Chez des amis"], "answer": 1 },
+    { "q": "Que faisait Jésus dans le temple ?", "choices": ["Il dormait", "Il écoutait et posait des questions", "Il jouait"], "answer": 1 },
+    { "q": "Que répondit Jésus à ses parents ?", "choices": ["Je me suis perdu", "Il faut que je m'occupe des affaires de mon Père", "Je voulais rester"], "answer": 1 }
+  ],
+  "mini_games": ["order_events", "quiz"],
+  "assets": ["enfance_1.png", "enfance_2.png", "enfance_3.png"]
+}

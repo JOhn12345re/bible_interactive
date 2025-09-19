@@ -1,0 +1,38 @@
+{
+  "id": "plaies_egypte_01",
+  "title": "Les dix plaies d'Égypte — Dieu libère son peuple",
+  "path": "Le Pentateuque",
+  "reading": [
+    "Dieu envoya Moïse et Aaron devant Pharaon pour demander la libération d'Israël.",
+    "Pharaon refusa de laisser partir le peuple d'Israël et endurcit son cœur.",
+    "Alors Dieu frappa l'Égypte de dix plaies pour montrer sa puissance.",
+    "Première plaie : Le Nil fut changé en sang, et tous les poissons moururent.",
+    "Deuxième plaie : Des grenouilles couvrirent tout le pays d'Égypte.",
+    "Troisième plaie : Des moustiques infestèrent les hommes et les animaux.",
+    "Quatrième plaie : Des mouches venimeuses envahirent les maisons des Égyptiens.",
+    "Cinquième plaie : Une peste frappa tous les troupeaux des Égyptiens.",
+    "Sixième plaie : Des ulcères douloureux couvrirent les hommes et les animaux.",
+    "Septième plaie : Une grêle terrible détruisit les récoltes et les arbres.",
+    "Huitième plaie : Des sauterelles dévorèrent tout ce qui restait de vert.",
+    "Neuvième plaie : Des ténèbres épaisses couvrirent l'Égypte pendant trois jours.",
+    "Dixième plaie : L'ange de la mort frappa tous les premiers-nés d'Égypte.",
+    "Alors Pharaon, brisé par cette dernière plaie, laissa enfin partir Israël.",
+    "Le peuple d'Israël se prépara à sortir d'Égypte sous la conduite de Moïse."
+  ],
+  "key_verse": "Dieu est plus grand que tous les rois et il agit avec puissance pour sauver son peuple.",
+  "vocab": [
+    { "word": "Plaies", "hint": "Des châtiments envoyés par Dieu pour punir l'orgueil." },
+    { "word": "Pharaon", "hint": "Le roi d'Égypte qui refusait de libérer Israël." },
+    { "word": "Premiers-nés", "hint": "Les enfants aînés de chaque famille." },
+    { "word": "Endurcir le cœur", "hint": "Refuser d'écouter et d'obéir à Dieu." }
+  ],
+  "quiz": [
+    { "q": "Combien de plaies Dieu a-t-il envoyées sur l'Égypte ?", "choices": ["Sept", "Dix", "Douze"], "answer": 1 },
+    { "q": "Quelle fut la première plaie ?", "choices": ["Les grenouilles", "Le Nil changé en sang", "Les moustiques"], "answer": 1 },
+    { "q": "Quelle fut la dernière plaie ?", "choices": ["Les ténèbres", "La mort des premiers-nés", "Les sauterelles"], "answer": 1 },
+    { "q": "Pourquoi Pharaon refusait-il de laisser partir Israël ?", "choices": ["Il avait peur", "Il endurcissait son cœur", "Il ne savait pas"], "answer": 1 },
+    { "q": "Que montrent les dix plaies ?", "choices": ["La colère de Dieu", "La puissance de Dieu", "La tristesse de Dieu"], "answer": 1 }
+  ],
+  "mini_games": ["order_events", "quiz"],
+  "assets": ["plaies_1.png", "plaies_2.png", "plaies_3.png", "plaies_4.png"]
+}

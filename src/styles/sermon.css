@@ -1,0 +1,285 @@
+/* Styles spécifiques pour les sermons */
+/* Ces styles complètent Tailwind CSS pour les composants de sermons */
+
+/* Animation pour les cartes de sermons */
+.sermon-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.sermon-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+/* Styles pour le lecteur vidéo */
+.sermon-player {
+  position: relative;
+  background: #000;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.sermon-player video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* Barre de progression personnalisée */
+.sermon-progress {
+  position: relative;
+  height: 8px;
+  background: #e5e7eb;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: height 0.2s ease;
+}
+
+.sermon-progress:hover {
+  height: 12px;
+}
+
+.sermon-progress-bar {
+  height: 100%;
+  background: linear-gradient(90deg, #3b82f6, #1d4ed8);
+  border-radius: 4px;
+  transition: width 0.1s ease;
+  position: relative;
+}
+
+.sermon-progress-bar::after {
+  content: '';
+  position: absolute;
+  right: -6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  background: #3b82f6;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.sermon-progress:hover .sermon-progress-bar::after {
+  opacity: 1;
+}
+
+/* Styles pour les chapitres */
+.sermon-chapters {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.sermon-chapter {
+  padding: 0.75rem 1rem;
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  background: white;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: left;
+}
+
+.sermon-chapter:hover {
+  background: #f9fafb;
+  border-color: #3b82f6;
+  transform: translateX(4px);
+}
+
+.sermon-chapter:active {
+  transform: translateX(2px);
+}
+
+/* Styles pour les tags */
+.sermon-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.sermon-tag {
+  padding: 0.25rem 0.75rem;
+  background: #dbeafe;
+  color: #1e40af;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+.sermon-tag:hover {
+  background: #bfdbfe;
+  transform: scale(1.05);
+}
+
+/* Styles pour les contrôles du lecteur */
+.sermon-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 0.5rem;
+  color: white;
+}
+
+.sermon-controls select {
+  background: white;
+  color: #374151;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.875rem;
+}
+
+/* Animation de chargement pour les sermons */
+.sermon-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 200px;
+}
+
+.sermon-loading-spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #e5e7eb;
+  border-top: 4px solid #3b82f6;
+  border-radius: 50%;
+  animation: sermon-spin 1s linear infinite;
+}
+
+@keyframes sermon-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Styles pour les messages d'erreur */
+.sermon-error {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #dc2626;
+}
+
+.sermon-error-icon {
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto 1rem;
+  color: #fca5a5;
+}
+
+/* Styles pour les états vides */
+.sermon-empty {
+  text-align: center;
+  padding: 3rem 1rem;
+  color: #6b7280;
+}
+
+.sermon-empty-icon {
+  width: 4rem;
+  height: 4rem;
+  margin: 0 auto 1rem;
+  color: #d1d5db;
+}
+
+/* Responsive design pour les sermons */
+@media (max-width: 768px) {
+  .sermon-chapters {
+    grid-template-columns: 1fr;
+  }
+  
+  .sermon-controls {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .sermon-tags {
+    justify-content: center;
+  }
+}
+
+/* Styles d'accessibilité */
+.sermon-card:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+.sermon-chapter:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Animation pour les transitions de pages */
+.sermon-page-enter {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.sermon-page-enter-active {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.sermon-page-exit {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.sermon-page-exit-active {
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Styles pour les raccourcis clavier */
+.sermon-shortcuts {
+  font-size: 0.75rem;
+  color: #6b7280;
+  margin-top: 0.5rem;
+}
+
+.sermon-shortcuts kbd {
+  background: #f3f4f6;
+  border: 1px solid #d1d5db;
+  border-radius: 0.25rem;
+  padding: 0.125rem 0.25rem;
+  font-family: monospace;
+  font-size: 0.75rem;
+}
+
+/* Styles pour les sous-titres */
+.sermon-subtitles {
+  position: absolute;
+  bottom: 60px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  font-size: 0.875rem;
+  max-width: 80%;
+  text-align: center;
+  z-index: 10;
+}
+
+/* Styles pour le mode plein écran */
+.sermon-player:-webkit-full-screen {
+  width: 100vw;
+  height: 100vh;
+  border-radius: 0;
+}
+
+.sermon-player:-moz-full-screen {
+  width: 100vw;
+  height: 100vh;
+  border-radius: 0;
+}
+
+.sermon-player:fullscreen {
+  width: 100vw;
+  height: 100vh;
+  border-radius: 0;
+}

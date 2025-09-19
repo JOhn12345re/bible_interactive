@@ -7,12 +7,11 @@ type Props = {
   onComplete?: (data: { badge: string }) => void;
   lessonData?: any;
   gameType?: 'order_events' | 'quiz';
-  difficulty?: 'easy' | 'normal' | 'hard';
   width?: number;
   height?: number;
 };
 
-export default function PhaserGame({ onComplete, lessonData, gameType = 'order_events', difficulty = 'normal', width = 1280, height = 720 }: Props) {
+export default function PhaserGame({ onComplete, lessonData, gameType = 'order_events', width = 1280, height = 720 }: Props) {
   const gameRef = useRef<Phaser.Game | null>(null);
   const mountedRef = useRef(false);
 
@@ -52,10 +51,13 @@ export default function PhaserGame({ onComplete, lessonData, gameType = 'order_e
 
     // Attendre que le jeu soit prêt
     const setupEventListeners = () => {
+      console.log('🎮 Configuration des événements pour:', gameType, 'avec données:', lessonData?.id);
+      
       if (gameType === 'quiz') {
         const scene = game.scene.getScene('QuizScene') as QuizScene;
         if (scene) {
           if (lessonData) {
+            console.log('📝 Configuration quiz avec données:', lessonData);
             scene.setLessonData(lessonData);
           }
           scene.events.on('lesson:completed', (payload: { badge: string }) => {
@@ -67,9 +69,9 @@ export default function PhaserGame({ onComplete, lessonData, gameType = 'order_e
         const scene = game.scene.getScene('OrderEvents') as OrderEventsScene;
         if (scene) {
           if (lessonData) {
+            console.log('🔄 Configuration jeu d\'ordre avec données:', lessonData);
             scene.setLessonData(lessonData);
           }
-          scene.setDifficulty(difficulty);
           scene.events.on('lesson:completed', (payload: { badge: string }) => {
             console.log('Leçon terminée:', payload);
             onComplete?.(payload);
@@ -93,7 +95,7 @@ export default function PhaserGame({ onComplete, lessonData, gameType = 'order_e
       }
       mountedRef.current = false;
     };
-  }, [onComplete, lessonData, gameType, difficulty, width, height]);
+  }, [onComplete, lessonData, gameType, width, height]);
 
   return (
     <div className="w-full h-full relative">

@@ -1,0 +1,38 @@
+{
+  "id": "mer_rouge_01",
+  "title": "La traversée de la mer Rouge — Miracle de la libération",
+  "path": "Le Pentateuque",
+  "reading": [
+    "Après avoir quitté l'Égypte, les Israélites furent poursuivis par l'armée de Pharaon.",
+    "Le peuple eut peur en voyant les chars et les soldats égyptiens qui les suivaient.",
+    "Ils crièrent à Moïse : 'Pourquoi nous as-tu fait sortir d'Égypte pour mourir dans le désert ?'",
+    "Moïse répondit : 'Ne craignez rien, restez en place, et vous verrez la délivrance que l'Éternel va vous accorder aujourd'hui.'",
+    "L'ange de Dieu qui allait devant le camp d'Israël partit et se plaça derrière eux.",
+    "Moïse étendit sa main sur la mer, et l'Éternel refoula la mer par un vent d'orient.",
+    "Les eaux se séparèrent et les Israélites entrèrent au milieu de la mer à pied sec.",
+    "Les Égyptiens les poursuivirent, et tous les chevaux de Pharaon, ses chars et ses cavaliers entrèrent après eux au milieu de la mer.",
+    "L'Éternel dit à Moïse : 'Étends ta main sur la mer, et les eaux reviendront sur les Égyptiens.'",
+    "Moïse étendit sa main sur la mer, et vers le matin, la mer reprit son impétuosité.",
+    "Les Égyptiens s'enfuirent à son approche, mais l'Éternel précipita les Égyptiens au milieu de la mer.",
+    "Les eaux revinrent et couvrirent les chars, les cavaliers et toute l'armée de Pharaon.",
+    "Il ne resta pas un seul d'entre eux, mais les enfants d'Israël marchèrent à pied sec au milieu de la mer.",
+    "Ce jour-là, l'Éternel délivra Israël de la main des Égyptiens, et Israël vit les Égyptiens morts sur le rivage de la mer.",
+    "Israël vit la grande puissance que l'Éternel avait déployée contre les Égyptiens, et le peuple craignit l'Éternel."
+  ],
+  "key_verse": "Dieu ouvre toujours un chemin de salut, même quand tout semble impossible.",
+  "vocab": [
+    { "word": "Traversée", "hint": "Passer d'un côté à l'autre, traverser la mer." },
+    { "word": "À pied sec", "hint": "Marcher sans se mouiller, sur un sol sec." },
+    { "word": "Miracle", "hint": "Un événement extraordinaire que seul Dieu peut accomplir." },
+    { "word": "Délivrance", "hint": "Être sauvé, libéré d'un danger ou d'une situation difficile." }
+  ],
+  "quiz": [
+    { "q": "Qui poursuivait les Israélites après leur sortie d'Égypte ?", "choices": ["Les Assyriens", "L'armée de Pharaon", "Les Babyloniens"], "answer": 1 },
+    { "q": "Que dit Moïse au peuple qui avait peur ?", "choices": ["Fuyez !", "Ne craignez rien, Dieu combattra pour vous", "Retournez en Égypte"], "answer": 1 },
+    { "q": "Comment les Israélites ont-ils traversé la mer ?", "choices": ["En bateau", "À pied sec", "En nageant"], "answer": 1 },
+    { "q": "Que s'est-il passé quand les Égyptiens ont voulu suivre ?", "choices": ["Ils ont réussi à traverser", "Les eaux les ont recouverts", "Ils ont fait demi-tour"], "answer": 1 },
+    { "q": "Que montre ce miracle ?", "choices": ["La force de Moïse", "La puissance de Dieu", "La chance des Israélites"], "answer": 1 }
+  ],
+  "mini_games": ["order_events", "quiz"],
+  "assets": ["mer_rouge_1.png", "mer_rouge_2.png", "mer_rouge_3.png"]
+}

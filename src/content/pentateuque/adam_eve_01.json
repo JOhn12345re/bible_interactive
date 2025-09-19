@@ -1,0 +1,67 @@
+{
+  "id": "adam_eve_01",
+  "title": "Adam et Ève — Le premier couple et la chute",
+  "path": "Le Pentateuque",
+  "book": "Genèse",
+  "chapter": 3,
+  "reading": [
+    "Dans le jardin d'Éden, Dieu avait donné à Adam et Ève tout ce dont ils avaient besoin.",
+    "Il leur avait demandé de ne pas manger du fruit de l'arbre de la connaissance du bien et du mal.",
+    "Le serpent trompa Ève en lui faisant croire qu'en mangeant de ce fruit, elle deviendrait comme Dieu.",
+    "Elle en prit et en donna aussi à Adam.",
+    "Leurs yeux s'ouvrirent alors : ils réalisèrent qu'ils étaient nus et se cachèrent de Dieu.",
+    "Quand Dieu les appela, ils reconnurent leur désobéissance.",
+    "Dieu annonça les conséquences : douleur, souffrance, travail pénible et la mort.",
+    "Le serpent fut maudit, et l'accès à l'arbre de vie fut fermé par des chérubins."
+  ],
+  "key_verse": "Le serpent fut maudit entre tous les animaux des champs.",
+  "vocab": [
+    { "word": "Éden", "hint": "Le jardin parfait que Dieu avait créé pour Adam et Ève." },
+    { "word": "arbre de la connaissance", "hint": "L'arbre dont Dieu avait interdit de manger le fruit." },
+    { "word": "serpent", "hint": "L'animal qui trompa Ève et représenta Satan." },
+    { "word": "chute", "hint": "La désobéissance d'Adam et Ève qui introduisit le péché dans le monde." },
+    { "word": "chérubins", "hint": "Des anges qui gardèrent l'accès à l'arbre de vie." }
+  ],
+  "quiz": [
+    { 
+      "q": "Qui trompa Ève dans le jardin d'Éden ?", 
+      "choices": ["Un ange", "Le serpent", "Adam"], 
+      "answer": 1 
+    },
+    { 
+      "q": "De quel arbre Adam et Ève ne devaient-ils pas manger ?", 
+      "choices": ["L'arbre de vie", "L'arbre de la connaissance", "L'arbre du bien"], 
+      "answer": 1 
+    },
+    { 
+      "q": "Que se passa-t-il après qu'ils eurent mangé le fruit ?", 
+      "choices": ["Ils devinrent immortels", "Ils réalisèrent qu'ils étaient nus", "Ils devinrent comme Dieu"], 
+      "answer": 1 
+    },
+    { 
+      "q": "Qui garda l'accès à l'arbre de vie après la chute ?", 
+      "choices": ["Les anges", "Les chérubins", "Le serpent"], 
+      "answer": 1 
+    }
+  ],
+  "mini_games": ["order_events", "quiz"],
+  "assets": ["adam_eve_1.png", "adam_eve_2.png", "adam_eve_3.png", "adam_eve_4.png"],
+  "story_steps": [
+    "Adam et Ève dans le jardin d'Éden",
+    "Le serpent tente Ève",
+    "Ève mange le fruit et en donne à Adam",
+    "Ils se cachent de Dieu et sont chassés du jardin"
+  ],
+  "theological_message": "La chute montre comment le péché est entré dans le monde, mais aussi comment Dieu reste présent et promet déjà un salut futur.",
+  "life_application": "Nous devons résister à la tentation et faire confiance à Dieu plutôt qu'à nos propres désirs.",
+  "bible_verses": [
+    {
+      "reference": "Genèse 3:1-6",
+      "text": "Le serpent était le plus rusé de tous les animaux des champs, que l'Éternel Dieu avait faits. Il dit à la femme: Dieu a-t-il réellement dit: Vous ne mangerez pas de tous les arbres du jardin?"
+    },
+    {
+      "reference": "Genèse 3:15",
+      "text": "Je mettrai inimitié entre toi et la femme, entre ta postérité et sa postérité: celle-ci t'écrasera la tête, et tu lui blesseras le talon."
+    }
+  ]
+}

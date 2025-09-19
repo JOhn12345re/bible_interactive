@@ -1,0 +1,30 @@
+{
+  "id": "abraham_01",
+  "title": "Abraham et l'Alliance — L'appel et la promesse de Dieu",
+  "path": "Le Pentateuque",
+  "reading": [
+    "Dieu appela Abram et lui dit de quitter son pays et sa famille pour aller vers la terre qu'il lui montrerait.",
+    "Dieu promit de faire de lui une grande nation et de bénir toutes les familles de la terre par lui.",
+    "Abram obéit et partit avec Saraï vers le pays de Canaan.",
+    "Dieu renouvela sa promesse plusieurs fois : sa descendance serait aussi nombreuse que les étoiles du ciel.",
+    "Même s'il dut attendre longtemps, Dieu donna un fils à Abraham et Sara, Isaac.",
+    "Comme signe de son alliance, Dieu demanda la circoncision et changea son nom en Abraham, 'père d'une multitude'.",
+    "Abraham devint le père de la foi et l'ancêtre du peuple d'Israël.",
+    "Dieu est fidèle à ses promesses et bénit ceux qui lui font confiance."
+  ],
+  "key_verse": "Dieu est fidèle à ses promesses, et il bénit ceux qui lui font confiance et qui obéissent à sa voix.",
+  "vocab": [
+    { "word": "Alliance", "hint": "Promesse solennelle et éternelle faite par Dieu." },
+    { "word": "Circoncision", "hint": "Signe de l'alliance entre Dieu et son peuple." },
+    { "word": "Descendance", "hint": "Les enfants et petits-enfants d'une personne." }
+  ],
+  "quiz": [
+    { "q": "Quel était le nom original d'Abraham ?", "choices": ["Abram", "Isaac", "Jacob"], "answer": 0 },
+    { "q": "Que promit Dieu à Abraham ?", "choices": ["De l'or", "Une grande nation", "Un château"], "answer": 1 },
+    { "q": "Comment Dieu compara-t-il la descendance d'Abraham ?", "choices": ["Aux grains de sable", "Aux étoiles du ciel", "Aux feuilles des arbres"], "answer": 1 },
+    { "q": "Quel fut le signe de l'alliance avec Abraham ?", "choices": ["Le baptême", "La circoncision", "Le sacrifice"], "answer": 1 },
+    { "q": "Quel fut le nom du fils promis à Abraham ?", "choices": ["Ismaël", "Isaac", "Jacob"], "answer": 1 }
+  ],
+  "mini_games": ["order_events", "quiz"],
+  "assets": ["abraham_1.png", "abraham_2.png", "abraham_3.png"]
+}

@@ -1,0 +1,196 @@
+{
+  "items": [
+    {
+      "id": "la_vie_en_christ",
+      "title": "La Vie en Christ",
+      "preacher": "Père Marc",
+      "date": "2024-11-10",
+      "duration": 2700,
+      "description": "Sermon sur la vie nouvelle en Christ et la miséricorde divine. Une réflexion profonde sur la transformation intérieure et l'amour inconditionnel de Dieu.",
+      "poster": "/sermons/la_vie_en_christ/poster.jpg",
+      "hls": "/sermons/la_vie_en_christ/master.m3u8",
+      "mp4": "/sermons/la_vie_en_christ/video.mp4",
+      "subtitles": [
+        { "lang": "fr", "label": "Français", "src": "/sermons/la_vie_en_christ/subtitles.vtt" }
+      ],
+      "chapters": [
+        { "start": 0, "title": "Introduction", "number": "2.1" },
+        { "start": 420, "title": "Écriture : Romains 6:1-11", "number": "2.2" },
+        { "start": 1260, "title": "Application pratique", "number": "2.3" },
+        { "start": 2100, "title": "Conclusion et bénédiction", "number": "2.4" }
+      ],
+      "tags": ["miséricorde", "vie chrétienne", "transformation", "nouvelle naissance"]
+    },
+    {
+      "id": "esperance",
+      "title": "Espérance et Résurrection",
+      "preacher": "Père Youssef",
+      "date": "2024-12-15",
+      "duration": 3120,
+      "description": "Sermon sur l'espérance chrétienne face aux épreuves de la vie. Comment la résurrection du Christ transforme notre perspective sur la souffrance et la mort.",
+      "poster": "/sermons/esperance/poster.jpg",
+      "hls": "/sermons/esperance/master.m3u8",
+      "mp4": "/sermons/esperance/video.mp4",
+      "subtitles": [
+        { "lang": "fr", "label": "Français", "src": "/sermons/esperance/subtitles.vtt" }
+      ],
+      "chapters": [
+        { "start": 0, "title": "Introduction", "number": "2.1" },
+        { "start": 480, "title": "L'espérance dans l'Ancien Testament", "number": "2.2" },
+        { "start": 1320, "title": "La résurrection du Christ", "number": "2.3" },
+        { "start": 2160, "title": "Notre espérance aujourd'hui", "number": "2.4" },
+        { "start": 2880, "title": "Conclusion", "number": "2.5" }
+      ],
+      "tags": ["espérance", "résurrection", "épreuves", "souffrance"]
+    },
+    {
+      "id": "amour_divin",
+      "title": "L'Amour Divin",
+      "preacher": "Sœur Marie",
+      "date": "2024-10-28",
+      "duration": 2580,
+      "description": "Une méditation sur l'amour de Dieu manifesté à travers Jésus-Christ. Comment cet amour transforme nos relations et notre vision du monde.",
+      "poster": "/sermons/amour_divin/poster.jpg",
+      "hls": "/sermons/amour_divin/master.m3u8",
+      "mp4": "/sermons/amour_divin/video.mp4",
+      "subtitles": [
+        { "lang": "fr", "label": "Français", "src": "/sermons/amour_divin/subtitles.vtt" }
+      ],
+      "chapters": [
+        { "start": 0, "title": "Introduction", "number": "2.1" },
+        { "start": 360, "title": "L'amour dans l'Écriture", "number": "2.2" },
+        { "start": 1200, "title": "L'amour incarné en Jésus", "number": "2.3" },
+        { "start": 1920, "title": "Aimer comme Dieu nous aime", "number": "2.4" },
+        { "start": 2400, "title": "Conclusion", "number": "2.5" }
+      ],
+      "tags": ["amour", "Jésus-Christ", "relations", "transformation"]
+    },
+    {
+      "id": "foi_et_oeuvres",
+      "title": "Foi et Œuvres",
+      "preacher": "Père Antoine",
+      "date": "2024-09-22",
+      "duration": 2940,
+      "description": "Une réflexion sur la relation entre la foi et les œuvres dans la vie chrétienne. Comment notre foi se manifeste-t-elle concrètement dans nos actions quotidiennes ?",
+      "poster": "/sermons/foi_et_oeuvres/poster.jpg",
+      "hls": "/sermons/foi_et_oeuvres/master.m3u8",
+      "mp4": "/sermons/foi_et_oeuvres/video.mp4",
+      "subtitles": [
+        { "lang": "fr", "label": "Français", "src": "/sermons/foi_et_oeuvres/subtitles.vtt" }
+      ],
+      "chapters": [
+        { "start": 0, "title": "Introduction", "number": "2.1" },
+        { "start": 420, "title": "La foi selon l'Écriture", "number": "2.2" },
+        { "start": 1260, "title": "Les œuvres de la foi", "number": "2.3" },
+        { "start": 2100, "title": "L'équilibre foi-œuvres", "number": "2.4" },
+        { "start": 2700, "title": "Conclusion", "number": "2.5" }
+      ],
+      "tags": ["foi", "œuvres", "vie chrétienne", "pratique"]
+    },
+    {
+      "id": "pardon_et_reconciliation",
+      "title": "Pardon et Réconciliation",
+      "preacher": "Père Marc",
+      "date": "2024-08-18",
+      "duration": 2760,
+      "description": "Sermon sur le pouvoir transformateur du pardon. Comment le pardon divin nous libère et nous permet de vivre la réconciliation avec Dieu et avec nos frères.",
+      "poster": "/sermons/pardon_et_reconciliation/poster.jpg",
+      "hls": "/sermons/pardon_et_reconciliation/master.m3u8",
+      "mp4": "/sermons/pardon_et_reconciliation/video.mp4",
+      "subtitles": [
+        { "lang": "fr", "label": "Français", "src": "/sermons/pardon_et_reconciliation/subtitles.vtt" }
+      ],
+      "chapters": [
+        { "start": 0, "title": "Introduction", "number": "2.1" },
+        { "start": 360, "title": "Le pardon de Dieu", "number": "2.2" },
+        { "start": 1200, "title": "Pardonner comme nous sommes pardonnés", "number": "2.3" },
+        { "start": 1920, "title": "La réconciliation", "number": "2.4" },
+        { "start": 2520, "title": "Conclusion", "number": "2.5" }
+      ],
+      "tags": ["pardon", "réconciliation", "libération", "guérison"]
+    },
+    {
+      "id": "sagesse_biblique",
+      "title": "La Sagesse Biblique",
+      "preacher": "Sœur Marie",
+      "date": "2024-07-14",
+      "duration": 3180,
+      "description": "Une exploration de la sagesse contenue dans les Écritures. Comment les Proverbes et les Psaumes peuvent-ils éclairer notre vie quotidienne ?",
+      "poster": "/sermons/sagesse_biblique/poster.jpg",
+      "hls": "/sermons/sagesse_biblique/master.m3u8",
+      "mp4": "/sermons/sagesse_biblique/video.mp4",
+      "subtitles": [
+        { "lang": "fr", "label": "Français", "src": "/sermons/sagesse_biblique/subtitles.vtt" }
+      ],
+      "chapters": [
+        { "start": 0, "title": "Introduction", "number": "2.1" },
+        { "start": 480, "title": "La sagesse dans les Proverbes", "number": "2.2" },
+        { "start": 1320, "title": "La sagesse dans les Psaumes", "number": "2.3" },
+        { "start": 2160, "title": "Application pratique", "number": "2.4" },
+        { "start": 2880, "title": "Conclusion", "number": "2.5" }
+      ],
+      "tags": ["sagesse", "Proverbes", "Psaumes", "vie quotidienne"]
+    },
+    {
+      "id": "test-sermon",
+      "title": "Sermon de Test",
+      "preacher": "Testeur",
+      "date": "2024-12-20",
+      "duration": 30,
+      "description": "Un sermon de test pour vérifier le fonctionnement du système de vidéos auto-hébergées.",
+      "poster": "/sermons/test-sermon/poster.jpg",
+      "mp4": "/sermons/test-sermon/video.mp4",
+      "subtitles": [
+        { "lang": "fr", "label": "Français", "src": "/sermons/test-sermon/subtitles.vtt" }
+      ],
+      "chapters": [
+        { "start": 0, "title": "Introduction", "number": "2.1" },
+        { "start": 10, "title": "Développement", "number": "2.2" },
+        { "start": 20, "title": "Conclusion", "number": "2.3" }
+      ],
+      "tags": ["test", "démonstration"]
+    },
+    {
+      "id": "psaume-150-nayrouz",
+      "title": "Psaume 150 - Fête de Nayrouz",
+      "preacher": "Maître Ibrahim Ayyad",
+      "date": "2024-09-11",
+      "duration": 677,
+      "description": "Le Psaume 150 interprété lors de la célébration de la Fête de Nayrouz (Nouvel An copte). Un chant de louange magnifique par le Maître Ibrahim Ayyad.",
+      "poster": "/sermons/psaume-150-nayrouz/poster.jpg",
+      "mp4": "/sermons/psaume-150-nayrouz/video.mp4",
+      "youtubeUrl": "https://www.youtube.com/watch?v=jGqnGDFcqzE",
+      "subtitles": [
+        { "lang": "fr", "label": "Français", "src": "/sermons/psaume-150-nayrouz/subtitles.vtt" }
+      ],
+      "chapters": [
+        { "start": 0, "title": "Introduction", "number": "2.1" },
+        { "start": 60, "title": "Louez l'Éternel dans son sanctuaire", "number": "2.2" },
+        { "start": 120, "title": "Instruments de musique", "number": "2.3" },
+        { "start": 240, "title": "Cymbales sonores", "number": "2.4" },
+        { "start": 360, "title": "Que tout ce qui respire loue l'Éternel", "number": "2.5" }
+      ],
+      "tags": ["psaume", "nayrouz", "chant", "louange", "copte", "fête"]
+    },
+    {
+      "id": "abouna-daoud-lamhi",
+      "title": "Sermon d'Abouna Daoud LAMHI",
+      "preacher": "Abouna Daoud LAMHI",
+      "date": "2024-09-16",
+      "duration": 414,
+      "description": "Message spirituel inspirant d'Abouna Daoud LAMHI. Une méditation profonde sur la parole de Dieu et son application dans notre vie quotidienne.",
+      "poster": "/sermons/abouna-daoud-lamhi/poster.jpg",
+      "mp4": "/sermons/abouna-daoud-lamhi/video.mp4",
+      "subtitles": [
+        { "lang": "fr", "label": "Français", "src": "/sermons/abouna-daoud-lamhi/subtitles.vtt" }
+      ],
+      "chapters": [
+        { "start": 0, "title": "Introduction et salutation", "number": "2.1" },
+        { "start": 60, "title": "Méditation sur la parole", "number": "2.2" },
+        { "start": 180, "title": "Application pratique", "number": "2.3" },
+        { "start": 300, "title": "Conclusion et bénédiction", "number": "2.4" }
+      ],
+      "tags": ["sermon", "méditation", "parole de Dieu", "spiritualité", "enseignement"]
+    }
+  ]
+}

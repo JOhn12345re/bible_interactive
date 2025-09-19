@@ -1,0 +1,32 @@
+{
+  "id": "bapteme_jesus",
+  "title": "Le baptême de Jésus — Début du ministère",
+  "path": "Vie du Christ",
+  "reading": [
+    "Jean-Baptiste prêchait dans le désert, appelant les gens à se repentir et à se faire baptiser pour le pardon de leurs péchés.",
+    "Jésus vint de Galilée pour être baptisé par Jean, bien qu'il n'ait pas de péchés.",
+    "Jean hésita, disant qu'il avait besoin d'être baptisé par Jésus, mais Jésus insista.",
+    "Jésus expliqua que c'était nécessaire pour accomplir toute la justice.",
+    "Lorsque Jésus sortit de l'eau, les cieux s'ouvrirent.",
+    "L'Esprit de Dieu descendit sur lui comme une colombe.",
+    "Une voix du ciel dit : « Celui-ci est mon Fils bien-aimé, en qui j'ai mis toute mon affection. »",
+    "Cela marqua le début du ministère public de Jésus."
+  ],
+  "key_verse": "Jésus, même sans péché, a choisi de se faire baptiser pour montrer son obéissance à Dieu et commencer sa mission de salut.",
+  "vocab": [
+    { "word": "Jean-Baptiste", "hint": "Le prophète qui baptisait dans le désert pour appeler à la repentance." },
+    { "word": "Repentir", "hint": "Changer de cœur et se détourner du péché pour revenir à Dieu." },
+    { "word": "Baptême", "hint": "Cérémonie d'immersion dans l'eau pour symboliser la purification." },
+    { "word": "Colombe", "hint": "L'Esprit de Dieu qui descendit sur Jésus sous forme de colombe." },
+    { "word": "Ministère", "hint": "Le service et la mission publique de Jésus." }
+  ],
+  "quiz": [
+    { "q": "Où Jean-Baptiste prêchait-il ?", "choices": ["À Jérusalem", "Dans le désert", "Au temple"], "answer": 1 },
+    { "q": "D'où Jésus vint-il pour être baptisé ?", "choices": ["De Jérusalem", "De Galilée", "De Bethléhem"], "answer": 1 },
+    { "q": "Pourquoi Jean hésita-t-il à baptiser Jésus ?", "choices": ["Il avait peur", "Il pensait que Jésus n'avait pas de péchés", "Il ne connaissait pas Jésus"], "answer": 1 },
+    { "q": "Sous quelle forme l'Esprit de Dieu descendit-il ?", "choices": ["Comme un feu", "Comme une colombe", "Comme un vent"], "answer": 1 },
+    { "q": "Que dit la voix du ciel ?", "choices": ["Tu es mon serviteur", "Celui-ci est mon Fils bien-aimé", "Tu es le Messie"], "answer": 1 }
+  ],
+  "mini_games": ["order_events", "quiz"],
+  "assets": ["bapteme_1.png", "bapteme_2.png", "bapteme_3.png"]
+}

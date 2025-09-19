@@ -69,9 +69,66 @@ export default function BibleVerseComponent({
           case 'creation_01':
             lessonVerses = await bibleApi.getCreationVerses();
             break;
-          case 'naissance_jesus':
-            lessonVerses = await bibleApi.getNativityVerses();
+          case 'adam_eve_01':
+            lessonVerses = await bibleApi.getAdamEveVerses();
             break;
+          case 'noe_01':
+            lessonVerses = await bibleApi.getNoeVerses();
+            break;
+          case 'babel_01':
+            lessonVerses = await bibleApi.getBabelVerses();
+            break;
+          case 'abraham_01':
+            lessonVerses = await bibleApi.getAbrahamVerses();
+            break;
+          case 'isaac_01':
+            lessonVerses = await bibleApi.getIsaacVerses();
+            break;
+          case 'jacob_01':
+            lessonVerses = await bibleApi.getJacobVerses();
+            break;
+          case 'joseph_01':
+            lessonVerses = await bibleApi.getJosephVerses();
+            break;
+          case 'commandements_01':
+            lessonVerses = await bibleApi.getCommandementsVerses();
+            break;
+          case 'gedeon_01':
+            lessonVerses = await bibleApi.getGedeonVerses();
+            break;
+          case 'moise_buisson_01':
+            lessonVerses = await bibleApi.getMoiseBuissonVerses();
+            break;
+          case 'plaies_egypte_01':
+            lessonVerses = await bibleApi.getPlaiesEgypteVerses();
+            break;
+          case 'mer_rouge_01':
+            lessonVerses = await bibleApi.getMerRougeVerses();
+            break;
+          case 'samson_01':
+            lessonVerses = await bibleApi.getSamsonVerses();
+            break;
+          case 'salomon_01':
+            lessonVerses = await bibleApi.getSalomonVerses();
+            break;
+          case 'elie_01':
+            lessonVerses = await bibleApi.getElieVerses();
+            break;
+        case 'ezechiel_01':
+          lessonVerses = await bibleApi.getEzechielVerses();
+          break;
+        case 'naissance_jesus':
+          lessonVerses = await bibleApi.getNaissanceJesusVerses();
+          break;
+        case 'enfance_jesus':
+          lessonVerses = await bibleApi.getEnfanceJesusVerses();
+          break;
+        case 'bapteme_jesus':
+          lessonVerses = await bibleApi.getBaptemeJesusVerses();
+          break;
+        case 'tentations_jesus':
+          lessonVerses = await bibleApi.getTentationsJesusVerses();
+          break;
           default:
             setError('Leçon non supportée par l\'API');
             return;

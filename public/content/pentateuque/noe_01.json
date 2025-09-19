@@ -1,29 +1,26 @@
 {
   "id": "noe_01",
-  "title": "Noé et l'arche",
+  "title": "Noé et l'Arche — Le Déluge et l'Alliance",
   "path": "Le Pentateuque",
   "reading": [
-    "Au temps de Noé, les hommes étaient devenus très méchants sur la terre.",
-    "Dieu était attristé par la méchanceté des hommes et décida d'envoyer un déluge.",
-    "Mais Noé était un homme juste qui marchait avec Dieu.",
-    "Dieu dit à Noé de construire une grande arche en bois de cyprès.",
-    "Noé devait y faire entrer sa famille et un couple de chaque espèce d'animaux.",
-    "Pendant 40 jours et 40 nuits, il plut sur toute la terre.",
-    "Après le déluge, Dieu fit apparaître un arc-en-ciel comme signe d'alliance.",
-    "Noé et sa famille repeuplèrent la terre, et Dieu promit de ne plus jamais détruire le monde par un déluge."
+    "Dieu vit que les hommes faisaient beaucoup de mal sur la terre. Mais Noé était un homme juste, et Dieu lui parla.",
+    "Il lui demanda de construire une grande arche pour y mettre sa famille et des animaux de chaque espèce.",
+    "Quand le déluge arriva, l'eau recouvrit la terre pendant quarante jours et quarante nuits. Seuls ceux qui étaient dans l'arche furent sauvés.",
+    "Quand les eaux baissèrent, Noé sortit et offrit un sacrifice à Dieu. Alors Dieu fit une alliance avec lui et mit l'arc-en-ciel dans le ciel comme signe de sa promesse de ne plus jamais détruire la terre par un déluge."
   ],
-  "key_verse": "Je place mon arc dans les nuées, et il servira de signe d'alliance entre moi et la terre.",
+  "key_verse": "Dieu sauve ceux qui lui font confiance et il garde toujours ses promesses.",
   "vocab": [
-    { "word": "Déluge", "hint": "Grande inondation qui couvre toute la terre." },
-    { "word": "Arche", "hint": "Grand bateau construit par Noé." },
-    { "word": "Alliance", "hint": "Promesse solennelle faite par Dieu." },
-    { "word": "Arc-en-ciel", "hint": "Phénomène coloré dans le ciel après la pluie." }
+    { "word": "Arche", "hint": "Grand bateau construit par Noé pour sauver sa famille et les animaux." },
+    { "word": "Déluge", "hint": "Grande inondation qui a recouvert toute la terre." },
+    { "word": "Alliance", "hint": "Promesse solennelle entre Dieu et les hommes." },
+    { "word": "Arc-en-ciel", "hint": "Signe de l'alliance de Dieu avec Noé." }
   ],
   "quiz": [
-    { "q": "Combien de temps a duré la pluie du déluge ?", "choices": ["7 jours", "40 jours", "100 jours"], "answer": 1 },
-    { "q": "Que représente l'arc-en-ciel ?", "choices": ["Une décoration", "Un signe d'alliance", "Un phénomène naturel"], "answer": 1 },
-    { "q": "Pourquoi Noé a-t-il été choisi ?", "choices": ["Il était riche", "Il était juste", "Il était fort"], "answer": 1 }
+    { "q": "Pourquoi Dieu a-t-il demandé à Noé de construire une arche ?", "choices": ["Pour voyager", "Pour sauver sa famille et les animaux", "Pour pêcher"], "answer": 1 },
+    { "q": "Combien de temps a duré le déluge ?", "choices": ["7 jours", "40 jours et 40 nuits", "1 an"], "answer": 1 },
+    { "q": "Quel est le signe de l'alliance de Dieu avec Noé ?", "choices": ["Une étoile", "L'arc-en-ciel", "Un arbre"], "answer": 1 },
+    { "q": "Qui a été sauvé du déluge ?", "choices": ["Tout le monde", "Seulement Noé", "Noé, sa famille et les animaux de l'arche"], "answer": 2 }
   ],
-  "mini_games": ["order_events"],
+  "mini_games": ["order_events", "quiz"],
   "assets": ["noe_1.png", "noe_2.png", "noe_3.png", "noe_4.png"]
 }
