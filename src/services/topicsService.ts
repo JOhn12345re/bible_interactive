@@ -25,8 +25,8 @@ class TopicsService {
     if (this.topicsData) return;
     
     try {
-      console.log('🔄 Chargement des topics depuis /api/topics.json...');
-      const response = await fetch('/api/topics.json');
+      console.log('🔄 Chargement des topics depuis /topics.json...');
+      const response = await fetch('/topics.json');
       if (!response.ok) {
         throw new Error(`Erreur HTTP: ${response.status}`);
       }
@@ -39,7 +39,7 @@ class TopicsService {
       
       // Essayer de charger directement depuis le fichier local
       try {
-        const response = await fetch('/api/topics.json', { 
+        const response = await fetch('/topics.json', { 
           cache: 'no-cache',
           headers: {
             'Cache-Control': 'no-cache'
