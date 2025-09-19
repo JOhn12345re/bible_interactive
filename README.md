@@ -1,119 +1,169 @@
 # 📖 Bible Interactive
 
-> Jeu éducatif interactif pour découvrir la Bible de manière ludique et engageante
+Une application web interactive pour découvrir les histoires bibliques à travers des jeux et des activités éducatives, spécialement conçue pour les enfants de 6-12 ans.
 
-## 🌟 Fonctionnalités
+## ✨ Fonctionnalités
 
-- **📚 Leçons interactives** : Découvrez les histoires bibliques avec des jeux
-- **👤 Profils utilisateur** : Créez votre profil et suivez vos progrès
-- **🔍 Recherche de versets** : Trouvez facilement les passages bibliques
-- **🏆 Système de badges** : Gagnez des récompenses en apprenant
-- **📱 PWA** : Installez l'application sur votre mobile
-- **🌐 Multilingue** : Interface en français
+### 🎮 **Jeux Interactifs**
+- Histoires bibliques adaptées aux enfants
+- Activités éducatives et ludiques
+- Système de badges et récompenses
+- Interface adaptée aux enfants
 
-## 🎮 Jeux inclus
+### 📚 **Service Bible Louis Segond**
+- **Traduction** : Louis Segond 1910 (français)
+- **Source** : Données locales JSON
+- **Fonctionnalités** :
+  - Psaumes par jour
+  - Recherche de versets
+  - Méthodes spécialisées pour chaque histoire biblique
 
-- **Quiz bibliques** : Testez vos connaissances
-- **Mise en ordre** : Remettez les événements dans l'ordre
-- **Texte grec** : Découvrez la Septante (LXX)
-- **Timeline interactive** : Explorez l'histoire biblique
+### 🎯 **Histoires Disponibles**
+- **Pentateuque** : Adam et Ève, Noé, Abraham, Isaac, Jacob, Joseph, Moïse
+- **Historiques** : Gédéon, Samson, Salomon
+- **Prophétiques** : Élie, Ézéchiel
+- **Nouveau Testament** : Naissance de Jésus, Baptême, Tentations
 
-## 🚀 Déploiement
+### 📅 **Psaumes par Jour**
+- Calcul automatique du psaume du jour
+- Interface dédiée pour la lecture
+- Psaumes de la semaine
 
-### Version en ligne
-- **Site** : [bible-interactive.vercel.app](https://bible-interactive.vercel.app)
-- **Status** : Version Beta
+## 🚀 Installation et Démarrage
 
-### Installation locale
+### Prérequis
+- Node.js (version 16 ou supérieure)
+- npm ou yarn
+
+### Installation
 ```bash
-# Cloner le repository
-git clone https://github.com/votre-username/bible-interactive.git
+# Cloner le dépôt
+git clone git@github.com:JOhn12345re/bible_interactive.git
+
+# Aller dans le dossier
+cd bible_interactive
 
 # Installer les dépendances
 npm install
 
-# Lancer en développement
+# Démarrer le serveur de développement
 npm run dev
-
-# Build de production
-npm run build
 ```
 
-## 🛠️ Technologies
+L'application sera accessible sur `http://localhost:3000`
 
-- **Frontend** : React + TypeScript + Vite
+## 🛠️ Technologies Utilisées
+
+- **Frontend** : React 18 + TypeScript
 - **Styling** : Tailwind CSS
-- **Jeux** : Phaser.js
-- **État** : Zustand
+- **Build Tool** : Vite
 - **Routing** : React Router
-- **Déploiement** : Vercel
+- **State Management** : Zustand
+- **Animations** : CSS Animations
 
-## 📊 Base de données
+## 📁 Structure du Projet
 
-- **Développement** : MySQL (XAMPP)
-- **Production** : Service Mock (localStorage)
-- **Futur** : PlanetScale/Supabase
-
-## 🎯 Public cible
-
-- **Enfants** : 6-12 ans
-- **Familles** : Apprentissage en famille
-- **Éducateurs** : Outil pédagogique
-- **Communautés** : Groupes d'étude
-
-## 📱 PWA
-
-L'application est installable sur mobile :
-- **Android** : Ajouter à l'écran d'accueil
-- **iOS** : Ajouter à l'écran d'accueil
-- **Desktop** : Installer via le navigateur
-
-## 🔧 Développement
-
-### Scripts disponibles
-```bash
-npm run dev          # Développement
-npm run build        # Build production
-npm run preview      # Prévisualiser le build
-npm run lint         # Linter le code
-```
-
-### Structure du projet
 ```
 src/
-├── components/      # Composants React
-├── pages/          # Pages de l'application
-├── services/       # Services API
-├── state/          # Gestion d'état (Zustand)
-├── content/        # Contenu des leçons
-├── phaser/         # Jeux Phaser
-└── styles/         # Styles CSS
+├── components/          # Composants React réutilisables
+├── pages/              # Pages de l'application
+├── services/           # Services (API Bible, etc.)
+├── state/              # Gestion d'état (Zustand)
+├── styles/             # Styles CSS
+├── types/              # Types TypeScript
+└── utils/              # Utilitaires
+
+public/
+├── bibles_json_6.0/    # Données de la Bible Louis Segond
+├── content/            # Contenu des leçons
+└── sermons/            # Sermons et vidéos
 ```
 
-## 📄 Licence
+## 🔧 Configuration
 
-Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
+### Variables d'Environnement
+Créez un fichier `.env` basé sur `.env.example` :
+
+```env
+VITE_BIBLE_LANGUAGE=fra
+VITE_BIBLE_TRANSLATION=segond_1910
+```
+
+## 📖 Utilisation du Service Bible
+
+### Exemples d'utilisation
+
+```typescript
+import { bibleApi } from './services/bibleApi';
+
+// Obtenir le psaume du jour
+const psalmOfTheDay = await bibleApi.getPsalmOfTheDay();
+
+// Obtenir un psaume spécifique
+const psalm23 = await bibleApi.getPsalm(23);
+
+// Obtenir les versets de la création
+const creationVerses = await bibleApi.getCreationVerses();
+
+// Obtenir les versets d'Adam et Ève
+const adamEveVerses = await bibleApi.getAdamEveVerses();
+```
+
+## 🎨 Personnalisation
+
+### Thèmes et Accessibilité
+- Mode contraste élevé
+- Ajustement de la taille de police
+- Police OpenDyslexic pour la dyslexie
+- Interface adaptée aux enfants
+
+### Ajout de Nouvelles Histoires
+1. Créer un fichier JSON dans `public/content/`
+2. Ajouter la méthode correspondante dans `bibleApi.ts`
+3. Créer le composant de leçon
+
+## 🚀 Déploiement
+
+### Vercel (Recommandé)
+```bash
+npm run build
+vercel --prod
+```
+
+### Autres Plateformes
+```bash
+npm run build
+# Déployer le dossier dist/
+```
+
+## 📝 Scripts Disponibles
+
+- `npm run dev` - Serveur de développement
+- `npm run build` - Build de production
+- `npm run preview` - Prévisualisation du build
+- `npm run lint` - Vérification du code
 
 ## 🤝 Contribution
 
-Les contributions sont les bienvenues ! N'hésitez pas à :
-- Signaler des bugs
-- Proposer des améliorations
-- Ajouter du contenu
-- Améliorer la documentation
+1. Fork le projet
+2. Créer une branche feature (`git checkout -b feature/AmazingFeature`)
+3. Commit les changements (`git commit -m 'Add some AmazingFeature'`)
+4. Push vers la branche (`git push origin feature/AmazingFeature`)
+5. Ouvrir une Pull Request
 
-## 📞 Contact
+## 📄 Licence
 
-- **Email** : votre-email@example.com
-- **GitHub** : [@votre-username](https://github.com/votre-username)
+Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 
 ## 🙏 Remerciements
 
-- **Digital Bible Platform** pour l'API Bible
-- **LXX-Rahlfs-1935** pour le texte grec
-- **Communauté open source** pour les outils
+- **Bible Louis Segond 1910** - Texte libre de droits
+- **Communauté Open Source** - Pour les outils et bibliothèques utilisés
+
+## 📞 Support
+
+Pour toute question ou problème, n'hésitez pas à ouvrir une issue sur GitHub.
 
 ---
 
-**Version** : 1.0.0-beta  
-**Dernière mise à jour** : Septembre 2025
+**Bible Interactive** - Découvrir les histoires sacrées en s'amusant ! 🌟
