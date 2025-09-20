@@ -49,40 +49,56 @@ export default function BibleExplorer() {
   return (
     <div className="min-h-screen">
       {isDemo && (
-        <div className="text-center text-sm py-2 px-4 bg-amber-50 text-amber-800 border-b border-amber-200">
+        <div className="text-center text-xs sm:text-sm py-2 px-4 bg-amber-50 text-amber-800 border-b border-amber-200">
           Mode démo: affichage basé sur données locales si l'API n'est pas configurée. Consultez docs/API_BIBLE_GUIDE.md
         </div>
       )}
       <header className={`sticky top-0 z-30 border-b ${
         contrastHigh ? 'bg-contrast-bg border-contrast-text' : 'bg-white border-gray-200'
       }`}>
-        <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center space-x-3">
-            <Link to="/" className={contrastHigh ? 'text-contrast-text' : 'text-blue-600'}>← Accueil</Link>
-            <h1 className={`text-xl font-bold ${contrastHigh ? 'text-contrast-text' : 'text-gray-800'}`}>Explorateur de la Bible (LSG)</h1>
+        <div className="max-w-6xl mx-auto px-responsive py-3 sm:py-4">
+          <div className="flex items-center space-x-2 sm:space-x-3">
+            <Link to="/" className={`text-sm sm:text-base ${contrastHigh ? 'text-contrast-text' : 'text-blue-600'}`}>← Accueil</Link>
+            <h1 className={`text-lg sm:text-xl font-bold ${contrastHigh ? 'text-contrast-text' : 'text-gray-800'}`}>Explorateur de la Bible (LSG)</h1>
           </div>
         </div>
       </header>
 
-      <main className="max-w-6xl mx-auto px-4 py-6">
+      <main className="max-w-6xl mx-auto px-responsive py-responsive">
         {/* Contrôles rapides */}
-        <div className="flex flex-wrap items-center gap-2 mb-4">
-          <button onClick={() => setChapter(Math.max(1, chapter - 1))} className="px-3 py-1 rounded border bg-gray-50">⟨ Chapitre</button>
-          <button onClick={() => setChapter(chapter + 1)} className="px-3 py-1 rounded border bg-gray-50">Chapitre ⟩</button>
-          <span className="mx-2 text-gray-500">|</span>
-          <button onClick={() => { const s = Math.max(1, (start - 5) || 1); setStart(s); setEnd(Math.max(s, end - 5)); }} className="px-3 py-1 rounded border bg-gray-50">−5 versets</button>
-          <button onClick={() => { const s = start + 5; setStart(s); setEnd(end + 5); }} className="px-3 py-1 rounded border bg-gray-50">+5 versets</button>
-          <span className="mx-2 text-gray-500">|</span>
-          <button onClick={() => { setStart(1); setEnd(10); }} className="px-3 py-1 rounded border bg-gray-50">Réinitialiser</button>
+        <div className="mb-4">
+          {/* Version mobile - contrôles compacts */}
+          <div className="sm:hidden">
+            <div className="flex flex-wrap items-center gap-2 mb-2">
+              <button onClick={() => setChapter(Math.max(1, chapter - 1))} className="px-2 py-1 rounded border bg-gray-50 text-xs">⟨ Chapitre</button>
+              <button onClick={() => setChapter(chapter + 1)} className="px-2 py-1 rounded border bg-gray-50 text-xs">Chapitre ⟩</button>
+            </div>
+            <div className="flex flex-wrap items-center gap-2">
+              <button onClick={() => { const s = Math.max(1, (start - 5) || 1); setStart(s); setEnd(Math.max(s, end - 5)); }} className="px-2 py-1 rounded border bg-gray-50 text-xs">−5 versets</button>
+              <button onClick={() => { const s = start + 5; setStart(s); setEnd(end + 5); }} className="px-2 py-1 rounded border bg-gray-50 text-xs">+5 versets</button>
+              <button onClick={() => { setStart(1); setEnd(10); }} className="px-2 py-1 rounded border bg-gray-50 text-xs">Reset</button>
+            </div>
+          </div>
+          
+          {/* Version desktop - contrôles complets */}
+          <div className="hidden sm:flex flex-wrap items-center gap-2">
+            <button onClick={() => setChapter(Math.max(1, chapter - 1))} className="px-3 py-1 rounded border bg-gray-50 text-sm">⟨ Chapitre</button>
+            <button onClick={() => setChapter(chapter + 1)} className="px-3 py-1 rounded border bg-gray-50 text-sm">Chapitre ⟩</button>
+            <span className="mx-2 text-gray-500 text-sm">|</span>
+            <button onClick={() => { const s = Math.max(1, (start - 5) || 1); setStart(s); setEnd(Math.max(s, end - 5)); }} className="px-3 py-1 rounded border bg-gray-50 text-sm">−5 versets</button>
+            <button onClick={() => { const s = start + 5; setStart(s); setEnd(end + 5); }} className="px-3 py-1 rounded border bg-gray-50 text-sm">+5 versets</button>
+            <span className="mx-2 text-gray-500 text-sm">|</span>
+            <button onClick={() => { setStart(1); setEnd(10); }} className="px-3 py-1 rounded border bg-gray-50 text-sm">Réinitialiser</button>
+          </div>
         </div>
-        <section className={`p-4 rounded-xl mb-6 ${
+        <section className={`p-responsive rounded-xl mb-6 ${
           contrastHigh ? 'bg-contrast-bg border-2 border-contrast-text' : 'bg-white border border-gray-200'
         }`}>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             <div>
               <label className="block text-sm mb-1">Livre</label>
               <select value={book} onChange={(e) => setBook(e.target.value)}
-                className={`w-full p-2 rounded border ${contrastHigh ? 'bg-contrast-bg border-contrast-text' : 'bg-white border-gray-300'}`}>
+                className={`w-full p-2 sm:p-3 rounded border text-sm sm:text-base ${contrastHigh ? 'bg-contrast-bg border-contrast-text' : 'bg-white border-gray-300'}`}>
                 {FRENCH_BOOKS.map((b) => (
                   <option key={b} value={b}>{b}</option>
                 ))}
@@ -91,7 +107,7 @@ export default function BibleExplorer() {
             <div>
               <label className="block text-sm mb-1">Chapitre</label>
               <select value={chapter} onChange={(e) => setChapter(parseInt(e.target.value))}
-                className={`w-full p-2 rounded border ${contrastHigh ? 'bg-contrast-bg border-contrast-text' : 'bg-white border-gray-300'}`}>
+                className={`w-full p-2 sm:p-3 rounded border text-sm sm:text-base ${contrastHigh ? 'bg-contrast-bg border-contrast-text' : 'bg-white border-gray-300'}`}>
                 {chaptersList.map((c) => (
                   <option key={c} value={c}>{c}</option>
                 ))}
@@ -100,12 +116,12 @@ export default function BibleExplorer() {
             <div>
               <label className="block text-sm mb-1">Verset début</label>
               <input type="number" min={1} value={start} onChange={(e) => setStart(parseInt(e.target.value) || 1)}
-                className={`w-full p-2 rounded border ${contrastHigh ? 'bg-contrast-bg border-contrast-text' : 'bg-white border-gray-300'}`} />
+                className={`w-full p-2 sm:p-3 rounded border text-sm sm:text-base ${contrastHigh ? 'bg-contrast-bg border-contrast-text' : 'bg-white border-gray-300'}`} />
             </div>
             <div>
               <label className="block text-sm mb-1">Verset fin</label>
               <input type="number" min={start} value={end} onChange={(e) => setEnd(parseInt(e.target.value) || start)}
-                className={`w-full p-2 rounded border ${contrastHigh ? 'bg-contrast-bg border-contrast-text' : 'bg-white border-gray-300'}`} />
+                className={`w-full p-2 sm:p-3 rounded border text-sm sm:text-base ${contrastHigh ? 'bg-contrast-bg border-contrast-text' : 'bg-white border-gray-300'}`} />
             </div>
           </div>
         </section>
@@ -113,15 +129,15 @@ export default function BibleExplorer() {
         <section>
           {loading && (
             <div className="animate-pulse">
-              <div className="h-4 bg-gray-200 rounded mb-2"></div>
-              <div className="h-4 bg-gray-200 rounded w-3/4"></div>
+              <div className="h-3 sm:h-4 bg-gray-200 rounded mb-2"></div>
+              <div className="h-3 sm:h-4 bg-gray-200 rounded w-3/4"></div>
             </div>
           )}
           {error && (
-            <div className="p-4 rounded bg-red-50 text-red-700 border border-red-200">{error}</div>
+            <div className="p-responsive rounded bg-red-50 text-red-700 border border-red-200 text-sm sm:text-base">{error}</div>
           )}
           {!loading && !error && verses.length === 0 && (
-            <div className="p-4 rounded bg-yellow-50 text-yellow-800 border border-yellow-200">Aucun verset trouvé.</div>
+            <div className="p-responsive rounded bg-yellow-50 text-yellow-800 border border-yellow-200 text-sm sm:text-base">Aucun verset trouvé.</div>
           )}
           <div className="space-y-4">
             {verses.map((v, idx) => {
@@ -144,16 +160,16 @@ export default function BibleExplorer() {
                 else addFavorite({ book, chapter: v.chapter, verseStart: v.verse_start, verseEnd: v.verse_end, text: v.verse_text })
               }
               return (
-                <div key={idx} className={`p-4 rounded ${contrastHigh ? 'bg-contrast-bg border-2 border-contrast-text' : 'bg-white border border-gray-200'}`}>
-                  <div className="flex items-start justify-between gap-3">
-                    <div>
-                      <div className="text-sm text-gray-500 mb-1">{book} {v.chapter}:{v.verse_start}{v.verse_end ? `-${v.verse_end}` : ''}</div>
-                      <div className="text-lg leading-relaxed">{v.verse_text}</div>
+                <div key={idx} className={`p-responsive rounded ${contrastHigh ? 'bg-contrast-bg border-2 border-contrast-text' : 'bg-white border border-gray-200'}`}>
+                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+                    <div className="flex-1">
+                      <div className="text-xs sm:text-sm text-gray-500 mb-2">{book} {v.chapter}:{v.verse_start}{v.verse_end ? `-${v.verse_end}` : ''}</div>
+                      <div className="text-base sm:text-lg leading-relaxed">{v.verse_text}</div>
                     </div>
-                    <div className="flex-shrink-0 flex items-center gap-2">
-                      <button onClick={handleCopy} className="text-sm px-2 py-1 rounded border bg-gray-50">Copier</button>
-                      <button onClick={handleShare} className="text-sm px-2 py-1 rounded border bg-gray-50">Partager</button>
-                      <button onClick={toggleFav} className={`text-sm px-2 py-1 rounded border ${fav ? 'bg-yellow-100 border-yellow-300' : 'bg-gray-50'}`}>{fav ? '★ Favori' : '☆ Favori'}</button>
+                    <div className="flex-shrink-0 flex flex-wrap items-center gap-2">
+                      <button onClick={handleCopy} className="text-xs sm:text-sm px-2 py-1 rounded border bg-gray-50 hover:bg-gray-100 transition-colors">Copier</button>
+                      <button onClick={handleShare} className="text-xs sm:text-sm px-2 py-1 rounded border bg-gray-50 hover:bg-gray-100 transition-colors">Partager</button>
+                      <button onClick={toggleFav} className={`text-xs sm:text-sm px-2 py-1 rounded border transition-colors ${fav ? 'bg-yellow-100 border-yellow-300 hover:bg-yellow-200' : 'bg-gray-50 hover:bg-gray-100'}`}>{fav ? '★ Favori' : '☆ Favori'}</button>
                     </div>
                   </div>
                 </div>
