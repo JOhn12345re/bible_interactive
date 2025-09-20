@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Phaser from 'phaser';
 import OrderEventsScene from '../phaser/scenes/OrderEventsScene';
 import QuizScene from '../phaser/scenes/QuizScene';
@@ -12,8 +12,54 @@ type Props = {
 };
 
 export default function PhaserGame({ onComplete, lessonData, gameType = 'order_events', width = 1280, height = 720 }: Props) {
+  const [isZoomed, setIsZoomed] = useState(false);
+  const [gameScale, setGameScale] = useState(1);
+  const [isMobile, setIsMobile] = useState(false);
   const gameRef = useRef<Phaser.Game | null>(null);
   const mountedRef = useRef(false);
+
+  // Détecter la taille d'écran
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
+    
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
+  // Calculer la taille responsive
+  const getResponsiveDimensions = () => {
+    const isMobile = window.innerWidth < 768;
+    const isTablet = window.innerWidth >= 768 && window.innerWidth < 1024;
+    
+    if (isMobile) {
+      return {
+        width: Math.min(window.innerWidth - 32, 400), // Largeur mobile avec padding
+        height: Math.min(window.innerHeight * 0.6, 600), // Hauteur mobile
+        scale: isZoomed ? 1.5 : 1
+      };
+    } else if (isTablet) {
+      return {
+        width: Math.min(window.innerWidth - 64, 800),
+        height: Math.min(window.innerHeight * 0.7, 600),
+        scale: isZoomed ? 1.3 : 1
+      };
+    } else {
+      return {
+        width: Math.min(window.innerWidth - 128, width),
+        height: Math.min(window.innerHeight * 0.8, height),
+        scale: isZoomed ? 1.2 : 1
+      };
+    }
+  };
+
+  const dimensions = getResponsiveDimensions();
+  const actualWidth = dimensions.width;
+  const actualHeight = dimensions.height;
+  const scale = dimensions.scale;
 
   useEffect(() => {
     if (mountedRef.current) return;
@@ -21,8 +67,8 @@ export default function PhaserGame({ onComplete, lessonData, gameType = 'order_e
 
     const config: Phaser.Types.Core.GameConfig = {
       type: Phaser.AUTO,
-      width,
-      height,
+      width: actualWidth,
+      height: actualHeight,
       parent: 'phaser-root',
       backgroundColor: '#f7f7f7',
       scene: gameType === 'quiz' ? [QuizScene] : [OrderEventsScene],
@@ -35,6 +81,8 @@ export default function PhaserGame({ onComplete, lessonData, gameType = 'order_e
       scale: {
         mode: Phaser.Scale.FIT,
         autoCenter: Phaser.Scale.CENTER_BOTH,
+        width: actualWidth,
+        height: actualHeight,
       },
       input: {
         mouse: {
@@ -99,13 +147,36 @@ export default function PhaserGame({ onComplete, lessonData, gameType = 'order_e
 
   return (
     <div className="w-full h-full relative">
+      {/* Contrôles de zoom pour mobile */}
+      <div className="absolute top-2 right-2 z-10 flex flex-col gap-2">
+        <button
+          onClick={() => setIsZoomed(!isZoomed)}
+          className="bg-white bg-opacity-90 hover:bg-opacity-100 p-2 rounded-lg shadow-lg text-sm font-medium transition-all"
+          title={isZoomed ? "Réduire" : "Agrandir"}
+        >
+          {isZoomed ? "🔍-" : "🔍+"}
+        </button>
+      </div>
+
       <div 
         id="phaser-root" 
         className="w-full h-full rounded-lg overflow-hidden"
-        style={{ minHeight: `${height}px`, maxWidth: `${width}px` }}
+        style={{ 
+          minHeight: `${actualHeight}px`, 
+          maxWidth: `${actualWidth}px`,
+          transform: `scale(${scale})`,
+          transformOrigin: 'center center',
+          transition: 'transform 0.3s ease-in-out'
+        }}
       />
-      <div className="absolute top-4 left-4 bg-white bg-opacity-90 px-3 py-1 rounded-lg text-sm text-gray-600">
-        🎮 Utilise la souris pour glisser-déposer
+      
+      {/* Instructions adaptées selon l'appareil */}
+      <div className="absolute bottom-2 left-2 bg-white bg-opacity-90 px-3 py-1 rounded-lg text-xs sm:text-sm text-gray-600">
+        {isMobile ? (
+          <span>📱 Glisse pour jouer • {isZoomed ? "🔍+" : "🔍-"} pour zoomer</span>
+        ) : (
+          <span>🎮 Utilise la souris pour glisser-déposer</span>
+        )}
       </div>
     </div>
   );

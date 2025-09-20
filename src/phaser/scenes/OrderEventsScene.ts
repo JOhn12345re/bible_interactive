@@ -531,6 +531,13 @@ export default class OrderEventsScene extends Phaser.Scene {
 
   private createColorTextures() {
     const graphics = this.add.graphics();
+    const { width } = this.scale;
+    
+    // Calculer les tailles responsive
+    const isMobile = width < 500;
+    const isTablet = width >= 500 && width < 800;
+    const cardWidth = isMobile ? 80 : isTablet ? 100 : 120;
+    const cardHeight = isMobile ? 100 : isTablet ? 130 : 160;
     
     // Créer 6 cartes avec des gradients modernes (pour tous les niveaux de difficulté)
     const gradientColors = [
@@ -548,17 +555,17 @@ export default class OrderEventsScene extends Phaser.Scene {
       // Créer un gradient radial pour un effet moderne
       const color = gradientColors[i - 1];
       graphics.fillGradientStyle(color.from, color.from, color.to, color.to, 1, 1, 0.5, 0.5);
-      graphics.fillRoundedRect(0, 0, 120, 160, 15);
+      graphics.fillRoundedRect(0, 0, cardWidth, cardHeight, 15);
       
       // Ajouter une bordure blanche avec ombre
       graphics.lineStyle(4, 0xffffff, 1);
-      graphics.strokeRoundedRect(0, 0, 120, 160, 15);
+      graphics.strokeRoundedRect(0, 0, cardWidth, cardHeight, 15);
       
       // Ajouter une ombre portée
       graphics.fillStyle(0x000000, 0.2);
-      graphics.fillRoundedRect(2, 2, 120, 160, 15);
+      graphics.fillRoundedRect(2, 2, cardWidth, cardHeight, 15);
       
-      graphics.generateTexture(`card${i}`, 120, 160);
+      graphics.generateTexture(`card${i}`, cardWidth, cardHeight);
     }
     
     // Créer texture de background avec gradient subtil
@@ -572,6 +579,17 @@ export default class OrderEventsScene extends Phaser.Scene {
 
   create() {
     const { width, height } = this.scale;
+    
+    // Calculer les tailles responsive
+    const isMobile = width < 500;
+    const isTablet = width >= 500 && width < 800;
+    
+    // Tailles adaptatives
+    const titleFontSize = isMobile ? '20px' : isTablet ? '24px' : '28px';
+    const cardWidth = isMobile ? 80 : isTablet ? 100 : 120;
+    const cardHeight = isMobile ? 100 : isTablet ? 130 : 160;
+    const cardFontSize = isMobile ? '10px' : isTablet ? '12px' : '14px';
+    const titleY = isMobile ? 20 : 30;
     
     // Arrière-plan avec gradient moderne
     this.add.rectangle(width / 2, height / 2, width, height, 0xf8fafc);
@@ -587,8 +605,8 @@ export default class OrderEventsScene extends Phaser.Scene {
     
     // Titre avec style moderne et animation d'entrée
     const title = this.add
-      .text(width / 2, 30, 'Remets les scènes dans l\'ordre chronologique', {
-        fontSize: '28px',
+      .text(width / 2, titleY, 'Remets les scènes dans l\'ordre chronologique', {
+        fontSize: titleFontSize,
         color: '#1e293b',
         fontFamily: 'Arial, sans-serif',
         fontStyle: 'bold',
@@ -647,30 +665,35 @@ export default class OrderEventsScene extends Phaser.Scene {
     // Création des zones de dépôt avec design moderne
     const slotIndices = Array.from({ length: this.cardCount }, (_, i) => i);
     this.slots = slotIndices.map((i) => {
-      const x = 200 + i * 220;
-      const y = 300;
+      // Calculer les positions responsive
+      const slotWidth = isMobile ? 60 : isTablet ? 80 : 180;
+      const slotHeight = isMobile ? 80 : isTablet ? 100 : 240;
+      const slotSpacing = isMobile ? 80 : isTablet ? 120 : 220;
+      const startX = isMobile ? 50 : isTablet ? 100 : 200;
+      const x = startX + i * slotSpacing;
+      const y = isMobile ? 200 : 300;
       
       // Zone de dépôt invisible
       const zone = this.add
-        .zone(x, y, 180, 240)
-        .setRectangleDropZone(180, 240);
+        .zone(x, y, slotWidth, slotHeight)
+        .setRectangleDropZone(slotWidth, slotHeight);
       (zone as any).index = i;
 
       // Fond de la zone avec gradient et ombre
       const slotBg = this.add.graphics();
       slotBg.fillGradientStyle(0xffffff, 0xffffff, 0xf8fafc, 0xf8fafc, 1, 1, 0, 0);
-      slotBg.fillRoundedRect(x - 90, y - 120, 180, 240, 20);
+      slotBg.fillRoundedRect(x - slotWidth/2, y - slotHeight/2, slotWidth, slotHeight, 20);
       slotBg.lineStyle(3, 0xe2e8f0, 1);
-      slotBg.strokeRoundedRect(x - 90, y - 120, 180, 240, 20);
+      slotBg.strokeRoundedRect(x - slotWidth/2, y - slotHeight/2, slotWidth, slotHeight, 20);
       
       // Ombre portée
       slotBg.fillStyle(0x000000, 0.1);
-      slotBg.fillRoundedRect(x - 88, y - 118, 180, 240, 20);
+      slotBg.fillRoundedRect(x - slotWidth/2 + 2, y - slotHeight/2 + 2, slotWidth, slotHeight, 20);
 
       // Numéro de l'étape avec style moderne
       const stepNumber = this.add
-        .text(x, y - 140, `Étape ${i + 1}`, {
-          fontSize: '18px',
+        .text(x, y - slotHeight/2 - 20, `Étape ${i + 1}`, {
+          fontSize: isMobile ? '12px' : isTablet ? '14px' : '18px',
           color: '#1e293b',
           fontFamily: 'Arial, sans-serif',
           fontStyle: 'bold',
@@ -681,13 +704,14 @@ export default class OrderEventsScene extends Phaser.Scene {
         .setAlpha(0);
         
       // Indicateur visuel avec animation
-      const indicator = this.add.circle(x + 70, y - 120, 12, 0x10b981);
+      const indicatorSize = isMobile ? 8 : isTablet ? 10 : 12;
+      const indicator = this.add.circle(x + slotWidth/2 - 10, y - slotHeight/2 + 10, indicatorSize, 0x10b981);
       indicator.setStrokeStyle(3, 0xffffff);
       indicator.setAlpha(0);
       
       // Icône dans l'indicateur
-      const checkIcon = this.add.text(x + 70, y - 120, '✓', {
-        fontSize: '14px',
+      const checkIcon = this.add.text(x + slotWidth/2 - 10, y - slotHeight/2 + 10, '✓', {
+        fontSize: isMobile ? '10px' : isTablet ? '12px' : '14px',
         color: '#ffffff',
         fontFamily: 'Arial, sans-serif',
         fontStyle: 'bold'
@@ -710,8 +734,11 @@ export default class OrderEventsScene extends Phaser.Scene {
     const shuffledKeys = [...cardKeys].sort(() => Math.random() - 0.5);
 
     this.cards = shuffledKeys.map((key, i) => {
-      const x = 200 + i * 220;
-      const y = 520;
+      // Calculer les positions responsive pour les cartes
+      const cardSpacing = isMobile ? 80 : isTablet ? 120 : 220;
+      const startX = isMobile ? 50 : isTablet ? 100 : 200;
+      const x = startX + i * cardSpacing;
+      const y = isMobile ? 350 : 520;
 
       const container = this.add.container(x, y) as CardContainer;
       container.setAlpha(0); // Commencer invisible pour l'animation
@@ -719,11 +746,11 @@ export default class OrderEventsScene extends Phaser.Scene {
       // Carte avec texture moderne
       if (this.textures.exists(key)) {
         const img = this.add.image(0, 0, key);
-        img.setDisplaySize(180, 240);
+        img.setDisplaySize(cardWidth, cardHeight);
         container.add(img);
       } else {
         // Fallback avec design moderne
-        const cardImage = this.add.rectangle(0, 0, 180, 240, 0x3B82F6);
+        const cardImage = this.add.rectangle(0, 0, cardWidth, cardHeight, 0x3B82F6);
         cardImage.setStrokeStyle(4, 0xffffff);
         container.add(cardImage);
       }
@@ -735,12 +762,12 @@ export default class OrderEventsScene extends Phaser.Scene {
       const displayText = this.shortStorySteps[cardIndex] || `Étape ${cardNumber}`;
       const frontNumber = this.add
         .text(0, 0, displayText, {
-          fontSize: '16px',
+          fontSize: cardFontSize,
           color: '#ffffff',
           fontFamily: 'Arial, sans-serif',
           fontStyle: 'bold',
           align: 'center',
-          wordWrap: { width: 160 },
+          wordWrap: { width: cardWidth - 20 },
           stroke: '#000000',
           strokeThickness: 2,
           shadow: {
@@ -758,7 +785,7 @@ export default class OrderEventsScene extends Phaser.Scene {
       // Propriétés pour la validation
       (container as any).frontNumber = frontNumber;
 
-      container.setSize(180, 240);
+      container.setSize(cardWidth, cardHeight);
       container.setInteractive({
         draggable: true,
         useHandCursor: true,
@@ -768,7 +795,7 @@ export default class OrderEventsScene extends Phaser.Scene {
       this.tweens.add({
         targets: container,
         alpha: 1,
-        y: 520,
+        y: y,
         scaleX: 1,
         scaleY: 1,
         duration: 600,

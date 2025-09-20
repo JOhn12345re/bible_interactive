@@ -39,6 +39,18 @@ export default class QuizScene extends Phaser.Scene {
   create() {
     const { width, height } = this.scale;
 
+    // Calculer les tailles responsive
+    const isMobile = width < 500;
+    const isTablet = width >= 500 && width < 800;
+    
+    // Tailles adaptatives
+    const titleFontSize = isMobile ? '24px' : isTablet ? '30px' : '36px';
+    const questionFontSize = isMobile ? '18px' : isTablet ? '22px' : '26px';
+    const buttonFontSize = isMobile ? '14px' : isTablet ? '16px' : '18px';
+    const buttonWidth = isMobile ? width - 40 : isTablet ? 400 : 500;
+    const buttonHeight = isMobile ? 50 : 60;
+    const buttonSpacing = isMobile ? 70 : 90;
+
     // Réinitialiser les variables
     this.currentQuestion = 0;
     this.score = 0;
@@ -46,6 +58,7 @@ export default class QuizScene extends Phaser.Scene {
     console.log('🎮 Création du quiz - Questions disponibles:', this.questions.length);
     console.log('🎮 Création du quiz - currentQuestion initialisé à:', this.currentQuestion);
     console.log('🎮 Création du quiz - lessonData:', this.lessonData?.id);
+    console.log('📱 Taille d\'écran:', width, 'x', height, 'Mobile:', isMobile, 'Tablet:', isTablet);
 
     // Arrière-plan avec gradient moderne
     this.add.rectangle(width / 2, height / 2, width, height, 0xf8fafc);
@@ -143,8 +156,8 @@ export default class QuizScene extends Phaser.Scene {
 
     // Titre avec style moderne et animation d'entrée
     const title = this.add
-      .text(width / 2, 50, quizTitle, {
-        fontSize: '36px',
+      .text(width / 2, isMobile ? 30 : 50, quizTitle, {
+        fontSize: titleFontSize,
         color: '#1e293b',
         fontFamily: 'Arial, sans-serif',
         fontStyle: 'bold',
@@ -241,6 +254,18 @@ export default class QuizScene extends Phaser.Scene {
     const question = this.questions[this.currentQuestion];
     const { width, height } = this.scale;
 
+    // Calculer les tailles responsive
+    const isMobile = width < 500;
+    const isTablet = width >= 500 && width < 800;
+    
+    // Tailles adaptatives
+    const questionFontSize = isMobile ? '18px' : isTablet ? '22px' : '26px';
+    const buttonFontSize = isMobile ? '14px' : isTablet ? '16px' : '18px';
+    const buttonWidth = isMobile ? width - 40 : isTablet ? 400 : 500;
+    const buttonHeight = isMobile ? 50 : 60;
+    const buttonSpacing = isMobile ? 70 : 90;
+    const questionY = isMobile ? 120 : 150;
+
     // Nettoyer les anciens éléments
     if (this.questionText) this.questionText.destroy();
     this.answerButtons.forEach(btn => btn.destroy());
@@ -248,12 +273,12 @@ export default class QuizScene extends Phaser.Scene {
 
     // Afficher la question avec style moderne
     this.questionText = this.add
-      .text(width / 2, 150, `Question ${this.currentQuestion + 1}: ${question.q}`, {
-        fontSize: '26px',
+      .text(width / 2, questionY, `Question ${this.currentQuestion + 1}: ${question.q}`, {
+        fontSize: questionFontSize,
         color: '#1e293b',
         fontFamily: 'Arial, sans-serif',
         fontStyle: 'bold',
-        wordWrap: { width: width - 100 },
+        wordWrap: { width: width - (isMobile ? 20 : 100) },
         align: 'center',
         stroke: '#ffffff',
         strokeThickness: 1,
@@ -279,25 +304,25 @@ export default class QuizScene extends Phaser.Scene {
 
     // Créer les boutons de réponse avec design moderne
     question.choices.forEach((choice: string, index: number) => {
-      const y = 300 + index * 90;
+      const y = (isMobile ? 200 : 300) + index * buttonSpacing;
       const container = this.add.container(width / 2, y);
       container.setAlpha(0); // Commencer invisible
 
       // Bouton background avec gradient
       const bg = this.add.graphics();
       bg.fillGradientStyle(0xffffff, 0xffffff, 0xf8fafc, 0xf8fafc, 1, 1, 0, 0);
-      bg.fillRoundedRect(-250, -30, 500, 60, 15);
+      bg.fillRoundedRect(-buttonWidth/2, -buttonHeight/2, buttonWidth, buttonHeight, 15);
       bg.lineStyle(3, 0xe2e8f0, 1);
-      bg.strokeRoundedRect(-250, -30, 500, 60, 15);
+      bg.strokeRoundedRect(-buttonWidth/2, -buttonHeight/2, buttonWidth, buttonHeight, 15);
       
       // Ombre portée
       bg.fillStyle(0x000000, 0.1);
-      bg.fillRoundedRect(-248, -28, 500, 60, 15);
+      bg.fillRoundedRect(-buttonWidth/2 + 2, -buttonHeight/2 + 2, buttonWidth, buttonHeight, 15);
 
       // Texte de la réponse avec style moderne
       const text = this.add
         .text(0, 0, choice, {
-          fontSize: '20px',
+          fontSize: buttonFontSize,
           color: '#1e293b',
           fontFamily: 'Arial, sans-serif',
           fontStyle: 'bold',
