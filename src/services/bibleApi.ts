@@ -282,24 +282,39 @@ class BibleApiService {
     let failCount = 0;
     const failedVerses: string[] = [];
 
-    for (const verse of testVerses) {
+    // Utiliser Promise.all avec un délai pour éviter de bloquer l'UI
+    const testPromises = testVerses.map(async (verse, index) => {
+      // Ajouter un petit délai entre les tests pour éviter de surcharger
+      await new Promise(resolve => setTimeout(resolve, index * 10));
+      
       console.log(`\n🔍 Test de: ${verse}`);
       try {
         const result = await this.getVerseByReference(verse);
         if (result) {
           console.log(`✅ SUCCÈS: ${verse} trouvé`);
-          successCount++;
+          return { success: true, verse };
         } else {
           console.log(`❌ ÉCHEC: ${verse} non trouvé`);
-          failCount++;
-          failedVerses.push(verse);
+          return { success: false, verse, error: 'Non trouvé' };
         }
       } catch (error) {
         console.log(`❌ ERREUR: ${verse} - ${error}`);
-        failCount++;
-        failedVerses.push(verse);
+        return { success: false, verse, error: String(error) };
       }
-    }
+    });
+
+    // Attendre tous les tests en parallèle
+    const results = await Promise.all(testPromises);
+    
+    // Compter les résultats
+    results.forEach(result => {
+      if (result.success) {
+        successCount++;
+      } else {
+        failCount++;
+        failedVerses.push(result.verse);
+      }
+    });
 
     console.log('\n📊 === RÉSULTATS DU TEST ===');
     console.log(`✅ Versets trouvés: ${successCount}`);

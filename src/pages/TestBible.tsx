@@ -15,12 +15,22 @@ const TestBible: React.FC = () => {
     try {
       setLoading(true);
       setError(null);
-      const result = await bibleApi.getVersesDefault(book, chapter, verseStart, verseEnd);
-      setVerses(result);
+      
+      // Utiliser setTimeout pour éviter de bloquer l'UI
+      setTimeout(async () => {
+        try {
+          const result = await bibleApi.getVersesDefault(book, chapter, verseStart, verseEnd);
+          setVerses(result);
+        } catch (err) {
+          setError('Erreur lors du chargement des versets');
+          console.error('Erreur:', err);
+        } finally {
+          setLoading(false);
+        }
+      }, 0);
     } catch (err) {
       setError('Erreur lors du chargement des versets');
       console.error('Erreur:', err);
-    } finally {
       setLoading(false);
     }
   };
@@ -30,35 +40,60 @@ const TestBible: React.FC = () => {
       setLoading(true);
       setError(null);
       
-      // Test de différentes méthodes
-      console.log('🧪 Test des méthodes spécialisées...');
-      
-      const creation = await bibleApi.getCreationVerses();
-      console.log('✅ Création:', creation.length, 'versets');
-      
-      const adamEve = await bibleApi.getAdamEveVerses();
-      console.log('✅ Adam et Ève:', adamEve.length, 'versets');
-      
-      const psalm = await bibleApi.getPsalmOfTheDay();
-      console.log('✅ Psaume du jour:', psalm.length, 'versets');
-      
-      setVerses(psalm);
+      // Utiliser setTimeout pour éviter de bloquer l'UI
+      setTimeout(async () => {
+        try {
+          // Test de différentes méthodes
+          console.log('🧪 Test des méthodes spécialisées...');
+          
+          const creation = await bibleApi.getCreationVerses();
+          console.log('✅ Création:', creation.length, 'versets');
+          
+          const adamEve = await bibleApi.getAdamEveVerses();
+          console.log('✅ Adam et Ève:', adamEve.length, 'versets');
+          
+          const psalm = await bibleApi.getPsalmOfTheDay();
+          console.log('✅ Psaume du jour:', psalm.length, 'versets');
+          
+          setVerses(psalm);
+        } catch (err) {
+          setError('Erreur lors des tests');
+          console.error('Erreur:', err);
+        } finally {
+          setLoading(false);
+        }
+      }, 0);
     } catch (err) {
       setError('Erreur lors des tests');
       console.error('Erreur:', err);
-    } finally {
       setLoading(false);
     }
   };
 
   const debugBibleData = () => {
     console.log('🔍 Démarrage du debug des données...');
-    (bibleApi as any).debugBibleData();
+    
+    // Utiliser setTimeout pour éviter de bloquer l'UI
+    setTimeout(() => {
+      try {
+        (bibleApi as any).debugBibleData();
+      } catch (error) {
+        console.error('Erreur lors du debug:', error);
+      }
+    }, 0);
   };
 
   const testAllVerses = async () => {
     console.log('🧪 Démarrage du test automatique de tous les versets...');
-    await (bibleApi as any).testAllPopularVerses();
+    
+    // Utiliser setTimeout pour éviter de bloquer l'UI
+    setTimeout(async () => {
+      try {
+        await (bibleApi as any).testAllPopularVerses();
+      } catch (error) {
+        console.error('Erreur lors du test:', error);
+      }
+    }, 0);
   };
 
   return (
