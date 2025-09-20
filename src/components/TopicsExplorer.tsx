@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { topicsService, Topic, TopicVerse } from '../services/topicsService';
+import Modal from './Modal';
 
 const TopicsExplorer: React.FC = () => {
   const [topics, setTopics] = useState<Topic[]>([]);
@@ -7,6 +8,9 @@ const TopicsExplorer: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [verseOfTheDay, setVerseOfTheDay] = useState<{ topic: Topic; verse: TopicVerse } | null>(null);
   const [loading, setLoading] = useState(true);
+  const [isLoadingRandom, setIsLoadingRandom] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [randomVerse, setRandomVerse] = useState<{ topic: Topic; verse: TopicVerse } | null>(null);
 
   useEffect(() => {
     loadTopics();
@@ -43,13 +47,29 @@ const TopicsExplorer: React.FC = () => {
   };
 
   const getRandomVerseFromTopic = async (topic: Topic) => {
+    if (isLoadingRandom) return; // Éviter les clics multiples
+    
+    setIsLoadingRandom(true);
     try {
       const verse = await topicsService.getRandomVerseFromTopic(topic.slug);
       if (verse) {
-        alert(`Verset aléatoire de ${topic.name}:\n\n"${verse.texte}"\n\n— ${verse.ref}`);
+        setRandomVerse({ topic, verse });
+        setShowModal(true);
       }
     } catch (error) {
       console.error('Erreur lors de la récupération du verset aléatoire:', error);
+    } finally {
+      setIsLoadingRandom(false);
+    }
+  };
+
+  const handleCopyVerse = async () => {
+    if (randomVerse) {
+      try {
+        await navigator.clipboard.writeText(`${randomVerse.verse.texte} — ${randomVerse.verse.ref}`);
+      } catch (error) {
+        console.error('Erreur lors de la copie:', error);
+      }
     }
   };
 
@@ -184,9 +204,14 @@ const TopicsExplorer: React.FC = () => {
               <div className="mt-6 pt-6 border-t border-gray-200">
                 <button
                   onClick={() => getRandomVerseFromTopic(selectedTopic)}
-                  className="px-4 sm:px-6 py-2 sm:py-3 bg-gradient-to-r from-green-500 to-teal-600 text-white rounded-lg hover:from-green-600 hover:to-teal-700 transition-all duration-300 button-interactive text-sm sm:text-base"
+                  disabled={isLoadingRandom}
+                  className={`px-4 sm:px-6 py-2 sm:py-3 text-white rounded-lg transition-all duration-300 text-sm sm:text-base ${
+                    isLoadingRandom 
+                      ? 'bg-gray-400 cursor-not-allowed' 
+                      : 'bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700 button-interactive'
+                  }`}
                 >
-                  🎲 Verset aléatoire
+                  {isLoadingRandom ? '⏳ Chargement...' : '🎲 Verset aléatoire'}
                 </button>
               </div>
             </div>
@@ -205,6 +230,35 @@ const TopicsExplorer: React.FC = () => {
           )}
         </div>
       </div>
+
+      {/* Modal pour le verset aléatoire */}
+      <Modal
+        isOpen={showModal}
+        onClose={() => setShowModal(false)}
+        title="🎲 Verset aléatoire"
+      >
+        {randomVerse && (
+          <>
+            <div className="text-sm text-gray-600 mb-2">{randomVerse.topic.name}</div>
+            <div className="text-base leading-relaxed mb-4">"{randomVerse.verse.texte}"</div>
+            <div className="text-sm text-gray-500 italic mb-4">— {randomVerse.verse.ref}</div>
+            <div className="flex gap-2">
+              <button 
+                onClick={handleCopyVerse}
+                className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
+              >
+                Copier
+              </button>
+              <button 
+                onClick={() => setShowModal(false)}
+                className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
+              >
+                Fermer
+              </button>
+            </div>
+          </>
+        )}
+      </Modal>
     </div>
   );
 };
