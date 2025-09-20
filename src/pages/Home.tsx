@@ -41,18 +41,18 @@ export default function Home() {
           </div>
         )}
         
-        <div className="relative max-w-6xl mx-auto px-4 py-12">
-          <div className="flex flex-col lg:flex-row items-center justify-between">
+        <div className="relative max-w-6xl mx-auto px-responsive py-responsive">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-8">
             <div className="text-center lg:text-left lg:flex-1 animate-slide-left">
-              <h1 className={`text-4xl lg:text-6xl font-bold mb-4 ${
+              <h1 className={`text-responsive-xl font-bold mb-4 ${
                 contrastHigh ? 'text-contrast-text' : 'text-white'
               }`}>
                 <span className="inline-block animate-float">📖</span>
-                <span className="ml-3 bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">
+                <span className="ml-2 sm:ml-3 bg-gradient-to-r from-yellow-300 to-orange-300 bg-clip-text text-transparent">
                   Bible Interactive
                 </span>
               </h1>
-              <p className={`text-xl lg:text-2xl mb-6 ${
+              <p className={`text-responsive-sm mb-6 ${
                 contrastHigh ? 'text-contrast-text' : 'text-blue-100'
               }`}>
                 Découvre les histoires sacrées à travers des jeux interactifs et des aventures captivantes
@@ -67,11 +67,11 @@ export default function Home() {
               </div>
             </div>
             
-            <div className="flex flex-wrap items-center justify-center gap-4 mt-8 lg:mt-0 animate-slide-right">
+            <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 mt-8 lg:mt-0 animate-slide-right">
               {/* Profil utilisateur */}
               <button
                 onClick={() => setShowProfile(true)}
-                className={`group flex items-center space-x-3 px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl button-interactive hover-lift ${
+                className={`group flex items-center space-x-2 sm:space-x-3 px-3 sm:px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl button-interactive hover-lift text-sm sm:text-base ${
                   contrastHigh
                     ? 'bg-contrast-text text-contrast-bg border-2 border-contrast-text hover:bg-contrast-bg hover:text-contrast-text'
                     : isProfileComplete
@@ -80,16 +80,16 @@ export default function Home() {
                 }`}
                 aria-label="Gérer mon profil"
               >
-                <span className="text-xl group-hover:rotate-12 transition-transform duration-300">
+                <span className="text-lg sm:text-xl group-hover:rotate-12 transition-transform duration-300">
                   {isProfileComplete ? '👤' : '⚠️'}
                 </span>
-                <span className="hidden sm:inline">
+                <span className="hidden xs:inline">
                   {isProfileComplete 
                     ? `${profile?.firstName} ${profile?.lastName}` 
                     : 'Compléter profil'
                   }
                 </span>
-                <span className="sm:hidden">
+                <span className="xs:hidden">
                   {isProfileComplete ? 'Profil' : 'Profil'}
                 </span>
               </button>
@@ -112,92 +112,91 @@ export default function Home() {
               {/* Bouton Journal modernisé */}
               <button
                 onClick={() => setShowJournal(true)}
-                className={`group flex items-center space-x-2 px-4 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
+                className={`group flex items-center space-x-2 px-3 sm:px-4 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-sm sm:text-base ${
                   contrastHigh
                     ? 'bg-contrast-text text-contrast-bg border-2 border-contrast-text hover:bg-contrast-bg hover:text-contrast-text'
                     : 'bg-gradient-to-r from-green-500 to-emerald-600 text-white hover:from-green-600 hover:to-emerald-700'
                 }`}
                 aria-label="Ouvrir mon journal"
               >
-                <span className="text-xl group-hover:rotate-12 transition-transform duration-300">📖</span>
-                <span className="hidden sm:inline">Mon Journal</span>
-                <span className="sm:hidden">Journal</span>
+                <span className="text-lg sm:text-xl group-hover:rotate-12 transition-transform duration-300">📖</span>
+                <span className="hidden xs:inline">Mon Journal</span>
+                <span className="xs:hidden">Journal</span>
               </button>
 
               {/* Bouton Recherche de Versets */}
               <button
                 onClick={() => setShowVerseSearch(true)}
-                className={`group flex items-center space-x-2 px-4 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
+                className={`group flex items-center space-x-2 px-3 sm:px-4 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-sm sm:text-base ${
                   contrastHigh
                     ? 'bg-contrast-text text-contrast-bg border-2 border-contrast-text hover:bg-contrast-bg hover:text-contrast-text'
                     : 'bg-gradient-to-r from-purple-500 to-pink-600 text-white hover:from-purple-600 hover:to-pink-700'
                 }`}
                 aria-label="Rechercher des versets"
               >
-                <span className="text-xl group-hover:scale-110 transition-transform duration-300">🔍</span>
-                <span className="hidden sm:inline">Versets</span>
-                <span className="sm:hidden">Recherche</span>
+                <span className="text-lg sm:text-xl group-hover:scale-110 transition-transform duration-300">🔍</span>
+                <span className="hidden xs:inline">Versets</span>
+                <span className="xs:hidden">Recherche</span>
               </button>
 
               {/* Bouton Sermons & Chants */}
               <Link
                 to="/sermons"
-                className={`group flex items-center space-x-2 px-4 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
+                className={`group flex items-center space-x-2 px-3 sm:px-4 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-sm sm:text-base ${
                   contrastHigh
                     ? 'bg-contrast-text text-contrast-bg border-2 border-contrast-text hover:bg-contrast-bg hover:text-contrast-text'
                     : 'bg-gradient-to-r from-red-500 to-orange-600 text-white hover:from-red-600 hover:to-orange-700'
                 }`}
                 aria-label="Voir les sermons et chants"
               >
-                <span className="text-xl group-hover:scale-110 transition-transform duration-300">🎬</span>
-                <span className="hidden sm:inline">Sermons & Chants</span>
-                <span className="sm:hidden">Sermons</span>
+                <span className="text-lg sm:text-xl group-hover:scale-110 transition-transform duration-300">🎬</span>
+                <span className="hidden xs:inline">Sermons & Chants</span>
+                <span className="xs:hidden">Sermons</span>
               </Link>
 
               {/* Lien Explorateur de la Bible */}
               <Link
                 to="/bible"
-                className={`group flex items-center space-x-2 px-4 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
+                className={`group flex items-center space-x-2 px-3 sm:px-4 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-sm sm:text-base ${
                   contrastHigh
                     ? 'bg-contrast-text text-contrast-bg border-2 border-contrast-text hover:bg-contrast-bg hover:text-contrast-text'
                     : 'bg-gradient-to-r from-indigo-500 to-blue-600 text-white hover:from-indigo-600 hover:to-blue-700'
                 }`}
                 aria-label="Explorer la Bible"
               >
-                <span className="text-xl group-hover:scale-110 transition-transform duration-300">📚</span>
-                <span className="hidden sm:inline">Explorer la Bible</span>
-                <span className="sm:hidden">Bible</span>
+                <span className="text-lg sm:text-xl group-hover:scale-110 transition-transform duration-300">📚</span>
+                <span className="hidden xs:inline">Explorer la Bible</span>
+                <span className="xs:hidden">Bible</span>
               </Link>
 
               {/* Bouton Sélecteur de Traduction */}
               <button
                 onClick={() => setShowTranslationSelector(true)}
-                className={`group flex items-center space-x-3 px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
+                className={`group flex items-center space-x-2 sm:space-x-3 px-3 sm:px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-sm sm:text-base ${
                   contrastHigh
                     ? 'bg-contrast-text text-contrast-bg border-2 border-contrast-text hover:bg-contrast-bg hover:text-contrast-text'
                     : 'bg-gradient-to-r from-green-500 to-emerald-600 text-white hover:from-green-600 hover:to-emerald-700'
                 }`}
                 aria-label="Choisir la traduction biblique"
               >
-                <span className="text-xl group-hover:scale-110 transition-transform duration-300">📚</span>
-                <span>Traduction</span>
+                <span className="text-lg sm:text-xl group-hover:scale-110 transition-transform duration-300">📚</span>
+                <span className="hidden xs:inline">Traduction</span>
+                <span className="xs:hidden">Trad.</span>
               </button>
-
-
-
 
               {/* Bouton Bible Louis Segond 1910 */}
               <button
                 onClick={() => setShowFrenchBibleSelector(true)}
-                className={`group flex items-center space-x-3 px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
+                className={`group flex items-center space-x-2 sm:space-x-3 px-3 sm:px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-sm sm:text-base ${
                   contrastHigh
                     ? 'bg-contrast-text text-contrast-bg border-2 border-contrast-text hover:bg-contrast-bg hover:text-contrast-text'
                     : 'bg-gradient-to-r from-red-500 to-pink-600 text-white hover:from-red-600 hover:to-pink-700'
                 }`}
                 aria-label="Voir la Bible Louis Segond 1910"
               >
-                <span className="text-xl group-hover:scale-110 transition-transform duration-300">🇫🇷</span>
-                <span>Bible Louis Segond 1910</span>
+                <span className="text-lg sm:text-xl group-hover:scale-110 transition-transform duration-300">🇫🇷</span>
+                <span className="hidden xs:inline">Bible Louis Segond 1910</span>
+                <span className="xs:hidden">LSG 1910</span>
               </button>
 
 
@@ -220,43 +219,46 @@ export default function Home() {
               {/* Bouton Test Bible Louis Segond */}
               <Link
                 to="/test-bible"
-                className={`group flex items-center space-x-3 px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
+                className={`group flex items-center space-x-2 sm:space-x-3 px-3 sm:px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-sm sm:text-base ${
                   contrastHigh
                     ? 'bg-contrast-text text-contrast-bg border-2 border-contrast-text hover:bg-contrast-bg hover:text-contrast-text'
                     : 'bg-gradient-to-r from-green-500 to-teal-600 text-white hover:from-green-600 hover:to-teal-700'
                 }`}
                 aria-label="Tester la Bible Louis Segond"
               >
-                <span className="text-xl group-hover:scale-110 transition-transform duration-300">📖</span>
-                <span>Test Bible LSG</span>
+                <span className="text-lg sm:text-xl group-hover:scale-110 transition-transform duration-300">📖</span>
+                <span className="hidden xs:inline">Test Bible LSG</span>
+                <span className="xs:hidden">Test LSG</span>
               </Link>
 
               {/* Bouton Explorateur de Thèmes */}
               <Link
                 to="/topics"
-                className={`group flex items-center space-x-3 px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
+                className={`group flex items-center space-x-2 sm:space-x-3 px-3 sm:px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-sm sm:text-base ${
                   contrastHigh
                     ? 'bg-contrast-text text-contrast-bg border-2 border-contrast-text hover:bg-contrast-bg hover:text-contrast-text'
                     : 'bg-gradient-to-r from-purple-500 to-pink-600 text-white hover:from-purple-600 hover:to-pink-700'
                 }`}
                 aria-label="Explorer les thèmes bibliques"
               >
-                <span className="text-xl group-hover:scale-110 transition-transform duration-300">📚</span>
-                <span>Thèmes Bibliques</span>
+                <span className="text-lg sm:text-xl group-hover:scale-110 transition-transform duration-300">📚</span>
+                <span className="hidden xs:inline">Thèmes Bibliques</span>
+                <span className="xs:hidden">Thèmes</span>
               </Link>
 
               {/* Bouton Réglages modernisé */}
               <button
                 onClick={() => setShowSettings(true)}
-                className={`group flex items-center space-x-3 px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 ${
+                className={`group flex items-center space-x-2 sm:space-x-3 px-3 sm:px-6 py-3 rounded-xl font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 text-sm sm:text-base ${
                   contrastHigh
                     ? 'bg-contrast-text text-contrast-bg border-2 border-contrast-text hover:bg-contrast-bg hover:text-contrast-text'
                     : 'bg-gradient-to-r from-blue-500 to-indigo-600 text-white hover:from-blue-600 hover:to-indigo-700'
                 }`}
                 aria-label="Ouvrir les réglages"
               >
-                <span className="text-xl group-hover:rotate-180 transition-transform duration-500">⚙️</span>
-                <span>Réglages</span>
+                <span className="text-lg sm:text-xl group-hover:rotate-180 transition-transform duration-500">⚙️</span>
+                <span className="hidden xs:inline">Réglages</span>
+                <span className="xs:hidden">⚙️</span>
               </button>
             </div>
           </div>
@@ -264,9 +266,9 @@ export default function Home() {
       </header>
 
       {/* Contenu principal */}
-      <main className="max-w-6xl mx-auto px-4 py-12">
+      <main className="max-w-6xl mx-auto px-responsive py-responsive">
         {/* Section statistiques rapides */}
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12 animate-slide-up">
+        <section className="grid-responsive-3 mb-12 animate-slide-up">
           <div className={`p-6 rounded-2xl text-center transform hover:scale-105 transition-all duration-300 ${
             contrastHigh 
               ? 'bg-contrast-bg border-2 border-contrast-text'
@@ -305,7 +307,7 @@ export default function Home() {
         </section>
 
         {/* Message de bienvenue modernisé */}
-        <section className={`mb-12 p-8 rounded-3xl relative overflow-hidden animate-fade-scale ${
+        <section className={`mb-12 p-responsive rounded-3xl relative overflow-hidden animate-fade-scale ${
           contrastHigh 
             ? 'bg-contrast-bg border-2 border-contrast-text'
             : 'bg-gradient-to-br from-indigo-50 via-white to-cyan-50 border border-gray-200 shadow-xl'
@@ -316,12 +318,12 @@ export default function Home() {
           )}
           
           <div className="relative">
-            <h2 className={`text-3xl lg:text-4xl font-bold mb-6 ${
+            <h2 className={`text-responsive-lg font-bold mb-6 ${
               contrastHigh ? 'text-contrast-text' : 'bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent'
             }`}>
               🌟 Bienvenue dans ton aventure biblique !
             </h2>
-            <p className={`text-xl leading-relaxed mb-6 ${
+            <p className={`text-responsive-sm leading-relaxed mb-6 ${
               contrastHigh ? 'text-contrast-text' : 'text-gray-700'
             }`}>
               Explore les histoires sacrées de la tradition chrétienne orthodoxe à travers des
@@ -388,7 +390,7 @@ export default function Home() {
             ? 'border-contrast-text text-contrast-text'
             : 'border-gray-200'
         }`}>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          <div className="grid-responsive-3 mb-8">
             <div className={`text-center p-6 rounded-2xl ${
               contrastHigh 
                 ? 'bg-contrast-bg border border-contrast-text'

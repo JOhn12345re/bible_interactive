@@ -24,6 +24,36 @@
     @apply outline-none ring-2 ring-blue-500 ring-opacity-50 ring-offset-2;
   }
 
+  /* Améliorations pour mobile */
+  html {
+    -webkit-text-size-adjust: 100%;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    @apply text-base leading-relaxed;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Amélioration des interactions tactiles */
+  button, a, [role="button"] {
+    @apply min-h-[44px] min-w-[44px];
+    touch-action: manipulation;
+  }
+
+  /* Optimisation des inputs pour mobile */
+  input, textarea, select {
+    @apply text-base;
+    -webkit-appearance: none;
+    border-radius: 0;
+  }
+
+  /* Amélioration du scroll sur mobile */
+  .scroll-smooth {
+    -webkit-overflow-scrolling: touch;
+  }
+
   /* Contraste élevé amélioré */
   .contrast-high {
     --tw-bg-opacity: 1;
@@ -64,15 +94,70 @@
 /* Nouvelles classes utilitaires */
 @layer components {
   .btn-primary {
-    @apply bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200;
+    @apply bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-3 px-4 sm:px-6 rounded-xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-200 text-sm sm:text-base;
   }
 
   .btn-secondary {
-    @apply bg-white text-gray-700 font-semibold py-3 px-6 rounded-xl border-2 border-gray-200 shadow-md hover:shadow-lg hover:border-blue-300 transform hover:scale-105 transition-all duration-200;
+    @apply bg-white text-gray-700 font-semibold py-3 px-4 sm:px-6 rounded-xl border-2 border-gray-200 shadow-md hover:shadow-lg hover:border-blue-300 transform hover:scale-105 transition-all duration-200 text-sm sm:text-base;
   }
 
   .card-modern {
     @apply bg-white rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 border border-gray-100;
+  }
+
+  /* Classes responsive pour les grilles */
+  .grid-responsive {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6;
+  }
+
+  .grid-responsive-2 {
+    @apply grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6;
+  }
+
+  .grid-responsive-3 {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6;
+  }
+
+  /* Classes pour les textes responsive */
+  .text-responsive-xl {
+    @apply text-2xl sm:text-3xl lg:text-4xl xl:text-5xl;
+  }
+
+  .text-responsive-lg {
+    @apply text-xl sm:text-2xl lg:text-3xl;
+  }
+
+  .text-responsive-md {
+    @apply text-lg sm:text-xl lg:text-2xl;
+  }
+
+  .text-responsive-sm {
+    @apply text-sm sm:text-base lg:text-lg;
+  }
+
+  /* Classes pour les espacements responsive */
+  .p-responsive {
+    @apply p-4 sm:p-6 lg:p-8;
+  }
+
+  .px-responsive {
+    @apply px-4 sm:px-6 lg:px-8;
+  }
+
+  .py-responsive {
+    @apply py-4 sm:py-6 lg:py-8;
+  }
+
+  .m-responsive {
+    @apply m-4 sm:m-6 lg:m-8;
+  }
+
+  .mx-responsive {
+    @apply mx-4 sm:mx-6 lg:mx-8;
+  }
+
+  .my-responsive {
+    @apply my-4 sm:my-6 lg:my-8;
   }
 
   .gradient-bg {
@@ -460,4 +545,137 @@
   overflow: hidden;
   background: #f7f7f7;
   box-shadow: var(--shadow-lg);
+}
+
+/* Améliorations spécifiques pour mobile */
+@media (max-width: 768px) {
+  /* Réduction des espacements sur mobile */
+  .mobile-compact {
+    @apply p-4 space-y-4;
+  }
+  
+  /* Textes plus lisibles sur mobile */
+  .mobile-text {
+    @apply text-base leading-relaxed;
+  }
+  
+  /* Boutons plus grands pour le tactile */
+  .mobile-button {
+    @apply min-h-[48px] px-4 py-3 text-base;
+  }
+  
+  /* Grilles adaptées au mobile */
+  .mobile-grid {
+    @apply grid-cols-1 gap-4;
+  }
+  
+  /* Masquer certains éléments sur mobile */
+  .mobile-hide {
+    @apply hidden;
+  }
+  
+  /* Afficher seulement sur mobile */
+  .mobile-only {
+    @apply block;
+  }
+  
+  /* Masquer sur desktop */
+  .desktop-hide {
+    @apply block;
+  }
+}
+
+@media (min-width: 769px) {
+  .mobile-only {
+    @apply hidden;
+  }
+  
+  .desktop-hide {
+    @apply hidden;
+  }
+}
+
+/* Amélioration des modales sur mobile */
+@media (max-width: 640px) {
+  .modal-mobile {
+    @apply mx-4 my-4 max-h-[calc(100vh-2rem)] overflow-y-auto;
+  }
+  
+  .modal-content-mobile {
+    @apply p-4 text-sm;
+  }
+}
+
+/* Optimisation des images pour mobile */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Amélioration du scroll sur mobile */
+.scroll-mobile {
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+/* Styles pour les cartes sur mobile */
+@media (max-width: 640px) {
+  .card-mobile {
+    @apply p-4 rounded-xl;
+  }
+  
+  .card-mobile h3 {
+    @apply text-lg font-bold;
+  }
+  
+  .card-mobile p {
+    @apply text-sm;
+  }
+}
+
+/* Amélioration des formulaires sur mobile */
+@media (max-width: 640px) {
+  input, textarea, select {
+    @apply text-base;
+    min-height: 44px;
+  }
+  
+  .form-mobile {
+    @apply space-y-4;
+  }
+  
+  .form-mobile label {
+    @apply text-sm font-medium;
+  }
+}
+
+/* Navigation mobile améliorée */
+.mobile-nav-overlay {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* Animations optimisées pour mobile */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Amélioration de l'accessibilité tactile */
+@media (hover: none) and (pointer: coarse) {
+  .hover-lift:hover {
+    transform: none;
+  }
+  
+  .hover-glow:hover {
+    box-shadow: none;
+  }
+  
+  /* Améliorer la visibilité des éléments interactifs */
+  button, a, [role="button"] {
+    @apply min-h-[44px] min-w-[44px];
+  }
 }

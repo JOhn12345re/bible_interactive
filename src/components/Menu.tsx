@@ -255,20 +255,20 @@ export default function Menu() {
   const selectedItem = menuItems.find((item) => item.title === selectedPath);
 
   return (
-    <div className="max-w-6xl mx-auto">
+    <div className="max-w-6xl mx-auto px-responsive">
       {/* Navigation des chemins */}
       <nav className="mb-12 animate-slide-up" role="navigation" aria-label="Chemins bibliques">
-        <h2 className={`text-2xl lg:text-3xl font-bold mb-6 text-center lg:text-left ${
+        <h2 className={`text-responsive-lg font-bold mb-6 text-center lg:text-left ${
           contrastHigh ? 'text-contrast-text' : 'bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent'
         }`}>
           ✨ Sections bibliques à explorer ✨
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6">
+        <div className="grid-responsive">
           {menuItems.map((item, index) => (
             <button
               key={item.title}
               onClick={() => setSelectedPath(item.title)}
-              className={`group flex flex-col items-center text-center p-6 rounded-2xl font-medium transition-all duration-300 hover:scale-105 hover:shadow-xl animate-fade-scale ${
+              className={`group flex flex-col items-center text-center p-4 sm:p-6 rounded-2xl font-medium transition-all duration-300 hover:scale-105 hover:shadow-xl animate-fade-scale ${
                 selectedPath === item.title
                   ? contrastHigh
                     ? 'bg-contrast-text text-contrast-bg border-2 border-contrast-text'
@@ -280,14 +280,14 @@ export default function Menu() {
               style={{animationDelay: `${index * 0.1}s`}}
               aria-pressed={selectedPath === item.title}
             >
-              <span className={`text-4xl mb-3 transition-transform group-hover:scale-110 ${
+              <span className={`text-3xl sm:text-4xl mb-3 transition-transform group-hover:scale-110 ${
                 selectedPath === item.title ? 'animate-bounce' : ''
               }`}>
                 {item.icon}
               </span>
-              <span className="font-bold text-sm lg:text-base mb-2">{item.title}</span>
+              <span className="font-bold text-xs sm:text-sm lg:text-base mb-2">{item.title}</span>
               {item.description && (
-                <span className={`text-xs lg:text-sm leading-relaxed ${
+                <span className={`text-xs sm:text-sm leading-relaxed ${
                   selectedPath === item.title 
                     ? contrastHigh ? 'text-contrast-bg' : 'text-blue-100'
                     : contrastHigh ? 'text-contrast-text' : 'text-gray-600'
@@ -317,22 +317,22 @@ export default function Menu() {
 
       {/* Leçons du chemin sélectionné */}
       <section aria-labelledby="lessons-heading" className="animate-slide-up">
-        <div className={`flex items-center justify-between mb-8 p-6 rounded-2xl ${
+        <div className={`flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 p-responsive rounded-2xl gap-4 ${
           contrastHigh 
             ? 'bg-contrast-bg border-2 border-contrast-text'
             : 'bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-200'
         }`}>
-          <div>
+          <div className="flex-1">
             <h3 
               id="lessons-heading" 
-              className={`text-2xl lg:text-3xl font-bold mb-2 flex items-center space-x-3 ${
+              className={`text-responsive-md font-bold mb-2 flex items-center space-x-2 sm:space-x-3 ${
                 contrastHigh ? 'text-contrast-text' : 'text-gray-800'
               }`}
             >
-              <span className="text-4xl animate-bounce">{selectedItem?.icon}</span>
+              <span className="text-3xl sm:text-4xl animate-bounce">{selectedItem?.icon}</span>
               <span>{selectedPath}</span>
             </h3>
-            <p className={`text-sm lg:text-base ${
+            <p className={`text-responsive-sm ${
               contrastHigh ? 'text-contrast-text' : 'text-gray-600'
             }`}>
               {selectedItem?.description}
@@ -372,7 +372,7 @@ export default function Menu() {
             </p>
           </div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8">
+          <div className="grid-responsive-3">
             {selectedItem?.lessons.map((lesson, index) => (
               <div 
                 key={lesson.id}
@@ -394,7 +394,7 @@ export default function Menu() {
 
       {/* Section frise chronologique modernisée */}
       <section className="mt-16 animate-slide-up">
-        <div className={`relative overflow-hidden text-center p-10 lg:p-12 rounded-3xl ${
+        <div className={`relative overflow-hidden text-center p-responsive rounded-3xl ${
           contrastHigh ? 'bg-contrast-bg border-2 border-contrast-text' : 'bg-gradient-to-br from-indigo-500 via-purple-600 to-pink-600 text-white'
         }`}>
           {/* Éléments décoratifs */}
@@ -411,13 +411,13 @@ export default function Menu() {
               <span className="text-6xl lg:text-7xl animate-bounce">📜</span>
             </div>
             
-            <h3 className={`text-3xl lg:text-4xl font-bold mb-6 ${
+            <h3 className={`text-responsive-lg font-bold mb-6 ${
               contrastHigh ? 'text-contrast-text' : 'text-white'
             }`}>
               Découvre la grande histoire de la Bible
             </h3>
             
-            <p className={`text-lg lg:text-xl mb-8 max-w-2xl mx-auto leading-relaxed ${
+            <p className={`text-responsive-sm mb-8 max-w-2xl mx-auto leading-relaxed ${
               contrastHigh ? 'text-contrast-text' : 'text-indigo-100'
             }`}>
               Voyage à travers le temps et découvre comment toutes les histoires bibliques 
@@ -426,7 +426,7 @@ export default function Menu() {
             
             <a
               href="/timeline"
-              className={`group inline-flex items-center space-x-3 px-8 py-4 rounded-2xl font-bold text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
+              className={`group inline-flex items-center space-x-2 sm:space-x-3 px-6 sm:px-8 py-3 sm:py-4 rounded-2xl font-bold text-sm sm:text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
                 contrastHigh
                   ? 'bg-contrast-text text-contrast-bg hover:opacity-80 border-2 border-contrast-text'
                   : 'bg-white text-indigo-700 hover:bg-indigo-50 shadow-xl'
@@ -448,7 +448,7 @@ export default function Menu() {
 
       {/* Section bonus modernisée */}
       <section className="mt-12 pt-8 border-t border-gray-200 animate-slide-up">
-        <div className={`rounded-2xl p-8 text-center ${
+        <div className={`rounded-2xl p-responsive text-center ${
           contrastHigh 
             ? 'bg-contrast-bg border-2 border-contrast-text'
             : 'bg-gradient-to-br from-amber-50 via-orange-50 to-red-50 border border-amber-200'
@@ -457,13 +457,13 @@ export default function Menu() {
             <span className="text-4xl animate-wiggle">💡</span>
           </div>
           
-          <h3 className={`text-2xl font-bold mb-4 ${
+          <h3 className={`text-responsive-md font-bold mb-4 ${
             contrastHigh ? 'text-contrast-text' : 'text-amber-800'
           }`}>
             Le savais-tu ?
           </h3>
           
-          <p className={`text-lg leading-relaxed max-w-2xl mx-auto ${
+          <p className={`text-responsive-sm leading-relaxed max-w-2xl mx-auto ${
             contrastHigh ? 'text-contrast-text' : 'text-amber-700'
           }`}>
             La Bible contient 66 livres écrits sur plus de 1 500 ans par une quarantaine d'auteurs différents. 
@@ -471,7 +471,7 @@ export default function Menu() {
             pour vivre une vie qui lui plaît.
           </p>
           
-          <div className={`mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 max-w-3xl mx-auto ${
+          <div className={`mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-3xl mx-auto ${
             contrastHigh ? 'text-contrast-text' : 'text-amber-600'
           }`}>
             <div className="flex items-center justify-center space-x-2">

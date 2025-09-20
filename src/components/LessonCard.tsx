@@ -54,7 +54,7 @@ export default function LessonCard({ id, title, path, description, book }: Props
   return (
     <Link
       to={`/lesson/${id}`}
-      className={`group block p-6 rounded-2xl border-2 transition-all duration-300 hover:scale-105 hover:shadow-xl card-enter relative overflow-hidden ${
+      className={`group block p-4 sm:p-6 rounded-2xl border-2 transition-all duration-300 hover:scale-105 hover:shadow-xl card-enter relative overflow-hidden ${
         contrastHigh
           ? 'border-contrast-text bg-contrast-bg hover:bg-contrast-text hover:text-contrast-bg'
           : completed
@@ -71,9 +71,9 @@ export default function LessonCard({ id, title, path, description, book }: Props
       )}
       
       <div className="flex items-start justify-between relative">
-        <div className="flex-1 pr-4">
-          <div className="flex items-center space-x-3 mb-3">
-            <h3 className={`text-xl font-bold group-hover:text-blue-600 transition-colors ${
+        <div className="flex-1 pr-2 sm:pr-4">
+          <div className="flex items-center space-x-2 sm:space-x-3 mb-3">
+            <h3 className={`text-lg sm:text-xl font-bold group-hover:text-blue-600 transition-colors ${
               contrastHigh ? 'text-contrast-text' : completed ? 'text-green-800' : 'text-gray-800'
             }`}>
               {title}
@@ -88,10 +88,10 @@ export default function LessonCard({ id, title, path, description, book }: Props
             )}
           </div>
           
-          <div className={`flex items-center space-x-2 text-sm mb-3 ${
+          <div className={`flex items-center space-x-2 text-xs sm:text-sm mb-3 ${
             contrastHigh ? 'text-contrast-text' : 'text-gray-600'
           }`}>
-            <span className="text-lg">📖</span>
+            <span className="text-sm sm:text-lg">📖</span>
             <span className="font-medium">{path}</span>
             {book && (
               <>
@@ -104,7 +104,7 @@ export default function LessonCard({ id, title, path, description, book }: Props
           </div>
           
           {description && (
-            <p className={`text-base leading-relaxed mb-4 ${
+            <p className={`text-sm sm:text-base leading-relaxed mb-4 ${
               contrastHigh ? 'text-contrast-text' : 'text-gray-700'
             }`}>
               {description}
@@ -123,15 +123,15 @@ export default function LessonCard({ id, title, path, description, book }: Props
           )}
         </div>
         
-        <div className={`text-4xl transform group-hover:scale-110 transition-transform duration-300 ${
+        <div className={`text-3xl sm:text-4xl transform group-hover:scale-110 transition-transform duration-300 ${
           contrastHigh ? 'text-contrast-text' : completed ? 'text-green-500' : 'text-blue-500'
         }`}>
           {getLessonEmoji(id)}
         </div>
       </div>
       
-      <div className="mt-6 flex items-center justify-between">
-        <div className={`inline-flex items-center space-x-2 px-4 py-2 rounded-xl font-semibold text-sm transition-all group-hover:translate-x-1 ${
+      <div className="mt-4 sm:mt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+        <div className={`inline-flex items-center space-x-2 px-3 sm:px-4 py-2 rounded-xl font-semibold text-xs sm:text-sm transition-all group-hover:translate-x-1 ${
           contrastHigh ? 'text-contrast-text' : completed 
             ? 'bg-green-100 text-green-700 group-hover:bg-green-200' 
             : 'bg-blue-100 text-blue-700 group-hover:bg-blue-200'

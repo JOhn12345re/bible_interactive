@@ -7,6 +7,7 @@ import BibleExplorer from './pages/BibleExplorer';
 import SermonSection from './components/SermonSection';
 import TestBible from './pages/TestBible';
 import TopicsExplorer from './components/TopicsExplorer';
+import MobileNavigation from './components/MobileNavigation';
 
 function App() {
   const { fontScale, contrastHigh, fontFamily } = useSettings();
@@ -39,6 +40,9 @@ function App() {
         v7_startTransition: true,
         v7_relativeSplatPath: true 
       }}>
+        {/* Navigation mobile */}
+        <MobileNavigation />
+        
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/lesson/:id" element={<Lesson />} />
