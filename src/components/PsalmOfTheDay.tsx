@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { bibleApi, BibleVerse } from '../services/bibleApi';
+import AudioPlayer from './AudioPlayer';
+import ProgressBar from './ProgressBar';
 
 interface PsalmOfTheDayProps {
   className?: string;
@@ -10,6 +12,8 @@ const PsalmOfTheDay: React.FC<PsalmOfTheDayProps> = ({ className = '' }) => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [psalmNumber, setPsalmNumber] = useState<number>(1);
+  const [isRead, setIsRead] = useState(false);
+  const [readingProgress, setReadingProgress] = useState(0);
 
   useEffect(() => {
     loadPsalmOfTheDay();
@@ -47,12 +51,23 @@ const PsalmOfTheDay: React.FC<PsalmOfTheDayProps> = ({ className = '' }) => {
       const verses = await bibleApi.getPsalm(number);
       setPsalm(verses);
       setPsalmNumber(number);
+      setIsRead(false);
+      setReadingProgress(0);
     } catch (err) {
       setError('Erreur lors du chargement du psaume');
       console.error('Erreur:', err);
     } finally {
       setLoading(false);
     }
+  };
+
+  const markAsRead = () => {
+    setIsRead(true);
+    setReadingProgress(100);
+  };
+
+  const getFullPsalmText = () => {
+    return psalm.map(verse => verse.verse_text).join(' ');
   };
 
   if (loading) {
@@ -117,7 +132,7 @@ const PsalmOfTheDay: React.FC<PsalmOfTheDayProps> = ({ className = '' }) => {
       </div>
 
       <div className="mb-6">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between mb-4">
           <h3 className="text-2xl font-bold text-gray-800 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
             Psaume {psalmNumber}
           </h3>
@@ -128,11 +143,40 @@ const PsalmOfTheDay: React.FC<PsalmOfTheDayProps> = ({ className = '' }) => {
             🔄 Retour au psaume du jour
           </button>
         </div>
+
+        {/* Barre de progression de lecture */}
+        <div className="mb-4">
+          <ProgressBar
+            current={readingProgress}
+            total={100}
+            label="Progression de lecture"
+            color="purple"
+            size="sm"
+            showPercentage={true}
+          />
+        </div>
+
+        {/* Contrôles audio */}
+        <div className="mb-4">
+          <AudioPlayer
+            text={getFullPsalmText()}
+            title={`Psaume ${psalmNumber}`}
+            className="bg-blue-50 p-3 rounded-lg"
+          />
+        </div>
       </div>
 
       <div className="space-y-4 max-h-96 overflow-y-auto">
         {psalm.map((verse, index) => (
-          <div key={index} className="flex items-start space-x-4 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 hover-lift">
+          <div 
+            key={index} 
+            className="flex items-start space-x-4 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 hover-lift"
+            onClick={() => {
+              if (!isRead) {
+                setReadingProgress(Math.min(100, ((index + 1) / psalm.length) * 100));
+              }
+            }}
+          >
             <span className="flex-shrink-0 w-10 h-10 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-full flex items-center justify-center text-sm font-bold">
               {verse.verse_start}
             </span>
@@ -142,6 +186,31 @@ const PsalmOfTheDay: React.FC<PsalmOfTheDayProps> = ({ className = '' }) => {
           </div>
         ))}
       </div>
+
+      {/* Bouton pour marquer comme lu */}
+      {!isRead && psalm.length > 0 && (
+        <div className="mt-6 text-center">
+          <button
+            onClick={markAsRead}
+            className="px-6 py-3 bg-gradient-to-r from-green-500 to-teal-600 text-white rounded-lg hover:from-green-600 hover:to-teal-700 transition-all duration-300 button-interactive font-semibold shadow-lg hover:shadow-xl transform hover:scale-105"
+          >
+            ✅ Marquer comme lu
+          </button>
+        </div>
+      )}
+
+      {/* Message de félicitations */}
+      {isRead && (
+        <div className="mt-6 p-4 bg-gradient-to-r from-green-50 to-blue-50 rounded-lg text-center">
+          <div className="text-2xl mb-2">🎉</div>
+          <div className="text-lg font-semibold text-green-800">
+            Félicitations ! Vous avez lu le Psaume {psalmNumber} !
+          </div>
+          <div className="text-sm text-green-600 mt-1">
+            Vous avez gagné des points d'expérience !
+          </div>
+        </div>
+      )}
 
       {psalm.length === 0 && (
         <div className="text-center text-gray-500 py-8">

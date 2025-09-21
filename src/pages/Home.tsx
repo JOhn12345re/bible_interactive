@@ -10,6 +10,8 @@ import ProfileDialog from '../components/ProfileDialog';
 import { BibleApiTest } from '../components/BibleApiTest';
 import TranslationSelector from '../components/TranslationSelector';
 import FrenchBibleSelector from '../components/FrenchBibleSelector';
+import BadgeChest from '../components/BadgeChest';
+import DailyChallenge from '../components/DailyChallenge';
 import { Link } from 'react-router-dom';
 
 export default function Home() {
@@ -456,6 +458,36 @@ export default function Home() {
             </p>
           </div>
         </footer>
+
+        {/* Section Gamification */}
+        <section className="py-8 px-responsive">
+          <div className="max-w-6xl mx-auto">
+            <div className="text-center mb-8">
+              <h2 className={`text-3xl font-bold mb-4 ${
+                contrastHigh ? 'text-contrast-text' : 'text-gray-800'
+              }`}>
+                🎮 Votre Aventure Biblique
+              </h2>
+              <p className={`text-lg ${
+                contrastHigh ? 'text-contrast-text' : 'text-gray-600'
+              }`}>
+                Gagnez des badges, relevez des défis et suivez vos progrès !
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+              {/* Coffre à Badges */}
+              <div className="flex justify-center">
+                <BadgeChest />
+              </div>
+
+              {/* Défis Quotidiens */}
+              <div>
+                <DailyChallenge />
+              </div>
+            </div>
+          </div>
+        </section>
       </main>
 
       {/* Dialogs */}
