@@ -2,6 +2,12 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useSettings } from './state/settingsStore';
 import Home from './pages/Home';
 import Lesson from './pages/Lesson';
+import LessonsPage from './pages/LessonsPage';
+import GamesPage from './pages/GamesPage';
+import JournalPage from './pages/JournalPage';
+import VerseMemoryGame from './pages/VerseMemoryGame';
+import TempleBuilderGame from './pages/TempleBuilderGame';
+import MiracleRaceGame from './pages/MiracleRaceGame';
 import TimelinePage from './pages/TimelinePage';
 import BibleExplorer from './pages/BibleExplorer';
 import SermonSection from './components/SermonSection';
@@ -45,12 +51,18 @@ function App() {
         
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/lessons" element={<LessonsPage />} />
           <Route path="/lesson/:id" element={<Lesson />} />
+          <Route path="/games" element={<GamesPage />} />
+          <Route path="/games/verse-memory" element={<VerseMemoryGame />} />
+          <Route path="/games/temple-builder" element={<TempleBuilderGame />} />
+          <Route path="/games/miracle-race" element={<MiracleRaceGame />} />
+          <Route path="/journal" element={<JournalPage />} />
           <Route path="/timeline" element={<TimelinePage />} />
-               <Route path="/bible" element={<BibleExplorer />} />
-               <Route path="/sermons" element={<SermonSection />} />
-               <Route path="/test-bible" element={<TestBible />} />
-               <Route path="/topics" element={<TopicsExplorer />} />
+          <Route path="/bible" element={<BibleExplorer />} />
+          <Route path="/sermons" element={<SermonSection />} />
+          <Route path="/test-bible" element={<TestBible />} />
+          <Route path="/topics" element={<TopicsExplorer />} />
         </Routes>
       </Router>
       </div>
