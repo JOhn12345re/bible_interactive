@@ -11,6 +11,26 @@ node_modules/
 src/content/
 public/bibles_json_6.0/
 public/content/
+public/sermons/
+
+# Fichiers volumineux
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.wmv
+*.flv
+*.webm
+*.mp3
+*.wav
+*.flac
+*.aac
+*.psd
+*.ai
+*.tiff
+*.db
+*.sqlite
+*.sqlite3
 
 # Fichiers de sauvegarde
 *.backup
