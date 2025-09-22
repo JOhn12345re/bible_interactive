@@ -1,8 +1,9 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { useSettings } from '../state/settingsStore'
 import { bibleApi, type BibleVerse } from '../services/bibleApi'
 import { useFavoritesStore } from '../state/favoritesStore'
+import { useVerseSearch } from '../hooks/useBibleApi'
 
 const FRENCH_BOOKS: string[] = [
   // Ancien Testament
@@ -14,6 +15,7 @@ const FRENCH_BOOKS: string[] = [
 
 export default function BibleExplorer() {
   const { contrastHigh } = useSettings()
+  const [searchParams] = useSearchParams()
   const [book, setBook] = useState<string>('Genèse')
   const [chapter, setChapter] = useState<number>(1)
   const [start, setStart] = useState<number>(1)
@@ -21,13 +23,46 @@ export default function BibleExplorer() {
   const [loading, setLoading] = useState<boolean>(false)
   const [error, setError] = useState<string | null>(null)
   const [verses, setVerses] = useState<BibleVerse[]>([])
+  const [activeTab, setActiveTab] = useState<'browse' | 'search'>('browse')
+  const [searchTerm, setSearchTerm] = useState('')
+  
   const addFavorite = useFavoritesStore(s => s.addFavorite)
   const removeFavorite = useFavoritesStore(s => s.removeFavorite)
   const isFavorite = useFavoritesStore(s => s.isFavorite)
+  
+  // Hook de recherche
+  const { 
+    verses: searchVerses, 
+    loading: searchLoading, 
+    error: searchError, 
+    searchHistory, 
+    searchVerse, 
+    clearError: clearSearchError 
+  } = useVerseSearch()
 
   const isDemo = !import.meta.env.VITE_BIBLE_API_KEY
 
   const chaptersList = useMemo(() => Array.from({ length: 150 }, (_, i) => i + 1), [])
+
+  // Fonction de recherche
+  const handleSearch = async (e: React.FormEvent) => {
+    e.preventDefault()
+    if (!searchTerm.trim()) return
+    
+    clearSearchError()
+    await searchVerse(searchTerm.trim())
+  }
+
+  // Versets populaires pour suggestions
+  const popularVerses = [
+    'Jean 3:16',
+    'Psaume 23:1',
+    'Matthieu 28:19-20',
+    'Romains 8:28',
+    'Philippiens 4:13',
+    'Genèse 1:1',
+    'Esaïe 40:31'
+  ]
 
   useEffect(() => {
     const fetchVerses = async () => {
@@ -45,6 +80,24 @@ export default function BibleExplorer() {
     }
     fetchVerses()
   }, [book, chapter, start, end])
+
+  // Activer l'onglet Recherche via le paramètre d'URL `?tab=search`
+  useEffect(() => {
+    const tab = searchParams.get('tab')?.toLowerCase()
+    if (tab === 'search' && activeTab !== 'search') {
+      setActiveTab('search')
+    }
+
+    // Pré-remplir la recherche et lancer automatiquement si `?q=` est fourni
+    const q = searchParams.get('q')
+    if (q && q.trim()) {
+      setSearchTerm(q)
+      // lancer une recherche sans soumettre le formulaire
+      clearSearchError()
+      searchVerse(q.trim())
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams])
 
   return (
     <div className="min-h-screen">
@@ -65,7 +118,44 @@ export default function BibleExplorer() {
       </header>
 
       <main className="max-w-6xl mx-auto px-responsive py-responsive">
-        {/* Contrôles rapides */}
+        {/* Onglets de navigation */}
+        <div className="mb-6">
+          <div className="flex space-x-1 bg-gray-100 dark:bg-gray-800 p-1 rounded-lg">
+            <button
+              onClick={() => setActiveTab('browse')}
+              className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
+                activeTab === 'browse'
+                  ? contrastHigh
+                    ? 'bg-contrast-text text-contrast-bg'
+                    : 'bg-white text-blue-600 shadow-sm'
+                  : contrastHigh
+                    ? 'text-contrast-text hover:bg-contrast-text hover:text-contrast-bg'
+                    : 'text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              📖 Parcourir
+            </button>
+            <button
+              onClick={() => setActiveTab('search')}
+              className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
+                activeTab === 'search'
+                  ? contrastHigh
+                    ? 'bg-contrast-text text-contrast-bg'
+                    : 'bg-white text-blue-600 shadow-sm'
+                  : contrastHigh
+                    ? 'text-contrast-text hover:bg-contrast-text hover:text-contrast-bg'
+                    : 'text-gray-600 hover:text-gray-900'
+              }`}
+            >
+              🔍 Rechercher
+            </button>
+          </div>
+        </div>
+
+        {/* Contenu conditionnel selon l'onglet actif */}
+        {activeTab === 'browse' ? (
+          <>
+            {/* Contrôles rapides */}
         <div className="mb-4">
           {/* Version mobile - contrôles compacts */}
           <div className="sm:hidden">
@@ -177,6 +267,185 @@ export default function BibleExplorer() {
             })}
           </div>
         </section>
+        </>
+        ) : (
+          /* Interface de recherche */
+          <div className="space-y-6">
+            {/* Formulaire de recherche */}
+            <form onSubmit={handleSearch} className="space-y-4">
+              <div className="flex space-x-3">
+                <input
+                  type="text"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  placeholder="Ex: Jean 3:16, Psaume 23:1-3..."
+                  className={`flex-1 px-4 py-3 rounded-xl border-2 transition-colors ${
+                    contrastHigh
+                      ? 'bg-contrast-bg text-contrast-text border-contrast-text'
+                      : 'bg-gray-50 border-gray-200 focus:border-blue-400 focus:bg-white'
+                  }`}
+                />
+                <button
+                  type="submit"
+                  disabled={!searchTerm.trim() || searchLoading}
+                  className={`px-6 py-3 rounded-xl font-medium transition-colors ${
+                    contrastHigh
+                      ? 'bg-contrast-text text-contrast-bg hover:opacity-80'
+                      : 'bg-blue-600 text-white hover:bg-blue-700 disabled:bg-gray-300'
+                  }`}
+                >
+                  {searchLoading ? '🔄' : '🔍'}
+                </button>
+              </div>
+            </form>
+
+            {/* Versets populaires */}
+            <div>
+              <h3 className={`text-sm font-medium mb-2 ${
+                contrastHigh ? 'text-contrast-text' : 'text-gray-700'
+              }`}>
+                Versets populaires :
+              </h3>
+              <div className="flex flex-wrap gap-2">
+                {popularVerses.map((verse) => (
+                  <button
+                    key={verse}
+                    onClick={() => {
+                      setSearchTerm(verse)
+                      searchVerse(verse)
+                    }}
+                    className={`px-3 py-1 rounded-full text-xs transition-colors ${
+                      contrastHigh
+                        ? 'bg-contrast-text text-contrast-bg hover:opacity-80'
+                        : 'bg-blue-100 text-blue-700 hover:bg-blue-200'
+                    }`}
+                  >
+                    {verse}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            {/* Historique de recherche */}
+            {searchHistory.length > 0 && (
+              <div>
+                <h3 className={`text-sm font-medium mb-2 ${
+                  contrastHigh ? 'text-contrast-text' : 'text-gray-700'
+                }`}>
+                  Recherches récentes :
+                </h3>
+                <div className="flex flex-wrap gap-2">
+                  {searchHistory.slice(0, 5).map((historyItem, index) => (
+                    <button
+                      key={index}
+                      onClick={() => {
+                        setSearchTerm(historyItem)
+                        searchVerse(historyItem)
+                      }}
+                      className={`px-3 py-1 rounded-full text-xs transition-colors ${
+                        contrastHigh
+                          ? 'bg-contrast-bg border border-contrast-text text-contrast-text hover:bg-contrast-text hover:text-contrast-bg'
+                          : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                      }`}
+                    >
+                      {historyItem}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* Erreur de recherche */}
+            {searchError && (
+              <div className="p-4 rounded-lg bg-red-50 border border-red-200">
+                <p className="text-red-700 text-sm">{searchError}</p>
+                <button
+                  onClick={clearSearchError}
+                  className="text-red-600 text-xs underline mt-1"
+                >
+                  Effacer
+                </button>
+              </div>
+            )}
+
+            {/* Résultats de recherche */}
+            {searchLoading && (
+              <div className="text-center py-8">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
+                <p className={`mt-2 text-sm ${contrastHigh ? 'text-contrast-text' : 'text-gray-600'}`}>
+                  Recherche en cours...
+                </p>
+              </div>
+            )}
+
+            {searchVerses.length > 0 && !searchLoading && (
+              <div className="space-y-4">
+                <h3 className={`text-lg font-semibold ${
+                  contrastHigh ? 'text-contrast-text' : 'text-gray-800'
+                }`}>
+                  Résultats de recherche ({searchVerses.length})
+                </h3>
+                
+                {searchVerses.map((verse, index) => {
+                  const fav = isFavorite(verse.book_id, verse.chapter, verse.verse_start)
+                  
+                  return (
+                    <div key={index} className={`p-4 rounded-xl border ${
+                      contrastHigh 
+                        ? 'bg-contrast-bg border-contrast-text'
+                        : 'bg-white border-gray-200 shadow-sm'
+                    }`}>
+                      <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
+                        <div className="flex-1">
+                          <div className={`text-sm font-medium mb-2 ${
+                            contrastHigh ? 'text-contrast-text' : 'text-blue-600'
+                          }`}>
+                            {verse.book_id} {verse.chapter}:{verse.verse_start}
+                          </div>
+                          <p className={`text-sm sm:text-base leading-relaxed ${
+                            contrastHigh ? 'text-contrast-text' : 'text-gray-700'
+                          }`}>
+                            {verse.verse_text}
+                          </p>
+                        </div>
+                        <div className="flex-shrink-0 flex flex-wrap items-center gap-2">
+                          <button 
+                            onClick={() => navigator.clipboard.writeText(`${verse.book_id} ${verse.chapter}:${verse.verse_start} - ${verse.verse_text}`)}
+                            className="text-xs sm:text-sm px-2 py-1 rounded border bg-gray-50 hover:bg-gray-100 transition-colors"
+                          >
+                            Copier
+                          </button>
+                          <button 
+                            onClick={() => {
+                              const favoriteId = `${verse.book_id}|${verse.chapter}|${verse.verse_start}-`
+                              if (fav) {
+                                removeFavorite(favoriteId)
+                              } else {
+                                addFavorite({
+                                  book: verse.book_id,
+                                  chapter: verse.chapter,
+                                  verseStart: verse.verse_start,
+                                  text: verse.verse_text
+                                })
+                              }
+                            }}
+                            className={`text-xs sm:text-sm px-2 py-1 rounded border transition-colors ${
+                              fav 
+                                ? 'bg-yellow-100 border-yellow-300 hover:bg-yellow-200' 
+                                : 'bg-gray-50 hover:bg-gray-100'
+                            }`}
+                          >
+                            {fav ? '★ Favori' : '☆ Favori'}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+            )}
+          </div>
+        )}
       </main>
     </div>
   )

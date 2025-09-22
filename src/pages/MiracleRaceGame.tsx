@@ -56,7 +56,7 @@ const MiracleRaceGame = () => {
       description: 'Aide Jésus à nourrir 5000 personnes',
       requiredItems: ['bread', 'fish', 'basket', 'faith'],
       story: 'Jésus prit les 5 pains et 2 poissons, et nourrit toute la foule.',
-      biblicalReference: 'Matthieu 14:13-21',
+      biblicalReference: 'Matthieu 14:13-21 (Louis Segond 1910)',
       difficulty: 'facile'
     },
     {
@@ -66,7 +66,7 @@ const MiracleRaceGame = () => {
       description: 'Restaure la vue à l\'aveugle-né',
       requiredItems: ['clay', 'water', 'hands', 'faith'],
       story: 'Jésus fit de la boue et l\'appliqua sur les yeux de l\'aveugle.',
-      biblicalReference: 'Jean 9:1-12',
+      biblicalReference: 'Jean 9:1-12 (Louis Segond 1910)',
       difficulty: 'moyen'
     },
     {
@@ -76,7 +76,7 @@ const MiracleRaceGame = () => {
       description: 'Ramène Lazare à la vie',
       requiredItems: ['tomb', 'voice', 'prayer', 'faith'],
       story: 'Jésus cria d\'une voix forte : "Lazare, sors !"',
-      biblicalReference: 'Jean 11:1-44',
+      biblicalReference: 'Jean 11:1-44 (Louis Segond 1910)',
       difficulty: 'difficile'
     },
     {
@@ -86,7 +86,7 @@ const MiracleRaceGame = () => {
       description: 'Marche avec Jésus sur les eaux',
       requiredItems: ['boat', 'wind', 'courage', 'faith'],
       story: 'Pierre marcha sur les eaux vers Jésus pendant la tempête.',
-      biblicalReference: 'Matthieu 14:22-33',
+      biblicalReference: 'Matthieu 14:22-33 (Louis Segond 1910)',
       difficulty: 'moyen'
     },
     {
@@ -96,7 +96,7 @@ const MiracleRaceGame = () => {
       description: 'Aide le paralytique à remarcher',
       requiredItems: ['mat', 'friends', 'roof', 'faith'],
       story: 'Ses amis descendirent le paralytique par le toit devant Jésus.',
-      biblicalReference: 'Marc 2:1-12',
+      biblicalReference: 'Marc 2:1-12 (Louis Segond 1910)',
       difficulty: 'facile'
     }
   ];
@@ -391,6 +391,9 @@ const MiracleRaceGame = () => {
                 </h1>
                 <p className={`text-sm ${contrastHigh ? 'text-contrast-text' : 'text-gray-600'}`}>
                   Collecte les éléments et accomplis des miracles bibliques
+                </p>
+                <p className={`text-xs mt-1 ${contrastHigh ? 'text-contrast-text/70' : 'text-gray-500'}`}>
+                  📖 Version Louis Segond 1910
                 </p>
               </div>
             </div>

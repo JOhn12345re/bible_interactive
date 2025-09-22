@@ -51,22 +51,27 @@ export function useBibleApi(): UseBibleApiReturn {
     setLastRequest({ type: 'reference', value: reference });
 
     try {
+      console.log('🔍 fetchVerses: Recherche de référence:', reference);
       const verse = await bibleApi.getVerseByReference(reference);
+      console.log('📝 fetchVerses: Résultat de l\'API:', verse);
+      
       const verses = verse ? [verse] : [];
       
       setState(prev => ({ 
         ...prev, 
         verses, 
         loading: false,
-        error: verses.length === 0 ? 'Verset non trouvé' : null
+        error: verses.length === 0 ? `Verset non trouvé: "${reference}"` : null
       }));
+      
+      console.log('✅ fetchVerses: État mis à jour avec', verses.length, 'verset(s)');
     } catch (error) {
+      console.error('❌ fetchVerses: Erreur lors du chargement du verset:', error);
       setState(prev => ({ 
         ...prev, 
         loading: false, 
-        error: 'Erreur lors du chargement du verset' 
+        error: `Erreur lors du chargement de "${reference}": ${error instanceof Error ? error.message : 'Erreur inconnue'}` 
       }));
-      console.error('Erreur fetchVerses:', error);
     }
   }, []);
 

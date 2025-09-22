@@ -18,26 +18,6 @@ const GamesPage = () => {
       link: '/games/verse-memory'
     },
     {
-      id: 'quiz-biblique',
-      title: 'Quiz Biblique',
-      description: 'Teste tes connaissances avec des questions amusantes sur la Bible.',
-      emoji: '❓',
-      difficulty: 'Facile',
-      players: '1 joueur',
-      colorClass: 'bg-gradient-to-br from-purple-500 to-pink-600',
-      available: false
-    },
-    {
-      id: 'memory-versets',
-      title: 'Memory des Versets',
-      description: 'Retrouve les paires de cartes avec des versets célèbres.',
-      emoji: '🎯',
-      difficulty: 'Moyen',
-      players: '1 joueur',
-      colorClass: 'bg-gradient-to-br from-blue-500 to-indigo-600',
-      available: false
-    },
-    {
       id: 'temple-builder',
       title: 'Constructeur de Temple',
       description: 'Construis le temple de Salomon en plaçant chaque élément à sa place.',
@@ -47,15 +27,6 @@ const GamesPage = () => {
       colorClass: 'bg-gradient-to-br from-amber-500 to-orange-600',
       available: true,
       link: '/games/temple-builder'
-    },
-    {
-      id: 'puzzle-arche',
-      title: 'Puzzle de l\'Arche',
-      description: 'Reconstitue l\'arche de Noé en plaçant tous les animaux.',
-      emoji: '🧩',
-      difficulty: 'Facile',
-      players: '1 joueur',
-      colorClass: 'bg-gradient-to-br from-green-500 to-teal-600'
     },
     {
       id: 'course-miracle',
@@ -69,22 +40,48 @@ const GamesPage = () => {
       link: '/games/miracle-race'
     },
     {
-      id: 'construction-temple',
-      title: 'Constructeur de Temple',
-      description: 'Aide Salomon à construire le magnifique Temple de Jérusalem.',
-      emoji: '🏛️',
-      difficulty: 'Difficile',
-      players: '1 joueur',
-      colorClass: 'bg-gradient-to-br from-red-500 to-rose-600'
-    },
-    {
-      id: 'cherche-tresor',
-      title: 'Chasse au Trésor Biblique',
-      description: 'Trouve les objets cachés dans les scènes bibliques.',
-      emoji: '💎',
+      id: 'bible-quiz',
+      title: 'Quiz Biblique',
+      description: 'Teste tes connaissances avec des questions sur la Bible !',
+      emoji: '🤔',
       difficulty: 'Moyen',
       players: '1 joueur',
-      colorClass: 'bg-gradient-to-br from-cyan-500 to-blue-600'
+      colorClass: 'bg-gradient-to-br from-green-500 to-teal-600',
+      available: true,
+      link: '/games/bible-quiz'
+    },
+    {
+      id: 'verse-memory-cards',
+      title: 'Memory des Versets',
+      description: 'Retrouve les paires verset-référence pour mémoriser la Parole !',
+      emoji: '🃏',
+      difficulty: 'Facile',
+      players: '1 joueur',
+      colorClass: 'bg-gradient-to-br from-pink-500 to-rose-600',
+      available: true,
+      link: '/games/verse-memory-cards'
+    },
+    {
+      id: 'ark-puzzle',
+      title: 'Puzzle de l\'Arche',
+      description: 'Aide Noé à placer tous les animaux dans l\'arche avant le déluge !',
+      emoji: '🚢',
+      difficulty: 'Facile',
+      players: '1 joueur',
+      colorClass: 'bg-gradient-to-br from-blue-600 to-indigo-700',
+      available: true,
+      link: '/games/ark-puzzle'
+    },
+    {
+      id: 'treasure-hunt',
+      title: 'Chasse au Trésor',
+      description: 'Explore les lieux saints et découvre les trésors bibliques !',
+      emoji: '🗺️',
+      difficulty: 'Difficile',
+      players: '1 joueur',
+      colorClass: 'bg-gradient-to-br from-yellow-500 to-orange-600',
+      available: true,
+      link: '/games/treasure-hunt'
     }
   ];
 
@@ -136,8 +133,8 @@ const GamesPage = () => {
               <p className={`${
                 contrastHigh ? 'text-contrast-text' : 'text-purple-700'
               }`}>
-                Chaque jeu terminé te donne des points et peut débloquer de nouveaux badges ! 
-                Choisis ton jeu préféré et commence à jouer.
+                Sept jeux éducatifs t'attendent ! Quiz, mémoire, construction, course, puzzles, et chasse au trésor. 
+                Chaque jeu terminé te donne des points et peut débloquer de nouveaux badges !
               </p>
             </div>
           </div>

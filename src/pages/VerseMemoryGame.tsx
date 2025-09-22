@@ -33,56 +33,56 @@ const VerseMemoryGame = () => {
     {
       id: '1',
       text: 'Car Dieu a tant aimé le monde qu\'il a donné son Fils unique',
-      reference: 'Jean 3:16',
+      reference: 'Jean 3:16 (Louis Segond 1910)',
       difficulty: 'facile',
       theme: 'Amour de Dieu'
     },
     {
       id: '2',
       text: 'Je suis le chemin, la vérité et la vie',
-      reference: 'Jean 14:6',
+      reference: 'Jean 14:6 (Louis Segond 1910)',
       difficulty: 'facile',
       theme: 'Jésus'
     },
     {
       id: '3',
       text: 'L\'Éternel est mon berger, je ne manquerai de rien',
-      reference: 'Psaume 23:1',
+      reference: 'Psaume 23:1 (Louis Segond 1910)',
       difficulty: 'facile',
       theme: 'Confiance'
     },
     {
       id: '4',
       text: 'Tout ce que vous demanderez avec foi par la prière, vous le recevrez',
-      reference: 'Matthieu 21:22',
+      reference: 'Matthieu 21:22 (Louis Segond 1910)',
       difficulty: 'moyen',
       theme: 'Prière'
     },
     {
       id: '5',
       text: 'Ne vous inquiétez de rien, mais en toute chose faites connaître vos besoins à Dieu',
-      reference: 'Philippiens 4:6',
+      reference: 'Philippiens 4:6 (Louis Segond 1910)',
       difficulty: 'moyen',
       theme: 'Paix'
     },
     {
       id: '6',
       text: 'Approchez-vous de Dieu et il s\'approchera de vous',
-      reference: 'Jacques 4:8',
+      reference: 'Jacques 4:8 (Louis Segond 1910)',
       difficulty: 'moyen',
       theme: 'Relation avec Dieu'
     },
     {
       id: '7',
       text: 'Car mes pensées ne sont pas vos pensées et vos voies ne sont pas mes voies',
-      reference: 'Ésaïe 55:8',
+      reference: 'Ésaïe 55:8 (Louis Segond 1910)',
       difficulty: 'difficile',
       theme: 'Sagesse divine'
     },
     {
       id: '8',
       text: 'Celui qui demeure sous l\'abri du Très-Haut repose à l\'ombre du Tout-Puissant',
-      reference: 'Psaume 91:1',
+      reference: 'Psaume 91:1 (Louis Segond 1910)',
       difficulty: 'difficile',
       theme: 'Protection'
     }
@@ -166,8 +166,58 @@ const VerseMemoryGame = () => {
 
   // Vérifier la réponse
   const checkAnswer = () => {
-    const isCorrect = gameState.userAnswer.toLowerCase().trim() === 
-                     gameState.correctAnswer.toLowerCase().trim();
+    // Fonction pour normaliser le texte (enlever ponctuation, majuscules, espaces multiples)
+    const normalizeText = (text: string) => {
+      return text
+        .toLowerCase()
+        .replace(/['']/g, "'") // Normaliser les apostrophes
+        .replace(/[«»""]/g, '"') // Normaliser les guillemets
+        .replace(/[.,;:!?]/g, '') // Enlever la ponctuation
+        .replace(/\s+/g, ' ') // Normaliser les espaces
+        .trim();
+    };
+
+    let isCorrect = false;
+
+    if (gameState.gameMode === 'fill-blanks') {
+      // Pour le mode "texte à trous", vérifier les mots manquants
+      const userWords = normalizeText(gameState.userAnswer).split(' ').filter(word => word.length > 0);
+      const expectedWords = gameState.blankedWords.map(word => normalizeText(word));
+      
+      if (userWords.length === expectedWords.length) {
+        let correctCount = 0;
+        for (let i = 0; i < userWords.length; i++) {
+          const userWord = userWords[i];
+          const expectedWord = expectedWords[i];
+          
+          // Accepter si exactement identique après normalisation
+          if (userWord === expectedWord) {
+            correctCount++;
+          }
+          // Ou si très similaire (tolérance aux fautes de frappe)
+          else if (calculateWordSimilarity(userWord, expectedWord) >= 0.8) {
+            correctCount++;
+          }
+        }
+        // Accepter si au moins 75% des mots sont corrects
+        isCorrect = (correctCount / expectedWords.length) >= 0.75;
+      }
+    } else {
+      // Pour les autres modes, comparer le texte complet
+      const userNormalized = normalizeText(gameState.userAnswer);
+      const correctNormalized = normalizeText(gameState.correctAnswer);
+      
+      // Vérification exacte après normalisation
+      if (userNormalized === correctNormalized) {
+        isCorrect = true;
+      }
+      // Si pas exactement correct, vérifier la similarité (tolérance aux petites erreurs)
+      else {
+        const similarity = calculateSimilarity(userNormalized, correctNormalized);
+        // Accepter si plus de 80% de similarité (plus tolérant)
+        isCorrect = similarity >= 0.8;
+      }
+    }
     
     if (isCorrect) {
       const newScore = gameState.score + (selectedDifficulty === 'facile' ? 10 : selectedDifficulty === 'moyen' ? 20 : 30);
@@ -196,6 +246,71 @@ const VerseMemoryGame = () => {
         gameComplete: true
       }));
     }
+  };
+
+  // Fonction pour calculer la similarité entre deux textes
+  const calculateSimilarity = (str1: string, str2: string): number => {
+    const words1 = str1.split(' ');
+    const words2 = str2.split(' ');
+    
+    if (words1.length === 0 && words2.length === 0) return 1;
+    if (words1.length === 0 || words2.length === 0) return 0;
+    
+    let matches = 0;
+    const maxLength = Math.max(words1.length, words2.length);
+    
+    // Comparer chaque mot
+    for (let i = 0; i < maxLength; i++) {
+      const word1 = words1[i] || '';
+      const word2 = words2[i] || '';
+      
+      // Exact match
+      if (word1 === word2) {
+        matches++;
+      }
+      // Tolérance aux petites différences (1-2 caractères)
+      else if (word1.length > 2 && word2.length > 2) {
+        const wordSimilarity = calculateWordSimilarity(word1, word2);
+        if (wordSimilarity >= 0.7) {
+          matches += wordSimilarity;
+        }
+      }
+    }
+    
+    return matches / maxLength;
+  };
+
+  // Fonction pour calculer la similarité entre deux mots (distance de Levenshtein simplifiée)
+  const calculateWordSimilarity = (word1: string, word2: string): number => {
+    // Normaliser les mots avant comparaison
+    const normalizeWord = (word: string) => {
+      return word
+        .toLowerCase()
+        .replace(/['']/g, "'")
+        .replace(/[«»""]/g, '"')
+        .replace(/[.,;:!?]/g, '')
+        .trim();
+    };
+    
+    const norm1 = normalizeWord(word1);
+    const norm2 = normalizeWord(word2);
+    
+    if (norm1.length === 0) return norm2.length === 0 ? 1 : 0;
+    if (norm2.length === 0) return 0;
+    
+    // Si les mots normalisés sont exactement identiques, retourner 1
+    if (norm1 === norm2) return 1;
+    
+    let differences = 0;
+    const maxLength = Math.max(norm1.length, norm2.length);
+    
+    for (let i = 0; i < maxLength; i++) {
+      if (norm1[i] !== norm2[i]) {
+        differences++;
+      }
+    }
+    
+    return 1 - (differences / maxLength);
   };
 
   // Afficher un indice
@@ -242,6 +357,9 @@ const VerseMemoryGame = () => {
                 </h1>
                 <p className={`text-sm ${contrastHigh ? 'text-contrast-text' : 'text-gray-600'}`}>
                   Apprends les plus beaux versets de la Bible
+                </p>
+                <p className={`text-xs mt-1 ${contrastHigh ? 'text-contrast-text/70' : 'text-gray-500'}`}>
+                  📖 Version Louis Segond 1910
                 </p>
               </div>
             </div>
@@ -363,6 +481,32 @@ const VerseMemoryGame = () => {
                   Récite le verset de mémoire
                 </p>
               </button>
+            </div>
+
+            {/* Note d'aide */}
+            <div className={`rounded-xl p-4 ${
+              contrastHigh 
+                ? 'bg-contrast-text/10 border border-contrast-text/20'
+                : 'bg-blue-50 border border-blue-200'
+            }`}>
+              <div className="flex items-start space-x-3">
+                <span className="text-2xl">💡</span>
+                <div>
+                  <h4 className={`font-medium mb-2 ${
+                    contrastHigh ? 'text-contrast-text' : 'text-blue-800'
+                  }`}>
+                    Conseils pour réussir
+                  </h4>
+                  <ul className={`text-sm space-y-1 ${
+                    contrastHigh ? 'text-contrast-text' : 'text-blue-700'
+                  }`}>
+                    <li>• Les majuscules et minuscules n'ont pas d'importance</li>
+                    <li>• La ponctuation (virgules, points) est ignorée</li>
+                    <li>• De petites erreurs de frappe sont tolérées</li>
+                    <li>• Concentre-toi sur le sens des mots !</li>
+                  </ul>
+                </div>
+              </div>
             </div>
           </div>
         ) : (

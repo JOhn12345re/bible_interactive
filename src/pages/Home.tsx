@@ -1,10 +1,12 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useSettings } from '../state/settingsStore';
 import { useProfileStore } from '../state/profileStore';
 import { useProgress } from '../state/progressStore';
 import SettingsDialog from '../components/SettingsDialog';
 import ProfileDialog from '../components/ProfileDialog';
 import ActionCard from '../components/ui/ActionCard';
+import ProfileWidget from '../components/ProfileWidget';
 
 export default function Home() {
   const [showSettings, setShowSettings] = useState(false);
@@ -104,6 +106,11 @@ export default function Home() {
           </p>
         </div>
 
+        {/* Widget de profil */}
+        <div className="mb-8 max-w-md mx-auto">
+          <ProfileWidget />
+        </div>
+
         {/* Quick Stats */}
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-12">
           <div className={`text-center p-4 rounded-2xl ${
@@ -187,6 +194,20 @@ export default function Home() {
             title="Mon Journal Secret"
             description="Écris tes pensées et tes découvertes spirituelles."
             colorClass="bg-gradient-to-br from-sky-500 to-cyan-600"
+          />
+          <ActionCard
+            to="/test-search"
+            icon="🔍"
+            title="Test Recherche"
+            description="Teste la recherche de versets bibliques."
+            colorClass="bg-gradient-to-br from-emerald-500 to-teal-600"
+          />
+          <ActionCard
+            to="/debug-search"
+            icon="🔧"
+            title="Debug Recherche"
+            description="Diagnostique la recherche de versets (développeur)."
+            colorClass="bg-gradient-to-br from-red-500 to-pink-600"
           />
         </div>
 
@@ -283,11 +304,14 @@ export default function Home() {
                 contrastHigh ? 'border-contrast-text/20' : 'border-gray-100'
               }`}>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
-                  <button className={`p-4 rounded-xl text-left transition-all hover:scale-105 ${
-                    contrastHigh 
-                      ? 'bg-contrast-text text-contrast-bg'
-                      : 'bg-gradient-to-br from-purple-500 to-pink-600 text-white shadow-lg'
-                  }`}>
+                  <Link 
+                    to="/bible?tab=search" 
+                    className={`p-4 rounded-xl text-left transition-all hover:scale-105 block ${
+                      contrastHigh 
+                        ? 'bg-contrast-text text-contrast-bg'
+                        : 'bg-gradient-to-br from-purple-500 to-pink-600 text-white shadow-lg'
+                    }`}
+                  >
                     <div className="flex items-center space-x-3">
                       <span className="text-2xl">🔍</span>
                       <div>
@@ -295,7 +319,7 @@ export default function Home() {
                         <p className="text-sm opacity-90">Trouve des passages par mots-clés</p>
                       </div>
                     </div>
-                  </button>
+                  </Link>
                   <button className={`p-4 rounded-xl text-left transition-all hover:scale-105 ${
                     contrastHigh 
                       ? 'bg-contrast-text text-contrast-bg'

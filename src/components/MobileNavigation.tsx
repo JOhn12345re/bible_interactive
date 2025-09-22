@@ -13,6 +13,7 @@ const MobileNavigation: React.FC = () => {
     { path: '/sermons', label: 'Sermons', icon: '🎬' },
     { path: '/timeline', label: 'Timeline', icon: '📜' },
     { path: '/test-bible', label: 'Test LSG', icon: '🧪' },
+    { path: '/profile', label: 'Mon Profil', icon: '👤' },
   ];
 
   return (

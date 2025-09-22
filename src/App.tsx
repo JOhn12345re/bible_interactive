@@ -1,5 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { useEffect } from 'react';
 import { useSettings } from './state/settingsStore';
+import { useProfileStore } from './state/profileStore';
 import Home from './pages/Home';
 import Lesson from './pages/Lesson';
 import LessonsPage from './pages/LessonsPage';
@@ -8,15 +10,32 @@ import JournalPage from './pages/JournalPage';
 import VerseMemoryGame from './pages/VerseMemoryGame';
 import TempleBuilderGame from './pages/TempleBuilderGame';
 import MiracleRaceGame from './pages/MiracleRaceGame';
+import BibleQuizGame from './pages/BibleQuizGame';
+import VerseMemoryCardGame from './pages/VerseMemoryCardGame';
+import ArkPuzzleGame from './pages/ArkPuzzleGame';
+import TreasureHuntGame from './pages/TreasureHuntGame';
 import TimelinePage from './pages/TimelinePage';
 import BibleExplorer from './pages/BibleExplorer';
 import SermonSection from './components/SermonSection';
 import TestBible from './pages/TestBible';
 import TopicsExplorer from './components/TopicsExplorer';
 import MobileNavigation from './components/MobileNavigation';
+import AudioControls from './components/AudioControls';
+import AccessibilityControls from './components/AccessibilityControls';
+import ProfileDashboard from './components/ProfileDashboard';
+import AchievementManager from './components/AchievementManager';
+import LevelUpManager from './components/LevelUpManager';
+import TestSearch from './components/TestSearch';
+import DebugSearch from './components/DebugSearch';
 
 function App() {
   const { fontScale, contrastHigh, fontFamily } = useSettings();
+  const { initializeDemoProfile } = useProfileStore();
+
+  useEffect(() => {
+    // Initialiser un profil de démonstration si aucun n'existe
+    initializeDemoProfile();
+  }, [initializeDemoProfile]);
 
   return (
     <div 
@@ -57,14 +76,33 @@ function App() {
           <Route path="/games/verse-memory" element={<VerseMemoryGame />} />
           <Route path="/games/temple-builder" element={<TempleBuilderGame />} />
           <Route path="/games/miracle-race" element={<MiracleRaceGame />} />
+          <Route path="/games/bible-quiz" element={<BibleQuizGame />} />
+          <Route path="/games/verse-memory-cards" element={<VerseMemoryCardGame />} />
+          <Route path="/games/ark-puzzle" element={<ArkPuzzleGame />} />
+          <Route path="/games/treasure-hunt" element={<TreasureHuntGame />} />
           <Route path="/journal" element={<JournalPage />} />
           <Route path="/timeline" element={<TimelinePage />} />
           <Route path="/bible" element={<BibleExplorer />} />
           <Route path="/sermons" element={<SermonSection />} />
           <Route path="/test-bible" element={<TestBible />} />
           <Route path="/topics" element={<TopicsExplorer />} />
+          <Route path="/profile" element={<ProfileDashboard />} />
+          <Route path="/test-search" element={<TestSearch />} />
+          <Route path="/debug-search" element={<DebugSearch />} />
         </Routes>
       </Router>
+      
+      {/* Contrôles audio globaux */}
+      <AudioControls />
+      
+      {/* Contrôles d'accessibilité */}
+      <AccessibilityControls />
+      
+      {/* Gestionnaire d'achievements */}
+      <AchievementManager />
+      
+      {/* Gestionnaire de montée de niveau */}
+      <LevelUpManager />
       </div>
     </div>
   );

@@ -48,7 +48,7 @@ const TempleBuilderGame = () => {
       size: { width: 100, height: 40 },
       snapPoints: ['foundation'],
       educationalInfo: 'Les fondations du temple étaient faites de pierres énormes taillées avec précision.',
-      biblicalReference: '1 Rois 5:17'
+      biblicalReference: '1 Rois 5:17 (Louis Segond 1910)'
     },
     {
       id: 'foundation-corner',
@@ -59,7 +59,7 @@ const TempleBuilderGame = () => {
       size: { width: 60, height: 60 },
       snapPoints: ['corner'],
       educationalInfo: 'La pierre angulaire était la pierre la plus importante, symbolisant Jésus-Christ.',
-      biblicalReference: 'Éphésiens 2:20'
+      biblicalReference: 'Éphésiens 2:20 (Louis Segond 1910)'
     },
     // Structure
     {
@@ -71,7 +71,7 @@ const TempleBuilderGame = () => {
       size: { width: 40, height: 120 },
       snapPoints: ['column-left', 'column-right'],
       educationalInfo: 'Les colonnes Jakin et Boaz encadraient l\'entrée du temple de Salomon.',
-      biblicalReference: '1 Rois 7:21'
+      biblicalReference: '1 Rois 7:21 (Louis Segond 1910)'
     },
     {
       id: 'roof',
@@ -82,7 +82,7 @@ const TempleBuilderGame = () => {
       size: { width: 200, height: 60 },
       snapPoints: ['roof'],
       educationalInfo: 'Le toit du temple était fait de bois de cèdre recouvert d\'or.',
-      biblicalReference: '1 Rois 6:9'
+      biblicalReference: '1 Rois 6:9 (Louis Segond 1910)'
     },
     {
       id: 'door',
@@ -93,7 +93,7 @@ const TempleBuilderGame = () => {
       size: { width: 80, height: 100 },
       snapPoints: ['entrance'],
       educationalInfo: 'Les portes étaient faites de bois d\'olivier sculpté et recouvertes d\'or.',
-      biblicalReference: '1 Rois 6:31-32'
+      biblicalReference: '1 Rois 6:31-32 (Louis Segond 1910)'
     },
     // Éléments sacrés
     {
@@ -105,7 +105,7 @@ const TempleBuilderGame = () => {
       size: { width: 80, height: 60 },
       snapPoints: ['altar'],
       educationalInfo: 'L\'autel d\'airain était l\'endroit où les sacrifices étaient offerts à Dieu.',
-      biblicalReference: '2 Chroniques 4:1'
+      biblicalReference: '2 Chroniques 4:1 (Louis Segond 1910)'
     },
     {
       id: 'ark',
@@ -116,7 +116,7 @@ const TempleBuilderGame = () => {
       size: { width: 100, height: 60 },
       snapPoints: ['holy-of-holies'],
       educationalInfo: 'L\'Arche contenait les tables de la loi et représentait la présence de Dieu.',
-      biblicalReference: 'Exode 25:10-22'
+      biblicalReference: 'Exode 25:10-22 (Louis Segond 1910)'
     },
     // Décorations
     {
@@ -128,7 +128,7 @@ const TempleBuilderGame = () => {
       size: { width: 60, height: 80 },
       snapPoints: ['menorah'],
       educationalInfo: 'Le chandelier d\'or à sept branches éclairait le lieu saint.',
-      biblicalReference: 'Exode 25:31-40'
+      biblicalReference: 'Exode 25:31-40 (Louis Segond 1910)'
     },
     {
       id: 'table',
@@ -139,7 +139,7 @@ const TempleBuilderGame = () => {
       size: { width: 80, height: 40 },
       snapPoints: ['table'],
       educationalInfo: 'Douze pains étaient disposés sur cette table, représentant les douze tribus d\'Israël.',
-      biblicalReference: 'Lévitique 24:5-9'
+      biblicalReference: 'Lévitique 24:5-9 (Louis Segond 1910)'
     }
   ];
 
@@ -321,6 +321,9 @@ const TempleBuilderGame = () => {
                 </h1>
                 <p className={`text-sm ${contrastHigh ? 'text-contrast-text' : 'text-gray-600'}`}>
                   Construis le temple de Salomon étape par étape
+                </p>
+                <p className={`text-xs mt-1 ${contrastHigh ? 'text-contrast-text/70' : 'text-gray-500'}`}>
+                  📖 Version Louis Segond 1910
                 </p>
               </div>
             </div>
