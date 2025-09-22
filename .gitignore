@@ -100,3 +100,15 @@ jspm_packages/
 
 # TypeScript build info
 *.tsbuildinfo
+
+# Large Bible data files
+bibles_json_6.0/
+resources/
+public/bibles_json_6.0/
+public/content/
+
+# Development files
+docs/
+scripts/
+*.md
+!README.md
