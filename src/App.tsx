@@ -84,11 +84,8 @@ function App() {
           <Route path="/timeline" element={<TimelinePage />} />
           <Route path="/bible" element={<BibleExplorer />} />
           <Route path="/sermons" element={<SermonSection />} />
-          <Route path="/test-bible" element={<TestBible />} />
-          <Route path="/topics" element={<TopicsExplorer />} />
           <Route path="/profile" element={<ProfileDashboard />} />
-          <Route path="/test-search" element={<TestSearch />} />
-          <Route path="/debug-search" element={<DebugSearch />} />
+          <Route path="/topics" element={<TopicsExplorer />} />
         </Routes>
       </Router>
       

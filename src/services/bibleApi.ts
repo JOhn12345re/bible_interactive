@@ -105,9 +105,7 @@ class BibleApiService {
     this.defaultLanguage = import.meta.env.VITE_BIBLE_LANGUAGE || 'fra';
     this.defaultTranslation = import.meta.env.VITE_BIBLE_TRANSLATION || 'segond_1910';
     
-    console.log('📖 Service Bible initialisé avec les données locales');
-    console.log('📁 Mode: Fichiers JSON locaux (Louis Segond 1910)');
-    console.log('📚 Traduction: Louis Segond 1910');
+    // Initialisation silencieuse
     
     // Charger les données de la Bible au démarrage
     this.loadBibleData();
@@ -122,10 +120,9 @@ class BibleApiService {
       }
       
       this.bibleData = await response.json();
-      console.log('✅ Données de la Bible Louis Segond chargées avec succès');
-      console.log(`📚 ${this.bibleData?.verses.length} versets disponibles`);
+      // Données chargées
     } catch (error) {
-      console.error('❌ Erreur lors du chargement des données de la Bible:', error);
+      // Erreur de chargement, on reste en mode mock
       this.bibleData = null;
     }
   }
@@ -161,7 +158,7 @@ class BibleApiService {
   // Méthode pour obtenir les versets depuis les données locales
   async getVersesFromLocalData(book: string, chapter: number, startVerse?: number, endVerse?: number): Promise<BibleVerse[]> {
     if (!this.bibleData) {
-      console.warn('📖 Données de la Bible non chargées, utilisation des données mockées');
+      // Fallback mock si non chargées
       return this.getVersesDefault(book, chapter, startVerse, endVerse);
     }
 
@@ -176,12 +173,10 @@ class BibleApiService {
       // Normaliser le nom du livre
       const normalizedBook = this.normalizeBookName(book);
       
-      console.log(`🔍 Recherche: livre="${book}", normalisé="${normalizedBook}", chapitre=${chapter}`);
-      console.log(`📊 Total de versets dans les données: ${this.bibleData.verses.length}`);
+      // Recherche locale
       
       // Afficher quelques exemples de noms de livres pour debug
-      const uniqueBooks = [...new Set(this.bibleData.verses.map(v => v.book_name))];
-      console.log(`📚 Livres disponibles:`, uniqueBooks.slice(0, 10));
+      // Debug retiré
       
       // Filtrer les versets selon les critères
       const filteredVerses = this.bibleData.verses.filter(verse => {
@@ -192,14 +187,12 @@ class BibleApiService {
         const chapterMatch = verse.chapter === chapter;
         const verseMatch = !startVerse || (verse.verse >= startVerse && (!endVerse || verse.verse <= endVerse));
         
-        if (bookMatch && chapterMatch) {
-          console.log(`✅ Verset trouvé: ${verse.book_name} ${verse.chapter}:${verse.verse}`);
-        }
+        // Verset trouvé
         
         return bookMatch && chapterMatch && verseMatch;
       });
 
-      console.log(`📋 ${filteredVerses.length} versets trouvés après filtrage`);
+      // Comptage
 
       // Convertir vers notre format
       const verses: BibleVerse[] = filteredVerses.map(verse => ({
@@ -212,11 +205,11 @@ class BibleApiService {
       // Mettre en cache
       this.cache.set(cacheKey, verses);
       
-      console.log(`✅ ${verses.length} versets récupérés depuis les données locales: ${book} ${chapter}`);
+      // Mise en cache
       return verses;
 
     } catch (error) {
-      console.error('Erreur lors de la récupération des versets locaux:', error);
+      // Erreur de récupération
       return this.getVersesDefault(book, chapter, startVerse, endVerse);
     }
   }
@@ -224,7 +217,7 @@ class BibleApiService {
   // Méthode pour changer la traduction
   setTranslation(translationId: string): void {
     this.defaultTranslation = translationId;
-    console.log(`📚 Traduction changée vers: ${translationId}`);
+    // Changement de traduction
     // Vider le cache pour forcer le rechargement avec la nouvelle traduction
     this.cache.clear();
   }
@@ -233,7 +226,7 @@ class BibleApiService {
   resetApiStatus(): void {
     this.setApiAccessible(true);
     this.cache.clear();
-    console.log('🔄 Statut de l\'API réinitialisé');
+    // Réinitialisation
   }
 
   // Méthode pour obtenir la traduction actuelle
@@ -242,206 +235,10 @@ class BibleApiService {
   }
 
   // Méthode de test automatique pour tous les versets populaires
-  async testAllPopularVerses(): Promise<void> {
-    console.log('🧪 === TEST AUTOMATIQUE DE TOUS LES VERSETS POPULAIRES ===');
-    
-    const testVerses = [
-      'Genèse 1:1',
-      'Exode 3:14',
-      'Psaume 23:1',
-      'Psaume 91:1',
-      'Proverbes 3:5-6',
-      'Ésaïe 40:31',
-      'Jérémie 29:11',
-      'Jonas 2:9',
-      'Matthieu 5:3-4',
-      'Matthieu 6:9-10',
-      'Matthieu 28:19-20',
-      'Marc 16:15',
-      'Luc 2:11',
-      'Jean 3:16',
-      'Jean 14:6',
-      'Actes 1:8',
-      'Romains 8:28',
-      'Romains 10:9-10',
-      '1 Corinthiens 13:4-5',
-      'Galates 5:22-23',
-      'Éphésiens 2:8-9',
-      'Philippiens 4:13',
-      'Colossiens 3:23',
-      '1 Thessaloniciens 5:16-18',
-      '2 Timothée 3:16-17',
-      'Hébreux 11:1',
-      'Jacques 1:2-3',
-      '1 Pierre 5:7',
-      '1 Jean 4:8',
-      'Apocalypse 21:4'
-    ];
-
-    let successCount = 0;
-    let failCount = 0;
-    const failedVerses: string[] = [];
-
-    // Utiliser Promise.all avec un délai pour éviter de bloquer l'UI
-    const testPromises = testVerses.map(async (verse, index) => {
-      // Ajouter un petit délai entre les tests pour éviter de surcharger
-      await new Promise(resolve => setTimeout(resolve, index * 10));
-      
-      console.log(`\n🔍 Test de: ${verse}`);
-      try {
-        const result = await this.getVerseByReference(verse);
-        if (result) {
-          console.log(`✅ SUCCÈS: ${verse} trouvé`);
-          return { success: true, verse };
-        } else {
-          console.log(`❌ ÉCHEC: ${verse} non trouvé`);
-          return { success: false, verse, error: 'Non trouvé' };
-        }
-      } catch (error) {
-        console.log(`❌ ERREUR: ${verse} - ${error}`);
-        return { success: false, verse, error: String(error) };
-      }
-    });
-
-    // Attendre tous les tests en parallèle
-    const results = await Promise.all(testPromises);
-    
-    // Compter les résultats
-    results.forEach(result => {
-      if (result.success) {
-        successCount++;
-      } else {
-        failCount++;
-        failedVerses.push(result.verse);
-      }
-    });
-
-    console.log('\n📊 === RÉSULTATS DU TEST ===');
-    console.log(`✅ Versets trouvés: ${successCount}`);
-    console.log(`❌ Versets non trouvés: ${failCount}`);
-    console.log(`📈 Taux de réussite: ${((successCount / testVerses.length) * 100).toFixed(1)}%`);
-    
-    if (failedVerses.length > 0) {
-      console.log('\n❌ Versets qui ont échoué:');
-      failedVerses.forEach(verse => console.log(`   - ${verse}`));
-    }
-
-    console.log('\n🔍 === ANALYSE DES LIVRES DISPONIBLES ===');
-    this.debugBibleData();
-  }
+  // testAllPopularVerses supprimé pour production
 
   // Méthode de debug pour analyser les données
-  debugBibleData(): void {
-    if (!this.bibleData) {
-      console.log('❌ Aucune donnée de Bible chargée');
-      return;
-    }
-
-    console.log('🔍 Analyse des données de la Bible:');
-    console.log(`📊 Total de versets: ${this.bibleData.verses.length}`);
-    
-    // Analyser les livres disponibles
-    const books = [...new Set(this.bibleData.verses.map(v => v.book_name))];
-    console.log(`📚 Livres disponibles (${books.length}):`, books);
-    
-    // Chercher spécifiquement les psaumes
-    const psalmBooks = books.filter(book => 
-      book.toLowerCase().includes('psaume') || 
-      book.toLowerCase().includes('psalm')
-    );
-    console.log(`🎵 Livres de psaumes trouvés:`, psalmBooks);
-    
-    // Rechercher spécifiquement Romains
-    const romainsBooks = books.filter(book => 
-      book.toLowerCase().includes('romain') || 
-      book.toLowerCase().includes('roman')
-    );
-    console.log(`📖 Livres contenant "romain/roman":`, romainsBooks);
-    
-    // Chercher des versets de Romains 8
-    const romains8Verses = this.bibleData.verses.filter(v => 
-      (v.book_name.toLowerCase().includes('romain') || v.book_name.toLowerCase().includes('roman')) &&
-      v.chapter === 8
-    );
-    console.log(`📋 Versets de Romains 8 trouvés: ${romains8Verses.length}`);
-    if (romains8Verses.length > 0) {
-      console.log('📖 Exemples de versets Romains 8:', romains8Verses.slice(0, 3));
-    }
-    
-    // Rechercher spécifiquement Jean
-    const jeanBooks = books.filter(book => 
-      book.toLowerCase().includes('jean') || 
-      book.toLowerCase().includes('john')
-    );
-    console.log(`📖 Livres contenant "jean/john":`, jeanBooks);
-    
-    // Chercher des versets de Jean 3
-    const jean3Verses = this.bibleData.verses.filter(v => 
-      (v.book_name.toLowerCase().includes('jean') || v.book_name.toLowerCase().includes('john')) &&
-      v.chapter === 3
-    );
-    console.log(`📋 Versets de Jean 3 trouvés: ${jean3Verses.length}`);
-    if (jean3Verses.length > 0) {
-      console.log('📖 Exemples de versets Jean 3:', jean3Verses.slice(0, 3));
-    }
-    
-    // Rechercher spécifiquement Matthieu
-    const matthieuBooks = books.filter(book => 
-      book.toLowerCase().includes('matthieu') || 
-      book.toLowerCase().includes('matthew')
-    );
-    console.log(`📖 Livres contenant "matthieu/matthew":`, matthieuBooks);
-    
-    // Chercher des versets de Matthieu 28
-    const matthieu28Verses = this.bibleData.verses.filter(v => 
-      (v.book_name.toLowerCase().includes('matthieu') || v.book_name.toLowerCase().includes('matthew')) &&
-      v.chapter === 28
-    );
-    console.log(`📋 Versets de Matthieu 28 trouvés: ${matthieu28Verses.length}`);
-    if (matthieu28Verses.length > 0) {
-      console.log('📖 Exemples de versets Matthieu 28:', matthieu28Verses.slice(0, 3));
-    }
-    
-    // Rechercher spécifiquement Jonas
-    const jonasBooks = books.filter(book => 
-      book.toLowerCase().includes('jonas') || 
-      book.toLowerCase().includes('jonah')
-    );
-    console.log(`📖 Livres contenant "jonas/jonah":`, jonasBooks);
-    
-    // Chercher des versets de Jonas 2
-    const jonas2Verses = this.bibleData.verses.filter(v => 
-      (v.book_name.toLowerCase().includes('jonas') || v.book_name.toLowerCase().includes('jonah')) &&
-      v.chapter === 2
-    );
-    console.log(`📋 Versets de Jonas 2 trouvés: ${jonas2Verses.length}`);
-    if (jonas2Verses.length > 0) {
-      console.log('📖 Exemples de versets Jonas 2:', jonas2Verses.slice(0, 3));
-    }
-    
-    // Rechercher spécifiquement Philippiens
-    const philippiensBooks = books.filter(book => 
-      book.toLowerCase().includes('philippiens') || 
-      book.toLowerCase().includes('philippians')
-    );
-    console.log(`📖 Livres contenant "philippiens/philippians":`, philippiensBooks);
-    
-    // Chercher des versets de Philippiens 4
-    const philippiens4Verses = this.bibleData.verses.filter(v => 
-      (v.book_name.toLowerCase().includes('philippiens') || v.book_name.toLowerCase().includes('philippians')) &&
-      v.chapter === 4
-    );
-    console.log(`📋 Versets de Philippiens 4 trouvés: ${philippiens4Verses.length}`);
-    if (philippiens4Verses.length > 0) {
-      console.log('📖 Exemples de versets Philippiens 4:', philippiens4Verses.slice(0, 3));
-    }
-    
-    // Analyser la structure d'un verset
-    if (this.bibleData.verses.length > 0) {
-      const sampleVerse = this.bibleData.verses[0];
-      console.log('📖 Exemple de verset:', sampleVerse);
-    }
-  }
+  // debugBibleData supprimé pour production
 
   // Méthode pour obtenir le psaume du jour
   async getPsalmOfTheDay(): Promise<BibleVerse[]> {
