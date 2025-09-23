@@ -25,16 +25,17 @@ class TopicsService {
     if (this.topicsData) return;
     
     try {
-      // Chargement des topics
+      console.log('🔄 Chargement des topics depuis /topics.json...');
       const response = await fetch('/topics.json');
       if (!response.ok) {
         throw new Error(`Erreur HTTP: ${response.status}`);
       }
       this.topicsData = await response.json();
-      // Topics chargés
+      console.log('✅ Topics chargés avec succès:', Object.keys(this.topicsData).length, 'thèmes');
       this.initializeTopics();
     } catch (error) {
-      // Erreur chargement, tentative directe
+      console.error('❌ Erreur lors du chargement des topics:', error);
+      console.log('🔄 Tentative de chargement direct...');
       
       // Essayer de charger directement depuis le fichier local
       try {
@@ -46,16 +47,16 @@ class TopicsService {
         });
         if (response.ok) {
           this.topicsData = await response.json();
-          // Topics chargés en retry
+          console.log('✅ Topics chargés en retry:', Object.keys(this.topicsData).length, 'thèmes');
           this.initializeTopics();
           return;
         }
       } catch (retryError) {
-        // Échec du retry
+        console.error('❌ Échec du retry:', retryError);
       }
       
       // Fallback avec des données de base (seulement en dernier recours)
-      // Fallback de base
+      console.warn('⚠️ Utilisation des données de fallback');
       this.topicsData = {
         "joie": [
           { "ref": "Philippiens 4:4", "texte": "Réjouissez-vous toujours dans le Seigneur ; je le répète, réjouissez-vous." }
@@ -199,7 +200,7 @@ class TopicsService {
 
   // Forcer le rechargement des données
   async reloadTopics(): Promise<void> {
-    // Rechargement forcé
+    console.log('🔄 Rechargement forcé des topics...');
     this.topicsData = null;
     this.topics = [];
     this.initialized = false;
