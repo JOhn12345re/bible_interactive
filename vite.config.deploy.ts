@@ -8,13 +8,15 @@ export default defineConfig({
     outDir: 'dist',
     sourcemap: false,
     minify: 'terser',
-    chunkSizeWarningLimit: 1000,
+    chunkSizeWarningLimit: 2000,
     rollupOptions: {
       output: {
         manualChunks: {
           vendor: ['react', 'react-dom'],
           router: ['react-router-dom'],
-          state: ['zustand']
+          state: ['zustand'],
+          phaser: ['phaser'],
+          hls: ['hls.js']
         }
       }
     },
