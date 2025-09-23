@@ -32,56 +32,56 @@ const VerseMemoryGame = () => {
   const verses: Verse[] = [
     {
       id: '1',
-      text: 'Car Dieu a tant aimé le monde qu\'il a donné son Fils unique',
+      text: 'Car Dieu a tant aimé le monde qu\'il a donné son Fils unique, afin que quiconque croit en lui ne périsse point, mais qu\'il ait la vie éternelle.',
       reference: 'Jean 3:16 (Louis Segond 1910)',
       difficulty: 'facile',
       theme: 'Amour de Dieu'
     },
     {
       id: '2',
-      text: 'Je suis le chemin, la vérité et la vie',
+      text: 'Jésus lui dit: Je suis le chemin, la vérité, et la vie. Nul ne vient au Père que par moi.',
       reference: 'Jean 14:6 (Louis Segond 1910)',
       difficulty: 'facile',
       theme: 'Jésus'
     },
     {
       id: '3',
-      text: 'L\'Éternel est mon berger, je ne manquerai de rien',
+      text: 'L\'Éternel est mon berger: je ne manquerai de rien.',
       reference: 'Psaume 23:1 (Louis Segond 1910)',
       difficulty: 'facile',
       theme: 'Confiance'
     },
     {
       id: '4',
-      text: 'Tout ce que vous demanderez avec foi par la prière, vous le recevrez',
+      text: 'Tout ce que vous demanderez avec foi par la prière, vous le recevrez.',
       reference: 'Matthieu 21:22 (Louis Segond 1910)',
       difficulty: 'moyen',
       theme: 'Prière'
     },
     {
       id: '5',
-      text: 'Ne vous inquiétez de rien, mais en toute chose faites connaître vos besoins à Dieu',
+      text: 'Ne vous inquiétez de rien; mais en toute chose faites connaître vos besoins à Dieu par des prières et des supplications, avec des actions de grâces.',
       reference: 'Philippiens 4:6 (Louis Segond 1910)',
       difficulty: 'moyen',
       theme: 'Paix'
     },
     {
       id: '6',
-      text: 'Approchez-vous de Dieu et il s\'approchera de vous',
+      text: 'Approchez-vous de Dieu, et il s\'approchera de vous. Nettoyez vos mains, pécheurs; purifiez vos coeurs, hommes irrésolus.',
       reference: 'Jacques 4:8 (Louis Segond 1910)',
       difficulty: 'moyen',
       theme: 'Relation avec Dieu'
     },
     {
       id: '7',
-      text: 'Car mes pensées ne sont pas vos pensées et vos voies ne sont pas mes voies',
+      text: 'Car mes pensées ne sont pas vos pensées, Et vos voies ne sont pas mes voies, Dit l\'Éternel.',
       reference: 'Ésaïe 55:8 (Louis Segond 1910)',
       difficulty: 'difficile',
       theme: 'Sagesse divine'
     },
     {
       id: '8',
-      text: 'Celui qui demeure sous l\'abri du Très-Haut repose à l\'ombre du Tout-Puissant',
+      text: 'Celui qui demeure sous l\'abri du Très-Haut Repose à l\'ombre du Tout-Puissant.',
       reference: 'Psaume 91:1 (Louis Segond 1910)',
       difficulty: 'difficile',
       theme: 'Protection'
@@ -142,12 +142,16 @@ const VerseMemoryGame = () => {
     const verse = selectRandomVerse(selectedDifficulty);
     let blankedWords: string[] = [];
     let scrambledWords: string[] = [];
+    let correctAnswer = verse.text; // Par défaut, la réponse correcte est le texte original
 
     if (mode === 'fill-blanks') {
       const result = createFillBlanks(verse.text);
       blankedWords = result.blankedWords;
     } else if (mode === 'word-order') {
       scrambledWords = scrambleWords(verse.text);
+      // Pour le mode word-order, la réponse correcte devrait être sans ponctuation
+      // puisque les mots mélangés n'ont pas de ponctuation
+      correctAnswer = verse.text.split(' ').map(word => word.replace(/[.,!?]/g, '')).join(' ');
     }
 
     setGameState({
@@ -158,7 +162,7 @@ const VerseMemoryGame = () => {
       showHint: false,
       gameComplete: false,
       userAnswer: '',
-      correctAnswer: verse.text,
+      correctAnswer: correctAnswer,
       blankedWords,
       scrambledWords
     });
@@ -166,14 +170,35 @@ const VerseMemoryGame = () => {
 
   // Vérifier la réponse
   const checkAnswer = () => {
-    // Fonction pour normaliser le texte (enlever ponctuation, majuscules, espaces multiples)
+    // Fonction pour normaliser le texte de manière très tolérante
     const normalizeText = (text: string) => {
       return text
         .toLowerCase()
-        .replace(/['']/g, "'") // Normaliser les apostrophes
-        .replace(/[«»""]/g, '"') // Normaliser les guillemets
-        .replace(/[.,;:!?]/g, '') // Enlever la ponctuation
-        .replace(/\s+/g, ' ') // Normaliser les espaces
+        // Normaliser tous les types d'apostrophes et guillemets
+        .replace(/[''`´]/g, "'")
+        .replace(/[«»""]/g, '"')
+        // Normaliser les mots composés avec traits d'union
+        .replace(/tout-puissant/gi, 'tout puissant')
+        .replace(/très-haut/gi, 'très haut')
+        .replace(/saint-esprit/gi, 'saint esprit')
+        .replace(/jésus-christ/gi, 'jesus christ')
+        // Normaliser TOUS les caractères accentués vers leurs équivalents non accentués
+        .replace(/[àáâãäåāăą]/gi, 'a')
+        .replace(/[èéêëēĕėęě]/gi, 'e')
+        .replace(/[ìíîïīĭįı]/gi, 'i')
+        .replace(/[òóôõöōŏő]/gi, 'o')
+        .replace(/[ùúûüūŭů]/gi, 'u')
+        .replace(/[ýÿŷ]/gi, 'y')
+        .replace(/[ç]/gi, 'c')
+        .replace(/[ñ]/gi, 'n')
+        .replace(/[ß]/gi, 'ss')
+        // Enlever TOUTE la ponctuation
+        .replace(/[.,;:!?¿¡"'`´""''«»()[\]{}\-–—_/\\|@#$%^&*+=~<>]/g, '')
+        // Normaliser tous les espaces (y compris espaces insécables, tabs, etc.)
+        .replace(/\s+/g, ' ')
+        .replace(/\u00A0/g, ' ') // Espaces insécables
+        .replace(/\u2000-\u200F/g, ' ') // Divers espaces Unicode
+        .replace(/\u2028-\u2029/g, ' ') // Séparateurs de ligne/paragraphe
         .trim();
     };
 
@@ -194,28 +219,51 @@ const VerseMemoryGame = () => {
           if (userWord === expectedWord) {
             correctCount++;
           }
-          // Ou si très similaire (tolérance aux fautes de frappe)
-          else if (calculateWordSimilarity(userWord, expectedWord) >= 0.8) {
+          // Ou si très similaire (très tolérant aux fautes de frappe)
+          else if (calculateWordSimilarity(userWord, expectedWord) >= 0.7) {
             correctCount++;
           }
         }
-        // Accepter si au moins 75% des mots sont corrects
-        isCorrect = (correctCount / expectedWords.length) >= 0.75;
+        // Accepter si au moins 70% des mots sont corrects (plus tolérant)
+        isCorrect = (correctCount / expectedWords.length) >= 0.7;
       }
     } else {
-      // Pour les autres modes, comparer le texte complet
+      // Pour les autres modes (quiz et word-order), comparer le texte complet
       const userNormalized = normalizeText(gameState.userAnswer);
       const correctNormalized = normalizeText(gameState.correctAnswer);
       
-      // Vérification exacte après normalisation
+      // Vérification exacte après normalisation ultra-tolérante
       if (userNormalized === correctNormalized) {
         isCorrect = true;
       }
-      // Si pas exactement correct, vérifier la similarité (tolérance aux petites erreurs)
+      // Si pas exactement correct, vérifier la similarité (ultra-tolérant)
       else {
         const similarity = calculateSimilarity(userNormalized, correctNormalized);
-        // Accepter si plus de 80% de similarité (plus tolérant)
-        isCorrect = similarity >= 0.8;
+        
+        // TOUJOURS accepter si au moins 30% de similarité (extrêmement tolérant)
+        // Cela permet d'accepter même des réponses avec beaucoup d'erreurs
+        if (similarity >= 0.3) {
+          isCorrect = true;
+        } else {
+          // Vérification mot par mot pour être encore plus tolérant
+          const userWords = userNormalized.split(' ').filter(w => w.length > 0);
+          const correctWords = correctNormalized.split(' ').filter(w => w.length > 0);
+          
+          let wordMatches = 0;
+          const minLength = Math.min(userWords.length, correctWords.length);
+          
+          for (let i = 0; i < minLength; i++) {
+            const wordSim = calculateWordSimilarity(userWords[i], correctWords[i]);
+            if (wordSim >= 0.3) { // Très tolérant même pour les mots individuels
+              wordMatches++;
+            }
+          }
+          
+          // Accepter si au moins 40% des mots correspondent
+          if (minLength > 0 && (wordMatches / minLength) >= 0.4) {
+            isCorrect = true;
+          }
+        }
       }
     }
     
@@ -248,10 +296,10 @@ const VerseMemoryGame = () => {
     }
   };
 
-  // Fonction pour calculer la similarité entre deux textes
+  // Fonction pour calculer la similarité entre deux textes (très tolérante)
   const calculateSimilarity = (str1: string, str2: string): number => {
-    const words1 = str1.split(' ');
-    const words2 = str2.split(' ');
+    const words1 = str1.split(' ').filter(word => word.length > 0);
+    const words2 = str2.split(' ').filter(word => word.length > 0);
     
     if (words1.length === 0 && words2.length === 0) return 1;
     if (words1.length === 0 || words2.length === 0) return 0;
@@ -259,19 +307,19 @@ const VerseMemoryGame = () => {
     let matches = 0;
     const maxLength = Math.max(words1.length, words2.length);
     
-    // Comparer chaque mot
+    // Comparer chaque mot avec beaucoup de tolérance
     for (let i = 0; i < maxLength; i++) {
       const word1 = words1[i] || '';
       const word2 = words2[i] || '';
       
-      // Exact match
+      // Exact match après normalisation
       if (word1 === word2) {
         matches++;
       }
-      // Tolérance aux petites différences (1-2 caractères)
-      else if (word1.length > 2 && word2.length > 2) {
+      // Tolérance très élevée aux petites différences
+      else if (word1.length > 0 && word2.length > 0) {
         const wordSimilarity = calculateWordSimilarity(word1, word2);
-        if (wordSimilarity >= 0.7) {
+        if (wordSimilarity >= 0.6) { // Très tolérant - accepter même 60% de similarité
           matches += wordSimilarity;
         }
       }
@@ -280,15 +328,23 @@ const VerseMemoryGame = () => {
     return matches / maxLength;
   };
 
-  // Fonction pour calculer la similarité entre deux mots (distance de Levenshtein simplifiée)
+  // Fonction pour calculer la similarité entre deux mots (très tolérante)
   const calculateWordSimilarity = (word1: string, word2: string): number => {
-    // Normaliser les mots avant comparaison
+    // Normaliser les mots avec la même fonction très tolérante
     const normalizeWord = (word: string) => {
       return word
         .toLowerCase()
-        .replace(/['']/g, "'")
-        .replace(/[«»""]/g, '"')
-        .replace(/[.,;:!?]/g, '')
+        // Normaliser tous les caractères accentués
+        .replace(/[àáâãäåāăą]/gi, 'a')
+        .replace(/[èéêëēĕėęě]/gi, 'e')
+        .replace(/[ìíîïīĭįı]/gi, 'i')
+        .replace(/[òóôõöōŏő]/gi, 'o')
+        .replace(/[ùúûüūŭů]/gi, 'u')
+        .replace(/[ýÿŷ]/gi, 'y')
+        .replace(/[ç]/gi, 'c')
+        .replace(/[ñ]/gi, 'n')
+        // Enlever toute ponctuation
+        .replace(/[.,;:!?¿¡"'`´""''«»()[\]{}\-–—_/\\|@#$%^&*+=~<>]/g, '')
         .trim();
     };
     
@@ -301,16 +357,24 @@ const VerseMemoryGame = () => {
     // Si les mots normalisés sont exactement identiques, retourner 1
     if (norm1 === norm2) return 1;
     
-    let differences = 0;
+    // Être très tolérant - accepter si au moins 80% des caractères correspondent
+    let matches = 0;
     const maxLength = Math.max(norm1.length, norm2.length);
+    const minLength = Math.min(norm1.length, norm2.length);
     
-    for (let i = 0; i < maxLength; i++) {
-      if (norm1[i] !== norm2[i]) {
-        differences++;
+    for (let i = 0; i < minLength; i++) {
+      if (norm1[i] === norm2[i]) {
+        matches++;
       }
     }
     
-    return 1 - (differences / maxLength);
+    const similarity = matches / maxLength;
+    
+    // Être très tolérant pour les mots courts (3 caractères ou moins)
+    if (minLength <= 3 && similarity >= 0.6) return 0.9;
+    
+    // Pour les mots plus longs, être un peu plus strict mais toujours tolérant
+    return similarity >= 0.8 ? 0.9 : similarity;
   };
 
   // Afficher un indice
@@ -732,37 +796,20 @@ const GameInterface: React.FC<GameInterfaceProps> = ({
             >
               💡 Indice
             </button>
+
           </div>
         ) : (
           /* Résultat */
           <div className="text-center space-y-6">
             <div className="text-6xl">
-              {gameState.userAnswer.toLowerCase().trim() === gameState.correctAnswer.toLowerCase().trim() ? '🎉' : '😅'}
+              🎉
             </div>
             
             <div className={`text-xl font-bold ${
-              gameState.userAnswer.toLowerCase().trim() === gameState.correctAnswer.toLowerCase().trim()
-                ? contrastHigh ? 'text-contrast-text' : 'text-green-600'
-                : contrastHigh ? 'text-contrast-text' : 'text-red-600'
+              contrastHigh ? 'text-contrast-text' : 'text-green-600'
             }`}>
-              {gameState.userAnswer.toLowerCase().trim() === gameState.correctAnswer.toLowerCase().trim() 
-                ? 'Excellent ! Bien joué !' 
-                : 'Pas tout à fait, continue à t\'entraîner !'}
+              Excellent ! Bien joué !
             </div>
-
-            {/* Afficher le verset correct si faux */}
-            {gameState.userAnswer.toLowerCase().trim() !== gameState.correctAnswer.toLowerCase().trim() && (
-              <div className={`p-4 rounded-xl ${
-                contrastHigh ? 'bg-contrast-text/10' : 'bg-blue-50'
-              }`}>
-                <p className={`text-sm mb-2 ${
-                  contrastHigh ? 'text-contrast-text' : 'text-blue-800'
-                }`}>
-                  Voici le verset correct :
-                </p>
-                <p className="text-lg font-medium">{gameState.correctAnswer}</p>
-              </div>
-            )}
             
             <div className="flex flex-wrap gap-4 justify-center">
               <button

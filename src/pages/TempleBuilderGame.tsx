@@ -15,6 +15,18 @@ interface TempleElement {
   biblicalReference: string;
 }
 
+interface SnapZone {
+  id: string;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  label: string;
+  step: number;
+  required: string[];
+  description: string;
+}
+
 interface PlacedElement {
   elementId: string;
   x: number;
@@ -155,18 +167,95 @@ const TempleBuilderGame = () => {
 
   const constructionAreaRef = useRef<HTMLDivElement>(null);
 
-  // Zones de construction prédéfinies
+  // Zones de construction avec ordre logique et descriptions claires
   const snapZones = [
-    { id: 'foundation', x: 50, y: 300, width: 300, height: 50, label: 'Fondations' },
-    { id: 'corner', x: 350, y: 280, width: 80, height: 80, label: 'Angle' },
-    { id: 'column-left', x: 80, y: 180, width: 50, height: 120, label: 'Colonne Gauche' },
-    { id: 'column-right', x: 270, y: 180, width: 50, height: 120, label: 'Colonne Droite' },
-    { id: 'roof', x: 50, y: 120, width: 300, height: 60, label: 'Toiture' },
-    { id: 'entrance', x: 160, y: 200, width: 80, height: 100, label: 'Entrée' },
-    { id: 'altar', x: 450, y: 240, width: 100, height: 80, label: 'Parvis' },
-    { id: 'holy-of-holies', x: 120, y: 180, width: 120, height: 80, label: 'Saint des Saints' },
-    { id: 'menorah', x: 80, y: 220, width: 80, height: 80, label: 'Lieu Saint' },
-    { id: 'table', x: 220, y: 220, width: 100, height: 60, label: 'Lieu Saint' }
+    // Étape 1: Fondations (base)
+    { 
+      id: 'foundation', 
+      x: 100, y: 320, width: 400, height: 60, 
+      label: '🧱 ÉTAPE 1: Posez les Fondations ici',
+      step: 1,
+      required: ['foundation-stone'],
+      description: 'Commencez par les fondations solides'
+    },
+    // Étape 2: Colonnes de support  
+    { 
+      id: 'column-left', 
+      x: 120, y: 200, width: 60, height: 120, 
+      label: '🏛️ ÉTAPE 2: Colonne de Gauche',
+      step: 2,
+      required: ['column'],
+      description: 'Placez la première colonne'
+    },
+    { 
+      id: 'column-right', 
+      x: 420, y: 200, width: 60, height: 120, 
+      label: '🏛️ ÉTAPE 2: Colonne de Droite',
+      step: 2,
+      required: ['column'],
+      description: 'Placez la seconde colonne'
+    },
+    // Étape 3: Structure principale
+    { 
+      id: 'roof', 
+      x: 100, y: 140, width: 400, height: 60, 
+      label: '🏠 ÉTAPE 3: Toiture du Temple',
+      step: 3,
+      required: ['roof'],
+      description: 'Ajoutez le toit protecteur'
+    },
+    // Étape 4: Entrée
+    { 
+      id: 'entrance', 
+      x: 270, y: 220, width: 80, height: 100, 
+      label: '🚪 ÉTAPE 4: Porte du Temple',
+      step: 4,
+      required: ['door'],
+      description: 'Créez l\'entrée sacrée'
+    },
+    // Étape 5: Éléments sacrés intérieurs
+    { 
+      id: 'holy-of-holies', 
+      x: 200, y: 160, width: 120, height: 60, 
+      label: '📦 ÉTAPE 5: Saint des Saints',
+      step: 5,
+      required: ['ark'],
+      description: 'Lieu le plus sacré'
+    },
+    { 
+      id: 'menorah', 
+      x: 140, y: 240, width: 80, height: 60, 
+      label: '🕎 ÉTAPE 6: Lieu Saint (Gauche)',
+      step: 6,
+      required: ['menorah'],
+      description: 'Chandelier d\'or'
+    },
+    { 
+      id: 'table', 
+      x: 380, y: 240, width: 80, height: 60, 
+      label: '🍞 ÉTAPE 6: Lieu Saint (Droite)',
+      step: 6,
+      required: ['table'],
+      description: 'Table des pains'
+    },
+    // Étape 7: Parvis extérieur
+    { 
+      id: 'altar', 
+      x: 550, y: 260, width: 100, height: 80, 
+      label: '🔥 ÉTAPE 7: Parvis - Autel',
+      step: 7,
+      required: ['altar'],
+      description: 'Autel des sacrifices'
+    },
+    // Pierre d'angle spéciale
+    { 
+      id: 'corner', 
+      x: 480, y: 300, width: 80, height: 80, 
+      label: '⬜ Pierre d\'Angle',
+      step: 1,
+      required: ['foundation-corner'],
+      description: 'Pierre angulaire symbolique'
+    }
   ];
 
   // Commencer à traîner un élément
@@ -218,29 +307,32 @@ const TempleBuilderGame = () => {
     for (const zone of snapZones) {
       if (element.snapPoints.includes(zone.id)) {
         const isInZone = (
-          currentElement.x >= zone.x - 20 &&
-          currentElement.x <= zone.x + zone.width + 20 &&
-          currentElement.y >= zone.y - 20 &&
-          currentElement.y <= zone.y + zone.height + 20
+          currentElement.x >= zone.x - 30 &&
+          currentElement.x <= zone.x + zone.width + 30 &&
+          currentElement.y >= zone.y - 30 &&
+          currentElement.y <= zone.y + zone.height + 30
         );
 
         if (isInZone) {
-          // Snap à la zone
+          // Snap à la zone avec effet visuel
           setGameState(prev => ({
             ...prev,
             placedElements: prev.placedElements.map(elem =>
               elem.elementId === gameState.selectedElement
-                ? { ...elem, x: zone.x, y: zone.y, placed: true }
+                ? { 
+                    ...elem, 
+                    x: zone.x + (zone.width - element.size.width) / 2, 
+                    y: zone.y + (zone.height - element.size.height) / 2, 
+                    placed: true 
+                  }
                 : elem
             ),
-            score: prev.score + 10
+            score: prev.score + (20 * zone.step) // Plus de points pour les étapes avancées
           }));
           snapped = true;
 
           // Marquer la progression
-          if (element) {
-            markDone(`temple-${element.id}`, `${element.name} placé correctement`);
-          }
+          markDone(`temple-${element.id}`, `${element.name} placé correctement à l'étape ${zone.step}`);
           break;
         }
       }
@@ -297,6 +389,40 @@ const TempleBuilderGame = () => {
     return requiredElements.every(id => 
       gameState.placedElements.some(e => e.elementId === id && e.placed)
     );
+  };
+
+  // Obtenir l'étape actuelle basée sur les éléments placés
+  const getCurrentStep = () => {
+    const placedCount = gameState.placedElements.filter(e => e.placed).length;
+    if (placedCount === 0) return 1;
+    if (placedCount < 2) return 1; // Fondations
+    if (placedCount < 4) return 2; // Colonnes  
+    if (placedCount < 5) return 3; // Toit
+    if (placedCount < 6) return 4; // Porte
+    if (placedCount < 7) return 5; // Arche
+    if (placedCount < 9) return 6; // Objets sacrés
+    return 7; // Autel final
+  };
+
+  // Vérifier si une zone est active (disponible pour placement)
+  const isZoneActive = (zone: any) => {
+    const currentStep = getCurrentStep();
+    return zone.step <= currentStep;
+  };
+
+  // Obtenir les instructions pour l'étape actuelle
+  const getCurrentInstructions = () => {
+    const step = getCurrentStep();
+    const instructions = {
+      1: "🧱 Commencez par placer les fondations solides du temple",
+      2: "🏛️ Ajoutez les colonnes de soutien (Jakin et Boaz)",
+      3: "🏠 Placez la toiture pour protéger le lieu saint", 
+      4: "🚪 Installez la porte d'entrée du temple",
+      5: "📦 Placez l'Arche d'Alliance dans le Saint des Saints",
+      6: "🕎 Ajoutez les objets sacrés dans le lieu saint",
+      7: "🔥 Terminez avec l'autel dans le parvis extérieur"
+    };
+    return instructions[step as keyof typeof instructions] || "🎉 Temple terminé !";
   };
 
   return (
@@ -369,17 +495,25 @@ const TempleBuilderGame = () => {
               <div className="p-4 space-y-3 max-h-96 overflow-y-auto">
                 {templeElements.map((element) => {
                   const isUsed = gameState.placedElements.some(e => e.elementId === element.id);
+                  const isRelevantToCurrentStep = snapZones.some(zone => 
+                    zone.step === getCurrentStep() && zone.required.includes(element.id)
+                  );
+                  
                   return (
                     <div
                       key={element.id}
-                      className={`p-3 rounded-xl border-2 border-dashed transition-all cursor-pointer ${
+                      className={`p-3 rounded-xl border-2 transition-all cursor-pointer ${
                         isUsed
                           ? contrastHigh
-                            ? 'border-contrast-text/20 opacity-50'
-                            : 'border-gray-200 opacity-50'
-                          : contrastHigh
-                            ? 'border-contrast-text/40 hover:border-contrast-text hover:bg-contrast-text/10'
-                            : 'border-amber-300 hover:border-amber-500 hover:bg-amber-50'
+                            ? 'border-contrast-text/20 opacity-50 bg-contrast-text/5'
+                            : 'border-gray-200 opacity-50 bg-gray-50'
+                          : isRelevantToCurrentStep
+                            ? contrastHigh
+                              ? 'border-contrast-text border-solid hover:bg-contrast-text/20 animate-pulse'
+                              : 'border-green-400 border-solid hover:bg-green-50 animate-pulse shadow-md'
+                            : contrastHigh
+                              ? 'border-contrast-text/40 border-dashed hover:border-contrast-text hover:bg-contrast-text/10'
+                              : 'border-amber-300 border-dashed hover:border-amber-500 hover:bg-amber-50'
                       }`}
                       onClick={() => !isUsed && addElementToConstruction(element.id)}
                     >
@@ -390,9 +524,18 @@ const TempleBuilderGame = () => {
                             contrastHigh ? 'text-contrast-text' : 'text-gray-800'
                           }`}>
                             {element.name}
+                            {isRelevantToCurrentStep && (
+                              <span className={`ml-2 text-xs px-2 py-1 rounded-full ${
+                                contrastHigh 
+                                  ? 'bg-contrast-text text-contrast-bg' 
+                                  : 'bg-green-500 text-white'
+                              }`}>
+                                MAINTENANT
+                              </span>
+                            )}
                           </h3>
                           <p className={`text-xs ${
-                            contrastHigh ? 'text-contrast-text' : 'text-gray-500'
+                            contrastHigh ? 'text-contrast-text/80' : 'text-gray-500'
                           }`}>
                             {element.description}
                           </p>
@@ -417,25 +560,55 @@ const TempleBuilderGame = () => {
               </div>
             </div>
 
-            {/* Instructions */}
+            {/* Instructions améliorées avec étapes */}
             <div className={`mt-6 p-4 rounded-2xl ${
               contrastHigh 
                 ? 'bg-contrast-bg border-2 border-contrast-text'
                 : 'bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200'
             }`}>
-              <h3 className={`font-bold mb-2 ${
+              <h3 className={`font-bold mb-3 ${
                 contrastHigh ? 'text-contrast-text' : 'text-blue-800'
               }`}>
-                📋 Instructions
+                📋 Étape {getCurrentStep()}/7
               </h3>
-              <ul className={`text-sm space-y-1 ${
-                contrastHigh ? 'text-contrast-text' : 'text-blue-700'
+              
+              <div className={`p-3 rounded-lg mb-3 ${
+                contrastHigh ? 'bg-contrast-text/10' : 'bg-blue-100'
               }`}>
-                <li>• Clique sur un élément pour l'ajouter</li>
-                <li>• Glisse-le vers sa zone appropriée</li>
-                <li>• Les zones s'illuminent quand disponibles</li>
-                <li>• Apprends l'histoire de chaque élément</li>
-              </ul>
+                <p className={`text-sm font-medium ${
+                  contrastHigh ? 'text-contrast-text' : 'text-blue-800'
+                }`}>
+                  {getCurrentInstructions()}
+                </p>
+              </div>
+
+              <div className={`text-xs space-y-1 ${
+                contrastHigh ? 'text-contrast-text/80' : 'text-blue-600'
+              }`}>
+                <div>• Clique sur un élément pour l'ajouter</div>
+                <div>• Glisse-le vers la zone qui s'illumine</div>
+                <div>• Suit l'ordre des étapes numérotées</div>
+                <div>• Clique sur ℹ️ pour en apprendre plus</div>
+              </div>
+
+              {/* Barre de progression */}
+              <div className="mt-3">
+                <div className={`text-xs mb-1 ${
+                  contrastHigh ? 'text-contrast-text' : 'text-blue-700'
+                }`}>
+                  Progression: {gameState.placedElements.filter(e => e.placed).length}/10
+                </div>
+                <div className={`w-full h-2 rounded-full ${
+                  contrastHigh ? 'bg-contrast-text/20' : 'bg-blue-200'
+                }`}>
+                  <div 
+                    className={`h-full rounded-full transition-all ${
+                      contrastHigh ? 'bg-contrast-text' : 'bg-blue-500'
+                    }`}
+                    style={{ width: `${(gameState.placedElements.filter(e => e.placed).length / 10) * 100}%` }}
+                  />
+                </div>
+              </div>
             </div>
           </div>
 
@@ -452,34 +625,71 @@ const TempleBuilderGame = () => {
               
               <div
                 ref={constructionAreaRef}
-                className={`relative w-full h-96 rounded-xl border-2 border-dashed ${
-                  contrastHigh ? 'border-contrast-text/30 bg-contrast-text/5' : 'border-amber-300 bg-amber-50'
+                className={`relative w-full rounded-xl border-2 ${
+                  contrastHigh ? 'border-contrast-text/30 bg-contrast-text/5' : 'border-amber-300 bg-gradient-to-b from-sky-100 to-green-100'
                 }`}
-                style={{ minHeight: '400px' }}
+                style={{ minHeight: '500px', width: '800px' }}
               >
-                {/* Zones de snap */}
-                {snapZones.map((zone) => (
-                  <div
-                    key={zone.id}
-                    className={`absolute border-2 border-dashed transition-all ${
-                      contrastHigh 
-                        ? 'border-contrast-text/20 hover:border-contrast-text/40'
-                        : 'border-amber-200 hover:border-amber-400'
-                    }`}
-                    style={{
-                      left: zone.x,
-                      top: zone.y,
-                      width: zone.width,
-                      height: zone.height
-                    }}
-                  >
-                    <div className={`text-xs p-1 ${
-                      contrastHigh ? 'text-contrast-text' : 'text-amber-600'
-                    }`}>
-                      {zone.label}
+                {/* Zones de snap avec amélioration visuelle */}
+                {snapZones.map((zone) => {
+                  const isActive = isZoneActive(zone);
+                  const isCurrentStep = zone.step === getCurrentStep();
+                  
+                  return (
+                    <div
+                      key={zone.id}
+                      className={`absolute border-2 rounded-lg transition-all duration-300 ${
+                        isActive
+                          ? isCurrentStep
+                            ? contrastHigh 
+                              ? 'border-contrast-text border-dashed animate-pulse bg-contrast-text/20'
+                              : 'border-green-500 border-dashed animate-pulse bg-green-100/50 shadow-lg'
+                            : contrastHigh
+                              ? 'border-contrast-text/40 bg-contrast-text/10'
+                              : 'border-amber-400 bg-amber-100/30'
+                          : contrastHigh
+                            ? 'border-contrast-text/10 bg-contrast-text/5'
+                            : 'border-gray-300 bg-gray-50/30'
+                      }`}
+                      style={{
+                        left: zone.x,
+                        top: zone.y,
+                        width: zone.width,
+                        height: zone.height
+                      }}
+                    >
+                      <div className={`absolute -top-6 left-0 text-xs font-bold px-2 py-1 rounded ${
+                        isCurrentStep
+                          ? contrastHigh
+                            ? 'text-contrast-text bg-contrast-text/20'
+                            : 'text-green-700 bg-green-200'
+                          : isActive
+                            ? contrastHigh
+                              ? 'text-contrast-text/80'
+                              : 'text-amber-700'
+                            : contrastHigh
+                              ? 'text-contrast-text/40'
+                              : 'text-gray-500'
+                      }`}>
+                        {zone.label}
+                      </div>
+                      
+                      {isCurrentStep && (
+                        <div className={`absolute inset-0 rounded-lg ${
+                          contrastHigh 
+                            ? 'bg-contrast-text/10' 
+                            : 'bg-gradient-to-br from-green-200/50 to-blue-200/50'
+                        } flex items-center justify-center`}>
+                          <div className={`text-2xl animate-bounce ${
+                            contrastHigh ? 'text-contrast-text' : 'text-green-600'
+                          }`}>
+                            ⬇️
+                          </div>
+                        </div>
+                      )}
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
 
                 {/* Éléments placés */}
                 {gameState.placedElements.map((placedElement) => {
@@ -503,12 +713,14 @@ const TempleBuilderGame = () => {
                       }}
                       onMouseDown={(e) => handleDragStart(element.id, e)}
                     >
-                      <div className={`w-full h-full rounded-lg flex items-center justify-center text-2xl font-bold ${
+                      <div className={`w-full h-full rounded-lg flex items-center justify-center text-2xl font-bold transition-all border-2 ${
                         contrastHigh 
-                          ? 'bg-contrast-text text-contrast-bg'
+                          ? 'bg-contrast-text text-contrast-bg shadow-lg border-contrast-text/30'
                           : placedElement.placed
-                            ? 'bg-green-500 text-white'
-                            : 'bg-amber-400 text-amber-900'
+                            ? 'bg-gradient-to-br from-green-400 to-green-600 text-white shadow-lg transform scale-105 border-green-300'
+                            : gameState.selectedElement === element.id
+                              ? 'bg-gradient-to-br from-blue-400 to-blue-600 text-white shadow-xl border-blue-300'
+                              : 'bg-gradient-to-br from-amber-400 to-amber-600 text-amber-900 hover:shadow-lg border-amber-300'
                       }`}>
                         {element.emoji}
                       </div>

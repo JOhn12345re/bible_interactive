@@ -98,7 +98,7 @@ const AchievementManager: React.FC = () => {
       newAchievements.forEach((achievement, index) => {
         // Délai pour afficher les notifications une par une
         setTimeout(() => {
-          const uniqueId = `${achievement.id}-${Date.now()}-${index}`;
+          const uniqueId = `${achievement.id}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}-${index}`;
           setNotifications(prev => [...prev, {
             id: uniqueId,
             achievement: {

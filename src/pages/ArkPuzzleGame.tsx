@@ -221,6 +221,23 @@ const ArkPuzzleGame = () => {
                 Aide Noé à placer tous les animaux dans l'arche avant le déluge !
               </p>
               
+              {/* Instructions claires */}
+              <div className={`mb-8 p-6 rounded-xl ${
+                contrastHigh 
+                  ? 'bg-contrast-text/10 border border-contrast-text'
+                  : 'bg-yellow-50 border border-yellow-200'
+              }`}>
+                <h3 className={`font-bold mb-3 ${contrastHigh ? 'text-contrast-text' : 'text-yellow-800'}`}>
+                  📋 Comment jouer ?
+                </h3>
+                <div className={`text-left space-y-2 ${contrastHigh ? 'text-contrast-text' : 'text-yellow-700'}`}>
+                  <p><strong>1.</strong> 🖱️ <strong>Glisse</strong> les animaux de l'inventaire (en bas) vers l'arche (en haut)</p>
+                  <p><strong>2.</strong> 🎯 Chaque animal a sa <strong>place spécifique</strong> dans l'arche</p>
+                  <p><strong>3.</strong> ❌ Si tu veux retirer un animal, <strong>clique dessus</strong> dans l'arche</p>
+                  <p><strong>4.</strong> 🏆 Place tous les 12 animaux pour gagner !</p>
+                </div>
+              </div>
+              
               <div className={`grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 ${
                 contrastHigh ? 'text-contrast-text' : 'text-blue-700'
               }`}>
@@ -357,10 +374,16 @@ const ArkPuzzleGame = () => {
                 })}
               </div>
               
-              <div className={`text-center text-sm ${
+              <div className={`text-center ${
                 contrastHigh ? 'text-contrast-text' : 'text-amber-700'
               }`}>
-                Glisse les animaux dans l'arche. Clique sur un animal placé pour le retirer.
+                <div className="text-sm mb-2">
+                  <strong>🎯 Mode d'emploi :</strong>
+                </div>
+                <div className="text-xs">
+                  • <strong>Glisse</strong> les animaux de l'inventaire vers l'arche<br/>
+                  • <strong>Clique</strong> sur un animal placé pour le retirer
+                </div>
               </div>
             </div>
           </div>
@@ -372,11 +395,17 @@ const ArkPuzzleGame = () => {
                 ? 'bg-contrast-bg border-2 border-contrast-text'
                 : 'bg-white border-2 border-blue-200'
             }`}>
-              <h3 className={`text-xl font-bold mb-4 text-center ${
+              <h3 className={`text-xl font-bold mb-2 text-center ${
                 contrastHigh ? 'text-contrast-text' : 'text-blue-800'
               }`}>
                 🐾 Animaux à Placer
               </h3>
+              
+              <div className={`text-center text-sm mb-4 ${
+                contrastHigh ? 'text-contrast-text' : 'text-blue-600'
+              }`}>
+                👆 <strong>Glisse ces animaux</strong> vers l'arche ci-dessus
+              </div>
               
               <div className="grid grid-cols-3 gap-3">
                 {pieces

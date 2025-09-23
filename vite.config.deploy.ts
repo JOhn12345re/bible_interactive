@@ -1,13 +1,14 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 
-// Configuration simplifiée pour le déploiement
+// Configuration simplifiée pour le déploiement - sans PWA pour éviter les problèmes de cache
 export default defineConfig({
   plugins: [react()],
   build: {
     outDir: 'dist',
     sourcemap: false,
     minify: 'terser',
+    chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
         manualChunks: {
@@ -16,16 +17,15 @@ export default defineConfig({
           state: ['zustand']
         }
       }
-    }
+    },
+    // Ignore les fichiers volumineux qui peuvent causer des problèmes
+    assetsInlineLimit: 0
   },
   server: {
-    port: 3000,
-    proxy: {
-      '/api': {
-        target: 'http://localhost',
-        changeOrigin: true,
-        secure: false
-      }
-    }
+    port: 3000
+  },
+  define: {
+    // Variables d'environnement pour la production
+    'process.env.NODE_ENV': '"production"'
   }
 })

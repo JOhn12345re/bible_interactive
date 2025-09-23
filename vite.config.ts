@@ -9,6 +9,11 @@ export default defineConfig({
       registerType: 'autoUpdate',
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
+        maximumFileSizeToCacheInBytes: 10 * 1024 * 1024, // 10 MB
+        globIgnores: [
+          '**/bibles_json_6.0/**/*.json', // Exclure les fichiers JSON de la bible
+          '**/node_modules/**/*'
+        ],
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/api\./,
@@ -18,6 +23,18 @@ export default defineConfig({
               networkTimeoutSeconds: 10,
               cacheableResponse: {
                 statuses: [0, 200]
+              }
+            }
+          },
+          {
+            // Cache pour les fichiers JSON de la bible
+            urlPattern: /\/bibles_json_6\.0\/.*\.json$/,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'bible-json-cache',
+              expiration: {
+                maxEntries: 50,
+                maxAgeSeconds: 60 * 60 * 24 * 30 // 30 jours
               }
             }
           }

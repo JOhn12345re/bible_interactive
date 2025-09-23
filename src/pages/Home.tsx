@@ -195,20 +195,6 @@ export default function Home() {
             description="Écris tes pensées et tes découvertes spirituelles."
             colorClass="bg-gradient-to-br from-sky-500 to-cyan-600"
           />
-          <ActionCard
-            to="/test-search"
-            icon="🔍"
-            title="Test Recherche"
-            description="Teste la recherche de versets bibliques."
-            colorClass="bg-gradient-to-br from-emerald-500 to-teal-600"
-          />
-          <ActionCard
-            to="/debug-search"
-            icon="🔧"
-            title="Debug Recherche"
-            description="Diagnostique la recherche de versets (développeur)."
-            colorClass="bg-gradient-to-br from-red-500 to-pink-600"
-          />
         </div>
 
         {/* Accordion Sections */}
