@@ -114,3 +114,5 @@ scripts/
 !README.md
 # Local Netlify folder
 .netlify
+
+.vercel
