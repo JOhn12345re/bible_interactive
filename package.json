@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host",
-    "build": "vite build --config vite.config.prod.ts --mode production",
-    "build:deploy": "vite build --config vite.config.deploy.ts --mode production",
+    "build": "vite build",
+    "build:deploy": "vite build",
     "build:analyze": "npm run build && npx vite-bundle-analyzer dist",
     "preview": "vite preview --host",
     "lint": "eslint . --ext .ts,.tsx --fix",
