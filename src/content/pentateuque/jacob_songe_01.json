@@ -1,0 +1,120 @@
+{
+  "id": "jacob_songe_01",
+  "title": "Le Songe de Jacob",
+  "path": "Le Pentateuque",
+  "reading": [
+    "Jacob partit de Beer-Schéba et s'en alla vers Haran.",
+    "Il arriva dans un lieu où il passa la nuit, car le soleil était couché.",
+    "Il prit une des pierres du lieu, en fit son chevet et se coucha dans ce lieu.",
+    "Il eut un songe. Et voici, une échelle était appuyée sur la terre, et son sommet touchait au ciel.",
+    "Et voici, les anges de Dieu montaient et descendaient par cette échelle.",
+    "Et voici, l'Éternel se tenait au-dessus d'elle et dit :",
+    "« Je suis l'Éternel, le Dieu d'Abraham, ton père, et le Dieu d'Isaac. »",
+    "« La terre sur laquelle tu es couché, je la donnerai à toi et à ta postérité. »",
+    "« Ta postérité sera comme la poussière de la terre ; tu t'étendras à l'occident et à l'orient. »",
+    "« Toutes les familles de la terre seront bénies en toi et en ta postérité. »",
+    "« Voici, je suis avec toi, je te garderai partout où tu iras. »",
+    "« Et je te ramènerai dans ce pays, car je ne t'abandonnerai point. »",
+    "Jacob s'éveilla de son sommeil et dit : « Certainement, l'Éternel est en ce lieu ! »",
+    "Il eut peur et dit : « Que ce lieu est redoutable ! C'est ici la maison de Dieu ! »",
+    "Jacob se leva de bon matin ; il prit la pierre qui lui avait servi de chevet.",
+    "Il l'érigea pour monument et versa de l'huile sur son sommet.",
+    "Il donna à ce lieu le nom de Béthel ; mais la ville s'appelait auparavant Luz.",
+    "Jacob fit un vœu en disant : « Si Dieu est avec moi et me garde dans ce voyage. »",
+    "« Et s'il me donne du pain à manger et des habits pour me vêtir. »",
+    "« Et si je retourne en paix à la maison de mon père, alors l'Éternel sera mon Dieu. »",
+    "Dieu se révèle à nous dans nos moments difficiles et nous accompagne sur notre chemin."
+  ],
+  "key_verse": "Dieu se révèle à nous dans nos moments difficiles et nous accompagne sur notre chemin.",
+  "book": "Genèse 28:10-22",
+  "image": "/images/lessons/jacob_ladder.jpg",
+  "mini_games": ["quiz", "order_events"],
+  "quiz": {
+    "questions": [
+      {
+        "q": "Où Jacob se rendait-il quand il eut ce songe ?",
+        "options": ["À Haran", "En Égypte", "À Jérusalem", "À Beer-Schéba"],
+        "correct": "À Haran"
+      },
+      {
+        "q": "Qu'utilisa Jacob comme oreiller ?",
+        "options": ["Une couverture", "Une pierre", "Du sable", "Ses vêtements"],
+        "correct": "Une pierre"
+      },
+      {
+        "q": "Que vit Jacob dans son songe ?",
+        "options": ["Des animaux", "Une échelle", "Une rivière", "Une montagne"],
+        "correct": "Une échelle"
+      },
+      {
+        "q": "Qui montait et descendait par l'échelle ?",
+        "options": ["Les hommes", "Les anges de Dieu", "Les animaux", "Les prophètes"],
+        "correct": "Les anges de Dieu"
+      },
+      {
+        "q": "Où l'échelle touchait-elle ?",
+        "options": ["Les nuages", "La montagne", "Le ciel", "Les arbres"],
+        "correct": "Le ciel"
+      },
+      {
+        "q": "Quel nom Jacob donna-t-il à ce lieu ?",
+        "options": ["Béthel", "Haran", "Beer-Schéba", "Luz"],
+        "correct": "Béthel"
+      },
+      {
+        "q": "Que promit Dieu à Jacob ?",
+        "options": ["De la richesse", "La terre et une postérité", "Un royaume", "La sagesse"],
+        "correct": "La terre et une postérité"
+      },
+      {
+        "q": "Que fit Jacob avec la pierre le matin ?",
+        "options": ["Il la jeta", "Il l'érigea en monument", "Il la cacha", "Il la brisa"],
+        "correct": "Il l'érigea en monument"
+      }
+    ]
+  },
+  "story_steps": [
+    {
+      "id": "journey",
+      "title": "Le voyage vers Haran",
+      "description": "Jacob part de Beer-Schéba vers Haran",
+      "image": "/images/steps/jacob_journey.jpg"
+    },
+    {
+      "id": "rest",
+      "title": "La nuit dans le désert",
+      "description": "Jacob s'arrête pour dormir avec une pierre comme oreiller",
+      "image": "/images/steps/jacob_stone_pillow.jpg"
+    },
+    {
+      "id": "dream",
+      "title": "Le songe de l'échelle",
+      "description": "Jacob voit une échelle qui touche le ciel",
+      "image": "/images/steps/jacobs_ladder.jpg"
+    },
+    {
+      "id": "angels",
+      "title": "Les anges montent et descendent",
+      "description": "Les anges de Dieu utilisent l'échelle",
+      "image": "/images/steps/angels_ladder.jpg"
+    },
+    {
+      "id": "god_speaks",
+      "title": "Dieu parle à Jacob",
+      "description": "L'Éternel fait des promesses à Jacob",
+      "image": "/images/steps/god_speaks_jacob.jpg"
+    },
+    {
+      "id": "awakening",
+      "title": "Le réveil de Jacob",
+      "description": "Jacob se réveille et réalise la présence de Dieu",
+      "image": "/images/steps/jacob_awakens.jpg"
+    },
+    {
+      "id": "monument",
+      "title": "Le monument et le vœu",
+      "description": "Jacob érige un monument et fait un vœu",
+      "image": "/images/steps/bethel_monument.jpg"
+    }
+  ]
+}

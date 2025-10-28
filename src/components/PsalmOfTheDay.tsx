@@ -25,7 +25,7 @@ const PsalmOfTheDay: React.FC<PsalmOfTheDayProps> = ({ className = '' }) => {
       setError(null);
       const verses = await bibleApi.getPsalmOfTheDay();
       setPsalm(verses);
-      
+
       // Extraire le numéro du psaume depuis les versets
       if (verses.length > 0) {
         const firstVerse = verses[0];
@@ -44,7 +44,7 @@ const PsalmOfTheDay: React.FC<PsalmOfTheDayProps> = ({ className = '' }) => {
 
   const loadSpecificPsalm = async (number: number) => {
     if (number < 1 || number > 150) return;
-    
+
     try {
       setLoading(true);
       setError(null);
@@ -67,7 +67,7 @@ const PsalmOfTheDay: React.FC<PsalmOfTheDayProps> = ({ className = '' }) => {
   };
 
   const getFullPsalmText = () => {
-    return psalm.map(verse => verse.verse_text).join(' ');
+    return psalm.map((verse) => verse.verse_text).join(' ');
   };
 
   if (loading) {
@@ -75,7 +75,9 @@ const PsalmOfTheDay: React.FC<PsalmOfTheDayProps> = ({ className = '' }) => {
       <div className={`p-6 bg-white rounded-lg shadow-md ${className}`}>
         <div className="flex items-center justify-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
-          <span className="ml-2 text-gray-600">Chargement du psaume du jour...</span>
+          <span className="ml-2 text-gray-600">
+            Chargement du psaume du jour...
+          </span>
         </div>
       </div>
     );
@@ -83,7 +85,9 @@ const PsalmOfTheDay: React.FC<PsalmOfTheDayProps> = ({ className = '' }) => {
 
   if (error) {
     return (
-      <div className={`p-6 bg-red-50 border border-red-200 rounded-lg ${className}`}>
+      <div
+        className={`p-6 bg-red-50 border border-red-200 rounded-lg ${className}`}
+      >
         <div className="text-red-600 mb-4">
           <h3 className="font-semibold">Erreur</h3>
           <p>{error}</p>
@@ -99,17 +103,19 @@ const PsalmOfTheDay: React.FC<PsalmOfTheDayProps> = ({ className = '' }) => {
   }
 
   return (
-    <div className={`p-6 bg-gradient-to-br from-white to-blue-50 rounded-xl shadow-lg border border-blue-100 hover-lift ${className}`}>
+    <div
+      className={`p-6 bg-gradient-to-br from-white to-blue-50 rounded-xl shadow-lg border border-blue-100 hover-lift ${className}`}
+    >
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center space-x-3">
           <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-600 rounded-full flex items-center justify-center animate-float">
             <span className="text-2xl">📅</span>
           </div>
           <div>
-            <h2 className="text-2xl font-bold text-gray-800">
-              Psaume du jour
-            </h2>
-            <p className="text-sm text-gray-600">Découvrez le psaume quotidien</p>
+            <h2 className="text-2xl font-bold text-gray-800">Psaume du jour</h2>
+            <p className="text-sm text-gray-600">
+              Découvrez le psaume quotidien
+            </p>
           </div>
         </div>
         <div className="flex items-center space-x-2">
@@ -168,12 +174,14 @@ const PsalmOfTheDay: React.FC<PsalmOfTheDayProps> = ({ className = '' }) => {
 
       <div className="space-y-4 max-h-96 overflow-y-auto">
         {psalm.map((verse, index) => (
-          <div 
-            key={index} 
+          <div
+            key={index}
             className="flex items-start space-x-4 p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-all duration-300 hover-lift"
             onClick={() => {
               if (!isRead) {
-                setReadingProgress(Math.min(100, ((index + 1) / psalm.length) * 100));
+                setReadingProgress(
+                  Math.min(100, ((index + 1) / psalm.length) * 100)
+                );
               }
             }}
           >

@@ -1,0 +1,193 @@
+{
+  "id": "terre_promise_01",
+  "title": "La Terre Promise — Vision de Moïse",
+  "path": "Alliance",
+  "reading": [
+    "Moïse monta des plaines de Moab sur le mont Nebo, au sommet du Pisga.",
+    "Dieu lui montra tout le pays que les Israélites allaient recevoir : la terre de Canaan, riche et fertile.",
+    "Moïse vit les villes, les montagnes et les vallées que son peuple allait habiter.",
+    "Bien qu'il ne puisse pas entrer lui-même dans la terre, il transmit la promesse et les instructions à Josué, son successeur.",
+    "Moïse mourut sur le mont Nebo, à l'âge de 120 ans, après avoir servi fidèlement Dieu.",
+    "Il avait conduit le peuple pendant quarante ans dans le désert.",
+    "Dieu l'enterra dans un lieu inconnu en terre de Moab.",
+    "Le peuple d'Israël pleura Moïse pendant trente jours.",
+    "Josué prit la relève pour guider le peuple dans la Terre Promise.",
+    "Josué était rempli de l'esprit de sagesse, et les Israélites lui obéirent.",
+    "La promesse de Dieu à Abraham, Isaac et Jacob était sur le point de s'accomplir."
+  ],
+  "key_verse": "Moïse monta des plaines de Moab sur le mont Nebo, au sommet du Pisga, face à Jéricho. Et l'Éternel lui montra tout le pays. - Deutéronome 34:1-2",
+  "vocab": [
+    {
+      "word": "Terre Promise",
+      "hint": "Le pays de Canaan que Dieu avait promis aux descendants d'Abraham, Isaac et Jacob."
+    },
+    {
+      "word": "Mont Nebo",
+      "hint": "Montagne en Moab d'où Moïse contempla la Terre Promise."
+    },
+    {
+      "word": "Pisga",
+      "hint": "Sommet du mont Nebo, point de vue sur le pays de Canaan."
+    },
+    {
+      "word": "Successeur",
+      "hint": "Personne qui prend la place ou la fonction d'une autre."
+    },
+    {
+      "word": "Fidèle",
+      "hint": "Qui reste constant dans ses engagements et sa confiance en Dieu."
+    },
+    {
+      "word": "Conduire le peuple",
+      "hint": "Guider et diriger les Israélites selon les instructions de Dieu."
+    }
+  ],
+  "quiz": [
+    {
+      "q": "Sur quelle montagne Moïse monta-t-il pour voir la Terre Promise ?",
+      "choices": [
+        "Le mont Sinaï",
+        "Le mont Nebo",
+        "Le mont Carmel"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "Quel était le nom du sommet du mont Nebo ?",
+      "choices": [
+        "Le Pisga",
+        "L'Horeb",
+        "L'Ararat"
+      ],
+      "answer": 0
+    },
+    {
+      "q": "Qui devait succéder à Moïse pour guider le peuple ?",
+      "choices": [
+        "Aaron",
+        "Caleb",
+        "Josué"
+      ],
+      "answer": 2
+    },
+    {
+      "q": "À quel âge Moïse mourut-il ?",
+      "choices": [
+        "100 ans",
+        "120 ans",
+        "150 ans"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "Combien de temps le peuple pleura-t-il Moïse ?",
+      "choices": [
+        "Sept jours",
+        "Trente jours",
+        "Quarante jours"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "Que promit Dieu aux descendants d'Abraham, Isaac et Jacob ?",
+      "choices": [
+        "Des richesses",
+        "La Terre Promise",
+        "Une longue vie"
+      ],
+      "answer": 1
+    }
+  ],
+  "goldGame": {
+    "title": "La Terre Promise - Questions d'Approfondissement",
+    "description": "Découvrez les promesses éternelles de Dieu pour Ses enfants",
+    "questions": [
+      {
+        "question": "Pourquoi Moïse ne put-il pas entrer dans la Terre Promise ?",
+        "choices": [
+          "Il était trop vieux",
+          "Il avait désobéi à Dieu à Meriba en frappant le rocher",
+          "Il ne le voulait pas",
+          "Dieu l'avait oublié"
+        ],
+        "correct": 1,
+        "explanation": "Moïse déshonora Dieu devant le peuple en frappant le rocher au lieu de lui parler, montrant l'importance de l'obéissance exacte."
+      },
+      {
+        "question": "Que symbolise la vision de la Terre Promise depuis le mont Nebo ?",
+        "choices": [
+          "La récompense de la fidélité même dans l'épreuve",
+          "Une punition de Dieu",
+          "Un accident géographique",
+          "Une consolation insuffisante"
+        ],
+        "correct": 0,
+        "explanation": "Bien que Moïse ne puisse y entrer, Dieu lui accorde la grâce de voir l'accomplissement de Sa promesse, montrant Sa fidélité."
+      },
+      {
+        "question": "Que représente la Terre Promise dans la perspective chrétienne ?",
+        "choices": [
+          "Seulement un territoire géographique",
+          "La vie éternelle et le royaume de Dieu",
+          "Le succès matériel",
+          "Un symbole sans importance"
+        ],
+        "correct": 1,
+        "explanation": "La Terre Promise préfigure notre héritage éternel en Christ : la vie éternelle et notre place dans le royaume de Dieu."
+      },
+      {
+        "question": "Quel enseignement tirons-nous du fait que Josué, et non Moïse, conduisit le peuple dans la Terre Promise ?",
+        "choices": [
+          "Moïse était devenu inutile",
+          "Chaque génération a son rôle dans le plan de Dieu",
+          "Josué était plus fort que Moïse",
+          "C'était arbitraire"
+        ],
+        "correct": 1,
+        "explanation": "Dieu utilise différentes personnes pour différentes étapes de Son plan. Moïse libéra le peuple, Josué le conduisit à l'héritage."
+      },
+      {
+        "question": "Comment l'attitude de Moïse face à cette limitation révèle-t-elle sa maturité spirituelle ?",
+        "choices": [
+          "Il se rebella contre Dieu",
+          "Il accepta avec foi la souveraineté de Dieu",
+          "Il abandonna sa mission",
+          "Il devint amer"
+        ],
+        "correct": 1,
+        "explanation": "Moïse continua à servir et à encourager le peuple malgré sa déception, montrant une soumission mature à la volonté divine."
+      },
+      {
+        "question": "Que nous enseigne cette histoire sur nos propres 'terres promises' ?",
+        "choices": [
+          "Dieu accomplit toujours Ses promesses, même si ce n'est pas comme nous l'attendons",
+          "Nous devons abandonner nos espoirs",
+          "Les promesses de Dieu ne sont pas fiables",
+          "Seuls les parfaits reçoivent les bénédictions"
+        ],
+        "correct": 0,
+        "explanation": "Dieu tient toujours Ses promesses, mais selon Son plan parfait et Son timing, qui dépassent souvent notre compréhension."
+      }
+    ],
+    "passingScore": 4,
+    "reward": {
+      "type": "badge",
+      "name": "Héritier des Promesses",
+      "description": "Vous comprenez la fidélité éternelle de Dieu",
+      "icon": "🏔️"
+    }
+  },
+  "story_steps": [
+    "Moïse monte sur le mont Nebo depuis les plaines de Moab",
+    "Dieu montre à Moïse toute la Terre Promise",
+    "Moïse voit les villes et vallées de Canaan",
+    "Moïse transmet les instructions à Josué son successeur",
+    "Moïse meurt sur le mont Nebo à 120 ans",
+    "Dieu enterre Moïse dans un lieu secret",
+    "Le peuple pleure Moïse pendant trente jours",
+    "Josué reçoit l'esprit de sagesse pour diriger",
+    "La promesse faite à Abraham va s'accomplir"
+  ],
+  "mini_games": ["order_events", "quiz", "goldGame"],
+  "assets": ["terre_promise_1.png", "terre_promise_2.png", "terre_promise_3.png"]
+}

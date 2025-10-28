@@ -1,0 +1,193 @@
+{
+  "id": "tabernacle_01",
+  "title": "Le Tabernacle — Sanctuaire de Dieu",
+  "path": "Alliance",
+  "reading": [
+    "Dieu dit à Moïse : 'Ils me feront un sanctuaire, et j'habiterai au milieu d'eux.'",
+    "Le tabernacle devait être un lieu sacré où Dieu habiterait parmi son peuple.",
+    "Les Israélites suivirent les instructions précises de Dieu pour construire l'arche de l'alliance avec le propitiatoire en or pur.",
+    "Ils construisirent le voile séparant le lieu saint du lieu très saint.",
+    "L'autel des holocaustes, la table des pains de proposition et le chandelier à sept branches furent réalisés.",
+    "Tous les matériaux et ornements furent préparés selon les plans de Dieu et réalisés avec soin.",
+    "Quand le tabernacle fut achevé et consacré, la nuée de Dieu remplit le sanctuaire.",
+    "Le peuple pouvait voir que Dieu était présent et qu'Il guidait leurs pas dans le désert.",
+    "C'était le lieu de rencontre entre Dieu et son peuple.",
+    "Les sacrifices et offrandes étaient faits pour honorer Dieu et maintenir la relation avec Lui.",
+    "Le tabernacle symbolisait la présence de Dieu au milieu des hommes."
+  ],
+  "key_verse": "Ils me feront un sanctuaire, et j'habiterai au milieu d'eux. - Exode 25:8",
+  "vocab": [
+    {
+      "word": "Tabernacle",
+      "hint": "Sanctuaire mobile construit pour que Dieu habite au milieu du peuple."
+    },
+    {
+      "word": "Arche de l'alliance",
+      "hint": "Coffre sacré contenant les tables de la loi, symbole de la présence de Dieu."
+    },
+    {
+      "word": "Propitiatoire",
+      "hint": "Couvercle de l'arche, symbole de réconciliation entre Dieu et l'homme."
+    },
+    {
+      "word": "Lieu saint / très saint",
+      "hint": "Partie du tabernacle réservée à la présence de Dieu ; séparée par un voile."
+    },
+    {
+      "word": "Nuée",
+      "hint": "Nuage symbolique indiquant la présence de Dieu."
+    },
+    {
+      "word": "Holocauste",
+      "hint": "Sacrifice offert à Dieu pour rendre gloire et honneur."
+    }
+  ],
+  "quiz": [
+    {
+      "q": "Que dit Dieu à Moïse concernant le sanctuaire ?",
+      "choices": [
+        "Ils me construiront une maison",
+        "Ils me feront un sanctuaire, et j'habiterai au milieu d'eux",
+        "Ils me bâtiront un temple"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "Que contenait l'arche de l'alliance ?",
+      "choices": [
+        "Des bijoux en or",
+        "Les tables de la loi",
+        "De la nourriture sacrée"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "Comment s'appelle le couvercle de l'arche ?",
+      "choices": [
+        "Le propitiatoire",
+        "Le sanctuaire",
+        "L'autel"
+      ],
+      "answer": 0
+    },
+    {
+      "q": "Que sépare le voile dans le tabernacle ?",
+      "choices": [
+        "L'entrée et la sortie",
+        "Le lieu saint du lieu très saint",
+        "L'intérieur de l'extérieur"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "Que symbolise la nuée dans le tabernacle ?",
+      "choices": [
+        "La pluie qui arrive",
+        "La présence de Dieu",
+        "Les nuages du ciel"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "À quoi servait le tabernacle ?",
+      "choices": [
+        "À stocker des provisions",
+        "À être un lieu de rencontre entre Dieu et son peuple",
+        "À abriter les animaux"
+      ],
+      "answer": 1
+    }
+  ],
+  "goldGame": {
+    "title": "Le Tabernacle - Questions d'Approfondissement",
+    "description": "Comprenez la profondeur spirituelle de la demeure de Dieu",
+    "questions": [
+      {
+        "question": "Pourquoi Dieu voulait-Il habiter au milieu de Son peuple ?",
+        "choices": [
+          "Pour les surveiller de près",
+          "Pour montrer Son amour et Sa présence constante",
+          "Parce qu'Il n'avait nulle part où aller",
+          "Pour impressionner les nations voisines"
+        ],
+        "correct": 1,
+        "explanation": "Dieu désire la communion avec Ses enfants. Le Tabernacle révèle Son cœur : Il veut vivre parmi nous et avec nous."
+      },
+      {
+        "question": "Que représentait l'arche de l'alliance dans le lieu très saint ?",
+        "choices": [
+          "Un coffre à trésors",
+          "Le trône de Dieu sur terre, Sa présence sainte",
+          "Un symbole de guerre",
+          "Un objet décoratif"
+        ],
+        "correct": 1,
+        "explanation": "L'arche représentait le trône de Dieu, l'endroit où Sa gloire se manifestait et où Il rencontrait Son peuple."
+      },
+      {
+        "question": "Pourquoi y avait-il tant de détails précis pour la construction du Tabernacle ?",
+        "choices": [
+          "Dieu aime les belles choses",
+          "Chaque détail avait une signification spirituelle profonde",
+          "Pour occuper le peuple",
+          "Pour rivaliser avec les temples païens"
+        ],
+        "correct": 1,
+        "explanation": "Chaque élément du Tabernacle était un symbole prophétique pointant vers Christ et le plan de salut de Dieu."
+      },
+      {
+        "question": "Que préfigure le voile qui séparait le lieu saint du lieu très saint ?",
+        "choices": [
+          "La séparation entre Dieu et l'homme à cause du péché",
+          "Une simple décoration",
+          "La protection contre le vent",
+          "Un rideau pour l'intimité"
+        ],
+        "correct": 0,
+        "explanation": "Le voile symbolisait la barrière que le péché créait entre Dieu et l'homme, barrière déchirée par la mort de Christ."
+      },
+      {
+        "question": "Comment le Tabernacle annonce-t-il la venue de Jésus ?",
+        "choices": [
+          "Il ne le fait pas",
+          "Jésus est 'Dieu avec nous', Il habite parmi nous comme le Tabernacle",
+          "C'est juste une coïncidence",
+          "Seulement par les couleurs utilisées"
+        ],
+        "correct": 1,
+        "explanation": "Jean 1:14 dit que Jésus 'a habité parmi nous'. Le mot grec signifie littéralement 'a tabernaclé' parmi nous."
+      },
+      {
+        "question": "Quelle leçon le Tabernacle nous enseigne-t-il sur notre propre corps ?",
+        "choices": [
+          "Notre corps est le temple du Saint-Esprit",
+          "Nous devons décorer notre corps",
+          "Le corps n'a pas d'importance spirituelle",
+          "Il faut construire des bâtiments religieux"
+        ],
+        "correct": 0,
+        "explanation": "Paul enseigne que notre corps est le temple de Dieu (1 Cor 6:19), nous devons donc l'honorer comme lieu de Sa présence."
+      }
+    ],
+    "passingScore": 4,
+    "reward": {
+      "type": "badge",
+      "name": "Architecte du Sacré",
+      "description": "Vous comprenez la présence de Dieu parmi nous",
+      "icon": "⛪"
+    }
+  },
+  "story_steps": [
+    "Dieu donne les plans détaillés du tabernacle à Moïse",
+    "Le peuple apporte volontairement les matériaux précieux",
+    "Betsaleel est choisi comme maître artisan",
+    "Construction du lieu très saint avec l'arche",
+    "Fabrication de l'autel des parfums et des objets sacrés",
+    "Confection des vêtements sacerdotaux pour Aaron",
+    "Montage de la tente et placement des objets",
+    "Consécration du tabernacle par Moïse",
+    "La gloire de Dieu remplit le sanctuaire"
+  ],
+  "mini_games": ["order_events", "quiz", "goldGame"],
+  "assets": ["tabernacle_1.png", "tabernacle_2.png", "tabernacle_3.png"]
+}

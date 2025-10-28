@@ -6,11 +6,17 @@ const TopicsExplorer: React.FC = () => {
   const [topics, setTopics] = useState<Topic[]>([]);
   const [selectedTopic, setSelectedTopic] = useState<Topic | null>(null);
   const [searchTerm, setSearchTerm] = useState('');
-  const [verseOfTheDay, setVerseOfTheDay] = useState<{ topic: Topic; verse: TopicVerse } | null>(null);
+  const [verseOfTheDay, setVerseOfTheDay] = useState<{
+    topic: Topic;
+    verse: TopicVerse;
+  } | null>(null);
   const [loading, setLoading] = useState(true);
   const [isLoadingRandom, setIsLoadingRandom] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [randomVerse, setRandomVerse] = useState<{ topic: Topic; verse: TopicVerse } | null>(null);
+  const [randomVerse, setRandomVerse] = useState<{
+    topic: Topic;
+    verse: TopicVerse;
+  } | null>(null);
 
   useEffect(() => {
     loadTopics();
@@ -37,9 +43,10 @@ const TopicsExplorer: React.FC = () => {
     }
   };
 
-  const filteredTopics = topics.filter(topic =>
-    topic.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    topic.description.toLowerCase().includes(searchTerm.toLowerCase())
+  const filteredTopics = topics.filter(
+    (topic) =>
+      topic.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      topic.description.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   const handleTopicSelect = (topic: Topic) => {
@@ -48,7 +55,7 @@ const TopicsExplorer: React.FC = () => {
 
   const getRandomVerseFromTopic = async (topic: Topic) => {
     if (isLoadingRandom) return; // Éviter les clics multiples
-    
+
     setIsLoadingRandom(true);
     try {
       const verse = await topicsService.getRandomVerseFromTopic(topic.slug);
@@ -57,7 +64,10 @@ const TopicsExplorer: React.FC = () => {
         setShowModal(true);
       }
     } catch (error) {
-      console.error('Erreur lors de la récupération du verset aléatoire:', error);
+      console.error(
+        'Erreur lors de la récupération du verset aléatoire:',
+        error
+      );
     } finally {
       setIsLoadingRandom(false);
     }
@@ -66,7 +76,9 @@ const TopicsExplorer: React.FC = () => {
   const handleCopyVerse = async () => {
     if (randomVerse) {
       try {
-        await navigator.clipboard.writeText(`${randomVerse.verse.texte} — ${randomVerse.verse.ref}`);
+        await navigator.clipboard.writeText(
+          `${randomVerse.verse.texte} — ${randomVerse.verse.ref}`
+        );
       } catch (error) {
         console.error('Erreur lors de la copie:', error);
       }
@@ -77,7 +89,7 @@ const TopicsExplorer: React.FC = () => {
     console.log('🔍 Debug du service Topics:');
     const status = topicsService.getLoadingStatus();
     console.log('📊 Statut:', status);
-    
+
     if (status.topicsCount < 10) {
       console.log('⚠️ Peu de topics chargés, tentative de rechargement...');
       await topicsService.reloadTopics();
@@ -98,20 +110,20 @@ const TopicsExplorer: React.FC = () => {
 
   return (
     <div className="max-w-6xl mx-auto p-responsive">
-        <div className="text-center mb-8">
-          <h1 className="text-responsive-xl font-bold text-gray-800 mb-4">
-            📚 Explorateur de Thèmes Bibliques
-          </h1>
-          <p className="text-responsive-sm text-gray-600 mb-4">
-            Découvrez des versets organisés par thème pour enrichir votre foi
-          </p>
-          <button
-            onClick={debugTopicsService}
-            className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm"
-          >
-            🔍 Debug Topics ({topics.length} chargés)
-          </button>
-        </div>
+      <div className="text-center mb-8">
+        <h1 className="text-responsive-xl font-bold text-gray-800 mb-4">
+          📚 Explorateur de Thèmes Bibliques
+        </h1>
+        <p className="text-responsive-sm text-gray-600 mb-4">
+          Découvrez des versets organisés par thème pour enrichir votre foi
+        </p>
+        <button
+          onClick={debugTopicsService}
+          className="px-4 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors text-sm"
+        >
+          🔍 Debug Topics ({topics.length} chargés)
+        </button>
+      </div>
 
       {/* Verset du jour */}
       {verseOfTheDay && (
@@ -121,8 +133,12 @@ const TopicsExplorer: React.FC = () => {
             <h2 className="text-xl sm:text-2xl font-bold">Verset du jour</h2>
           </div>
           <div className="bg-white bg-opacity-20 rounded-lg p-4">
-            <h3 className="text-base sm:text-lg font-semibold mb-2">{verseOfTheDay.topic.name}</h3>
-            <p className="text-xs sm:text-sm opacity-90 mb-3">{verseOfTheDay.topic.description}</p>
+            <h3 className="text-base sm:text-lg font-semibold mb-2">
+              {verseOfTheDay.topic.name}
+            </h3>
+            <p className="text-xs sm:text-sm opacity-90 mb-3">
+              {verseOfTheDay.topic.description}
+            </p>
             <blockquote className="text-sm sm:text-lg italic">
               "{verseOfTheDay.verse.texte}"
             </blockquote>
@@ -164,10 +180,15 @@ const TopicsExplorer: React.FC = () => {
                     : 'bg-white border border-gray-200 hover:border-blue-300'
                 }`}
               >
-                <h4 className="font-semibold text-gray-800 mb-1 text-sm sm:text-base">{topic.name}</h4>
-                <p className="text-xs sm:text-sm text-gray-600 mb-2">{topic.description}</p>
+                <h4 className="font-semibold text-gray-800 mb-1 text-sm sm:text-base">
+                  {topic.name}
+                </h4>
+                <p className="text-xs sm:text-sm text-gray-600 mb-2">
+                  {topic.description}
+                </p>
                 <span className="text-xs text-blue-600 font-medium">
-                  {topic.verses.length} verset{topic.verses.length > 1 ? 's' : ''}
+                  {topic.verses.length} verset
+                  {topic.verses.length > 1 ? 's' : ''}
                 </span>
               </button>
             ))}
@@ -183,14 +204,21 @@ const TopicsExplorer: React.FC = () => {
                   <span className="text-lg sm:text-2xl">📖</span>
                 </div>
                 <div>
-                  <h2 className="text-xl sm:text-2xl font-bold text-gray-800">{selectedTopic.name}</h2>
-                  <p className="text-sm sm:text-base text-gray-600">{selectedTopic.description}</p>
+                  <h2 className="text-xl sm:text-2xl font-bold text-gray-800">
+                    {selectedTopic.name}
+                  </h2>
+                  <p className="text-sm sm:text-base text-gray-600">
+                    {selectedTopic.description}
+                  </p>
                 </div>
               </div>
 
               <div className="space-y-4">
                 {selectedTopic.verses.map((verse, index) => (
-                  <div key={index} className="bg-gray-50 rounded-lg p-3 sm:p-4 hover:bg-gray-100 transition-colors">
+                  <div
+                    key={index}
+                    className="bg-gray-50 rounded-lg p-3 sm:p-4 hover:bg-gray-100 transition-colors"
+                  >
                     <blockquote className="text-sm sm:text-base text-gray-700 leading-relaxed mb-2">
                       "{verse.texte}"
                     </blockquote>
@@ -206,8 +234,8 @@ const TopicsExplorer: React.FC = () => {
                   onClick={() => getRandomVerseFromTopic(selectedTopic)}
                   disabled={isLoadingRandom}
                   className={`px-4 sm:px-6 py-2 sm:py-3 text-white rounded-lg transition-all duration-300 text-sm sm:text-base ${
-                    isLoadingRandom 
-                      ? 'bg-gray-400 cursor-not-allowed' 
+                    isLoadingRandom
+                      ? 'bg-gray-400 cursor-not-allowed'
                       : 'bg-gradient-to-r from-green-500 to-teal-600 hover:from-green-600 hover:to-teal-700 button-interactive'
                   }`}
                 >
@@ -224,7 +252,8 @@ const TopicsExplorer: React.FC = () => {
                 Sélectionnez un thème
               </h3>
               <p className="text-sm sm:text-base text-gray-500">
-                Choisissez un thème dans la liste pour voir les versets correspondants
+                Choisissez un thème dans la liste pour voir les versets
+                correspondants
               </p>
             </div>
           )}
@@ -239,17 +268,23 @@ const TopicsExplorer: React.FC = () => {
       >
         {randomVerse && (
           <>
-            <div className="text-sm text-gray-600 mb-2">{randomVerse.topic.name}</div>
-            <div className="text-base leading-relaxed mb-4">"{randomVerse.verse.texte}"</div>
-            <div className="text-sm text-gray-500 italic mb-4">— {randomVerse.verse.ref}</div>
+            <div className="text-sm text-gray-600 mb-2">
+              {randomVerse.topic.name}
+            </div>
+            <div className="text-base leading-relaxed mb-4">
+              "{randomVerse.verse.texte}"
+            </div>
+            <div className="text-sm text-gray-500 italic mb-4">
+              — {randomVerse.verse.ref}
+            </div>
             <div className="flex gap-2">
-              <button 
+              <button
                 onClick={handleCopyVerse}
                 className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
               >
                 Copier
               </button>
-              <button 
+              <button
                 onClick={() => setShowModal(false)}
                 className="px-4 py-2 bg-gray-500 text-white rounded hover:bg-gray-600 transition-colors"
               >

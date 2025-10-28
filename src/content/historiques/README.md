@@ -17,14 +17,17 @@ L'histoire du peuple de Dieu depuis l'entrée en Terre Promise jusqu'à l'exil.
 ## Histoires disponibles :
 
 ### 1 Samuel
+
 - ✅ David et Goliath (`david_01.json`)
 
 ### Daniel (livre historique/prophétique)
+
 - ✅ Daniel dans la fosse aux lions (`daniel_01.json`)
 
 ## À développer :
+
 - Josué et la bataille de Jéricho
-- Samson et Dalila  
+- Samson et Dalila
 - Ruth et Noémi
 - Samuel enfant dans le temple
 - Esther sauve son peuple

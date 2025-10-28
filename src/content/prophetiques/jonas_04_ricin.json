@@ -15,26 +15,50 @@
   ],
   "key_verse": "Et moi, je n'aurais pas pitié de Ninive, la grande ville, où il y a plus de cent vingt mille hommes ?",
   "vocab": [
-    { "word": "ricin", "hint": "Plante qui pousse rapidement et donne une grande ombre." },
-    { "word": "miséricorde", "hint": "Compassion, pitié, bonté de Dieu pour ses créatures." },
-    { "word": "universel", "hint": "Qui concerne tous les peuples, pas seulement Israël." },
-    { "word": "leçon divine", "hint": "Enseignement que Dieu donne à travers les événements." }
+    {
+      "word": "ricin",
+      "hint": "Plante qui pousse rapidement et donne une grande ombre."
+    },
+    {
+      "word": "miséricorde",
+      "hint": "Compassion, pitié, bonté de Dieu pour ses créatures."
+    },
+    {
+      "word": "universel",
+      "hint": "Qui concerne tous les peuples, pas seulement Israël."
+    },
+    {
+      "word": "leçon divine",
+      "hint": "Enseignement que Dieu donne à travers les événements."
+    }
   ],
   "quiz": [
-    { 
-      "q": "Pourquoi Jonas est-il content du ricin ?", 
-      "choices": ["Il peut le manger", "Il lui donne de l'ombre", "Il est beau"], 
-      "answer": 1 
+    {
+      "q": "Pourquoi Jonas est-il content du ricin ?",
+      "choices": [
+        "Il peut le manger",
+        "Il lui donne de l'ombre",
+        "Il est beau"
+      ],
+      "answer": 1
     },
-    { 
-      "q": "Que fait le ver envoyé par Dieu ?", 
-      "choices": ["Il mange Jonas", "Il détruit le ricin", "Il fait peur à Jonas"], 
-      "answer": 1 
+    {
+      "q": "Que fait le ver envoyé par Dieu ?",
+      "choices": [
+        "Il mange Jonas",
+        "Il détruit le ricin",
+        "Il fait peur à Jonas"
+      ],
+      "answer": 1
     },
-    { 
-      "q": "Quelle leçon Dieu enseigne-t-il à Jonas ?", 
-      "choices": ["Il faut protéger les plantes", "Dieu a pitié de tous ses créatures", "Jonas doit rentrer chez lui"], 
-      "answer": 1 
+    {
+      "q": "Quelle leçon Dieu enseigne-t-il à Jonas ?",
+      "choices": [
+        "Il faut protéger les plantes",
+        "Dieu a pitié de tous ses créatures",
+        "Jonas doit rentrer chez lui"
+      ],
+      "answer": 1
     }
   ],
   "mini_games": ["order_events"],

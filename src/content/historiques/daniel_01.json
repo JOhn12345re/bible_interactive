@@ -14,38 +14,55 @@
   ],
   "key_verse": "Mon Dieu a envoyé son ange et fermé la gueule des lions.",
   "vocab": [
-    { "word": "fidélité", "hint": "Rester loyal à Dieu même dans les difficultés." },
-    { "word": "jalousie", "hint": "Sentiment négatif envers quelqu'un qui réussit mieux." },
-    { "word": "édit royal", "hint": "Loi du roi que personne ne peut changer." },
+    {
+      "word": "fidélité",
+      "hint": "Rester loyal à Dieu même dans les difficultés."
+    },
+    {
+      "word": "jalousie",
+      "hint": "Sentiment négatif envers quelqu'un qui réussit mieux."
+    },
+    {
+      "word": "édit royal",
+      "hint": "Loi du roi que personne ne peut changer."
+    },
     { "word": "ange", "hint": "Messager de Dieu qui protège les fidèles." }
   ],
   "quiz": [
-    { 
-      "q": "Combien de fois par jour Daniel prie-t-il ?", 
-      "choices": ["Une fois", "Trois fois", "Cinq fois"], 
-      "answer": 1 
+    {
+      "q": "Combien de fois par jour Daniel prie-t-il ?",
+      "choices": ["Une fois", "Trois fois", "Cinq fois"],
+      "answer": 1
     },
-    { 
-      "q": "Pourquoi les dirigeants veulent-ils perdre Daniel ?", 
-      "choices": ["Par jalousie", "Il est méchant", "Il vole"], 
-      "answer": 0 
+    {
+      "q": "Pourquoi les dirigeants veulent-ils perdre Daniel ?",
+      "choices": ["Par jalousie", "Il est méchant", "Il vole"],
+      "answer": 0
     },
-    { 
-      "q": "Que fait l'ange de Dieu ?", 
-      "choices": ["Il nourrit Daniel", "Il ferme la gueule des lions", "Il ouvre la fosse"], 
-      "answer": 1 
+    {
+      "q": "Que fait l'ange de Dieu ?",
+      "choices": [
+        "Il nourrit Daniel",
+        "Il ferme la gueule des lions",
+        "Il ouvre la fosse"
+      ],
+      "answer": 1
     },
-    { 
-      "q": "Quelle leçon nous enseigne cette histoire ?", 
-      "choices": ["Il faut avoir peur", "Dieu protège les fidèles", "Les lions sont gentils"], 
-      "answer": 1 
+    {
+      "q": "Quelle leçon nous enseigne cette histoire ?",
+      "choices": [
+        "Il faut avoir peur",
+        "Dieu protège les fidèles",
+        "Les lions sont gentils"
+      ],
+      "answer": 1
     }
   ],
   "mini_games": ["order_events", "quiz"],
   "assets": ["daniel_1.png", "daniel_2.png", "daniel_3.png", "daniel_4.png"],
   "story_steps": [
     "Daniel prie fidèlement",
-    "Les jaloux le dénoncent", 
+    "Les jaloux le dénoncent",
     "Daniel jeté aux lions",
     "Dieu ferme leur gueule"
   ],

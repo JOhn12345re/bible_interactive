@@ -1,0 +1,155 @@
+{
+  "id": "buisson_ardent_nouveau",
+  "title": "🔥 Le Buisson Ardent - Nouvelle Version avec Jeu d'Or",
+  "path": "Le Pentateuque",
+  "reading": [
+    "Moïse gardait les troupeaux de son beau-père Jéthro, prêtre de Madian.",
+    "Il conduisit le troupeau derrière le désert, et vint à la montagne de Dieu, à Horeb.",
+    "L'ange de l'Éternel lui apparut dans une flamme de feu, au milieu d'un buisson.",
+    "Moïse regarda ; et voici, le buisson était tout en feu, et le buisson ne se consumait point.",
+    "Moïse dit : Je veux me détourner pour voir quelle est cette grande vision, et pourquoi le buisson ne se consume point.",
+    "L'Éternel vit qu'il se détournait pour voir ; et Dieu l'appela du milieu du buisson, et dit : Moïse ! Moïse !",
+    "Et il répondit : Me voici !",
+    "Dieu dit : N'approche pas d'ici, ôte tes souliers de tes pieds, car le lieu sur lequel tu te tiens est une terre sainte.",
+    "Et il ajouta : Je suis le Dieu de ton père, le Dieu d'Abraham, le Dieu d'Isaac et le Dieu de Jacob.",
+    "Moïse se cacha le visage, car il craignait de regarder Dieu.",
+    "L'Éternel dit : J'ai vu la souffrance de mon peuple qui est en Égypte, et j'ai entendu les cris que lui font pousser ses oppresseurs, car je connais ses douleurs.",
+    "Je suis descendu pour le délivrer de la main des Égyptiens, et pour le faire monter de ce pays dans un bon et vaste pays, dans un pays où coulent le lait et le miel.",
+    "Maintenant, va, je t'enverrai auprès de Pharaon, et tu feras sortir d'Égypte mon peuple, les enfants d'Israël.",
+    "Moïse dit à Dieu : Qui suis-je, pour aller vers Pharaon, et pour faire sortir d'Égypte les enfants d'Israël ?",
+    "Dieu dit : Je serai avec toi ; et ceci sera pour toi le signe que c'est moi qui t'ai envoyé : quand tu auras fait sortir d'Égypte le peuple, vous servirez Dieu sur cette montagne.",
+    "Moïse dit à Dieu : J'irai donc vers les enfants d'Israël, et je leur dirai : Le Dieu de vos pères m'envoie vers vous. Mais, s'ils me demandent quel est son nom, que leur répondrai-je ?",
+    "Dieu dit à Moïse : Je suis celui qui suis. Et il ajouta : C'est ainsi que tu répondras aux enfants d'Israël : Celui qui s'appelle 'je suis' m'a envoyé vers vous."
+  ],
+  "key_verse": "Je suis celui qui suis. C'est ainsi que tu répondras aux enfants d'Israël : Celui qui s'appelle 'je suis' m'a envoyé vers vous.",
+  "vocab": [
+    {
+      "word": "Buisson ardent",
+      "hint": "Un buisson qui brûlait sans se consumer, signe de la présence de Dieu."
+    },
+    { 
+      "word": "Terre sainte", 
+      "hint": "Un lieu consacré où Dieu se révèle." 
+    },
+    {
+      "word": "JE SUIS",
+      "hint": "Le nom que Dieu se donne à lui-même (YHWH)."
+    },
+    {
+      "word": "Horeb",
+      "hint": "La montagne de Dieu, aussi appelée mont Sinaï."
+    }
+  ],
+  "quiz": [
+    {
+      "q": "Que faisait Moïse quand il vit le buisson ardent ?",
+      "choices": ["Il priait", "Il gardait les troupeaux", "Il dormait"],
+      "answer": 1
+    },
+    {
+      "q": "Que dit Dieu à Moïse de faire avant de s'approcher ?",
+      "choices": ["Se laver", "Ôter ses sandales", "S'incliner"],
+      "answer": 1
+    },
+    {
+      "q": "Quel nom Dieu se donne-t-il à Moïse ?",
+      "choices": ["Le Tout-Puissant", "JE SUIS", "Le Créateur"],
+      "answer": 1
+    },
+    {
+      "q": "Pourquoi Dieu envoie-t-il Moïse en Égypte ?",
+      "choices": [
+        "Pour voir Pharaon",
+        "Pour délivrer son peuple",
+        "Pour négocier"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "Quelle promesse Dieu fait-il à Moïse ?",
+      "choices": ["Il sera riche", "Il sera avec lui", "Il sera roi"],
+      "answer": 1
+    }
+  ],
+  "mini_games": ["order_events", "quiz", "goldGame"],
+  "goldGame": {
+    "title": "Le Buisson Ardent - Questions d'Approfondissement",
+    "description": "Répondez aux questions sur l'appel de Moïse par Dieu au buisson ardent",
+    "questions": [
+      {
+        "question": "Pourquoi le buisson brûlait-il sans se consumer ?",
+        "choices": [
+          "C'était un miracle naturel",
+          "C'était un signe de la présence divine de Dieu",
+          "Le bois était mouillé",
+          "Il y avait du vent"
+        ],
+        "correct": 1,
+        "explanation": "Le buisson ardent qui ne se consumait pas était un signe surnaturel de la présence sainte de Dieu."
+      },
+      {
+        "question": "Que signifie le nom 'JE SUIS' que Dieu révèle à Moïse ?",
+        "choices": [
+          "Dieu existe depuis toujours et pour toujours",
+          "Dieu est comme nous",
+          "Dieu change selon les époques",
+          "Dieu n'a pas d'identité"
+        ],
+        "correct": 0,
+        "explanation": "'JE SUIS' (YHWH) révèle que Dieu est éternel, auto-existant et immuable. Il est celui qui était, qui est et qui sera."
+      },
+      {
+        "question": "Pourquoi Moïse devait-il ôter ses sandales ?",
+        "choices": [
+          "Elles étaient sales",
+          "Pour montrer le respect devant la terre sainte",
+          "Pour mieux courir",
+          "C'était une coutume égyptienne"
+        ],
+        "correct": 1,
+        "explanation": "Ôter ses sandales était un geste de respect et de révérence devant la sainteté de Dieu et du lieu de Sa présence."
+      },
+      {
+        "question": "Quelle mission Dieu confie-t-Il à Moïse ?",
+        "choices": [
+          "Devenir roi d'Égypte",
+          "Libérer le peuple d'Israël de l'esclavage en Égypte",
+          "Construire une ville",
+          "Épouser une princesse"
+        ],
+        "correct": 1,
+        "explanation": "Dieu appelle Moïse pour être l'instrument de libération de son peuple opprimé en Égypte et le conduire vers la Terre Promise."
+      },
+      {
+        "question": "Comment Dieu rassure-t-Il Moïse qui se sent incapable ?",
+        "choices": [
+          "Il lui donne des pouvoirs magiques",
+          "Il lui promet d'être avec lui",
+          "Il lui donne une armée",
+          "Il change d'avis"
+        ],
+        "correct": 1,
+        "explanation": "Dieu promet à Moïse 'Je serai avec toi', montrant que la présence divine est la source de notre force pour accomplir Sa volonté."
+      },
+      {
+        "question": "Que nous enseigne l'appel de Moïse sur la façon dont Dieu nous appelle ?",
+        "choices": [
+          "Dieu appelle seulement les parfaits",
+          "Dieu nous appelle souvent quand nous nous y attendons le moins",
+          "Dieu ne nous appelle jamais",
+          "Seuls les prêtres sont appelés"
+        ],
+        "correct": 1,
+        "explanation": "Dieu peut nous appeler à tout moment et dans toute situation ordinaire, comme Moïse gardant les troupeaux. Il nous prépare pour Sa mission."
+      }
+    ],
+    "passingScore": 4,
+    "reward": {
+      "type": "badge",
+      "name": "Gardien du Buisson Ardent",
+      "description": "Vous avez compris l'appel divin de Moïse",
+      "icon": "🔥"
+    }
+  },
+  "assets": ["buisson_1.png", "buisson_2.png", "buisson_3.png"]
+}

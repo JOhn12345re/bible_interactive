@@ -14,13 +14,28 @@
   "key_verse": "L'Éternel combattra pour vous ; et vous, gardez le silence.",
   "vocab": [
     { "word": "Exode", "hint": "Sortie du peuple d'Israël d'Égypte." },
-    { "word": "Miracle", "hint": "Événement extraordinaire accompli par Dieu." },
+    {
+      "word": "Miracle",
+      "hint": "Événement extraordinaire accompli par Dieu."
+    },
     { "word": "Libération", "hint": "Action de rendre libre." }
   ],
   "quiz": [
-    { "q": "Qui a conduit le peuple hors d'Égypte ?", "choices": ["Moïse", "Aaron", "Josué"], "answer": 0 },
-    { "q": "Comment le peuple a-t-il traversé la mer ?", "choices": ["En bateau", "À pied sec", "En nageant"], "answer": 1 },
-    { "q": "Que fit Dieu avec la mer Rouge ?", "choices": ["Il l'assécha", "Il la divisa", "Il la calma"], "answer": 1 }
+    {
+      "q": "Qui a conduit le peuple hors d'Égypte ?",
+      "choices": ["Moïse", "Aaron", "Josué"],
+      "answer": 0
+    },
+    {
+      "q": "Comment le peuple a-t-il traversé la mer ?",
+      "choices": ["En bateau", "À pied sec", "En nageant"],
+      "answer": 1
+    },
+    {
+      "q": "Que fit Dieu avec la mer Rouge ?",
+      "choices": ["Il l'assécha", "Il la divisa", "Il la calma"],
+      "answer": 1
+    }
   ],
   "mini_games": ["order_events"],
   "assets": ["moise_1.png", "moise_2.png", "moise_3.png", "moise_4.png"]

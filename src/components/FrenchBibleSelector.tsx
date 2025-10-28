@@ -8,9 +8,11 @@ const FrenchBibleSelector: React.FC = () => {
     <div className="bg-white rounded-xl p-6 shadow-lg">
       <div className="flex items-center mb-4">
         <span className="text-2xl mr-2">🇫🇷</span>
-        <h3 className="text-lg font-bold text-gray-800">Bible Louis Segond 1910</h3>
+        <h3 className="text-lg font-bold text-gray-800">
+          Bible Louis Segond 1910
+        </h3>
       </div>
-      
+
       <div className="p-4 rounded-lg border-2 border-blue-500 bg-blue-50">
         <div className="flex items-center justify-between">
           <div className="flex-1">

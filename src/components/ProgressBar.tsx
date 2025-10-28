@@ -19,10 +19,10 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
   color = 'blue',
   size = 'md',
   animated = true,
-  className = ''
+  className = '',
 }) => {
   const percentage = Math.min((current / total) * 100, 100);
-  
+
   const colorClasses = {
     blue: 'from-blue-400 to-blue-600',
     green: 'from-green-400 to-green-600',
@@ -54,7 +54,9 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
       )}
 
       {/* Barre de progression */}
-      <div className={`w-full bg-gray-200 rounded-full overflow-hidden ${sizeClasses[size]}`}>
+      <div
+        className={`w-full bg-gray-200 rounded-full overflow-hidden ${sizeClasses[size]}`}
+      >
         <div
           className={`
             h-full bg-gradient-to-r ${colorClasses[color]} rounded-full
@@ -62,9 +64,9 @@ const ProgressBar: React.FC<ProgressBarProps> = ({
             ${animated ? 'animate-pulse' : ''}
             ${percentage === 100 ? 'animate-bounce-slow' : ''}
           `}
-          style={{ 
+          style={{
             width: `${percentage}%`,
-            transition: animated ? 'width 1s ease-out' : 'none'
+            transition: animated ? 'width 1s ease-out' : 'none',
           }}
         >
           {/* Effet de brillance pour les barres complètes */}

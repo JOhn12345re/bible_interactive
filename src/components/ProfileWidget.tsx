@@ -41,7 +41,7 @@ const ProfileWidget: React.FC = () => {
             {levelInfo.level}
           </div>
         </div>
-        
+
         <div className="flex-1">
           <h3 className="font-bold group-hover:scale-105 transition-transform">
             {profile.firstName} {profile.lastName}
@@ -51,14 +51,16 @@ const ProfileWidget: React.FC = () => {
             <span>•</span>
             <span>⭐ {levelInfo.level}</span>
             <span>•</span>
-            <span>🎮 {profile.gameStats.totalGamesPlayed}</span>
+            <span>🎮 {profile.gameStats?.totalGamesPlayed || 0}</span>
           </div>
-          
+
           {/* Mini barre de progression */}
           <div className="mt-2 bg-white/20 rounded-full h-1">
-            <div 
+            <div
               className="bg-white h-1 rounded-full transition-all duration-300"
-              style={{ width: `${(levelInfo.progress / levelInfo.nextLevelAt) * 100}%` }}
+              style={{
+                width: `${(levelInfo.progress / levelInfo.nextLevelAt) * 100}%`,
+              }}
             />
           </div>
         </div>

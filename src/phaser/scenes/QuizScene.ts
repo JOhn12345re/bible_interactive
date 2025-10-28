@@ -10,7 +10,7 @@ export default class QuizScene extends Phaser.Scene {
   private scoreText!: Phaser.GameObjects.Text;
   private timer!: Phaser.GameObjects.Graphics;
   private timeLeft = 15;
-  private timerEvent!: Phaser.Time.TimerEvent;
+  private timerEvent: Phaser.Time.TimerEvent | null = null;
   private gameComplete = false;
 
   constructor() {
@@ -19,18 +19,48 @@ export default class QuizScene extends Phaser.Scene {
 
   public setLessonData(data: any) {
     this.lessonData = data;
-    this.questions = data?.quiz || [];
-    console.log('📝 QuizScene - Données de leçon reçues:', data?.id || 'pas de data');
+    // Adapter le format du quiz si besoin (JSON: question/options/correct/explanation)
+    if (
+      Array.isArray(data?.quiz) &&
+      data.quiz.length > 0 &&
+      data.quiz[0].question &&
+      data.quiz[0].options
+    ) {
+      this.questions = data.quiz.map((q: any) => ({
+        q: q.question,
+        choices: q.options,
+        correct: q.correct,
+        explanation: q.explanation,
+      }));
+    } else {
+      // Format standard avec 'q', 'choices', et 'answer' (base-1)
+      this.questions = (data?.quiz || []).map((q: any) => ({
+        q: q.q,
+        choices: q.choices,
+        correct: q.answer !== undefined ? q.answer : q.correct, // Garder la compatibilité
+        explanation: q.explanation,
+      }));
+    }
+    console.log(
+      '📝 QuizScene - Données de leçon reçues:',
+      data?.id || 'pas de data'
+    );
     console.log('📝 QuizScene - Questions chargées:', this.questions.length);
     console.log('📝 QuizScene - Questions détaillées:', this.questions);
-    
+
     // Vérifier que les questions sont bien formatées
     if (this.questions.length > 0) {
       console.log('📝 Première question:', this.questions[0]);
-      
+
       // Si la scène est déjà créée et qu'on n'a pas encore affiché de question, afficher la première
-      if (this.scene.isActive() && this.currentQuestion === 0 && !this.gameComplete) {
-        console.log('📝 Affichage de la première question après chargement des données');
+      if (
+        this.scene.isActive() &&
+        this.currentQuestion === 0 &&
+        !this.gameComplete
+      ) {
+        console.log(
+          '📝 Affichage de la première question après chargement des données'
+        );
         this.showQuestion();
       }
     }
@@ -42,7 +72,7 @@ export default class QuizScene extends Phaser.Scene {
     // Calculer les tailles responsive
     const isMobile = width < 500;
     const isTablet = width >= 500 && width < 800;
-    
+
     // Tailles adaptatives
     const titleFontSize = isMobile ? '24px' : isTablet ? '30px' : '36px';
     const questionFontSize = isMobile ? '18px' : isTablet ? '22px' : '26px';
@@ -55,14 +85,29 @@ export default class QuizScene extends Phaser.Scene {
     this.currentQuestion = 0;
     this.score = 0;
     this.gameComplete = false;
-    console.log('🎮 Création du quiz - Questions disponibles:', this.questions.length);
-    console.log('🎮 Création du quiz - currentQuestion initialisé à:', this.currentQuestion);
+    console.log(
+      '🎮 Création du quiz - Questions disponibles:',
+      this.questions.length
+    );
+    console.log(
+      '🎮 Création du quiz - currentQuestion initialisé à:',
+      this.currentQuestion
+    );
     console.log('🎮 Création du quiz - lessonData:', this.lessonData?.id);
-    console.log('📱 Taille d\'écran:', width, 'x', height, 'Mobile:', isMobile, 'Tablet:', isTablet);
+    console.log(
+      "📱 Taille d'écran:",
+      width,
+      'x',
+      height,
+      'Mobile:',
+      isMobile,
+      'Tablet:',
+      isTablet
+    );
 
     // Arrière-plan avec gradient moderne
     this.add.rectangle(width / 2, height / 2, width, height, 0xf8fafc);
-    
+
     // Ajouter un pattern subtil en arrière-plan
     const bgPattern = this.add.graphics();
     bgPattern.fillStyle(0x000000, 0.02);
@@ -89,25 +134,40 @@ export default class QuizScene extends Phaser.Scene {
           quizTitle = '🌍 Quiz de la Création';
           break;
         case 'noe_01':
-          quizTitle = '🚢 Quiz Noé et l\'Arche';
+          quizTitle = "🚢 Quiz Noé et l'Arche";
           break;
         case 'babel_01':
           quizTitle = '🏗️ Quiz Tour de Babel';
           break;
         case 'abraham_01':
-          quizTitle = '⭐ Quiz Abraham et l\'Alliance';
+          quizTitle = "⭐ Quiz Abraham et l'Alliance";
           break;
-        case 'isaac_01':
+        case 'isaac_sacrifice_01':
+          quizTitle = '🔥 Quiz Le Sacrifice d\'Isaac';
+          break;
+        case 'isaac_mariage_01':
           quizTitle = '💍 Quiz Isaac et Rebecca';
           break;
-        case 'jacob_01':
+        case 'jacob_esau_01':
           quizTitle = '👬 Quiz Jacob et Ésaü';
+          break;
+        case 'jacob_songe_01':
+          quizTitle = '🪜 Quiz Le Songe de Jacob';
           break;
         case 'joseph_01':
           quizTitle = '🌾 Quiz Joseph en Égypte';
           break;
         case 'commandements_01':
           quizTitle = '📜 Quiz Les Dix Commandements';
+          break;
+        case 'tabernacle_01':
+          quizTitle = '🏛️ Quiz Le Tabernacle';
+          break;
+        case 'terre_promise_01':
+          quizTitle = '🏔️ Quiz La Terre Promise';
+          break;
+        case 'josue_01':
+          quizTitle = '🏰 Quiz La Prise de Jéricho';
           break;
         case 'gedeon_01':
           quizTitle = '🗡️ Quiz Gédéon et les 300 hommes';
@@ -116,7 +176,7 @@ export default class QuizScene extends Phaser.Scene {
           quizTitle = '🔥 Quiz Moïse et le buisson ardent';
           break;
         case 'plaies_egypte_01':
-          quizTitle = '🐸 Quiz Les dix plaies d\'Égypte';
+          quizTitle = "🐸 Quiz Les dix plaies d'Égypte";
           break;
         case 'mer_rouge_01':
           quizTitle = '🌊 Quiz La traversée de la mer Rouge';
@@ -132,6 +192,9 @@ export default class QuizScene extends Phaser.Scene {
           break;
         case 'ezechiel_01':
           quizTitle = '💨 Quiz Ézéchiel et les ossements desséchés';
+          break;
+        case 'daniel_01':
+          quizTitle = '🦁 Quiz Daniel dans la fosse aux lions';
           break;
         case 'naissance_jesus':
           quizTitle = '👶 Quiz Naissance de Jésus';
@@ -168,19 +231,19 @@ export default class QuizScene extends Phaser.Scene {
           offsetY: 2,
           color: '#000000',
           blur: 4,
-          fill: true
-        }
+          fill: true,
+        },
       })
       .setOrigin(0.5)
       .setAlpha(0);
-      
+
     // Animation d'entrée du titre
     this.tweens.add({
       targets: title,
       alpha: 1,
       y: 55,
       duration: 800,
-      ease: 'Back.easeOut'
+      ease: 'Back.easeOut',
     });
 
     // Score avec style moderne
@@ -197,19 +260,19 @@ export default class QuizScene extends Phaser.Scene {
           offsetY: 1,
           color: '#000000',
           blur: 2,
-          fill: true
-        }
+          fill: true,
+        },
       })
       .setOrigin(1, 0)
       .setAlpha(0);
-      
+
     // Animation d'entrée du score
     this.tweens.add({
       targets: this.scoreText,
       alpha: 1,
       duration: 600,
       delay: 200,
-      ease: 'Power2'
+      ease: 'Power2',
     });
 
     // Timer visuel
@@ -235,16 +298,26 @@ export default class QuizScene extends Phaser.Scene {
   }
 
   private showQuestion() {
-    console.log('❓ Affichage question:', this.currentQuestion + 1, '/', this.questions.length);
+    console.log(
+      '❓ Affichage question:',
+      this.currentQuestion + 1,
+      '/',
+      this.questions.length
+    );
     console.log('❓ Questions disponibles:', this.questions);
-    console.log('❓ currentQuestion:', this.currentQuestion, 'questions.length:', this.questions.length);
-    
+    console.log(
+      '❓ currentQuestion:',
+      this.currentQuestion,
+      'questions.length:',
+      this.questions.length
+    );
+
     if (this.currentQuestion >= this.questions.length) {
       console.log('🏁 Fin du quiz - toutes les questions ont été posées');
       this.endQuiz();
       return;
     }
-    
+
     if (this.questions.length === 0) {
       console.log('❌ Aucune question disponible !');
       this.endQuiz();
@@ -257,7 +330,7 @@ export default class QuizScene extends Phaser.Scene {
     // Calculer les tailles responsive
     const isMobile = width < 500;
     const isTablet = width >= 500 && width < 800;
-    
+
     // Tailles adaptatives
     const questionFontSize = isMobile ? '18px' : isTablet ? '22px' : '26px';
     const buttonFontSize = isMobile ? '14px' : isTablet ? '16px' : '18px';
@@ -268,38 +341,43 @@ export default class QuizScene extends Phaser.Scene {
 
     // Nettoyer les anciens éléments
     if (this.questionText) this.questionText.destroy();
-    this.answerButtons.forEach(btn => btn.destroy());
+    this.answerButtons.forEach((btn) => btn.destroy());
     this.answerButtons = [];
 
     // Afficher la question avec style moderne
     this.questionText = this.add
-      .text(width / 2, questionY, `Question ${this.currentQuestion + 1}: ${question.q}`, {
-        fontSize: questionFontSize,
-        color: '#1e293b',
-        fontFamily: 'Arial, sans-serif',
-        fontStyle: 'bold',
-        wordWrap: { width: width - (isMobile ? 20 : 100) },
-        align: 'center',
-        stroke: '#ffffff',
-        strokeThickness: 1,
-        shadow: {
-          offsetX: 1,
-          offsetY: 1,
-          color: '#000000',
-          blur: 2,
-          fill: true
+      .text(
+        width / 2,
+        questionY,
+        `Question ${this.currentQuestion + 1}: ${question.q}`,
+        {
+          fontSize: questionFontSize,
+          color: '#1e293b',
+          fontFamily: 'Arial, sans-serif',
+          fontStyle: 'bold',
+          wordWrap: { width: width - (isMobile ? 20 : 100) },
+          align: 'center',
+          stroke: '#ffffff',
+          strokeThickness: 1,
+          shadow: {
+            offsetX: 1,
+            offsetY: 1,
+            color: '#000000',
+            blur: 2,
+            fill: true,
+          },
         }
-      })
+      )
       .setOrigin(0.5)
       .setAlpha(0);
-      
+
     // Animation d'entrée de la question
     this.tweens.add({
       targets: this.questionText,
       alpha: 1,
       duration: 600,
       delay: 300,
-      ease: 'Power2'
+      ease: 'Power2',
     });
 
     // Créer les boutons de réponse avec design moderne
@@ -311,13 +389,31 @@ export default class QuizScene extends Phaser.Scene {
       // Bouton background avec gradient
       const bg = this.add.graphics();
       bg.fillGradientStyle(0xffffff, 0xffffff, 0xf8fafc, 0xf8fafc, 1, 1, 0, 0);
-      bg.fillRoundedRect(-buttonWidth/2, -buttonHeight/2, buttonWidth, buttonHeight, 15);
+      bg.fillRoundedRect(
+        -buttonWidth / 2,
+        -buttonHeight / 2,
+        buttonWidth,
+        buttonHeight,
+        15
+      );
       bg.lineStyle(3, 0xe2e8f0, 1);
-      bg.strokeRoundedRect(-buttonWidth/2, -buttonHeight/2, buttonWidth, buttonHeight, 15);
-      
+      bg.strokeRoundedRect(
+        -buttonWidth / 2,
+        -buttonHeight / 2,
+        buttonWidth,
+        buttonHeight,
+        15
+      );
+
       // Ombre portée
       bg.fillStyle(0x000000, 0.1);
-      bg.fillRoundedRect(-buttonWidth/2 + 2, -buttonHeight/2 + 2, buttonWidth, buttonHeight, 15);
+      bg.fillRoundedRect(
+        -buttonWidth / 2 + 2,
+        -buttonHeight / 2 + 2,
+        buttonWidth,
+        buttonHeight,
+        15
+      );
 
       // Texte de la réponse avec style moderne
       const text = this.add
@@ -343,8 +439,8 @@ export default class QuizScene extends Phaser.Scene {
         scaleX: 1,
         scaleY: 1,
         duration: 600,
-        delay: 500 + (index * 100),
-        ease: 'Back.easeOut'
+        delay: 500 + index * 100,
+        ease: 'Back.easeOut',
       });
 
       // Animation hover améliorée
@@ -354,16 +450,25 @@ export default class QuizScene extends Phaser.Scene {
           scaleX: 1.08,
           scaleY: 1.08,
           duration: 200,
-          ease: 'Back.easeOut'
+          ease: 'Back.easeOut',
         });
-        
+
         // Changer la couleur du bouton
         bg.clear();
-        bg.fillGradientStyle(0x3B82F6, 0x3B82F6, 0x1D4ED8, 0x1D4ED8, 1, 1, 0, 0);
+        bg.fillGradientStyle(
+          0x3b82f6,
+          0x3b82f6,
+          0x1d4ed8,
+          0x1d4ed8,
+          1,
+          1,
+          0,
+          0
+        );
         bg.fillRoundedRect(-250, -30, 500, 60, 15);
         bg.lineStyle(3, 0xffffff, 1);
         bg.strokeRoundedRect(-250, -30, 500, 60, 15);
-        
+
         text.setColor('#ffffff');
       });
 
@@ -373,22 +478,34 @@ export default class QuizScene extends Phaser.Scene {
           scaleX: 1,
           scaleY: 1,
           duration: 200,
-          ease: 'Back.easeOut'
+          ease: 'Back.easeOut',
         });
-        
+
         // Restaurer la couleur originale
         bg.clear();
-        bg.fillGradientStyle(0xffffff, 0xffffff, 0xf8fafc, 0xf8fafc, 1, 1, 0, 0);
+        bg.fillGradientStyle(
+          0xffffff,
+          0xffffff,
+          0xf8fafc,
+          0xf8fafc,
+          1,
+          1,
+          0,
+          0
+        );
         bg.fillRoundedRect(-250, -30, 500, 60, 15);
         bg.lineStyle(3, 0xe2e8f0, 1);
         bg.strokeRoundedRect(-250, -30, 500, 60, 15);
-        
+
         text.setColor('#1e293b');
       });
 
       // Clic sur la réponse
       container.on('pointerdown', () => {
-        this.selectAnswer(index, question.answer, bg, text);
+        console.log('🔍 DEBUG - Index sélectionné:', index);
+        console.log('🔍 DEBUG - Réponse correcte attendue:', question.correct);
+        console.log('🔍 DEBUG - Question complète:', question);
+        this.selectAnswer(index, question.correct, bg, text);
       });
 
       this.answerButtons.push(container);
@@ -399,13 +516,26 @@ export default class QuizScene extends Phaser.Scene {
     this.startTimer();
   }
 
-  private selectAnswer(selectedIndex: number, correctIndex: number, bg: Phaser.GameObjects.Graphics, text: Phaser.GameObjects.Text) {
+  private selectAnswer(
+    selectedIndex: number,
+    correctIndex: number,
+    bg: Phaser.GameObjects.Graphics,
+    text: Phaser.GameObjects.Text
+  ) {
     if (this.gameComplete) return;
 
-    console.log('🎯 Réponse sélectionnée:', selectedIndex, 'Correcte:', correctIndex);
+    console.log(
+      '🎯 Réponse sélectionnée:',
+      selectedIndex,
+      'Correcte:',
+      correctIndex
+    );
 
     // Arrêter le timer
-    if (this.timerEvent) this.timerEvent.remove();
+    if (this.timerEvent) {
+      this.timerEvent.remove();
+      this.timerEvent = null;
+    }
 
     const isCorrect = selectedIndex === correctIndex;
     console.log('✅ Réponse correcte:', isCorrect);
@@ -418,13 +548,13 @@ export default class QuizScene extends Phaser.Scene {
       bg.fillRoundedRect(-250, -30, 500, 60, 15);
       bg.lineStyle(3, 0xffffff, 1);
       bg.strokeRoundedRect(-250, -30, 500, 60, 15);
-      
+
       text.setColor('#ffffff');
       this.score++;
-      
+
       // Effet de particules amélioré
       this.createParticles(bg.x, bg.y);
-      
+
       // Animation de victoire
       this.tweens.add({
         targets: this.answerButtons[selectedIndex],
@@ -432,7 +562,7 @@ export default class QuizScene extends Phaser.Scene {
         scaleY: 1.15,
         duration: 200,
         yoyo: true,
-        ease: 'Back.easeOut'
+        ease: 'Back.easeOut',
       });
     } else {
       // Animation d'erreur
@@ -441,22 +571,31 @@ export default class QuizScene extends Phaser.Scene {
       bg.fillRoundedRect(-250, -30, 500, 60, 15);
       bg.lineStyle(3, 0xffffff, 1);
       bg.strokeRoundedRect(-250, -30, 500, 60, 15);
-      
+
       text.setColor('#ffffff');
-      
+
       // Montrer la bonne réponse avec animation
       const correctButton = this.answerButtons[correctIndex];
       const correctBg = correctButton.list[0] as Phaser.GameObjects.Graphics;
       const correctText = correctButton.list[1] as Phaser.GameObjects.Text;
-      
+
       correctBg.clear();
-      correctBg.fillGradientStyle(0x10b981, 0x10b981, 0x059669, 0x059669, 1, 1, 0, 0);
+      correctBg.fillGradientStyle(
+        0x10b981,
+        0x10b981,
+        0x059669,
+        0x059669,
+        1,
+        1,
+        0,
+        0
+      );
       correctBg.fillRoundedRect(-250, -30, 500, 60, 15);
       correctBg.lineStyle(3, 0xffffff, 1);
       correctBg.strokeRoundedRect(-250, -30, 500, 60, 15);
-      
+
       correctText.setColor('#ffffff');
-      
+
       // Animation de la bonne réponse
       this.tweens.add({
         targets: correctButton,
@@ -464,7 +603,7 @@ export default class QuizScene extends Phaser.Scene {
         scaleY: 1.1,
         duration: 300,
         yoyo: true,
-        ease: 'Back.easeOut'
+        ease: 'Back.easeOut',
       });
     }
 
@@ -478,30 +617,44 @@ export default class QuizScene extends Phaser.Scene {
       ease: 'Back.easeOut',
       onComplete: () => {
         this.scoreText.setText(`Score: ${this.score}/${this.questions.length}`);
-      }
+      },
     });
-    
+
     console.log('📊 Score actuel:', this.score, '/', this.questions.length);
 
     // Désactiver tous les boutons
-    this.answerButtons.forEach(btn => {
+    this.answerButtons.forEach((btn) => {
       btn.disableInteractive();
     });
 
     // Passer à la question suivante après un délai
     this.time.delayedCall(2500, () => {
       this.currentQuestion++;
-      console.log('➡️ Question suivante:', this.currentQuestion, '/', this.questions.length);
-      this.showQuestion();
+      console.log(
+        '➡️ Question suivante:',
+        this.currentQuestion,
+        '/',
+        this.questions.length
+      );
+      
+      // Vérification de sécurité
+      if (this.currentQuestion >= this.questions.length) {
+        console.log('🏁 Fin du quiz - Toutes les questions terminées');
+        this.endQuiz();
+      } else {
+        this.showQuestion();
+      }
     });
   }
 
   private createParticles(x: number, y: number) {
     // Étoiles de victoire améliorées
     for (let i = 0; i < 12; i++) {
-      const star = this.add.text(x, y, '⭐', {
-        fontSize: '24px',
-      }).setOrigin(0.5);
+      const star = this.add
+        .text(x, y, '⭐', {
+          fontSize: '24px',
+        })
+        .setOrigin(0.5);
 
       const angle = (i / 12) * Math.PI * 2;
       const distance = 80 + Math.random() * 40;
@@ -519,12 +672,14 @@ export default class QuizScene extends Phaser.Scene {
         onComplete: () => star.destroy(),
       });
     }
-    
+
     // Ajouter des cœurs pour plus de joie
     for (let i = 0; i < 6; i++) {
-      const heart = this.add.text(x, y, '💚', {
-        fontSize: '20px',
-      }).setOrigin(0.5);
+      const heart = this.add
+        .text(x, y, '💚', {
+          fontSize: '20px',
+        })
+        .setOrigin(0.5);
 
       const angle = (i / 6) * Math.PI * 2;
       const distance = 60;
@@ -544,40 +699,195 @@ export default class QuizScene extends Phaser.Scene {
   }
 
   private startTimer() {
+    // Nettoyer tout timer existant
+    if (this.timerEvent) {
+      this.timerEvent.remove();
+      this.timerEvent = null;
+    }
+
+    // Réinitialiser le temps
+    this.timeLeft = 15;
+    console.log('⏱️ Démarrage du timer - timeLeft:', this.timeLeft);
+
     this.timerEvent = this.time.addEvent({
       delay: 1000,
       repeat: this.timeLeft - 1,
       callback: () => {
         this.timeLeft--;
+        console.log('⏱️ Timer update - timeLeft:', this.timeLeft);
         this.updateTimer();
-        
+
         if (this.timeLeft <= 0) {
-          // Temps écoulé - mauvaise réponse
-          const dummyBg = this.add.graphics();
-          const dummyText = this.add.text(0, 0, '', {});
-          this.selectAnswer(-1, this.questions[this.currentQuestion].answer, dummyBg, dummyText);
+          // Temps écoulé - traiter comme une mauvaise réponse
+          console.log('⏰ Temps écoulé ! Passage à la question suivante...');
+          // Nettoyer le timer immédiatement pour éviter les appels multiples
+          if (this.timerEvent) {
+            this.timerEvent.remove();
+            this.timerEvent = null;
+          }
+          this.handleTimeUp();
         }
       },
     });
   }
 
+  private handleTimeUp() {
+    if (this.gameComplete) return;
+
+    console.log('⏰ Temps écoulé ! Affichage de la bonne réponse...');
+    
+    // Marquer temporairement comme "en traitement" pour éviter les appels multiples
+    this.gameComplete = true;
+    
+    const currentQuestion = this.questions[this.currentQuestion];
+    const correctIndex = currentQuestion.correct;
+
+    // Arrêter le timer s'il y en a un
+    if (this.timerEvent) {
+      this.timerEvent.remove();
+      this.timerEvent = null;
+    }
+
+    // Marquer visuellement la bonne réponse
+    if (this.answerButtons[correctIndex]) {
+      const correctButton = this.answerButtons[correctIndex];
+      const correctBg = correctButton.list[0] as Phaser.GameObjects.Graphics;
+      const correctText = correctButton.list[1] as Phaser.GameObjects.Text;
+
+      // Animer la bonne réponse avec une couleur spéciale "temps écoulé"
+      correctBg.clear();
+      correctBg.fillGradientStyle(
+        0xf59e0b,  // Orange pour indiquer "temps écoulé"
+        0xf59e0b,
+        0xd97706,
+        0xd97706,
+        1,
+        1,
+        0,
+        0
+      );
+      correctBg.fillRoundedRect(-250, -30, 500, 60, 15);
+      correctBg.lineStyle(3, 0xffffff, 1);
+      correctBg.strokeRoundedRect(-250, -30, 500, 60, 15);
+
+      correctText.setColor('#ffffff');
+
+      // Animation pour attirer l'attention
+      this.tweens.add({
+        targets: correctButton,
+        scaleX: 1.1,
+        scaleY: 1.1,
+        duration: 300,
+        yoyo: true,
+        repeat: 2,
+        ease: 'Back.easeOut',
+      });
+    }
+
+    // Afficher un message "Temps écoulé"
+    const { width, height } = this.scale;
+    const timeUpText = this.add
+      .text(width / 2, height / 2 - 100, '⏰ Temps écoulé !', {
+        fontSize: '32px',
+        color: '#f59e0b',
+        fontFamily: 'Arial, sans-serif',
+        fontStyle: 'bold',
+        stroke: '#ffffff',
+        strokeThickness: 2,
+      })
+      .setOrigin(0.5)
+      .setAlpha(0);
+
+    const correctAnswerText = this.add
+      .text(width / 2, height / 2 - 50, `Bonne réponse : ${currentQuestion.choices[correctIndex]}`, {
+        fontSize: '20px',
+        color: '#d97706',
+        fontFamily: 'Arial, sans-serif',
+        fontStyle: 'bold',
+        wordWrap: { width: width - 100 },
+        align: 'center',
+      })
+      .setOrigin(0.5)
+      .setAlpha(0);
+
+    // Animer l'apparition des textes
+    this.tweens.add({
+      targets: [timeUpText, correctAnswerText],
+      alpha: 1,
+      duration: 500,
+      ease: 'Power2',
+      onComplete: () => {
+        // Faire disparaître les textes après 2 secondes
+        this.tweens.add({
+          targets: [timeUpText, correctAnswerText],
+          alpha: 0,
+          duration: 500,
+          delay: 1500,
+          onComplete: () => {
+            timeUpText.destroy();
+            correctAnswerText.destroy();
+          },
+        });
+      },
+    });
+
+    // Désactiver tous les boutons
+    this.answerButtons.forEach((btn) => {
+      btn.disableInteractive();
+    });
+
+    // Passer à la question suivante après un délai
+    this.time.delayedCall(3000, () => {
+      console.log('🔍 AVANT increment - currentQuestion:', this.currentQuestion, 'questions.length:', this.questions.length);
+      this.currentQuestion++;
+      console.log('🔍 APRÈS increment - currentQuestion:', this.currentQuestion, 'questions.length:', this.questions.length);
+      console.log(
+        '➡️ Question suivante après timeout:',
+        this.currentQuestion,
+        '/',
+        this.questions.length
+      );
+      
+      // Remettre gameComplete à false pour permettre la suite
+      this.gameComplete = false;
+      
+      // Vérification de sécurité
+      if (this.currentQuestion >= this.questions.length) {
+        console.log('🏁 Fin du quiz après timeout - Toutes les questions terminées');
+        this.endQuiz();
+      } else {
+        console.log('📝 Affichage de la question suivante:', this.currentQuestion);
+        this.showQuestion();
+      }
+    });
+  }
+
   private updateTimer() {
     this.timer.clear();
-    
+
     const { width } = this.scale;
     const barWidth = 400;
     const barHeight = 25;
     const x = (width - barWidth) / 2;
     const y = 200;
-    
+
     // Barre de fond avec gradient
-    this.timer.fillGradientStyle(0xe5e7eb, 0xe5e7eb, 0xf3f4f6, 0xf3f4f6, 1, 1, 0, 0);
+    this.timer.fillGradientStyle(
+      0xe5e7eb,
+      0xe5e7eb,
+      0xf3f4f6,
+      0xf3f4f6,
+      1,
+      1,
+      0,
+      0
+    );
     this.timer.fillRoundedRect(x, y, barWidth, barHeight, 12);
-    
+
     // Barre de progression avec gradient
     const progress = this.timeLeft / 15;
     let color1, color2;
-    
+
     if (progress > 0.5) {
       color1 = 0x10b981;
       color2 = 0x059669;
@@ -588,28 +898,31 @@ export default class QuizScene extends Phaser.Scene {
       color1 = 0xef4444;
       color2 = 0xdc2626;
     }
-    
+
     this.timer.fillGradientStyle(color1, color1, color2, color2, 1, 1, 0, 0);
     this.timer.fillRoundedRect(x, y, barWidth * progress, barHeight, 12);
-    
+
     // Bordure moderne
     this.timer.lineStyle(3, 0xffffff, 1);
     this.timer.strokeRoundedRect(x, y, barWidth, barHeight, 12);
-    
+
     // Ombre portée
     this.timer.fillStyle(0x000000, 0.1);
     this.timer.fillRoundedRect(x + 1, y + 1, barWidth, barHeight, 12);
-    
+
     // Texte du temps restant
-    const timeText = this.add.text(width / 2, y + barHeight + 10, `${this.timeLeft}s`, {
-      fontSize: '16px',
-      color: progress > 0.5 ? '#059669' : progress > 0.25 ? '#d97706' : '#dc2626',
-      fontFamily: 'Arial, sans-serif',
-      fontStyle: 'bold',
-      stroke: '#ffffff',
-      strokeThickness: 1,
-    }).setOrigin(0.5);
-    
+    const timeText = this.add
+      .text(width / 2, y + barHeight + 10, `${this.timeLeft}s`, {
+        fontSize: '16px',
+        color:
+          progress > 0.5 ? '#059669' : progress > 0.25 ? '#d97706' : '#dc2626',
+        fontFamily: 'Arial, sans-serif',
+        fontStyle: 'bold',
+        stroke: '#ffffff',
+        strokeThickness: 1,
+      })
+      .setOrigin(0.5);
+
     // Animation du texte
     this.tweens.add({
       targets: timeText,
@@ -617,9 +930,9 @@ export default class QuizScene extends Phaser.Scene {
       scaleY: 1.1,
       duration: 200,
       yoyo: true,
-      ease: 'Power2'
+      ease: 'Power2',
     });
-    
+
     // Détruire le texte après l'animation
     this.time.delayedCall(500, () => {
       timeText.destroy();
@@ -630,11 +943,16 @@ export default class QuizScene extends Phaser.Scene {
     this.gameComplete = true;
     const { width, height } = this.scale;
 
-    console.log('🏁 Quiz terminé - Score final:', this.score, '/', this.questions.length);
+    console.log(
+      '🏁 Quiz terminé - Score final:',
+      this.score,
+      '/',
+      this.questions.length
+    );
 
     // Nettoyer l'écran
     if (this.questionText) this.questionText.destroy();
-    this.answerButtons.forEach(btn => btn.destroy());
+    this.answerButtons.forEach((btn) => btn.destroy());
     this.timer.clear();
 
     // Calcul des résultats
@@ -650,16 +968,16 @@ export default class QuizScene extends Phaser.Scene {
           console.log('🍎 Badges Adam et Ève - Pourcentage:', percentage);
           if (percentage >= 90) {
             badge = 'Gardien du Jardin';
-            message = 'Tu connais parfaitement l\'histoire d\'Adam et Ève !';
+            message = "Tu connais parfaitement l'histoire d'Adam et Ève !";
           } else if (percentage >= 70) {
             badge = 'Témoin de la Chute';
             message = 'Très bonne connaissance de cette histoire !';
           } else if (percentage >= 50) {
-            badge = 'Étudiant d\'Éden';
+            badge = "Étudiant d'Éden";
             message = 'Bon travail sur cette leçon importante !';
           } else {
-            badge = 'Apprenti d\'Éden';
-            message = 'Relis l\'histoire d\'Adam et Ève !';
+            badge = "Apprenti d'Éden";
+            message = "Relis l'histoire d'Adam et Ève !";
           }
           console.log('🏆 Badge attribué:', badge);
           break;
@@ -669,7 +987,7 @@ export default class QuizScene extends Phaser.Scene {
         case 'jonas_04_ricin':
           if (percentage >= 90) {
             badge = 'Ami des Prophètes';
-            message = 'Tu connais parfaitement l\'histoire de Jonas !';
+            message = "Tu connais parfaitement l'histoire de Jonas !";
           } else if (percentage >= 70) {
             badge = 'Navigateur sage';
             message = 'Très bonne connaissance de Jonas !';
@@ -678,7 +996,7 @@ export default class QuizScene extends Phaser.Scene {
             message = 'Bon travail sur cette histoire !';
           } else {
             badge = 'Apprenti de Jonas';
-            message = 'Relis l\'histoire de Jonas !';
+            message = "Relis l'histoire de Jonas !";
           }
           break;
         case 'creation_01':
@@ -693,28 +1011,28 @@ export default class QuizScene extends Phaser.Scene {
             message = 'Bon travail sur cette leçon !';
           } else {
             badge = 'Apprenti de la Création';
-            message = 'Relis l\'histoire de la création !';
+            message = "Relis l'histoire de la création !";
           }
           break;
         case 'noe_01':
           if (percentage >= 90) {
-            badge = 'Navigateur de l\'Alliance';
-            message = 'Tu connais parfaitement l\'histoire de Noé !';
+            badge = "Navigateur de l'Alliance";
+            message = "Tu connais parfaitement l'histoire de Noé !";
           } else if (percentage >= 70) {
-            badge = 'Capitaine de l\'Arche';
-            message = 'Très bonne connaissance de Noé et l\'arche !';
+            badge = "Capitaine de l'Arche";
+            message = "Très bonne connaissance de Noé et l'arche !";
           } else if (percentage >= 50) {
             badge = 'Étudiant du Déluge';
             message = 'Bon travail sur cette histoire importante !';
           } else {
             badge = 'Apprenti de Noé';
-            message = 'Relis l\'histoire de Noé et l\'arche !';
+            message = "Relis l'histoire de Noé et l'arche !";
           }
           break;
         case 'babel_01':
           if (percentage >= 90) {
             badge = 'Maître des Langues';
-            message = 'Tu connais parfaitement l\'histoire de Babel !';
+            message = "Tu connais parfaitement l'histoire de Babel !";
           } else if (percentage >= 70) {
             badge = 'Architecte de Babel';
             message = 'Très bonne connaissance de la Tour de Babel !';
@@ -723,67 +1041,98 @@ export default class QuizScene extends Phaser.Scene {
             message = 'Bon travail sur cette histoire importante !';
           } else {
             badge = 'Apprenti de Babel';
-            message = 'Relis l\'histoire de la Tour de Babel !';
+            message = "Relis l'histoire de la Tour de Babel !";
           }
           break;
         case 'abraham_01':
           if (percentage >= 90) {
-            badge = 'Fils d\'Abraham';
-            message = 'Tu connais parfaitement l\'histoire d\'Abraham !';
+            badge = "Fils d'Abraham";
+            message = "Tu connais parfaitement l'histoire d'Abraham !";
           } else if (percentage >= 70) {
             badge = 'Héritier de la Promesse';
-            message = 'Très bonne connaissance d\'Abraham et de l\'alliance !';
+            message = "Très bonne connaissance d'Abraham et de l'alliance !";
           } else if (percentage >= 50) {
             badge = 'Étudiant de la Foi';
             message = 'Bon travail sur cette histoire importante !';
           } else {
-            badge = 'Apprenti d\'Abraham';
-            message = 'Relis l\'histoire d\'Abraham et de l\'alliance !';
+            badge = "Apprenti d'Abraham";
+            message = "Relis l'histoire d'Abraham et de l'alliance !";
           }
           break;
-        case 'isaac_01':
+        case 'isaac_sacrifice_01':
           if (percentage >= 90) {
-            badge = 'Fils d\'Isaac';
-            message = 'Tu connais parfaitement l\'histoire d\'Isaac et Rebecca !';
+            badge = "Témoin de la Foi";
+            message = "Tu comprends parfaitement l'obéissance d'Abraham !";
+          } else if (percentage >= 70) {
+            badge = 'Disciple de l\'Obéissance';
+            message = "Très bonne connaissance du sacrifice d'Isaac !";
+          } else if (percentage >= 50) {
+            badge = "Étudiant de la Foi";
+            message = 'Bon travail sur cette épreuve de foi !';
+          } else {
+            badge = "Apprenti d'Abraham";
+            message = "Relis l'histoire du sacrifice d'Isaac !";
+          }
+          break;
+        case 'isaac_mariage_01':
+          if (percentage >= 90) {
+            badge = "Fils d'Isaac";
+            message = "Tu connais parfaitement l'histoire d'Isaac et Rebecca !";
           } else if (percentage >= 70) {
             badge = 'Héritier de la Bénédiction';
-            message = 'Très bonne connaissance du mariage d\'Isaac et Rebecca !';
+            message = "Très bonne connaissance du mariage d'Isaac et Rebecca !";
           } else if (percentage >= 50) {
-            badge = 'Étudiant de l\'Alliance';
+            badge = "Étudiant de l'Alliance";
             message = 'Bon travail sur cette belle histoire !';
           } else {
-            badge = 'Apprenti d\'Isaac';
-            message = 'Relis l\'histoire d\'Isaac et Rebecca !';
+            badge = "Apprenti d'Isaac";
+            message = "Relis l'histoire d'Isaac et Rebecca !";
           }
           break;
-        case 'jacob_01':
+        case 'jacob_esau_01':
           if (percentage >= 90) {
             badge = 'Fils de Jacob';
-            message = 'Tu connais parfaitement l\'histoire de Jacob et Ésaü !';
+            message = "Tu connais parfaitement l'histoire de Jacob et Ésaü !";
           } else if (percentage >= 70) {
             badge = 'Maître de la Réconciliation';
-            message = 'Très bonne connaissance de l\'histoire des jumeaux !';
+            message = "Très bonne connaissance de l'histoire des jumeaux !";
           } else if (percentage >= 50) {
             badge = 'Étudiant du Pardon';
             message = 'Bon travail sur cette histoire de réconciliation !';
           } else {
             badge = 'Apprenti de Jacob';
-            message = 'Relis l\'histoire de Jacob et Ésaü !';
+            message = "Relis l'histoire de Jacob et Ésaü !";
+          }
+          break;
+        case 'jacob_songe_01':
+          if (percentage >= 90) {
+            badge = 'Témoin de l\'Échelle';
+            message = "Tu connais parfaitement le songe de Jacob !";
+          } else if (percentage >= 70) {
+            badge = 'Gardien de Béthel';
+            message = "Très bonne connaissance de l'échelle de Jacob !";
+          } else if (percentage >= 50) {
+            badge = 'Étudiant des Songes';
+            message = 'Bon travail sur cette vision divine !';
+          } else {
+            badge = 'Apprenti de Jacob';
+            message = "Relis l'histoire du songe de Jacob !";
           }
           break;
         case 'joseph_01':
           if (percentage >= 90) {
             badge = 'Fils de Joseph';
-            message = 'Tu connais parfaitement l\'histoire de Joseph en Égypte !';
+            message =
+              "Tu connais parfaitement l'histoire de Joseph en Égypte !";
           } else if (percentage >= 70) {
             badge = 'Maître du Pardon';
-            message = 'Très bonne connaissance de l\'histoire de Joseph !';
+            message = "Très bonne connaissance de l'histoire de Joseph !";
           } else if (percentage >= 50) {
             badge = 'Étudiant de la Providence';
             message = 'Bon travail sur cette belle histoire !';
           } else {
             badge = 'Apprenti de Joseph';
-            message = 'Relis l\'histoire de Joseph en Égypte !';
+            message = "Relis l'histoire de Joseph en Égypte !";
           }
           break;
         case 'commandements_01':
@@ -798,28 +1147,74 @@ export default class QuizScene extends Phaser.Scene {
             message = 'Bon travail sur les commandements !';
           } else {
             badge = 'Apprenti de la Loi';
-            message = 'Relis l\'histoire des Dix Commandements !';
+            message = "Relis l'histoire des Dix Commandements !";
+          }
+          break;
+        case 'tabernacle_01':
+          if (percentage >= 90) {
+            badge = 'Architecte du Sanctuaire';
+            message = 'Tu connais parfaitement l\'histoire du Tabernacle !';
+          } else if (percentage >= 70) {
+            badge = 'Constructeur Fidèle';
+            message = 'Très bonne connaissance du sanctuaire de Dieu !';
+          } else if (percentage >= 50) {
+            badge = 'Étudiant du Temple';
+            message = 'Bon travail sur le Tabernacle !';
+          } else {
+            badge = 'Apprenti Constructeur';
+            message = 'Relis l\'histoire du Tabernacle !';
+          }
+          break;
+        case 'terre_promise_01':
+          if (percentage >= 90) {
+            badge = 'Héritier de la Promesse';
+            message = 'Tu connais parfaitement l\'histoire de la Terre Promise !';
+          } else if (percentage >= 70) {
+            badge = 'Guide Fidèle';
+            message = 'Très bonne connaissance de la vision de Moïse !';
+          } else if (percentage >= 50) {
+            badge = 'Étudiant de la Promesse';
+            message = 'Bon travail sur la Terre Promise !';
+          } else {
+            badge = 'Apprenti Pèlerin';
+            message = 'Relis l\'histoire de Moïse sur le mont Nebo !';
+          }
+          break;
+        case 'josue_01':
+          if (percentage >= 90) {
+            badge = 'Conquérant Fidèle';
+            message = 'Tu connais parfaitement la prise de Jéricho !';
+          } else if (percentage >= 70) {
+            badge = 'Guerrier de l\'Alliance';
+            message = 'Très bonne connaissance de la conquête de Jéricho !';
+          } else if (percentage >= 50) {
+            badge = 'Soldat d\'Israël';
+            message = 'Bon travail sur l\'histoire de Jéricho !';
+          } else {
+            badge = 'Apprenti Conquérant';
+            message = 'Relis l\'histoire de la chute des murailles !';
           }
           break;
         case 'gedeon_01':
           if (percentage >= 90) {
             badge = 'Vaillant Héros';
-            message = 'Tu connais parfaitement l\'histoire de Gédéon !';
+            message = "Tu connais parfaitement l'histoire de Gédéon !";
           } else if (percentage >= 70) {
             badge = 'Guerrier de Dieu';
             message = 'Très bonne connaissance de cette victoire miraculeuse !';
           } else if (percentage >= 50) {
             badge = 'Soldat de la Foi';
-            message = 'Bon travail sur l\'histoire de Gédéon !';
+            message = "Bon travail sur l'histoire de Gédéon !";
           } else {
             badge = 'Apprenti de Gédéon';
-            message = 'Relis l\'histoire de Gédéon et des 300 hommes !';
+            message = "Relis l'histoire de Gédéon et des 300 hommes !";
           }
           break;
         case 'naissance_jesus':
           if (percentage >= 90) {
             badge = 'Témoin de Noël';
-            message = 'Tu connais parfaitement l\'histoire de la naissance de Jésus !';
+            message =
+              "Tu connais parfaitement l'histoire de la naissance de Jésus !";
           } else if (percentage >= 70) {
             badge = 'Adorateur de Bethléem';
             message = 'Très bonne connaissance de la naissance de Jésus !';
@@ -828,160 +1223,180 @@ export default class QuizScene extends Phaser.Scene {
             message = 'Bon travail sur cette histoire merveilleuse !';
           } else {
             badge = 'Apprenti de Noël';
-            message = 'Relis l\'histoire de la naissance de Jésus !';
+            message = "Relis l'histoire de la naissance de Jésus !";
           }
           break;
 
         case 'enfance_jesus':
           if (percentage >= 90) {
             badge = 'Étudiant du Temple';
-            message = 'Tu connais parfaitement l\'histoire de l\'enfance de Jésus !';
+            message =
+              "Tu connais parfaitement l'histoire de l'enfance de Jésus !";
           } else if (percentage >= 70) {
             badge = 'Sage de Jérusalem';
-            message = 'Très bonne connaissance de l\'enfance de Jésus !';
+            message = "Très bonne connaissance de l'enfance de Jésus !";
           } else if (percentage >= 50) {
             badge = 'Pèlerin du Temple';
-            message = 'Bon travail sur l\'histoire de l\'enfance de Jésus !';
+            message = "Bon travail sur l'histoire de l'enfance de Jésus !";
           } else {
             badge = 'Apprenti du Temple';
-            message = 'Relis l\'histoire de l\'enfance de Jésus !';
+            message = "Relis l'histoire de l'enfance de Jésus !";
           }
           break;
 
         case 'bapteme_jesus':
           if (percentage >= 90) {
             badge = 'Témoin du Baptême';
-            message = 'Tu connais parfaitement l\'histoire du baptême de Jésus !';
+            message =
+              "Tu connais parfaitement l'histoire du baptême de Jésus !";
           } else if (percentage >= 70) {
             badge = 'Fils bien-aimé';
             message = 'Très bonne connaissance du baptême de Jésus !';
           } else if (percentage >= 50) {
             badge = 'Pèlerin du Jourdain';
-            message = 'Bon travail sur l\'histoire du baptême de Jésus !';
+            message = "Bon travail sur l'histoire du baptême de Jésus !";
           } else {
             badge = 'Apprenti du Baptême';
-            message = 'Relis l\'histoire du baptême de Jésus !';
+            message = "Relis l'histoire du baptême de Jésus !";
           }
           break;
 
         case 'tentations_jesus':
           if (percentage >= 90) {
             badge = 'Vainqueur des Tentations';
-            message = 'Tu connais parfaitement l\'histoire des tentations de Jésus !';
+            message =
+              "Tu connais parfaitement l'histoire des tentations de Jésus !";
           } else if (percentage >= 70) {
             badge = 'Résistant au Mal';
             message = 'Très bonne connaissance des tentations de Jésus !';
           } else if (percentage >= 50) {
             badge = 'Guerrier de la Parole';
-            message = 'Bon travail sur l\'histoire des tentations de Jésus !';
+            message = "Bon travail sur l'histoire des tentations de Jésus !";
           } else {
             badge = 'Apprenti de la Résistance';
-            message = 'Relis l\'histoire des tentations de Jésus !';
+            message = "Relis l'histoire des tentations de Jésus !";
           }
           break;
         case 'moise_buisson_01':
           if (percentage >= 90) {
-            badge = 'Témoin de l\'Appel';
-            message = 'Tu connais parfaitement l\'histoire de l\'appel de Moïse !';
+            badge = "Témoin de l'Appel";
+            message =
+              "Tu connais parfaitement l'histoire de l'appel de Moïse !";
           } else if (percentage >= 70) {
             badge = 'Gardien du Buisson';
             message = 'Très bonne connaissance de cette révélation divine !';
           } else if (percentage >= 50) {
-            badge = 'Étudiant de l\'Appel';
-            message = 'Bon travail sur l\'histoire de Moïse et le buisson ardent !';
+            badge = "Étudiant de l'Appel";
+            message =
+              "Bon travail sur l'histoire de Moïse et le buisson ardent !";
           } else {
             badge = 'Apprenti de Moïse';
-            message = 'Relis l\'histoire de Moïse et le buisson ardent !';
+            message = "Relis l'histoire de Moïse et le buisson ardent !";
           }
           break;
         case 'plaies_egypte_01':
           if (percentage >= 90) {
             badge = 'Témoin de la Puissance';
-            message = 'Tu connais parfaitement l\'histoire des dix plaies d\'Égypte !';
+            message =
+              "Tu connais parfaitement l'histoire des dix plaies d'Égypte !";
           } else if (percentage >= 70) {
             badge = 'Gardien des Plaies';
-            message = 'Très bonne connaissance de cette démonstration de puissance divine !';
+            message =
+              'Très bonne connaissance de cette démonstration de puissance divine !';
           } else if (percentage >= 50) {
             badge = 'Étudiant des Miracles';
-            message = 'Bon travail sur l\'histoire des dix plaies d\'Égypte !';
+            message = "Bon travail sur l'histoire des dix plaies d'Égypte !";
           } else {
             badge = 'Apprenti de Moïse';
-            message = 'Relis l\'histoire des dix plaies d\'Égypte !';
+            message = "Relis l'histoire des dix plaies d'Égypte !";
           }
           break;
         case 'mer_rouge_01':
           if (percentage >= 90) {
             badge = 'Témoin du Miracle';
-            message = 'Tu connais parfaitement l\'histoire de la traversée de la mer Rouge !';
+            message =
+              "Tu connais parfaitement l'histoire de la traversée de la mer Rouge !";
           } else if (percentage >= 70) {
             badge = 'Gardien de la Mer';
             message = 'Très bonne connaissance de ce miracle de délivrance !';
           } else if (percentage >= 50) {
             badge = 'Étudiant des Miracles';
-            message = 'Bon travail sur l\'histoire de la traversée de la mer Rouge !';
+            message =
+              "Bon travail sur l'histoire de la traversée de la mer Rouge !";
           } else {
             badge = 'Apprenti de Moïse';
-            message = 'Relis l\'histoire de la traversée de la mer Rouge !';
+            message = "Relis l'histoire de la traversée de la mer Rouge !";
           }
           break;
         case 'samson_01':
           if (percentage >= 90) {
             badge = 'Témoin de la Force';
-            message = 'Tu connais parfaitement l\'histoire de Samson et Dalila !';
+            message =
+              "Tu connais parfaitement l'histoire de Samson et Dalila !";
           } else if (percentage >= 70) {
             badge = 'Gardien de la Force';
-            message = 'Très bonne connaissance de cette histoire de force et de faiblesse !';
+            message =
+              'Très bonne connaissance de cette histoire de force et de faiblesse !';
           } else if (percentage >= 50) {
             badge = 'Étudiant de Samson';
-            message = 'Bon travail sur l\'histoire de Samson et Dalila !';
+            message = "Bon travail sur l'histoire de Samson et Dalila !";
           } else {
             badge = 'Apprenti des Juges';
-            message = 'Relis l\'histoire de Samson et Dalila !';
+            message = "Relis l'histoire de Samson et Dalila !";
           }
           break;
         case 'salomon_01':
           if (percentage >= 90) {
             badge = 'Témoin de la Sagesse';
-            message = 'Tu connais parfaitement l\'histoire de Salomon et le Temple !';
+            message =
+              "Tu connais parfaitement l'histoire de Salomon et le Temple !";
           } else if (percentage >= 70) {
             badge = 'Gardien du Temple';
-            message = 'Très bonne connaissance de cette histoire de sagesse et de splendeur !';
+            message =
+              'Très bonne connaissance de cette histoire de sagesse et de splendeur !';
           } else if (percentage >= 50) {
             badge = 'Étudiant de Salomon';
-            message = 'Bon travail sur l\'histoire de Salomon et le Temple !';
+            message = "Bon travail sur l'histoire de Salomon et le Temple !";
           } else {
             badge = 'Apprenti des Rois';
-            message = 'Relis l\'histoire de Salomon et le Temple !';
+            message = "Relis l'histoire de Salomon et le Temple !";
           }
           break;
         case 'elie_01':
           if (percentage >= 90) {
             badge = 'Témoin du Feu';
-            message = 'Tu connais parfaitement l\'histoire d\'Élie et les prophètes de Baal !';
+            message =
+              "Tu connais parfaitement l'histoire d'Élie et les prophètes de Baal !";
           } else if (percentage >= 70) {
             badge = 'Gardien du Carmel';
-            message = 'Très bonne connaissance de cette histoire de puissance divine !';
+            message =
+              'Très bonne connaissance de cette histoire de puissance divine !';
           } else if (percentage >= 50) {
-            badge = 'Étudiant d\'Élie';
-            message = 'Bon travail sur l\'histoire d\'Élie et les prophètes de Baal !';
+            badge = "Étudiant d'Élie";
+            message =
+              "Bon travail sur l'histoire d'Élie et les prophètes de Baal !";
           } else {
             badge = 'Apprenti des Prophètes';
-            message = 'Relis l\'histoire d\'Élie et les prophètes de Baal !';
+            message = "Relis l'histoire d'Élie et les prophètes de Baal !";
           }
           break;
         case 'ezechiel_01':
           if (percentage >= 90) {
             badge = 'Témoin de la Résurrection';
-            message = 'Tu connais parfaitement l\'histoire d\'Ézéchiel et les ossements desséchés !';
+            message =
+              "Tu connais parfaitement l'histoire d'Ézéchiel et les ossements desséchés !";
           } else if (percentage >= 70) {
-            badge = 'Gardien de l\'Espérance';
-            message = 'Très bonne connaissance de cette vision de résurrection !';
+            badge = "Gardien de l'Espérance";
+            message =
+              'Très bonne connaissance de cette vision de résurrection !';
           } else if (percentage >= 50) {
-            badge = 'Étudiant d\'Ézéchiel';
-            message = 'Bon travail sur l\'histoire d\'Ézéchiel et les ossements desséchés !';
+            badge = "Étudiant d'Ézéchiel";
+            message =
+              "Bon travail sur l'histoire d'Ézéchiel et les ossements desséchés !";
           } else {
             badge = 'Apprenti des Visions';
-            message = 'Relis l\'histoire d\'Ézéchiel et les ossements desséchés !';
+            message =
+              "Relis l'histoire d'Ézéchiel et les ossements desséchés !";
           }
           break;
         default:
@@ -1014,11 +1429,26 @@ export default class QuizScene extends Phaser.Scene {
 
     // Écran de résultats avec design moderne
     const resultsBg = this.add.graphics();
-    resultsBg.fillGradientStyle(0xffffff, 0xffffff, 0xf8fafc, 0xf8fafc, 1, 1, 0, 0);
+    resultsBg.fillGradientStyle(
+      0xffffff,
+      0xffffff,
+      0xf8fafc,
+      0xf8fafc,
+      1,
+      1,
+      0,
+      0
+    );
     resultsBg.fillRoundedRect(width / 2 - 300, height / 2 - 200, 600, 400, 30);
     resultsBg.lineStyle(4, 0xe2e8f0, 1);
-    resultsBg.strokeRoundedRect(width / 2 - 300, height / 2 - 200, 600, 400, 30);
-    
+    resultsBg.strokeRoundedRect(
+      width / 2 - 300,
+      height / 2 - 200,
+      600,
+      400,
+      30
+    );
+
     // Ombre portée
     resultsBg.fillStyle(0x000000, 0.1);
     resultsBg.fillRoundedRect(width / 2 - 298, height / 2 - 198, 600, 400, 30);
@@ -1036,30 +1466,36 @@ export default class QuizScene extends Phaser.Scene {
           offsetY: 2,
           color: '#000000',
           blur: 4,
-          fill: true
-        }
+          fill: true,
+        },
       })
       .setOrigin(0.5)
       .setAlpha(0);
 
     // Score avec couleur selon la performance
-    const scoreColor = percentage >= 70 ? '#059669' : percentage >= 50 ? '#d97706' : '#ef4444';
+    const scoreColor =
+      percentage >= 70 ? '#059669' : percentage >= 50 ? '#d97706' : '#ef4444';
     const scoreText = this.add
-      .text(width / 2, height / 2 - 60, `Score: ${this.score}/${this.questions.length} (${percentage}%)`, {
-        fontSize: '28px',
-        color: scoreColor,
-        fontFamily: 'Arial, sans-serif',
-        fontStyle: 'bold',
-        stroke: '#ffffff',
-        strokeThickness: 1,
-        shadow: {
-          offsetX: 1,
-          offsetY: 1,
-          color: '#000000',
-          blur: 2,
-          fill: true
+      .text(
+        width / 2,
+        height / 2 - 60,
+        `Score: ${this.score}/${this.questions.length} (${percentage}%)`,
+        {
+          fontSize: '28px',
+          color: scoreColor,
+          fontFamily: 'Arial, sans-serif',
+          fontStyle: 'bold',
+          stroke: '#ffffff',
+          strokeThickness: 1,
+          shadow: {
+            offsetX: 1,
+            offsetY: 1,
+            color: '#000000',
+            blur: 2,
+            fill: true,
+          },
         }
-      })
+      )
       .setOrigin(0.5)
       .setAlpha(0);
 
@@ -1083,7 +1519,7 @@ export default class QuizScene extends Phaser.Scene {
       alpha: 1,
       duration: 800,
       delay: 500,
-      ease: 'Back.easeOut'
+      ease: 'Back.easeOut',
     });
 
     // Badge obtenu avec emoji selon la leçon
@@ -1109,8 +1545,8 @@ export default class QuizScene extends Phaser.Scene {
           offsetY: 2,
           color: '#000000',
           blur: 4,
-          fill: true
-        }
+          fill: true,
+        },
       })
       .setOrigin(0.5)
       .setAlpha(0);
@@ -1147,7 +1583,7 @@ export default class QuizScene extends Phaser.Scene {
       alpha: 1,
       duration: 800,
       delay: 1000,
-      ease: 'Back.easeOut'
+      ease: 'Back.easeOut',
     });
 
     // Animation du badge avec effet de pulsation
@@ -1159,7 +1595,7 @@ export default class QuizScene extends Phaser.Scene {
       duration: 600,
       ease: 'Back.easeOut',
       repeat: 2,
-      delay: 1500
+      delay: 1500,
     });
 
     // Effet de confettis pour la victoire
@@ -1171,14 +1607,14 @@ export default class QuizScene extends Phaser.Scene {
           Math.random() * 8 + 4,
           Math.random() * 0xffffff
         );
-        
+
         this.tweens.add({
           targets: confetti,
           y: confetti.y + Math.random() * 300 + 200,
           alpha: 0,
           duration: 3000,
           ease: 'Power2',
-          delay: Math.random() * 1000
+          delay: Math.random() * 1000,
         });
       }
     }

@@ -14,17 +14,50 @@
   ],
   "key_verse": "Dieu est fidèle à ses promesses, et il bénit ceux qui lui font confiance et qui obéissent à sa voix.",
   "vocab": [
-    { "word": "Alliance", "hint": "Promesse solennelle et éternelle faite par Dieu." },
-    { "word": "Circoncision", "hint": "Signe de l'alliance entre Dieu et son peuple." },
-    { "word": "Descendance", "hint": "Les enfants et petits-enfants d'une personne." }
+    {
+      "word": "Alliance",
+      "hint": "Promesse solennelle et éternelle faite par Dieu."
+    },
+    {
+      "word": "Circoncision",
+      "hint": "Signe de l'alliance entre Dieu et son peuple."
+    },
+    {
+      "word": "Descendance",
+      "hint": "Les enfants et petits-enfants d'une personne."
+    }
   ],
   "quiz": [
-    { "q": "Quel était le nom original d'Abraham ?", "choices": ["Abram", "Isaac", "Jacob"], "answer": 0 },
-    { "q": "Que promit Dieu à Abraham ?", "choices": ["De l'or", "Une grande nation", "Un château"], "answer": 1 },
-    { "q": "Comment Dieu compara-t-il la descendance d'Abraham ?", "choices": ["Aux grains de sable", "Aux étoiles du ciel", "Aux feuilles des arbres"], "answer": 1 },
-    { "q": "Quel fut le signe de l'alliance avec Abraham ?", "choices": ["Le baptême", "La circoncision", "Le sacrifice"], "answer": 1 },
-    { "q": "Quel fut le nom du fils promis à Abraham ?", "choices": ["Ismaël", "Isaac", "Jacob"], "answer": 1 }
+    {
+      "q": "Quel était le nom original d'Abraham ?",
+      "choices": ["Abram", "Isaac", "Jacob"],
+      "answer": 0
+    },
+    {
+      "q": "Que promit Dieu à Abraham ?",
+      "choices": ["De l'or", "Une grande nation", "Un château"],
+      "answer": 1
+    },
+    {
+      "q": "Comment Dieu compara-t-il la descendance d'Abraham ?",
+      "choices": [
+        "Aux grains de sable",
+        "Aux étoiles du ciel",
+        "Aux feuilles des arbres"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "Quel fut le signe de l'alliance avec Abraham ?",
+      "choices": ["Le baptême", "La circoncision", "Le sacrifice"],
+      "answer": 1
+    },
+    {
+      "q": "Quel fut le nom du fils promis à Abraham ?",
+      "choices": ["Ismaël", "Isaac", "Jacob"],
+      "answer": 1
+    }
   ],
-  "mini_games": ["order_events", "quiz"],
+  "mini_games": ["timeline_cards", "quiz"],
   "assets": ["abraham_1.png", "abraham_2.png", "abraham_3.png"]
 }

@@ -2,15 +2,15 @@ import React, { useState, useEffect } from 'react';
 import { useSettings } from '../state/settingsStore';
 
 const AccessibilityControls = () => {
-  const { 
-    contrastHigh, 
-    fontScale, 
-    fontFamily, 
-    toggleContrast, 
-    setFontScale, 
-    setFont 
+  const {
+    contrastHigh,
+    fontScale,
+    fontFamily,
+    toggleContrast,
+    setFontScale,
+    setFont,
   } = useSettings();
-  
+
   const [showControls, setShowControls] = useState(false);
   const [isKeyboardUser, setIsKeyboardUser] = useState(false);
 
@@ -43,19 +43,19 @@ const AccessibilityControls = () => {
         e.preventDefault();
         setShowControls(!showControls);
       }
-      
+
       // Alt + C pour le contraste
       if (e.altKey && e.key === 'c') {
         e.preventDefault();
         toggleContrast();
       }
-      
+
       // Alt + + pour augmenter la taille
       if (e.altKey && e.key === '+') {
         e.preventDefault();
         setFontScale(Math.min(fontScale + 0.1, 2.0));
       }
-      
+
       // Alt + - pour diminuer la taille
       if (e.altKey && e.key === '-') {
         e.preventDefault();
@@ -64,7 +64,8 @@ const AccessibilityControls = () => {
     };
 
     document.addEventListener('keydown', handleKeyboardShortcuts);
-    return () => document.removeEventListener('keydown', handleKeyboardShortcuts);
+    return () =>
+      document.removeEventListener('keydown', handleKeyboardShortcuts);
   }, [showControls, contrastHigh, fontScale, toggleContrast, setFontScale]);
 
   return (
@@ -92,7 +93,7 @@ const AccessibilityControls = () => {
         <button
           onClick={() => setShowControls(!showControls)}
           className={`w-12 h-12 rounded-full shadow-lg transition-all duration-300 hover:scale-110 focus:scale-110 ${
-            contrastHigh 
+            contrastHigh
               ? 'bg-contrast-text text-contrast-bg'
               : 'bg-gradient-to-br from-indigo-500 to-purple-600 text-white'
           } ${showControls ? 'rotate-180' : ''}`}
@@ -105,10 +106,10 @@ const AccessibilityControls = () => {
 
         {/* Panel de contrôles */}
         {showControls && (
-          <div 
+          <div
             id="accessibility-panel"
             className={`absolute top-16 right-0 p-4 rounded-xl shadow-xl border-2 min-w-[280px] transform transition-all duration-300 animate-slide-in-up ${
-              contrastHigh 
+              contrastHigh
                 ? 'bg-contrast-bg border-contrast-text text-contrast-text'
                 : 'bg-white border-indigo-200 text-gray-800'
             }`}
@@ -118,7 +119,7 @@ const AccessibilityControls = () => {
             <h3 id="accessibility-title" className="font-bold mb-4 text-center">
               ♿ Accessibilité
             </h3>
-            
+
             {/* Contraste élevé */}
             <div className="mb-4">
               <label className="flex items-center justify-between cursor-pointer">
@@ -134,14 +135,18 @@ const AccessibilityControls = () => {
                     className="sr-only"
                     aria-describedby="contrast-help"
                   />
-                  <div className={`w-12 h-6 rounded-full transition-colors duration-300 ${
-                    contrastHigh 
-                      ? 'bg-yellow-500'
-                      : 'bg-gray-300'
-                  }`}>
-                    <div className={`w-5 h-5 bg-white rounded-full shadow transform transition-transform duration-300 ${
-                      contrastHigh ? 'translate-x-6 translate-y-0.5' : 'translate-x-0.5 translate-y-0.5'
-                    }`}></div>
+                  <div
+                    className={`w-12 h-6 rounded-full transition-colors duration-300 ${
+                      contrastHigh ? 'bg-yellow-500' : 'bg-gray-300'
+                    }`}
+                  >
+                    <div
+                      className={`w-5 h-5 bg-white rounded-full shadow transform transition-transform duration-300 ${
+                        contrastHigh
+                          ? 'translate-x-6 translate-y-0.5'
+                          : 'translate-x-0.5 translate-y-0.5'
+                      }`}
+                    ></div>
                   </div>
                 </div>
               </label>
@@ -164,9 +169,7 @@ const AccessibilityControls = () => {
                 value={fontScale}
                 onChange={(e) => setFontScale(parseFloat(e.target.value))}
                 className={`w-full h-2 rounded-lg appearance-none cursor-pointer ${
-                  contrastHigh 
-                    ? 'bg-contrast-text/30'
-                    : 'bg-gray-200'
+                  contrastHigh ? 'bg-contrast-text/30' : 'bg-gray-200'
                 }`}
                 aria-describedby="font-size-help"
               />
@@ -206,9 +209,11 @@ const AccessibilityControls = () => {
               </label>
               <select
                 value={fontFamily}
-                onChange={(e) => setFont(e.target.value as 'default' | 'opendyslexic')}
+                onChange={(e) =>
+                  setFont(e.target.value as 'default' | 'opendyslexic')
+                }
                 className={`w-full p-2 rounded border ${
-                  contrastHigh 
+                  contrastHigh
                     ? 'bg-contrast-bg border-contrast-text text-contrast-text'
                     : 'bg-white border-gray-300'
                 }`}
@@ -232,7 +237,7 @@ const AccessibilityControls = () => {
                   setFont('default');
                 }}
                 className={`p-2 rounded text-xs transition-colors ${
-                  contrastHigh 
+                  contrastHigh
                     ? 'bg-contrast-text/20 hover:bg-contrast-text/30'
                     : 'bg-gray-100 hover:bg-gray-200 text-gray-800'
                 }`}
@@ -243,7 +248,7 @@ const AccessibilityControls = () => {
               <button
                 onClick={() => setShowControls(false)}
                 className={`p-2 rounded text-xs transition-colors ${
-                  contrastHigh 
+                  contrastHigh
                     ? 'bg-contrast-text/20 hover:bg-contrast-text/30'
                     : 'bg-indigo-100 hover:bg-indigo-200 text-indigo-800'
                 }`}
@@ -254,11 +259,13 @@ const AccessibilityControls = () => {
             </div>
 
             {/* Aide */}
-            <div className={`mt-4 p-3 rounded text-xs ${
-              contrastHigh 
-                ? 'bg-contrast-text/10'
-                : 'bg-blue-50 text-blue-800'
-            }`}>
+            <div
+              className={`mt-4 p-3 rounded text-xs ${
+                contrastHigh
+                  ? 'bg-contrast-text/10'
+                  : 'bg-blue-50 text-blue-800'
+              }`}
+            >
               <p className="font-medium mb-1">💡 Raccourcis clavier :</p>
               <ul className="space-y-1">
                 <li>Alt + A : Ouvrir ce menu</li>

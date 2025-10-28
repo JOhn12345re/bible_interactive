@@ -22,10 +22,11 @@ export default function SettingsDialog({ isOpen, onClose }: Props) {
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-      <div 
+      <div
         className={`rounded-lg p-6 max-w-md w-full mx-4 ${
-          contrastHigh ? 'bg-contrast-bg text-contrast-text border-2 border-contrast-text' 
-                      : 'bg-white text-gray-900'
+          contrastHigh
+            ? 'bg-contrast-bg text-contrast-text border-2 border-contrast-text'
+            : 'bg-white text-gray-900'
         }`}
         role="dialog"
         aria-labelledby="settings-title"
@@ -57,8 +58,8 @@ export default function SettingsDialog({ isOpen, onClose }: Props) {
                 onClick={() => setFontScale(fontScale - 0.1)}
                 disabled={fontScale <= 0.8}
                 className={`px-4 py-2 rounded font-bold text-xl ${
-                  fontScale <= 0.8 
-                    ? 'opacity-50 cursor-not-allowed' 
+                  fontScale <= 0.8
+                    ? 'opacity-50 cursor-not-allowed'
                     : 'hover:opacity-80'
                 } ${contrastHigh ? 'bg-contrast-text text-contrast-bg' : 'bg-blue-500 text-white'}`}
                 aria-label="Diminuer la taille du texte"
@@ -72,8 +73,8 @@ export default function SettingsDialog({ isOpen, onClose }: Props) {
                 onClick={() => setFontScale(fontScale + 0.1)}
                 disabled={fontScale >= 1.6}
                 className={`px-4 py-2 rounded font-bold text-xl ${
-                  fontScale >= 1.6 
-                    ? 'opacity-50 cursor-not-allowed' 
+                  fontScale >= 1.6
+                    ? 'opacity-50 cursor-not-allowed'
                     : 'hover:opacity-80'
                 } ${contrastHigh ? 'bg-contrast-text text-contrast-bg' : 'bg-blue-500 text-white'}`}
                 aria-label="Augmenter la taille du texte"
@@ -121,8 +122,10 @@ export default function SettingsDialog({ isOpen, onClose }: Props) {
               <button
                 onClick={toggleContrast}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  contrastHigh 
-                    ? contrastHigh ? 'bg-contrast-text' : 'bg-blue-600'
+                  contrastHigh
+                    ? contrastHigh
+                      ? 'bg-contrast-text'
+                      : 'bg-blue-600'
                     : 'bg-gray-300'
                 }`}
                 aria-pressed={contrastHigh}
@@ -130,8 +133,8 @@ export default function SettingsDialog({ isOpen, onClose }: Props) {
               >
                 <span
                   className={`inline-block h-4 w-4 transform rounded-full transition-transform ${
-                    contrastHigh 
-                      ? 'translate-x-6 bg-contrast-bg' 
+                    contrastHigh
+                      ? 'translate-x-6 bg-contrast-bg'
                       : 'translate-x-1 bg-white'
                   }`}
                 />
@@ -146,8 +149,10 @@ export default function SettingsDialog({ isOpen, onClose }: Props) {
               <button
                 onClick={toggleAudio}
                 className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                  audioOn 
-                    ? contrastHigh ? 'bg-contrast-text' : 'bg-blue-600'
+                  audioOn
+                    ? contrastHigh
+                      ? 'bg-contrast-text'
+                      : 'bg-blue-600'
                     : 'bg-gray-300'
                 }`}
                 aria-pressed={audioOn}
@@ -155,8 +160,8 @@ export default function SettingsDialog({ isOpen, onClose }: Props) {
               >
                 <span
                   className={`inline-block h-4 w-4 transform rounded-full transition-transform ${
-                    audioOn 
-                      ? 'translate-x-6 bg-white' 
+                    audioOn
+                      ? 'translate-x-6 bg-white'
                       : 'translate-x-1 bg-white'
                   }`}
                 />
@@ -169,7 +174,7 @@ export default function SettingsDialog({ isOpen, onClose }: Props) {
           <button
             onClick={onClose}
             className={`px-6 py-3 rounded-lg font-medium ${
-              contrastHigh 
+              contrastHigh
                 ? 'bg-contrast-text text-contrast-bg border-2 border-contrast-text hover:bg-contrast-bg hover:text-contrast-text'
                 : 'bg-blue-500 text-white hover:bg-blue-600'
             }`}

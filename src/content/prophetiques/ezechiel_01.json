@@ -28,17 +28,66 @@
   ],
   "key_verse": "Avec Dieu, même ce qui semble perdu peut retrouver la vie, car son Esprit redonne l'espérance.",
   "vocab": [
-    { "word": "Ossements", "hint": "Les os des morts, qui restent après que le corps se soit décomposé." },
-    { "word": "Desséchés", "hint": "Complètement secs, sans vie, comme des os anciens." },
-    { "word": "Prophétiser", "hint": "Parler au nom de Dieu, annoncer sa parole." },
+    {
+      "word": "Ossements",
+      "hint": "Les os des morts, qui restent après que le corps se soit décomposé."
+    },
+    {
+      "word": "Desséchés",
+      "hint": "Complètement secs, sans vie, comme des os anciens."
+    },
+    {
+      "word": "Prophétiser",
+      "hint": "Parler au nom de Dieu, annoncer sa parole."
+    },
     { "word": "Esprit", "hint": "La force vitale de Dieu qui donne la vie." }
   ],
   "quiz": [
-    { "q": "Où Dieu a-t-il transporté Ézéchiel ?", "choices": ["Sur une montagne", "Dans une vallée d'ossements", "Dans un temple"], "answer": 1 },
-    { "q": "Que demanda Dieu à Ézéchiel ?", "choices": ["De compter les os", "Si ces os peuvent revivre", "De les enterrer"], "answer": 1 },
-    { "q": "Que se passa-t-il quand Ézéchiel prophétisa ?", "choices": ["Il pleuvit", "Les os se rapprochèrent", "Un tremblement de terre"], "answer": 1 },
-    { "q": "Que représentaient ces ossements ?", "choices": ["Les ennemis d'Israël", "Toute la maison d'Israël", "Les animaux morts"], "answer": 1 },
-    { "q": "Que promit Dieu à son peuple ?", "choices": ["De les punir", "De leur donner un nouvel esprit et de les ramener dans leur pays", "De les oublier"], "answer": 1 }
+    {
+      "q": "Où Dieu a-t-il transporté Ézéchiel ?",
+      "choices": [
+        "Sur une montagne",
+        "Dans une vallée d'ossements",
+        "Dans un temple"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "Que demanda Dieu à Ézéchiel ?",
+      "choices": [
+        "De compter les os",
+        "Si ces os peuvent revivre",
+        "De les enterrer"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "Que se passa-t-il quand Ézéchiel prophétisa ?",
+      "choices": [
+        "Il pleuvit",
+        "Les os se rapprochèrent",
+        "Un tremblement de terre"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "Que représentaient ces ossements ?",
+      "choices": [
+        "Les ennemis d'Israël",
+        "Toute la maison d'Israël",
+        "Les animaux morts"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "Que promit Dieu à son peuple ?",
+      "choices": [
+        "De les punir",
+        "De leur donner un nouvel esprit et de les ramener dans leur pays",
+        "De les oublier"
+      ],
+      "answer": 1
+    }
   ],
   "mini_games": ["order_events", "quiz"],
   "assets": ["ezechiel_1.png", "ezechiel_2.png", "ezechiel_3.png"]

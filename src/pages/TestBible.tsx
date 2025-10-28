@@ -15,11 +15,16 @@ const TestBible: React.FC = () => {
     try {
       setLoading(true);
       setError(null);
-      
+
       // Utiliser setTimeout pour éviter de bloquer l'UI
       setTimeout(async () => {
         try {
-          const result = await bibleApi.getVersesDefault(book, chapter, verseStart, verseEnd);
+          const result = await bibleApi.getVersesDefault(
+            book,
+            chapter,
+            verseStart,
+            verseEnd
+          );
           setVerses(result);
         } catch (err) {
           setError('Erreur lors du chargement des versets');
@@ -39,22 +44,22 @@ const TestBible: React.FC = () => {
     try {
       setLoading(true);
       setError(null);
-      
+
       // Utiliser setTimeout pour éviter de bloquer l'UI
       setTimeout(async () => {
         try {
           // Test de différentes méthodes
           console.log('🧪 Test des méthodes spécialisées...');
-          
+
           const creation = await bibleApi.getCreationVerses();
           console.log('✅ Création:', creation.length, 'versets');
-          
+
           const adamEve = await bibleApi.getAdamEveVerses();
           console.log('✅ Adam et Ève:', adamEve.length, 'versets');
-          
+
           const psalm = await bibleApi.getPsalmOfTheDay();
           console.log('✅ Psaume du jour:', psalm.length, 'versets');
-          
+
           setVerses(psalm);
         } catch (err) {
           setError('Erreur lors des tests');
@@ -72,7 +77,7 @@ const TestBible: React.FC = () => {
 
   const debugBibleData = () => {
     console.log('🔍 Démarrage du debug des données...');
-    
+
     // Utiliser setTimeout pour éviter de bloquer l'UI
     setTimeout(() => {
       try {
@@ -85,7 +90,7 @@ const TestBible: React.FC = () => {
 
   const testAllVerses = async () => {
     console.log('🧪 Démarrage du test automatique de tous les versets...');
-    
+
     // Utiliser setTimeout pour éviter de bloquer l'UI
     setTimeout(async () => {
       try {
@@ -107,7 +112,8 @@ const TestBible: React.FC = () => {
             Test du Service Bible
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Testez le service Bible Louis Segond avec les données locales et découvrez les psaumes par jour
+            Testez le service Bible Louis Segond avec les données locales et
+            découvrez les psaumes par jour
           </p>
         </div>
 
@@ -118,9 +124,11 @@ const TestBible: React.FC = () => {
               <div className="w-10 h-10 bg-gradient-to-r from-green-500 to-teal-600 rounded-full flex items-center justify-center">
                 <span className="text-xl">📖</span>
               </div>
-              <h2 className="text-2xl font-bold text-gray-800">Test des versets</h2>
+              <h2 className="text-2xl font-bold text-gray-800">
+                Test des versets
+              </h2>
             </div>
-            
+
             <div className="space-y-4 mb-6">
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -134,7 +142,7 @@ const TestBible: React.FC = () => {
                   placeholder="Ex: Genèse, Exode, Psaumes..."
                 />
               </div>
-              
+
               <div className="grid grid-cols-2 gap-4">
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
@@ -148,7 +156,7 @@ const TestBible: React.FC = () => {
                     min="1"
                   />
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700 mb-1">
                     Verset début (optionnel)
@@ -156,13 +164,17 @@ const TestBible: React.FC = () => {
                   <input
                     type="number"
                     value={verseStart || ''}
-                    onChange={(e) => setVerseStart(e.target.value ? parseInt(e.target.value) : undefined)}
+                    onChange={(e) =>
+                      setVerseStart(
+                        e.target.value ? parseInt(e.target.value) : undefined
+                      )
+                    }
                     className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                     min="1"
                   />
                 </div>
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                   Verset fin (optionnel)
@@ -170,7 +182,11 @@ const TestBible: React.FC = () => {
                 <input
                   type="number"
                   value={verseEnd || ''}
-                  onChange={(e) => setVerseEnd(e.target.value ? parseInt(e.target.value) : undefined)}
+                  onChange={(e) =>
+                    setVerseEnd(
+                      e.target.value ? parseInt(e.target.value) : undefined
+                    )
+                  }
                   className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                   min="1"
                 />
@@ -185,7 +201,7 @@ const TestBible: React.FC = () => {
               >
                 {loading ? 'Chargement...' : 'Charger les versets'}
               </button>
-              
+
               <button
                 onClick={testSpecificMethods}
                 disabled={loading}
@@ -194,19 +210,19 @@ const TestBible: React.FC = () => {
                 Test méthodes spécialisées
               </button>
 
-            <button
-              onClick={debugBibleData}
-              className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 transition-colors button-interactive"
-            >
-              🔍 Debug données
-            </button>
+              <button
+                onClick={debugBibleData}
+                className="px-4 py-2 bg-purple-600 text-white rounded hover:bg-purple-700 transition-colors button-interactive"
+              >
+                🔍 Debug données
+              </button>
 
-            <button
-              onClick={testAllVerses}
-              className="px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700 transition-colors button-interactive"
-            >
-              🧪 Test tous les versets
-            </button>
+              <button
+                onClick={testAllVerses}
+                className="px-4 py-2 bg-orange-600 text-white rounded hover:bg-orange-700 transition-colors button-interactive"
+              >
+                🧪 Test tous les versets
+              </button>
             </div>
 
             {error && (
@@ -222,7 +238,10 @@ const TestBible: React.FC = () => {
                 </h3>
                 <div className="space-y-2 max-h-64 overflow-y-auto">
                   {verses.map((verse, index) => (
-                    <div key={index} className="flex items-start space-x-3 p-2 bg-gray-50 rounded">
+                    <div
+                      key={index}
+                      className="flex items-start space-x-3 p-2 bg-gray-50 rounded"
+                    >
                       <span className="flex-shrink-0 w-6 h-6 bg-blue-100 text-blue-800 rounded-full flex items-center justify-center text-xs font-medium">
                         {verse.verse_start}
                       </span>
@@ -244,7 +263,9 @@ const TestBible: React.FC = () => {
 
         {/* Informations sur le service */}
         <div className="mt-8 bg-white rounded-lg shadow-md p-6">
-          <h2 className="text-xl font-semibold mb-4">Informations du service</h2>
+          <h2 className="text-xl font-semibold mb-4">
+            Informations du service
+          </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
             <div>
               <strong>Traduction:</strong> Louis Segond 1910
@@ -256,7 +277,8 @@ const TestBible: React.FC = () => {
               <strong>Langue:</strong> Français
             </div>
             <div>
-              <strong>Fonctionnalités:</strong> Psaumes par jour, versets par référence
+              <strong>Fonctionnalités:</strong> Psaumes par jour, versets par
+              référence
             </div>
           </div>
         </div>

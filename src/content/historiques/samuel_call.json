@@ -1,0 +1,38 @@
+{
+  "id": "samuel_call",
+  "title": "L'Appel de Samuel",
+  "path": "Historiques",
+  "reading": [
+    "Samuel, encore enfant, sert Dieu dans le temple sous la direction du prêtre Éli.",
+    "Une nuit, Dieu appelle Samuel par son nom. Samuel croit d'abord que c'est Éli qui l'appelle.",
+    "Après plusieurs appels, Éli comprend que c'est Dieu qui parle à Samuel et lui dit de répondre : 'Parle, ton serviteur écoute.'",
+    "Dieu confie à Samuel une mission importante pour Israël."
+  ],
+  "key_verse": "L'Éternel appela Samuel, et Samuel répondit : Parle, ton serviteur écoute. (1 Samuel 3:10)",
+  "vocab": [
+    { "word": "Serviteur", "hint": "Personne qui sert Dieu ou un maître." },
+    { "word": "Temple", "hint": "Lieu de culte pour Dieu." },
+    { "word": "Appel", "hint": "Invitation de Dieu à une mission particulière." }
+  ],
+  "quiz": [
+    {
+      "q": "Qui élève Samuel dans le temple ?",
+      "choices": ["Éli", "Anne", "David"],
+      "answer": 0
+    },
+    {
+      "q": "Que doit répondre Samuel quand Dieu l'appelle ?",
+      "choices": ["Qui est là ?", "Parle, ton serviteur écoute", "Je dors"],
+      "answer": 1
+    },
+    {
+      "q": "Que confie Dieu à Samuel ?",
+      "choices": ["Une mission pour Israël", "Un trésor", "Un chant"],
+      "answer": 0
+    }
+  ],
+  "mini_games": ["order_events", "quiz"],
+  "assets": ["samuel_1.png", "samuel_2.png"],
+  "theological_message": "Dieu parle même aux plus jeunes et leur confie des missions importantes.",
+  "life_application": "Soyons attentifs à la voix de Dieu et prêts à lui obéir."
+}

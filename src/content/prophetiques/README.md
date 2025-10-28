@@ -5,6 +5,7 @@ Messages des prophètes de Dieu à travers l'histoire d'Israël.
 ## Livres inclus :
 
 ### Grands prophètes :
+
 1. **Isaïe** - Prophéties messianiques
 2. **Jérémie** - Le prophète pleureur
 3. **Lamentations** - Chants de douleur
@@ -12,6 +13,7 @@ Messages des prophètes de Dieu à travers l'histoire d'Israël.
 5. **Daniel** - Visions apocalyptiques
 
 ### Petits prophètes :
+
 6. **Osée** - Amour fidèle de Dieu
 7. **Joël** - L'effusion de l'Esprit
 8. **Amos** - Justice sociale
@@ -28,12 +30,14 @@ Messages des prophètes de Dieu à travers l'histoire d'Israël.
 ## Histoires disponibles :
 
 ### Jonas
+
 - ✅ Jonas et le grand poisson (`jonas_01.json`)
 - ✅ Jonas fuit sa mission (`jonas_02_fuite.json`)
 - ✅ Ninive se convertit (`jonas_03_ninive.json`)
 - ✅ La leçon du ricin (`jonas_04_ricin.json`)
 
 ## À développer :
+
 - Daniel et les trois jeunes gens dans la fournaise
 - Ézéchiel et la vallée des ossements
 - Élie et les prophètes de Baal

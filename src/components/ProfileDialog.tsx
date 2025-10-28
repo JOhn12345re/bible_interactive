@@ -1,10 +1,10 @@
-import { useState, useEffect } from 'react'
-import { useSettings } from '../state/settingsStore'
-import { useProfileStore, type UserProfile } from '../state/profileStore'
+import React, { useState, useEffect } from 'react';
+import { useSettings } from '../state/settingsStore';
+import { useProfileStore, type UserProfile } from '../state/profileStore';
 
 interface ProfileDialogProps {
-  isOpen: boolean
-  onClose: () => void
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 const CHURCH_OPTIONS = [
@@ -18,99 +18,133 @@ const CHURCH_OPTIONS = [
   'Église Presbytérienne',
   'Église Pentecôtiste',
   'Église Adventiste',
-  'Autre'
-]
+  'Autre',
+];
 
 export default function ProfileDialog({ isOpen, onClose }: ProfileDialogProps) {
-  const { contrastHigh } = useSettings()
-  const { profile, updateProfile, saveProfileToServer } = useProfileStore()
-  
-  const [formData, setFormData] = useState<UserProfile>({
+  const { contrastHigh } = useSettings();
+  const { profile, updateProfile, saveProfileToServer } = useProfileStore();
+
+  const makeDefaultProfile = (): UserProfile => ({
     firstName: '',
     lastName: '',
     age: 0,
     church: '',
-    email: ''
-  })
-  
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const [success, setSuccess] = useState(false)
+    email: '',
+    favoriteVerses: [],
+    completedLessons: [],
+    gameStats: {
+      totalGamesPlayed: 0,
+      totalScore: 0,
+      favoriteGame: '',
+      achievements: [],
+    },
+    readingStats: {
+      totalReadingTime: 0,
+      booksRead: [],
+      currentBook: 'Genèse',
+      currentChapter: 1,
+      dailyStreak: 0,
+    },
+    preferences: {
+      preferredTranslation: 'Louis Segond 1910',
+      dailyGoal: 3,
+      notifications: true,
+    },
+  });
+
+  const [formData, setFormData] = useState<UserProfile>(makeDefaultProfile());
+
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     if (isOpen && profile) {
-      setFormData(profile)
+      setFormData(profile);
     }
-  }, [isOpen, profile])
+  }, [isOpen, profile]);
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setLoading(true)
-    setError(null)
-    setSuccess(false)
+    e.preventDefault();
+    setLoading(true);
+    setError(null);
+    setSuccess(false);
 
     try {
       // Validation
       if (!formData.firstName.trim() || !formData.lastName.trim()) {
-        throw new Error('Le prénom et le nom sont obligatoires')
+        throw new Error('Le prénom et le nom sont obligatoires');
       }
       if (formData.age < 1 || formData.age > 120) {
-        throw new Error('L\'âge doit être entre 1 et 120 ans')
+        throw new Error("L'âge doit être entre 1 et 120 ans");
       }
       if (!formData.church) {
-        throw new Error('Veuillez sélectionner une église')
+        throw new Error('Veuillez sélectionner une église');
       }
 
       // Sauvegarder localement
-      updateProfile(formData)
-      
+      updateProfile(formData);
+
       // Tenter de sauvegarder sur le serveur
-      const saved = await saveProfileToServer(formData)
+      const saved = await saveProfileToServer(formData);
       if (saved) {
-        setSuccess(true)
+        setSuccess(true);
         setTimeout(() => {
-          onClose()
-        }, 1500)
+          onClose();
+        }, 1500);
       } else {
-        setSuccess(true) // Sauvegardé localement quand même
+        setSuccess(true); // Sauvegardé localement quand même
         setTimeout(() => {
-          onClose()
-        }, 1500)
+          onClose();
+        }, 1500);
       }
     } catch (err) {
-      setError(err instanceof Error ? err.message : 'Erreur lors de la sauvegarde')
+      setError(
+        err instanceof Error ? err.message : 'Erreur lors de la sauvegarde'
+      );
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
-  }
+  };
 
-  const handleInputChange = (field: keyof UserProfile, value: string | number) => {
-    setFormData(prev => ({ ...prev, [field]: value }))
-  }
+  const handleInputChange = (
+    field: keyof UserProfile,
+    value: string | number
+  ) => {
+    setFormData((prev) => ({ ...prev, [field]: value }));
+  };
 
-  if (!isOpen) return null
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
-      <div 
+      <div
         className={`max-w-md w-full rounded-2xl p-6 ${
-          contrastHigh 
-            ? 'bg-contrast-bg border-2 border-contrast-text' 
+          contrastHigh
+            ? 'bg-contrast-bg border-2 border-contrast-text'
             : 'bg-white shadow-xl'
         }`}
         role="dialog"
         aria-labelledby="profile-dialog-title"
         aria-describedby="profile-dialog-description"
       >
-        <h2 id="profile-dialog-title" className="sr-only">Configuration du profil utilisateur</h2>
-        <p id="profile-dialog-description" className="sr-only">Remplissez vos informations personnelles pour personnaliser votre expérience</p>
+        <h2 id="profile-dialog-title" className="sr-only">
+          Configuration du profil utilisateur
+        </h2>
+        <p id="profile-dialog-description" className="sr-only">
+          Remplissez vos informations personnelles pour personnaliser votre
+          expérience
+        </p>
         {/* En-tête */}
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center space-x-3">
             <span className="text-2xl">👤</span>
-            <h2 className={`text-xl font-bold ${
-              contrastHigh ? 'text-contrast-text' : 'text-gray-800'
-            }`}>
+            <h2
+              className={`text-xl font-bold ${
+                contrastHigh ? 'text-contrast-text' : 'text-gray-800'
+              }`}
+            >
               Mon Profil
             </h2>
           </div>
@@ -132,7 +166,7 @@ export default function ProfileDialog({ isOpen, onClose }: ProfileDialogProps) {
             {error}
           </div>
         )}
-        
+
         {success && (
           <div className="mb-4 p-3 rounded-lg bg-green-50 text-green-700 border border-green-200">
             ✅ Profil sauvegardé avec succès !
@@ -143,9 +177,11 @@ export default function ProfileDialog({ isOpen, onClose }: ProfileDialogProps) {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-2 gap-4">
             <div>
-              <label className={`block text-sm font-medium mb-1 ${
-                contrastHigh ? 'text-contrast-text' : 'text-gray-700'
-              }`}>
+              <label
+                className={`block text-sm font-medium mb-1 ${
+                  contrastHigh ? 'text-contrast-text' : 'text-gray-700'
+                }`}
+              >
                 Prénom *
               </label>
               <input
@@ -160,11 +196,13 @@ export default function ProfileDialog({ isOpen, onClose }: ProfileDialogProps) {
                 required
               />
             </div>
-            
+
             <div>
-              <label className={`block text-sm font-medium mb-1 ${
-                contrastHigh ? 'text-contrast-text' : 'text-gray-700'
-              }`}>
+              <label
+                className={`block text-sm font-medium mb-1 ${
+                  contrastHigh ? 'text-contrast-text' : 'text-gray-700'
+                }`}
+              >
                 Nom *
               </label>
               <input
@@ -182,9 +220,11 @@ export default function ProfileDialog({ isOpen, onClose }: ProfileDialogProps) {
           </div>
 
           <div>
-            <label className={`block text-sm font-medium mb-1 ${
-              contrastHigh ? 'text-contrast-text' : 'text-gray-700'
-            }`}>
+            <label
+              className={`block text-sm font-medium mb-1 ${
+                contrastHigh ? 'text-contrast-text' : 'text-gray-700'
+              }`}
+            >
               Âge *
             </label>
             <input
@@ -192,7 +232,9 @@ export default function ProfileDialog({ isOpen, onClose }: ProfileDialogProps) {
               min="1"
               max="120"
               value={formData.age || ''}
-              onChange={(e) => handleInputChange('age', parseInt(e.target.value) || 0)}
+              onChange={(e) =>
+                handleInputChange('age', parseInt(e.target.value) || 0)
+              }
               className={`w-full px-3 py-2 rounded-lg border ${
                 contrastHigh
                   ? 'bg-contrast-bg text-contrast-text border-contrast-text'
@@ -203,9 +245,11 @@ export default function ProfileDialog({ isOpen, onClose }: ProfileDialogProps) {
           </div>
 
           <div>
-            <label className={`block text-sm font-medium mb-1 ${
-              contrastHigh ? 'text-contrast-text' : 'text-gray-700'
-            }`}>
+            <label
+              className={`block text-sm font-medium mb-1 ${
+                contrastHigh ? 'text-contrast-text' : 'text-gray-700'
+              }`}
+            >
               Église *
             </label>
             <select
@@ -228,9 +272,11 @@ export default function ProfileDialog({ isOpen, onClose }: ProfileDialogProps) {
           </div>
 
           <div>
-            <label className={`block text-sm font-medium mb-1 ${
-              contrastHigh ? 'text-contrast-text' : 'text-gray-700'
-            }`}>
+            <label
+              className={`block text-sm font-medium mb-1 ${
+                contrastHigh ? 'text-contrast-text' : 'text-gray-700'
+              }`}
+            >
               Email (optionnel)
             </label>
             <input
@@ -273,12 +319,15 @@ export default function ProfileDialog({ isOpen, onClose }: ProfileDialogProps) {
         </form>
 
         {/* Note */}
-        <div className={`mt-4 text-xs ${
-          contrastHigh ? 'text-contrast-text' : 'text-gray-500'
-        }`}>
-          * Champs obligatoires. Vos données sont sauvegardées localement et sur notre serveur sécurisé.
+        <div
+          className={`mt-4 text-xs ${
+            contrastHigh ? 'text-contrast-text' : 'text-gray-500'
+          }`}
+        >
+          * Champs obligatoires. Vos données sont sauvegardées localement et sur
+          notre serveur sécurisé.
         </div>
       </div>
     </div>
-  )
+  );
 }

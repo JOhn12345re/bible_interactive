@@ -16,7 +16,7 @@ interface BadgeData {
 const BadgeChest: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
-  
+
   // Utiliser le store des badges
   const { badges, totalExperience, level } = useBadgeStore();
 
@@ -28,11 +28,12 @@ const BadgeChest: React.FC = () => {
     { id: 'special', name: 'Spéciaux', icon: '⭐' },
   ];
 
-  const filteredBadges = selectedCategory === 'all' 
-    ? badges 
-    : badges.filter(badge => badge.category === selectedCategory);
+  const filteredBadges =
+    selectedCategory === 'all'
+      ? badges
+      : badges.filter((badge) => badge.category === selectedCategory);
 
-  const earnedCount = badges.filter(badge => badge.earned).length;
+  const earnedCount = badges.filter((badge) => badge.earned).length;
   const totalCount = badges.length;
 
   return (
@@ -44,8 +45,10 @@ const BadgeChest: React.FC = () => {
       >
         <div className="text-4xl mb-2 group-hover:animate-bounce">🏆</div>
         <div className="text-sm font-semibold text-white">Coffre à Badges</div>
-        <div className="text-xs text-yellow-100">{earnedCount}/{totalCount}</div>
-        
+        <div className="text-xs text-yellow-100">
+          {earnedCount}/{totalCount}
+        </div>
+
         {/* Indicateur de nouveaux badges */}
         {earnedCount > 0 && (
           <div className="absolute -top-2 -right-2 w-6 h-6 bg-red-500 text-white text-xs rounded-full flex items-center justify-center animate-pulse">
@@ -64,10 +67,12 @@ const BadgeChest: React.FC = () => {
           {/* Statistiques */}
           <div className="bg-gradient-to-r from-blue-50 to-purple-50 p-4 rounded-lg">
             <div className="text-center">
-              <div className="text-2xl font-bold text-gray-800">{earnedCount}/{totalCount}</div>
+              <div className="text-2xl font-bold text-gray-800">
+                {earnedCount}/{totalCount}
+              </div>
               <div className="text-sm text-gray-600">Badges gagnés</div>
               <div className="w-full bg-gray-200 rounded-full h-2 mt-2">
-                <div 
+                <div
                   className="bg-gradient-to-r from-yellow-400 to-orange-500 h-2 rounded-full transition-all duration-500"
                   style={{ width: `${(earnedCount / totalCount) * 100}%` }}
                 ></div>
@@ -81,7 +86,7 @@ const BadgeChest: React.FC = () => {
 
           {/* Filtres par catégorie */}
           <div className="flex flex-wrap gap-2">
-            {categories.map(category => (
+            {categories.map((category) => (
               <button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
@@ -99,7 +104,7 @@ const BadgeChest: React.FC = () => {
 
           {/* Grille des badges */}
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
-            {filteredBadges.map(badge => (
+            {filteredBadges.map((badge) => (
               <Badge
                 key={badge.id}
                 icon={badge.icon}
@@ -118,10 +123,13 @@ const BadgeChest: React.FC = () => {
           {/* Message d'encouragement */}
           <div className="text-center p-4 bg-green-50 rounded-lg">
             <div className="text-lg font-semibold text-green-800">
-              {earnedCount === totalCount ? '🎉 Félicitations ! Vous avez gagné tous les badges !' :
-               earnedCount > totalCount / 2 ? '🌟 Excellent progrès ! Continuez comme ça !' :
-               earnedCount > 0 ? '💪 Bon début ! Continuez à explorer !' :
-               '🚀 Commencez votre aventure biblique !'}
+              {earnedCount === totalCount
+                ? '🎉 Félicitations ! Vous avez gagné tous les badges !'
+                : earnedCount > totalCount / 2
+                  ? '🌟 Excellent progrès ! Continuez comme ça !'
+                  : earnedCount > 0
+                    ? '💪 Bon début ! Continuez à explorer !'
+                    : '🚀 Commencez votre aventure biblique !'}
             </div>
           </div>
         </div>

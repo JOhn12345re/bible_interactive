@@ -1,7 +1,8 @@
 /* Animations personnalisées pour la page d'accueil */
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
   }
   50% {
@@ -10,7 +11,8 @@
 }
 
 @keyframes pulse-slow {
-  0%, 100% {
+  0%,
+  100% {
     opacity: 1;
   }
   50% {
@@ -94,7 +96,9 @@
 
 .action-card-hover:hover {
   transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 /* Effet de brillance pour les éléments interactifs */
@@ -129,27 +133,27 @@
     font-size: 2rem;
     line-height: 2.5rem;
   }
-  
+
   .text-responsive-lg {
     font-size: 1.5rem;
     line-height: 2rem;
   }
-  
+
   .text-responsive-sm {
     font-size: 1rem;
     line-height: 1.5rem;
   }
-  
+
   .px-responsive {
     padding-left: 1rem;
     padding-right: 1rem;
   }
-  
+
   .py-responsive {
     padding-top: 1rem;
     padding-bottom: 1rem;
   }
-  
+
   .grid-responsive-3 {
     display: grid;
     grid-template-columns: 1fr;
@@ -162,27 +166,27 @@
     font-size: 2.5rem;
     line-height: 3rem;
   }
-  
+
   .text-responsive-lg {
     font-size: 1.875rem;
     line-height: 2.25rem;
   }
-  
+
   .text-responsive-sm {
     font-size: 1.125rem;
     line-height: 1.75rem;
   }
-  
+
   .px-responsive {
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
-  
+
   .py-responsive {
     padding-top: 1.5rem;
     padding-bottom: 1.5rem;
   }
-  
+
   .grid-responsive-3 {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -195,27 +199,27 @@
     font-size: 3rem;
     line-height: 3.5rem;
   }
-  
+
   .text-responsive-lg {
     font-size: 2.25rem;
     line-height: 2.5rem;
   }
-  
+
   .text-responsive-sm {
     font-size: 1.25rem;
     line-height: 1.75rem;
   }
-  
+
   .px-responsive {
     padding-left: 2rem;
     padding-right: 2rem;
   }
-  
+
   .py-responsive {
     padding-top: 2rem;
     padding-bottom: 2rem;
   }
-  
+
   .grid-responsive-3 {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -233,7 +237,7 @@
   .animate-fade-scale {
     animation: none;
   }
-  
+
   .action-card-hover:hover {
     transform: none;
   }

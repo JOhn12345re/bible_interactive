@@ -15,15 +15,53 @@
   "vocab": [
     { "word": "Madianites", "hint": "Peuple ennemi qui opprimait Israël." },
     { "word": "Opprimaient", "hint": "Faisaient souffrir et maltraitaient." },
-    { "word": "Trompettes", "hint": "Instruments de musique qui font du bruit." },
-    { "word": "Cruches", "hint": "Récipients en terre cuite pour cacher les torches." }
+    {
+      "word": "Trompettes",
+      "hint": "Instruments de musique qui font du bruit."
+    },
+    {
+      "word": "Cruches",
+      "hint": "Récipients en terre cuite pour cacher les torches."
+    }
   ],
   "quiz": [
-    { "q": "Qui opprimait le peuple d'Israël ?", "choices": ["Les Philistins", "Les Madianites", "Les Égyptiens"], "answer": 1 },
-    { "q": "Combien d'hommes Dieu demanda-t-il à Gédéon de garder ?", "choices": ["100", "300", "1000"], "answer": 1 },
-    { "q": "Que firent Gédéon et ses hommes la nuit ?", "choices": ["Ils attaquèrent directement", "Ils entourèrent le camp avec des trompettes et des torches", "Ils se cachèrent"], "answer": 1 },
-    { "q": "Quel cri poussèrent les hommes de Gédéon ?", "choices": ["Pour Israël !", "Pour l'Éternel et pour Gédéon !", "Victoire !"], "answer": 1 },
-    { "q": "Que nous enseigne cette histoire ?", "choices": ["Il faut une grande armée", "Dieu agit à travers ceux qui lui font confiance", "La guerre est toujours nécessaire"], "answer": 1 }
+    {
+      "q": "Qui opprimait le peuple d'Israël ?",
+      "choices": ["Les Philistins", "Les Madianites", "Les Égyptiens"],
+      "answer": 1
+    },
+    {
+      "q": "Combien d'hommes Dieu demanda-t-il à Gédéon de garder ?",
+      "choices": ["100", "300", "1000"],
+      "answer": 1
+    },
+    {
+      "q": "Que firent Gédéon et ses hommes la nuit ?",
+      "choices": [
+        "Ils attaquèrent directement",
+        "Ils entourèrent le camp avec des trompettes et des torches",
+        "Ils se cachèrent"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "Quel cri poussèrent les hommes de Gédéon ?",
+      "choices": [
+        "Pour Israël !",
+        "Pour l'Éternel et pour Gédéon !",
+        "Victoire !"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "Que nous enseigne cette histoire ?",
+      "choices": [
+        "Il faut une grande armée",
+        "Dieu agit à travers ceux qui lui font confiance",
+        "La guerre est toujours nécessaire"
+      ],
+      "answer": 1
+    }
   ],
   "mini_games": ["order_events", "quiz"],
   "assets": ["gedeon_1.png", "gedeon_2.png", "gedeon_3.png"]

@@ -9,10 +9,13 @@
   --gradient-success: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
   --gradient-warning: linear-gradient(135deg, #f7b733 0%, #fc4a1a 100%);
   --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  
+  --shadow-md:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  --shadow-lg:
+    0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-xl:
+    0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+
   /* Nouvelles variables pour animations améliorées */
   --spring-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
   --spring-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
@@ -21,42 +24,93 @@
 
 /* Animations améliorées */
 @keyframes float-gentle {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  25% { transform: translateY(-8px) rotate(1deg); }
-  50% { transform: translateY(-12px) rotate(0deg); }
-  75% { transform: translateY(-4px) rotate(-1deg); }
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-4px) rotate(-1deg);
+  }
 }
 
 @keyframes pulse-gentle {
-  0%, 100% { transform: scale(1); opacity: 1; }
-  50% { transform: scale(1.05); opacity: 0.8; }
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.8;
+  }
 }
 
 @keyframes slide-in-up {
-  from { transform: translateY(30px); opacity: 0; }
-  to { transform: translateY(0); opacity: 1; }
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 @keyframes slide-in-right {
-  from { transform: translateX(-30px); opacity: 0; }
-  to { transform: translateX(0); opacity: 1; }
+  from {
+    transform: translateX(-30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
 }
 
 @keyframes glow-pulse {
-  0%, 100% { box-shadow: 0 0 10px rgba(59, 130, 246, 0.3); }
-  50% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.6), 0 0 30px rgba(59, 130, 246, 0.3); }
+  0%,
+  100% {
+    box-shadow: 0 0 10px rgba(59, 130, 246, 0.3);
+  }
+  50% {
+    box-shadow:
+      0 0 20px rgba(59, 130, 246, 0.6),
+      0 0 30px rgba(59, 130, 246, 0.3);
+  }
 }
 
 @keyframes shimmer {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
 }
 
 @keyframes bounce-in {
-  0% { transform: scale(0.3); opacity: 0; }
-  50% { transform: scale(1.1); opacity: 0.8; }
-  70% { transform: scale(0.9); opacity: 0.9; }
-  100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+  70% {
+    transform: scale(0.9);
+    opacity: 0.9;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 /* Accessibilité et design moderne */
@@ -85,31 +139,41 @@
   }
 
   /* Amélioration des interactions tactiles */
-  button, a, [role="button"] {
+  button,
+  a,
+  [role='button'] {
     @apply min-h-[44px] min-w-[44px];
     touch-action: manipulation;
     transition: all 0.3s var(--spring-bounce);
   }
 
-  button:hover, a:hover, [role="button"]:hover {
+  button:hover,
+  a:hover,
+  [role='button']:hover {
     transform: translateY(-2px);
     box-shadow: var(--shadow-lg);
   }
 
-  button:active, a:active, [role="button"]:active {
+  button:active,
+  a:active,
+  [role='button']:active {
     transform: translateY(0px);
     transition-duration: 0.1s;
   }
 
   /* Optimisation des inputs pour mobile */
-  input, textarea, select {
+  input,
+  textarea,
+  select {
     @apply text-base;
     -webkit-appearance: none;
     border-radius: 0;
     transition: all 0.3s var(--spring-smooth);
   }
 
-  input:focus, textarea:focus, select:focus {
+  input:focus,
+  textarea:focus,
+  select:focus {
     transform: scale(1.02);
   }
 
@@ -237,7 +301,12 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
     animation: shimmer 2s infinite;
   }
 
@@ -339,14 +408,14 @@
   .no-print {
     display: none !important;
   }
-  
+
   body {
     font-size: 12pt;
     line-height: 1.4;
     color: black;
     background: white;
   }
-  
+
   .print-page-break {
     page-break-before: always;
   }
@@ -374,10 +443,20 @@
 }
 
 @keyframes victoryBounce {
-  0% { transform: scale(0.3); opacity: 0; }
-  50% { transform: scale(1.05); }
-  70% { transform: scale(0.9); }
-  100% { transform: scale(1); opacity: 1; }
+  0% {
+    transform: scale(0.3);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 
 /* Particules flottantes */
@@ -417,13 +496,22 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
   animation: shine 2s infinite;
 }
 
 @keyframes shine {
-  0% { left: -100%; }
-  100% { left: 100%; }
+  0% {
+    left: -100%;
+  }
+  100% {
+    left: 100%;
+  }
 }
 
 /* Effet pulse pour les éléments interactifs */
@@ -432,57 +520,112 @@
 }
 
 @keyframes pulseGlow {
-  0%, 100% {
+  0%,
+  100% {
     box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);
   }
   50% {
-    box-shadow: 0 0 20px rgba(59, 130, 246, 0.8), 0 0 30px rgba(59, 130, 246, 0.6);
+    box-shadow:
+      0 0 20px rgba(59, 130, 246, 0.8),
+      0 0 30px rgba(59, 130, 246, 0.6);
   }
 }
 
 /* Animations pour les boutons de navigation */
 @keyframes buttonHover {
-  0% { transform: scale(1) rotate(0deg); }
-  50% { transform: scale(1.05) rotate(1deg); }
-  100% { transform: scale(1.02) rotate(0deg); }
+  0% {
+    transform: scale(1) rotate(0deg);
+  }
+  50% {
+    transform: scale(1.05) rotate(1deg);
+  }
+  100% {
+    transform: scale(1.02) rotate(0deg);
+  }
 }
 
 @keyframes buttonPress {
-  0% { transform: scale(1); }
-  50% { transform: scale(0.95); }
-  100% { transform: scale(1); }
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 
 @keyframes float {
-  0%, 100% { transform: translateY(0px) rotate(0deg); }
-  25% { transform: translateY(-8px) rotate(1deg); }
-  50% { transform: translateY(-12px) rotate(0deg); }
-  75% { transform: translateY(-8px) rotate(-1deg); }
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-8px) rotate(1deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-8px) rotate(-1deg);
+  }
 }
 
 @keyframes slide-left {
-  from { transform: translateX(-100px) scale(0.9); opacity: 0; }
-  to { transform: translateX(0) scale(1); opacity: 1; }
+  from {
+    transform: translateX(-100px) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
 }
 
 @keyframes slide-right {
-  from { transform: translateX(100px) scale(0.9); opacity: 0; }
-  to { transform: translateX(0) scale(1); opacity: 1; }
+  from {
+    transform: translateX(100px) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0) scale(1);
+    opacity: 1;
+  }
 }
 
 @keyframes slide-up {
-  from { transform: translateY(50px) scale(0.95); opacity: 0; }
-  to { transform: translateY(0) scale(1); opacity: 1; }
+  from {
+    transform: translateY(50px) scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
 }
 
 @keyframes fade-scale {
-  from { transform: scale(0.8) rotate(-2deg); opacity: 0; }
-  to { transform: scale(1) rotate(0deg); opacity: 1; }
+  from {
+    transform: scale(0.8) rotate(-2deg);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
 }
 
 @keyframes pulse-slow {
-  0%, 100% { opacity: 0.1; transform: scale(1); }
-  50% { opacity: 0.3; transform: scale(1.05); }
+  0%,
+  100% {
+    opacity: 0.1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.3;
+    transform: scale(1.05);
+  }
 }
 
 .animate-float {
@@ -544,7 +687,8 @@
 }
 
 @keyframes period-pulse {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1);
   }
   50% {
@@ -575,7 +719,8 @@
 
 /* Nouvelles animations modernes */
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0px);
   }
   50% {
@@ -653,7 +798,12 @@
 }
 
 .shimmer {
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.4),
+    transparent
+  );
   background-size: 200px 100%;
   animation: shimmer 2s infinite;
 }
@@ -710,32 +860,32 @@
   .mobile-compact {
     @apply p-4 space-y-4;
   }
-  
+
   /* Textes plus lisibles sur mobile */
   .mobile-text {
     @apply text-base leading-relaxed;
   }
-  
+
   /* Boutons plus grands pour le tactile */
   .mobile-button {
     @apply min-h-[48px] px-4 py-3 text-base;
   }
-  
+
   /* Grilles adaptées au mobile */
   .mobile-grid {
     @apply grid-cols-1 gap-4;
   }
-  
+
   /* Masquer certains éléments sur mobile */
   .mobile-hide {
     @apply hidden;
   }
-  
+
   /* Afficher seulement sur mobile */
   .mobile-only {
     @apply block;
   }
-  
+
   /* Masquer sur desktop */
   .desktop-hide {
     @apply block;
@@ -746,7 +896,7 @@
   .mobile-only {
     @apply hidden;
   }
-  
+
   .desktop-hide {
     @apply hidden;
   }
@@ -757,7 +907,7 @@
   .modal-mobile {
     @apply mx-4 my-4 max-h-[calc(100vh-2rem)] overflow-y-auto;
   }
-  
+
   .modal-content-mobile {
     @apply p-4 text-sm;
   }
@@ -780,11 +930,11 @@ img {
   .card-mobile {
     @apply p-4 rounded-xl;
   }
-  
+
   .card-mobile h3 {
     @apply text-lg font-bold;
   }
-  
+
   .card-mobile p {
     @apply text-sm;
   }
@@ -792,15 +942,17 @@ img {
 
 /* Amélioration des formulaires sur mobile */
 @media (max-width: 640px) {
-  input, textarea, select {
+  input,
+  textarea,
+  select {
     @apply text-base;
     min-height: 44px;
   }
-  
+
   .form-mobile {
     @apply space-y-4;
   }
-  
+
   .form-mobile label {
     @apply text-sm font-medium;
   }
@@ -826,13 +978,15 @@ img {
   .hover-lift:hover {
     transform: none;
   }
-  
+
   .hover-glow:hover {
     box-shadow: none;
   }
-  
+
   /* Améliorer la visibilité des éléments interactifs */
-  button, a, [role="button"] {
+  button,
+  a,
+  [role='button'] {
     @apply min-h-[44px] min-w-[44px];
   }
 }

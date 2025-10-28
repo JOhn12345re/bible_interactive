@@ -14,40 +14,57 @@
   ],
   "key_verse": "Dieu créa l'homme à son image, il le créa à l'image de Dieu.",
   "vocab": [
-    { "word": "création", "hint": "L'acte par lequel Dieu fait exister toutes choses." },
-    { "word": "image de Dieu", "hint": "L'homme ressemble à Dieu par son âme et sa capacité d'aimer." },
+    {
+      "word": "création",
+      "hint": "L'acte par lequel Dieu fait exister toutes choses."
+    },
+    {
+      "word": "image de Dieu",
+      "hint": "L'homme ressemble à Dieu par son âme et sa capacité d'aimer."
+    },
     { "word": "bénir", "hint": "Donner la grâce et la protection de Dieu." },
     { "word": "sabbat", "hint": "Jour de repos consacré à Dieu." }
   ],
   "quiz": [
-    { 
-      "q": "En combien de jours Dieu a-t-il créé le monde ?", 
-      "choices": ["5 jours", "6 jours", "7 jours"], 
-      "answer": 1 
+    {
+      "q": "En combien de jours Dieu a-t-il créé le monde ?",
+      "choices": ["5 jours", "6 jours", "7 jours"],
+      "answer": 1
     },
-    { 
-      "q": "Qu'est-ce que Dieu créa en premier ?", 
-      "choices": ["Les animaux", "La lumière", "L'homme"], 
-      "answer": 1 
+    {
+      "q": "Qu'est-ce que Dieu créa en premier ?",
+      "choices": ["Les animaux", "La lumière", "L'homme"],
+      "answer": 1
     },
-    { 
-      "q": "À l'image de qui l'homme fut-il créé ?", 
-      "choices": ["Des anges", "De Dieu", "Des animaux"], 
-      "answer": 1 
+    {
+      "q": "À l'image de qui l'homme fut-il créé ?",
+      "choices": ["Des anges", "De Dieu", "Des animaux"],
+      "answer": 1
     },
-    { 
-      "q": "Que fit Dieu le septième jour ?", 
-      "choices": ["Il créa l'homme", "Il se reposa", "Il créa les animaux"], 
-      "answer": 1 
+    {
+      "q": "Que fit Dieu le septième jour ?",
+      "choices": ["Il créa l'homme", "Il se reposa", "Il créa les animaux"],
+      "answer": 1
     }
   ],
-  "mini_games": ["order_events", "quiz"],
-  "assets": ["creation_1.png", "creation_2.png", "creation_3.png", "creation_4.png"],
+  "mini_games": ["order_events", "timeline_cards", "quiz"],
+  "assets": [
+    "creation_1.png",
+    "creation_2.png",
+    "creation_3.png",
+    "creation_4.png",
+    "creation_5.png",
+    "creation_6.png",
+    "creation_7.png"
+  ],
   "story_steps": [
-    "Dieu sépare lumière et ténèbres",
-    "Dieu créa la terre et les mers",
-    "Dieu créa les plantes et animaux", 
-    "Dieu créa l'homme et la femme"
+    "Jour 1 : Dieu sépare la lumière des ténèbres",
+    "Jour 2 : Dieu sépare les eaux et crée le firmament",
+    "Jour 3 : Dieu sépare la terre des mers et crée les plantes",
+    "Jour 4 : Dieu crée le soleil, la lune et les étoiles",
+    "Jour 5 : Dieu crée les poissons et les oiseaux",
+    "Jour 6 : Dieu crée les animaux terrestres et l'homme",
+    "Jour 7 : Dieu se repose et bénit le septième jour"
   ],
   "theological_message": "Dieu est le créateur de toutes choses et l'homme a une place spéciale dans la création.",
   "life_application": "Nous devons respecter et protéger la création de Dieu comme de bons intendants."

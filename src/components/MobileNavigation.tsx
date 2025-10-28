@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useSettings } from '../state/settingsStore';
 
@@ -12,7 +12,6 @@ const MobileNavigation: React.FC = () => {
     { path: '/topics', label: 'Thèmes', icon: '📖' },
     { path: '/sermons', label: 'Sermons', icon: '🎬' },
     { path: '/timeline', label: 'Timeline', icon: '📜' },
-    { path: '/test-bible', label: 'Test LSG', icon: '🧪' },
     { path: '/profile', label: 'Mon Profil', icon: '👤' },
   ];
 
@@ -68,9 +67,11 @@ const MobileNavigation: React.FC = () => {
         <div className="p-6">
           {/* En-tête du menu */}
           <div className="flex items-center justify-between mb-8">
-            <h2 className={`text-xl font-bold ${
-              contrastHigh ? 'text-contrast-text' : 'text-gray-800'
-            }`}>
+            <h2
+              className={`text-xl font-bold ${
+                contrastHigh ? 'text-contrast-text' : 'text-gray-800'
+              }`}
+            >
               Navigation
             </h2>
             <button
@@ -106,12 +107,16 @@ const MobileNavigation: React.FC = () => {
           </nav>
 
           {/* Section informations */}
-          <div className={`mt-8 pt-6 border-t ${
-            contrastHigh ? 'border-contrast-text' : 'border-gray-200'
-          }`}>
-            <div className={`text-sm ${
-              contrastHigh ? 'text-contrast-text' : 'text-gray-600'
-            }`}>
+          <div
+            className={`mt-8 pt-6 border-t ${
+              contrastHigh ? 'border-contrast-text' : 'border-gray-200'
+            }`}
+          >
+            <div
+              className={`text-sm ${
+                contrastHigh ? 'text-contrast-text' : 'text-gray-600'
+              }`}
+            >
               <p className="mb-2">📱 Version mobile optimisée</p>
               <p>Naviguez facilement sur tous vos appareils</p>
             </div>

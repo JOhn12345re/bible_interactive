@@ -1,57 +1,123 @@
-import { useEffect, useMemo, useState } from 'react'
-import { Link, useSearchParams } from 'react-router-dom'
-import { useSettings } from '../state/settingsStore'
-import { bibleApi, type BibleVerse } from '../services/bibleApi'
-import { useFavoritesStore } from '../state/favoritesStore'
-import { useVerseSearch } from '../hooks/useBibleApi'
+import React, { useEffect, useMemo, useState } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
+import { useSettings } from '../state/settingsStore';
+import { bibleApi, type BibleVerse } from '../services/bibleApi';
+import { useFavoritesStore } from '../state/favoritesStore';
+import { useVerseSearch } from '../hooks/useBibleApi';
 
 const FRENCH_BOOKS: string[] = [
   // Ancien Testament
-  'Genèse','Exode','Lévitique','Nombres','Deutéronome','Josué','Juges','Ruth',
-  '1 Samuel','2 Samuel','1 Rois','2 Rois','1 Chroniques','2 Chroniques','Esdras','Néhémie','Esther','Job','Psaumes','Proverbes','Ecclésiaste','Cantique des Cantiques','Isaïe','Jérémie','Lamentations','Ézéchiel','Daniel','Osée','Joël','Amos','Abdias','Jonas','Michée','Nahum','Habacuc','Sophonie','Aggée','Zacharie','Malachie',
+  'Genèse',
+  'Exode',
+  'Lévitique',
+  'Nombres',
+  'Deutéronome',
+  'Josué',
+  'Juges',
+  'Ruth',
+  '1 Samuel',
+  '2 Samuel',
+  '1 Rois',
+  '2 Rois',
+  '1 Chroniques',
+  '2 Chroniques',
+  'Esdras',
+  'Néhémie',
+  'Esther',
+  'Job',
+  'Psaumes',
+  'Proverbes',
+  'Ecclésiaste',
+  'Cantique des Cantiques',
+  'Isaïe',
+  'Jérémie',
+  'Lamentations',
+  'Ézéchiel',
+  'Daniel',
+  'Osée',
+  'Joël',
+  'Amos',
+  'Abdias',
+  'Jonas',
+  'Michée',
+  'Nahum',
+  'Habacuc',
+  'Sophonie',
+  'Aggée',
+  'Zacharie',
+  'Malachie',
   // Nouveau Testament
-  'Matthieu','Marc','Luc','Jean','Actes','Romains','1 Corinthiens','2 Corinthiens','Galates','Éphésiens','Philippiens','Colossiens','1 Thessaloniciens','2 Thessaloniciens','1 Timothée','2 Timothée','Tite','Philémon','Hébreux','Jacques','1 Pierre','2 Pierre','1 Jean','2 Jean','3 Jean','Jude','Apocalypse'
-]
+  'Matthieu',
+  'Marc',
+  'Luc',
+  'Jean',
+  'Actes',
+  'Romains',
+  '1 Corinthiens',
+  '2 Corinthiens',
+  'Galates',
+  'Éphésiens',
+  'Philippiens',
+  'Colossiens',
+  '1 Thessaloniciens',
+  '2 Thessaloniciens',
+  '1 Timothée',
+  '2 Timothée',
+  'Tite',
+  'Philémon',
+  'Hébreux',
+  'Jacques',
+  '1 Pierre',
+  '2 Pierre',
+  '1 Jean',
+  '2 Jean',
+  '3 Jean',
+  'Jude',
+  'Apocalypse',
+];
 
 export default function BibleExplorer() {
-  const { contrastHigh } = useSettings()
-  const [searchParams] = useSearchParams()
-  const [book, setBook] = useState<string>('Genèse')
-  const [chapter, setChapter] = useState<number>(1)
-  const [start, setStart] = useState<number>(1)
-  const [end, setEnd] = useState<number>(10)
-  const [loading, setLoading] = useState<boolean>(false)
-  const [error, setError] = useState<string | null>(null)
-  const [verses, setVerses] = useState<BibleVerse[]>([])
-  const [activeTab, setActiveTab] = useState<'browse' | 'search'>('browse')
-  const [searchTerm, setSearchTerm] = useState('')
-  
-  const addFavorite = useFavoritesStore(s => s.addFavorite)
-  const removeFavorite = useFavoritesStore(s => s.removeFavorite)
-  const isFavorite = useFavoritesStore(s => s.isFavorite)
-  
+  const { contrastHigh } = useSettings();
+  const [searchParams] = useSearchParams();
+  const [book, setBook] = useState<string>('Genèse');
+  const [chapter, setChapter] = useState<number>(1);
+  const [start, setStart] = useState<number>(1);
+  const [end, setEnd] = useState<number>(10);
+  const [loading, setLoading] = useState<boolean>(false);
+  const [error, setError] = useState<string | null>(null);
+  const [verses, setVerses] = useState<BibleVerse[]>([]);
+  const [activeTab, setActiveTab] = useState<'browse' | 'search'>('browse');
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const addFavorite = useFavoritesStore((s) => s.addFavorite);
+  const removeFavorite = useFavoritesStore((s) => s.removeFavorite);
+  const isFavorite = useFavoritesStore((s) => s.isFavorite);
+
   // Hook de recherche
-  const { 
-    verses: searchVerses, 
-    loading: searchLoading, 
-    error: searchError, 
-    searchHistory, 
-    searchVerse, 
-    clearError: clearSearchError 
-  } = useVerseSearch()
+  const {
+    verses: searchVerses,
+    loading: searchLoading,
+    error: searchError,
+    searchHistory,
+    searchVerse,
+    clearError: clearSearchError,
+  } = useVerseSearch();
 
-  const isDemo = !import.meta.env.VITE_BIBLE_API_KEY
+  const isDemo = !import.meta.env.VITE_BIBLE_API_KEY;
 
-  const chaptersList = useMemo(() => Array.from({ length: 150 }, (_, i) => i + 1), [])
+  const chaptersList = useMemo(
+    () => Array.from({ length: 150 }, (_, i) => i + 1),
+    []
+  );
 
   // Fonction de recherche
   const handleSearch = async (e: React.FormEvent) => {
-    e.preventDefault()
-    if (!searchTerm.trim()) return
-    
-    clearSearchError()
-    await searchVerse(searchTerm.trim())
-  }
+    e.preventDefault();
+    if (!searchTerm.trim()) return;
+
+    clearSearchError();
+    await searchVerse(searchTerm.trim());
+  };
 
   // Versets populaires pour suggestions
   const popularVerses = [
@@ -61,58 +127,72 @@ export default function BibleExplorer() {
     'Romains 8:28',
     'Philippiens 4:13',
     'Genèse 1:1',
-    'Esaïe 40:31'
-  ]
+    'Esaïe 40:31',
+  ];
 
   useEffect(() => {
     const fetchVerses = async () => {
-      setLoading(true)
-      setError(null)
+      setLoading(true);
+      setError(null);
       try {
-        const data = await bibleApi.getVersesDefault(book, chapter, start, end)
-        setVerses(data)
+        const data = await bibleApi.getVersesDefault(book, chapter, start, end);
+        setVerses(data);
       } catch (err) {
-        setError('Erreur de chargement des versets')
-        console.error(err)
+        setError('Erreur de chargement des versets');
+        console.error(err);
       } finally {
-        setLoading(false)
+        setLoading(false);
       }
-    }
-    fetchVerses()
-  }, [book, chapter, start, end])
+    };
+    fetchVerses();
+  }, [book, chapter, start, end]);
 
   // Activer l'onglet Recherche via le paramètre d'URL `?tab=search`
   useEffect(() => {
-    const tab = searchParams.get('tab')?.toLowerCase()
+    const tab = searchParams.get('tab')?.toLowerCase();
     if (tab === 'search' && activeTab !== 'search') {
-      setActiveTab('search')
+      setActiveTab('search');
     }
 
     // Pré-remplir la recherche et lancer automatiquement si `?q=` est fourni
-    const q = searchParams.get('q')
+    const q = searchParams.get('q');
     if (q && q.trim()) {
-      setSearchTerm(q)
+      setSearchTerm(q);
       // lancer une recherche sans soumettre le formulaire
-      clearSearchError()
-      searchVerse(q.trim())
+      clearSearchError();
+      searchVerse(q.trim());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchParams])
+  }, [searchParams]);
 
   return (
     <div className="min-h-screen">
       {isDemo && (
         <div className="text-center text-xs sm:text-sm py-2 px-4 bg-amber-50 text-amber-800 border-b border-amber-200">
-          Mode démo: affichage basé sur données locales si l'API n'est pas configurée. Consultez docs/API_BIBLE_GUIDE.md
+          Mode démo: affichage basé sur données locales si l'API n'est pas
+          configurée. Consultez docs/API_BIBLE_GUIDE.md
         </div>
       )}
-      <header className={`sticky top-0 z-30 border-b ${
-        contrastHigh ? 'bg-contrast-bg border-contrast-text' : 'bg-white border-gray-200'
-      }`}>
+      <header
+        className={`sticky top-0 z-30 border-b ${
+          contrastHigh
+            ? 'bg-contrast-bg border-contrast-text'
+            : 'bg-white border-gray-200'
+        }`}
+      >
         <div className="max-w-6xl mx-auto px-responsive py-3 sm:py-4">
           <div className="flex items-center space-x-2 sm:space-x-3">
-            <Link to="/" className={`text-sm sm:text-base ${contrastHigh ? 'text-contrast-text' : 'text-blue-600'}`}>← Accueil</Link>
-            <h1 className={`text-lg sm:text-xl font-bold ${contrastHigh ? 'text-contrast-text' : 'text-gray-800'}`}>Explorateur de la Bible (LSG)</h1>
+            <Link
+              to="/"
+              className={`text-sm sm:text-base ${contrastHigh ? 'text-contrast-text' : 'text-blue-600'}`}
+            >
+              ← Accueil
+            </Link>
+            <h1
+              className={`text-lg sm:text-xl font-bold ${contrastHigh ? 'text-contrast-text' : 'text-gray-800'}`}
+            >
+              Explorateur de la Bible (LSG)
+            </h1>
           </div>
         </div>
       </header>
@@ -156,118 +236,268 @@ export default function BibleExplorer() {
         {activeTab === 'browse' ? (
           <>
             {/* Contrôles rapides */}
-        <div className="mb-4">
-          {/* Version mobile - contrôles compacts */}
-          <div className="sm:hidden">
-            <div className="flex flex-wrap items-center gap-2 mb-2">
-              <button onClick={() => setChapter(Math.max(1, chapter - 1))} className="px-2 py-1 rounded border bg-gray-50 text-xs">⟨ Chapitre</button>
-              <button onClick={() => setChapter(chapter + 1)} className="px-2 py-1 rounded border bg-gray-50 text-xs">Chapitre ⟩</button>
-            </div>
-            <div className="flex flex-wrap items-center gap-2">
-              <button onClick={() => { const s = Math.max(1, (start - 5) || 1); setStart(s); setEnd(Math.max(s, end - 5)); }} className="px-2 py-1 rounded border bg-gray-50 text-xs">−5 versets</button>
-              <button onClick={() => { const s = start + 5; setStart(s); setEnd(end + 5); }} className="px-2 py-1 rounded border bg-gray-50 text-xs">+5 versets</button>
-              <button onClick={() => { setStart(1); setEnd(10); }} className="px-2 py-1 rounded border bg-gray-50 text-xs">Reset</button>
-            </div>
-          </div>
-          
-          {/* Version desktop - contrôles complets */}
-          <div className="hidden sm:flex flex-wrap items-center gap-2">
-            <button onClick={() => setChapter(Math.max(1, chapter - 1))} className="px-3 py-1 rounded border bg-gray-50 text-sm">⟨ Chapitre</button>
-            <button onClick={() => setChapter(chapter + 1)} className="px-3 py-1 rounded border bg-gray-50 text-sm">Chapitre ⟩</button>
-            <span className="mx-2 text-gray-500 text-sm">|</span>
-            <button onClick={() => { const s = Math.max(1, (start - 5) || 1); setStart(s); setEnd(Math.max(s, end - 5)); }} className="px-3 py-1 rounded border bg-gray-50 text-sm">−5 versets</button>
-            <button onClick={() => { const s = start + 5; setStart(s); setEnd(end + 5); }} className="px-3 py-1 rounded border bg-gray-50 text-sm">+5 versets</button>
-            <span className="mx-2 text-gray-500 text-sm">|</span>
-            <button onClick={() => { setStart(1); setEnd(10); }} className="px-3 py-1 rounded border bg-gray-50 text-sm">Réinitialiser</button>
-          </div>
-        </div>
-        <section className={`p-responsive rounded-xl mb-6 ${
-          contrastHigh ? 'bg-contrast-bg border-2 border-contrast-text' : 'bg-white border border-gray-200'
-        }`}>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div>
-              <label className="block text-sm mb-1">Livre</label>
-              <select value={book} onChange={(e) => setBook(e.target.value)}
-                className={`w-full p-2 sm:p-3 rounded border text-sm sm:text-base ${contrastHigh ? 'bg-contrast-bg border-contrast-text' : 'bg-white border-gray-300'}`}>
-                {FRENCH_BOOKS.map((b) => (
-                  <option key={b} value={b}>{b}</option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm mb-1">Chapitre</label>
-              <select value={chapter} onChange={(e) => setChapter(parseInt(e.target.value))}
-                className={`w-full p-2 sm:p-3 rounded border text-sm sm:text-base ${contrastHigh ? 'bg-contrast-bg border-contrast-text' : 'bg-white border-gray-300'}`}>
-                {chaptersList.map((c) => (
-                  <option key={c} value={c}>{c}</option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label className="block text-sm mb-1">Verset début</label>
-              <input type="number" min={1} value={start} onChange={(e) => setStart(parseInt(e.target.value) || 1)}
-                className={`w-full p-2 sm:p-3 rounded border text-sm sm:text-base ${contrastHigh ? 'bg-contrast-bg border-contrast-text' : 'bg-white border-gray-300'}`} />
-            </div>
-            <div>
-              <label className="block text-sm mb-1">Verset fin</label>
-              <input type="number" min={start} value={end} onChange={(e) => setEnd(parseInt(e.target.value) || start)}
-                className={`w-full p-2 sm:p-3 rounded border text-sm sm:text-base ${contrastHigh ? 'bg-contrast-bg border-contrast-text' : 'bg-white border-gray-300'}`} />
-            </div>
-          </div>
-        </section>
-
-        <section>
-          {loading && (
-            <div className="animate-pulse">
-              <div className="h-3 sm:h-4 bg-gray-200 rounded mb-2"></div>
-              <div className="h-3 sm:h-4 bg-gray-200 rounded w-3/4"></div>
-            </div>
-          )}
-          {error && (
-            <div className="p-responsive rounded bg-red-50 text-red-700 border border-red-200 text-sm sm:text-base">{error}</div>
-          )}
-          {!loading && !error && verses.length === 0 && (
-            <div className="p-responsive rounded bg-yellow-50 text-yellow-800 border border-yellow-200 text-sm sm:text-base">Aucun verset trouvé.</div>
-          )}
-          <div className="space-y-4">
-            {verses.map((v, idx) => {
-              const fav = isFavorite(book, v.chapter, v.verse_start, v.verse_end)
-              const id = `${book}|${v.chapter}|${v.verse_start ?? ''}-${v.verse_end ?? ''}`
-              const handleCopy = async () => {
-                const ref = `${book} ${v.chapter}:${v.verse_start}${v.verse_end ? `-${v.verse_end}` : ''}`
-                const text = `${ref} — ${v.verse_text}`
-                try { await navigator.clipboard.writeText(text) } catch {}
-              }
-              const handleShare = async () => {
-                const ref = `${book} ${v.chapter}:${v.verse_start}${v.verse_end ? `-${v.verse_end}` : ''}`
-                const title = `Bible LSG — ${ref}`
-                const text = `${ref} — ${v.verse_text}`
-                if (navigator.share) { try { await navigator.share({ title, text }) } catch {} }
-                else { try { await navigator.clipboard.writeText(text) } catch {} }
-              }
-              const toggleFav = () => {
-                if (fav) removeFavorite(id)
-                else addFavorite({ book, chapter: v.chapter, verseStart: v.verse_start, verseEnd: v.verse_end, text: v.verse_text })
-              }
-              return (
-                <div key={idx} className={`p-responsive rounded ${contrastHigh ? 'bg-contrast-bg border-2 border-contrast-text' : 'bg-white border border-gray-200'}`}>
-                  <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
-                    <div className="flex-1">
-                      <div className="text-xs sm:text-sm text-gray-500 mb-2">{book} {v.chapter}:{v.verse_start}{v.verse_end ? `-${v.verse_end}` : ''}</div>
-                      <div className="text-base sm:text-lg leading-relaxed">{v.verse_text}</div>
-                    </div>
-                    <div className="flex-shrink-0 flex flex-wrap items-center gap-2">
-                      <button onClick={handleCopy} className="text-xs sm:text-sm px-2 py-1 rounded border bg-gray-50 hover:bg-gray-100 transition-colors">Copier</button>
-                      <button onClick={handleShare} className="text-xs sm:text-sm px-2 py-1 rounded border bg-gray-50 hover:bg-gray-100 transition-colors">Partager</button>
-                      <button onClick={toggleFav} className={`text-xs sm:text-sm px-2 py-1 rounded border transition-colors ${fav ? 'bg-yellow-100 border-yellow-300 hover:bg-yellow-200' : 'bg-gray-50 hover:bg-gray-100'}`}>{fav ? '★ Favori' : '☆ Favori'}</button>
-                    </div>
-                  </div>
+            <div className="mb-4">
+              {/* Version mobile - contrôles compacts */}
+              <div className="sm:hidden">
+                <div className="flex flex-wrap items-center gap-2 mb-2">
+                  <button
+                    onClick={() => setChapter(Math.max(1, chapter - 1))}
+                    className="px-2 py-1 rounded border bg-gray-50 text-xs"
+                  >
+                    ⟨ Chapitre
+                  </button>
+                  <button
+                    onClick={() => setChapter(chapter + 1)}
+                    className="px-2 py-1 rounded border bg-gray-50 text-xs"
+                  >
+                    Chapitre ⟩
+                  </button>
                 </div>
-              )
-            })}
-          </div>
-        </section>
-        </>
+                <div className="flex flex-wrap items-center gap-2">
+                  <button
+                    onClick={() => {
+                      const s = Math.max(1, start - 5 || 1);
+                      setStart(s);
+                      setEnd(Math.max(s, end - 5));
+                    }}
+                    className="px-2 py-1 rounded border bg-gray-50 text-xs"
+                  >
+                    −5 versets
+                  </button>
+                  <button
+                    onClick={() => {
+                      const s = start + 5;
+                      setStart(s);
+                      setEnd(end + 5);
+                    }}
+                    className="px-2 py-1 rounded border bg-gray-50 text-xs"
+                  >
+                    +5 versets
+                  </button>
+                  <button
+                    onClick={() => {
+                      setStart(1);
+                      setEnd(10);
+                    }}
+                    className="px-2 py-1 rounded border bg-gray-50 text-xs"
+                  >
+                    Reset
+                  </button>
+                </div>
+              </div>
+
+              {/* Version desktop - contrôles complets */}
+              <div className="hidden sm:flex flex-wrap items-center gap-2">
+                <button
+                  onClick={() => setChapter(Math.max(1, chapter - 1))}
+                  className="px-3 py-1 rounded border bg-gray-50 text-sm"
+                >
+                  ⟨ Chapitre
+                </button>
+                <button
+                  onClick={() => setChapter(chapter + 1)}
+                  className="px-3 py-1 rounded border bg-gray-50 text-sm"
+                >
+                  Chapitre ⟩
+                </button>
+                <span className="mx-2 text-gray-500 text-sm">|</span>
+                <button
+                  onClick={() => {
+                    const s = Math.max(1, start - 5 || 1);
+                    setStart(s);
+                    setEnd(Math.max(s, end - 5));
+                  }}
+                  className="px-3 py-1 rounded border bg-gray-50 text-sm"
+                >
+                  −5 versets
+                </button>
+                <button
+                  onClick={() => {
+                    const s = start + 5;
+                    setStart(s);
+                    setEnd(end + 5);
+                  }}
+                  className="px-3 py-1 rounded border bg-gray-50 text-sm"
+                >
+                  +5 versets
+                </button>
+                <span className="mx-2 text-gray-500 text-sm">|</span>
+                <button
+                  onClick={() => {
+                    setStart(1);
+                    setEnd(10);
+                  }}
+                  className="px-3 py-1 rounded border bg-gray-50 text-sm"
+                >
+                  Réinitialiser
+                </button>
+              </div>
+            </div>
+            <section
+              className={`p-responsive rounded-xl mb-6 ${
+                contrastHigh
+                  ? 'bg-contrast-bg border-2 border-contrast-text'
+                  : 'bg-white border border-gray-200'
+              }`}
+            >
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div>
+                  <label className="block text-sm mb-1">Livre</label>
+                  <select
+                    value={book}
+                    onChange={(e) => setBook(e.target.value)}
+                    className={`w-full p-2 sm:p-3 rounded border text-sm sm:text-base ${contrastHigh ? 'bg-contrast-bg border-contrast-text' : 'bg-white border-gray-300'}`}
+                  >
+                    {FRENCH_BOOKS.map((b) => (
+                      <option key={b} value={b}>
+                        {b}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm mb-1">Chapitre</label>
+                  <select
+                    value={chapter}
+                    onChange={(e) => setChapter(parseInt(e.target.value))}
+                    className={`w-full p-2 sm:p-3 rounded border text-sm sm:text-base ${contrastHigh ? 'bg-contrast-bg border-contrast-text' : 'bg-white border-gray-300'}`}
+                  >
+                    {chaptersList.map((c) => (
+                      <option key={c} value={c}>
+                        {c}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+                <div>
+                  <label className="block text-sm mb-1">Verset début</label>
+                  <input
+                    type="number"
+                    min={1}
+                    value={start}
+                    onChange={(e) => setStart(parseInt(e.target.value) || 1)}
+                    className={`w-full p-2 sm:p-3 rounded border text-sm sm:text-base ${contrastHigh ? 'bg-contrast-bg border-contrast-text' : 'bg-white border-gray-300'}`}
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm mb-1">Verset fin</label>
+                  <input
+                    type="number"
+                    min={start}
+                    value={end}
+                    onChange={(e) => setEnd(parseInt(e.target.value) || start)}
+                    className={`w-full p-2 sm:p-3 rounded border text-sm sm:text-base ${contrastHigh ? 'bg-contrast-bg border-contrast-text' : 'bg-white border-gray-300'}`}
+                  />
+                </div>
+              </div>
+            </section>
+
+            <section>
+              {loading && (
+                <div className="animate-pulse">
+                  <div className="h-3 sm:h-4 bg-gray-200 rounded mb-2"></div>
+                  <div className="h-3 sm:h-4 bg-gray-200 rounded w-3/4"></div>
+                </div>
+              )}
+              {error && (
+                <div className="p-responsive rounded bg-red-50 text-red-700 border border-red-200 text-sm sm:text-base">
+                  {error}
+                </div>
+              )}
+              {!loading && !error && verses.length === 0 && (
+                <div className="p-responsive rounded bg-yellow-50 text-yellow-800 border border-yellow-200 text-sm sm:text-base">
+                  Aucun verset trouvé.
+                </div>
+              )}
+              <div className="space-y-4">
+                {verses.map((v, idx) => {
+                  const fav = isFavorite(
+                    book,
+                    v.chapter,
+                    v.verse_start,
+                    v.verse_end
+                  );
+                  const id = `${book}|${v.chapter}|${v.verse_start ?? ''}-${v.verse_end ?? ''}`;
+                  const handleCopy = async () => {
+                    const ref = `${book} ${v.chapter}:${v.verse_start}${v.verse_end ? `-${v.verse_end}` : ''}`;
+                    const text = `${ref} — ${v.verse_text}`;
+                    try {
+                      await navigator.clipboard.writeText(text);
+                    } catch (e) {
+                      console.warn('Copie impossible', e);
+                    }
+                  };
+                  const handleShare = async () => {
+                    const ref = `${book} ${v.chapter}:${v.verse_start}${v.verse_end ? `-${v.verse_end}` : ''}`;
+                    const title = `Bible LSG — ${ref}`;
+                    const text = `${ref} — ${v.verse_text}`;
+                    if (navigator.share) {
+                      try {
+                        await navigator.share({ title, text });
+                      } catch (e) {
+                        console.warn('Partage impossible', e);
+                      }
+                    } else {
+                      try {
+                        await navigator.clipboard.writeText(text);
+                      } catch (e) {
+                        console.warn('Copie impossible', e);
+                      }
+                    }
+                  };
+                  const toggleFav = () => {
+                    if (fav) removeFavorite(id);
+                    else
+                      addFavorite({
+                        book,
+                        chapter: v.chapter,
+                        verseStart: v.verse_start,
+                        verseEnd: v.verse_end,
+                        text: v.verse_text,
+                      });
+                  };
+                  return (
+                    <div
+                      key={idx}
+                      className={`p-responsive rounded ${contrastHigh ? 'bg-contrast-bg border-2 border-contrast-text' : 'bg-white border border-gray-200'}`}
+                    >
+                      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3">
+                        <div className="flex-1">
+                          <div className="text-xs sm:text-sm text-gray-500 mb-2">
+                            {book} {v.chapter}:{v.verse_start}
+                            {v.verse_end ? `-${v.verse_end}` : ''}
+                          </div>
+                          <div className="text-base sm:text-lg leading-relaxed">
+                            {v.verse_text}
+                          </div>
+                        </div>
+                        <div className="flex-shrink-0 flex flex-wrap items-center gap-2">
+                          <button
+                            onClick={handleCopy}
+                            className="text-xs sm:text-sm px-2 py-1 rounded border bg-gray-50 hover:bg-gray-100 transition-colors"
+                          >
+                            Copier
+                          </button>
+                          <button
+                            onClick={handleShare}
+                            className="text-xs sm:text-sm px-2 py-1 rounded border bg-gray-50 hover:bg-gray-100 transition-colors"
+                          >
+                            Partager
+                          </button>
+                          <button
+                            onClick={toggleFav}
+                            className={`text-xs sm:text-sm px-2 py-1 rounded border transition-colors ${fav ? 'bg-yellow-100 border-yellow-300 hover:bg-yellow-200' : 'bg-gray-50 hover:bg-gray-100'}`}
+                          >
+                            {fav ? '★ Favori' : '☆ Favori'}
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </section>
+          </>
         ) : (
           /* Interface de recherche */
           <div className="space-y-6">
@@ -301,9 +531,11 @@ export default function BibleExplorer() {
 
             {/* Versets populaires */}
             <div>
-              <h3 className={`text-sm font-medium mb-2 ${
-                contrastHigh ? 'text-contrast-text' : 'text-gray-700'
-              }`}>
+              <h3
+                className={`text-sm font-medium mb-2 ${
+                  contrastHigh ? 'text-contrast-text' : 'text-gray-700'
+                }`}
+              >
                 Versets populaires :
               </h3>
               <div className="flex flex-wrap gap-2">
@@ -311,8 +543,8 @@ export default function BibleExplorer() {
                   <button
                     key={verse}
                     onClick={() => {
-                      setSearchTerm(verse)
-                      searchVerse(verse)
+                      setSearchTerm(verse);
+                      searchVerse(verse);
                     }}
                     className={`px-3 py-1 rounded-full text-xs transition-colors ${
                       contrastHigh
@@ -329,9 +561,11 @@ export default function BibleExplorer() {
             {/* Historique de recherche */}
             {searchHistory.length > 0 && (
               <div>
-                <h3 className={`text-sm font-medium mb-2 ${
-                  contrastHigh ? 'text-contrast-text' : 'text-gray-700'
-                }`}>
+                <h3
+                  className={`text-sm font-medium mb-2 ${
+                    contrastHigh ? 'text-contrast-text' : 'text-gray-700'
+                  }`}
+                >
                   Recherches récentes :
                 </h3>
                 <div className="flex flex-wrap gap-2">
@@ -339,8 +573,8 @@ export default function BibleExplorer() {
                     <button
                       key={index}
                       onClick={() => {
-                        setSearchTerm(historyItem)
-                        searchVerse(historyItem)
+                        setSearchTerm(historyItem);
+                        searchVerse(historyItem);
                       }}
                       className={`px-3 py-1 rounded-full text-xs transition-colors ${
                         contrastHigh
@@ -372,7 +606,9 @@ export default function BibleExplorer() {
             {searchLoading && (
               <div className="text-center py-8">
                 <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto"></div>
-                <p className={`mt-2 text-sm ${contrastHigh ? 'text-contrast-text' : 'text-gray-600'}`}>
+                <p
+                  className={`mt-2 text-sm ${contrastHigh ? 'text-contrast-text' : 'text-gray-600'}`}
+                >
                   Recherche en cours...
                 </p>
               </div>
@@ -380,58 +616,79 @@ export default function BibleExplorer() {
 
             {searchVerses.length > 0 && !searchLoading && (
               <div className="space-y-4">
-                <h3 className={`text-lg font-semibold ${
-                  contrastHigh ? 'text-contrast-text' : 'text-gray-800'
-                }`}>
+                <h3
+                  className={`text-lg font-semibold ${
+                    contrastHigh ? 'text-contrast-text' : 'text-gray-800'
+                  }`}
+                >
                   Résultats de recherche ({searchVerses.length})
                 </h3>
-                
+
                 {searchVerses.map((verse, index) => {
-                  const fav = isFavorite(verse.book_id, verse.chapter, verse.verse_start)
-                  
+                  const fav = isFavorite(
+                    verse.book_id,
+                    verse.chapter,
+                    verse.verse_start
+                  );
+
                   return (
-                    <div key={index} className={`p-4 rounded-xl border ${
-                      contrastHigh 
-                        ? 'bg-contrast-bg border-contrast-text'
-                        : 'bg-white border-gray-200 shadow-sm'
-                    }`}>
+                    <div
+                      key={index}
+                      className={`p-4 rounded-xl border ${
+                        contrastHigh
+                          ? 'bg-contrast-bg border-contrast-text'
+                          : 'bg-white border-gray-200 shadow-sm'
+                      }`}
+                    >
                       <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-3">
                         <div className="flex-1">
-                          <div className={`text-sm font-medium mb-2 ${
-                            contrastHigh ? 'text-contrast-text' : 'text-blue-600'
-                          }`}>
+                          <div
+                            className={`text-sm font-medium mb-2 ${
+                              contrastHigh
+                                ? 'text-contrast-text'
+                                : 'text-blue-600'
+                            }`}
+                          >
                             {verse.book_id} {verse.chapter}:{verse.verse_start}
                           </div>
-                          <p className={`text-sm sm:text-base leading-relaxed ${
-                            contrastHigh ? 'text-contrast-text' : 'text-gray-700'
-                          }`}>
+                          <p
+                            className={`text-sm sm:text-base leading-relaxed ${
+                              contrastHigh
+                                ? 'text-contrast-text'
+                                : 'text-gray-700'
+                            }`}
+                          >
                             {verse.verse_text}
                           </p>
                         </div>
                         <div className="flex-shrink-0 flex flex-wrap items-center gap-2">
-                          <button 
-                            onClick={() => navigator.clipboard.writeText(`${verse.book_id} ${verse.chapter}:${verse.verse_start} - ${verse.verse_text}`)}
+                          <button
+                            onClick={() =>
+                              navigator.clipboard.writeText(
+                                `${verse.book_id} ${verse.chapter}:${verse.verse_start} - ${verse.verse_text}`
+                              )
+                            }
                             className="text-xs sm:text-sm px-2 py-1 rounded border bg-gray-50 hover:bg-gray-100 transition-colors"
                           >
                             Copier
                           </button>
-                          <button 
+                          <button
                             onClick={() => {
-                              const favoriteId = `${verse.book_id}|${verse.chapter}|${verse.verse_start}-`
+                              const favoriteId = `${verse.book_id}|${verse.chapter}|${verse.verse_start}-`;
                               if (fav) {
-                                removeFavorite(favoriteId)
+                                removeFavorite(favoriteId);
                               } else {
                                 addFavorite({
                                   book: verse.book_id,
                                   chapter: verse.chapter,
                                   verseStart: verse.verse_start,
-                                  text: verse.verse_text
-                                })
+                                  text: verse.verse_text,
+                                });
                               }
                             }}
                             className={`text-xs sm:text-sm px-2 py-1 rounded border transition-colors ${
-                              fav 
-                                ? 'bg-yellow-100 border-yellow-300 hover:bg-yellow-200' 
+                              fav
+                                ? 'bg-yellow-100 border-yellow-300 hover:bg-yellow-200'
                                 : 'bg-gray-50 hover:bg-gray-100'
                             }`}
                           >
@@ -440,7 +697,7 @@ export default function BibleExplorer() {
                         </div>
                       </div>
                     </div>
-                  )
+                  );
                 })}
               </div>
             )}
@@ -448,7 +705,5 @@ export default function BibleExplorer() {
         )}
       </main>
     </div>
-  )
+  );
 }
-
-

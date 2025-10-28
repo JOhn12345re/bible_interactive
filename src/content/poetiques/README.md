@@ -13,19 +13,23 @@ Sagesse, louanges et méditations du peuple de Dieu.
 ## Histoires à développer :
 
 ### Job
+
 - Job et ses épreuves
 - La fidélité dans la souffrance
 
 ### Psaumes (adaptés pour enfants)
+
 - Le Psaume 23 : "L'Éternel est mon berger"
 - Le Psaume 1 : "L'arbre planté près d'un cours d'eau"
 - Le Psaume 139 : "Tu me connais parfaitement"
 
 ### Proverbes
+
 - La sagesse du roi Salomon
 - Les paraboles de sagesse
 
 ## Approche pédagogique :
+
 - Adapter la poésie hébraïque pour les enfants
 - Utiliser des images et métaphores compréhensibles
 - Mettre l'accent sur les valeurs morales et spirituelles

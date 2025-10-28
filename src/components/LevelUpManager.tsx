@@ -6,13 +6,16 @@ interface LevelUpNotificationProps {
   onClose: () => void;
 }
 
-const LevelUpNotification: React.FC<LevelUpNotificationProps> = ({ newLevel, onClose }) => {
+const LevelUpNotification: React.FC<LevelUpNotificationProps> = ({
+  newLevel,
+  onClose,
+}) => {
   const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     // Animation d'entrée
     const timer = setTimeout(() => setIsVisible(true), 100);
-    
+
     // Auto-fermeture après 4 secondes
     const autoClose = setTimeout(() => {
       setIsVisible(false);
@@ -33,13 +36,13 @@ const LevelUpNotification: React.FC<LevelUpNotificationProps> = ({ newLevel, onC
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
       {/* Overlay */}
-      <div 
+      <div
         className={`absolute inset-0 bg-black transition-opacity duration-300 ${
           isVisible ? 'opacity-50' : 'opacity-0'
         }`}
         onClick={handleClose}
       />
-      
+
       {/* Notification */}
       <div
         className={`relative transform transition-all duration-500 ${
@@ -49,12 +52,20 @@ const LevelUpNotification: React.FC<LevelUpNotificationProps> = ({ newLevel, onC
         <div className="bg-gradient-to-br from-yellow-400 via-orange-500 to-red-500 rounded-2xl p-8 text-white shadow-2xl max-w-sm mx-4 text-center">
           {/* Effet d'étoiles */}
           <div className="absolute inset-0 overflow-hidden rounded-2xl">
-            <div className="absolute top-4 left-4 text-yellow-200 animate-spin">⭐</div>
-            <div className="absolute top-6 right-6 text-yellow-100 animate-bounce">✨</div>
-            <div className="absolute bottom-8 left-8 text-yellow-200 animate-pulse">🌟</div>
-            <div className="absolute bottom-4 right-4 text-yellow-100 animate-ping">💫</div>
+            <div className="absolute top-4 left-4 text-yellow-200 animate-spin">
+              ⭐
+            </div>
+            <div className="absolute top-6 right-6 text-yellow-100 animate-bounce">
+              ✨
+            </div>
+            <div className="absolute bottom-8 left-8 text-yellow-200 animate-pulse">
+              🌟
+            </div>
+            <div className="absolute bottom-4 right-4 text-yellow-100 animate-ping">
+              💫
+            </div>
           </div>
-          
+
           <div className="relative z-10">
             {/* Icône de niveau */}
             <div className="mb-4">
@@ -62,12 +73,12 @@ const LevelUpNotification: React.FC<LevelUpNotificationProps> = ({ newLevel, onC
                 <span className="text-4xl">🏆</span>
               </div>
             </div>
-            
+
             {/* Titre */}
             <h2 className="text-2xl font-bold mb-2 animate-bounce">
               NIVEAU SUPÉRIEUR !
             </h2>
-            
+
             {/* Nouveau niveau */}
             <div className="mb-4">
               <div className="text-6xl font-black mb-2 text-yellow-100 animate-pulse">
@@ -77,7 +88,7 @@ const LevelUpNotification: React.FC<LevelUpNotificationProps> = ({ newLevel, onC
                 Félicitations ! Tu as atteint le niveau {newLevel} !
               </p>
             </div>
-            
+
             {/* Messages motivants selon le niveau */}
             <div className="mb-6">
               {newLevel <= 3 && (
@@ -101,7 +112,7 @@ const LevelUpNotification: React.FC<LevelUpNotificationProps> = ({ newLevel, onC
                 </p>
               )}
             </div>
-            
+
             {/* Bouton fermer */}
             <button
               onClick={handleClose}
@@ -118,7 +129,9 @@ const LevelUpNotification: React.FC<LevelUpNotificationProps> = ({ newLevel, onC
 
 const LevelUpManager: React.FC = () => {
   const { profile } = useProfileStore();
-  const [notification, setNotification] = useState<{ newLevel: number } | null>(null);
+  const [notification, setNotification] = useState<{ newLevel: number } | null>(
+    null
+  );
   const [lastLevel, setLastLevel] = useState(1);
 
   useEffect(() => {
@@ -130,18 +143,24 @@ const LevelUpManager: React.FC = () => {
     const completedLessons = profile.completedLessons || [];
 
     // Calculer le niveau actuel
-    const totalXP = (gameStats.totalScore || 0) + 
-                   ((readingStats.totalReadingTime || 0) * 2) + 
-                   (completedLessons.length * 50);
+    const totalXP =
+      (gameStats.totalScore || 0) +
+      (readingStats.totalReadingTime || 0) * 2 +
+      completedLessons.length * 50;
     const currentLevel = Math.floor(totalXP / 100) + 1;
-    
+
     // Vérifier s'il y a eu un gain de niveau
     if (currentLevel > lastLevel && lastLevel > 0) {
       setNotification({ newLevel: currentLevel });
     }
-    
+
     setLastLevel(currentLevel);
-  }, [profile?.gameStats?.totalScore, profile?.readingStats?.totalReadingTime, profile?.completedLessons?.length, lastLevel]);
+  }, [
+    profile?.gameStats?.totalScore,
+    profile?.readingStats?.totalReadingTime,
+    profile?.completedLessons?.length,
+    lastLevel,
+  ]);
 
   const closeNotification = () => {
     setNotification(null);

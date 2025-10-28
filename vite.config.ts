@@ -12,7 +12,7 @@ export default defineConfig({
         maximumFileSizeToCacheInBytes: 10 * 1024 * 1024, // 10 MB
         globIgnores: [
           '**/bibles_json_6.0/**/*.json', // Exclure les fichiers JSON de la bible
-          '**/node_modules/**/*'
+          '**/node_modules/**/*',
         ],
         runtimeCaching: [
           {
@@ -22,9 +22,9 @@ export default defineConfig({
               cacheName: 'api-cache',
               networkTimeoutSeconds: 10,
               cacheableResponse: {
-                statuses: [0, 200]
-              }
-            }
+                statuses: [0, 200],
+              },
+            },
           },
           {
             // Cache pour les fichiers JSON de la bible
@@ -34,13 +34,13 @@ export default defineConfig({
               cacheName: 'bible-json-cache',
               expiration: {
                 maxEntries: 50,
-                maxAgeSeconds: 60 * 60 * 24 * 30 // 30 jours
-              }
-            }
-          }
-        ]
-      }
-    })
+                maxAgeSeconds: 60 * 60 * 24 * 30, // 30 jours
+              },
+            },
+          },
+        ],
+      },
+    }),
   ],
   server: {
     host: true,
@@ -50,8 +50,8 @@ export default defineConfig({
       'X-Content-Type-Options': 'nosniff',
       'X-Frame-Options': 'DENY',
       'X-XSS-Protection': '1; mode=block',
-      'Referrer-Policy': 'strict-origin-when-cross-origin'
-    }
+      'Referrer-Policy': 'strict-origin-when-cross-origin',
+    },
   },
   build: {
     // Optimisations de sécurité
@@ -59,23 +59,31 @@ export default defineConfig({
     terserOptions: {
       compress: {
         drop_console: true, // Supprimer les console.log en production
-        drop_debugger: true
-      }
+        drop_debugger: true,
+      },
     },
     rollupOptions: {
       output: {
-        // Chunking pour la sécurité
-        manualChunks: {
-          vendor: ['react', 'react-dom'],
-          router: ['react-router-dom'],
-          phaser: ['phaser']
-        }
-      }
-    }
+        // Chunking aligné avec la prod
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (id.includes('react') || id.includes('react-dom')) return 'react-vendor';
+            if (id.includes('react-router-dom')) return 'router';
+            if (id.includes('zustand')) return 'store';
+            if (id.includes('hls.js')) return 'media';
+            if (id.includes('phaser')) return 'phaser-core';
+            return 'vendor';
+          }
+          if (id.includes('/src/phaser/scenes/')) return 'phaser-scenes';
+          if (id.includes('/src/components/SermonPlayer')) return 'media-player';
+          return undefined;
+        },
+      },
+    },
   },
   define: {
     // Variables d'environnement sécurisées
     __APP_VERSION__: JSON.stringify(process.env.npm_package_version),
-    __BUILD_TIME__: JSON.stringify(new Date().toISOString())
-  }
+    __BUILD_TIME__: JSON.stringify(new Date().toISOString()),
+  },
 });

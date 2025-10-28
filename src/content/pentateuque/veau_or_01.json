@@ -1,0 +1,159 @@
+{
+  "id": "veau_or_01",
+  "title": "Le Veau d'or — La tentation de l'idolâtrie",
+  "path": "Le Pentateuque",
+  "reading": [
+    "Pendant que Moïse recevait les Dix Commandements sur le mont Sinaï, le peuple s'impatientait.",
+    "Ils dirent à Aaron : 'Fais-nous des dieux qui marchent devant nous, car ce Moïse qui nous a fait sortir d'Égypte, nous ne savons ce qu'il est devenu.'",
+    "Aaron céda à leur pression et demanda leurs boucles d'oreilles en or.",
+    "Avec cet or, il façonna un veau et dit : 'Voici ton dieu, Israël, qui t'a fait sortir du pays d'Égypte !'",
+    "Le peuple offrit des holocaustes et se livra à des réjouissances devant cette idole.",
+    "Sur la montagne, l'Éternel dit à Moïse : 'Descends ! car ton peuple s'est corrompu.'",
+    "Moïse descendit avec les tables de la loi dans ses mains.",
+    "Quand il vit le veau d'or et les danses, sa colère s'enflamma.",
+    "Il jeta les tables de ses mains et les brisa au pied de la montagne.",
+    "Il prit le veau qu'ils avaient fait, le brûla au feu, le réduisit en poudre et le fit boire aux enfants d'Israël.",
+    "Moïse intercéda pour le peuple devant Dieu, demandant Son pardon.",
+    "Dieu pardonna au peuple, mais les avertit que l'idolâtrie éloigne de Lui.",
+    "Moïse remonta sur la montagne et Dieu écrivit de nouveau les commandements sur de nouvelles tables."
+  ],
+  "key_verse": "Tu n'auras pas d'autres dieux devant ma face. Tu ne te feras point d'image taillée.",
+  "vocab": [
+    {
+      "word": "Idole",
+      "hint": "Un objet fabriqué par l'homme et adoré à la place de Dieu."
+    },
+    {
+      "word": "Veau d'or",
+      "hint": "Statue d'un jeune taureau en or que le peuple adora."
+    },
+    {
+      "word": "Intercéder",
+      "hint": "Prier pour quelqu'un d'autre, plaider sa cause."
+    },
+    {
+      "word": "Pardon",
+      "hint": "La grâce de Dieu qui efface notre péché quand nous nous repentons."
+    }
+  ],
+  "quiz": [
+    {
+      "q": "Pourquoi le peuple demanda-t-il à Aaron de faire une idole ?",
+      "choices": ["Moïse tardait à revenir", "Ils s'ennuyaient", "Aaron le voulait"],
+      "answer": 0
+    },
+    {
+      "q": "Avec quoi Aaron fit-il le veau d'or ?",
+      "choices": ["Du bronze", "Les boucles d'oreilles du peuple", "De l'argent"],
+      "answer": 1
+    },
+    {
+      "q": "Que fit Moïse en voyant le veau d'or ?",
+      "choices": ["Il pleura", "Il brisa les tables de la loi", "Il se joignit à eux"],
+      "answer": 1
+    },
+    {
+      "q": "Que montre l'intercession de Moïse ?",
+      "choices": ["Sa colère", "Son amour pour le peuple", "Sa faiblesse"],
+      "answer": 1
+    },
+    {
+      "q": "Comment Dieu réagit-il face au repentir ?",
+      "choices": ["Il refuse", "Il pardonne", "Il ignore"],
+      "answer": 1
+    }
+  ],
+  "goldGame": {
+    "title": "Le Veau d'Or - Questions d'Approfondissement",
+    "description": "Explorez les dangers de l'idolâtrie et la grâce du pardon",
+    "questions": [
+      {
+        "question": "Pourquoi le peuple choisit-il spécifiquement un veau comme idole ?",
+        "choices": [
+          "C'était facile à sculpter",
+          "Le veau symbolisait la force et la fertilité dans les religions égyptiennes",
+          "Ils aimaient les animaux",
+          "Aaron aimait les veaux"
+        ],
+        "correct": 1,
+        "explanation": "Le veau était un symbole religieux égyptien. Le peuple retomba dans les pratiques idolâtres qu'ils connaissaient en Égypte."
+      },
+      {
+        "question": "Quelle était l'ironie tragique dans l'adoration du veau d'or ?",
+        "choices": [
+          "Ils adoraient un objet fait de leurs propres mains",
+          "Ils attribuaient leur libération d'Égypte à une idole qu'ils venaient de créer",
+          "Aaron participait à l'idolâtrie",
+          "Toutes ces réponses"
+        ],
+        "correct": 3,
+        "explanation": "L'ironie complète : ils adoraient leur propre création et lui attribuaient l'œuvre que Dieu venait d'accomplir pour eux."
+      },
+      {
+        "question": "Que révèle cette histoire sur la nature humaine face à l'attente ?",
+        "choices": [
+          "L'impatience peut nous pousser vers de fausses solutions",
+          "Les gens sont naturellement patients",
+          "L'attente n'est jamais difficile",
+          "Seuls les anciens s'impatientent"
+        ],
+        "correct": 0,
+        "explanation": "Quand Dieu semble 'tarder', nous sommes tentés de créer nos propres solutions plutôt que d'attendre Ses voies parfaites."
+      },
+      {
+        "question": "Pourquoi Moïse brisa-t-il les tables de la loi ?",
+        "choices": [
+          "Il était maladroit",
+          "Pour symboliser que le peuple avait brisé l'alliance avec Dieu",
+          "Il était en colère contre Dieu",
+          "Pour effrayer le peuple"
+        ],
+        "correct": 1,
+        "explanation": "Ce geste prophétique montrait que l'idolâtrie du peuple avait rompu leur relation d'alliance avec Dieu."
+      },
+      {
+        "question": "Que nous enseigne l'intercession de Moïse sur le leadership spirituel ?",
+        "choices": [
+          "Un vrai leader plaide pour son peuple même quand il a tort",
+          "Il faut toujours prendre le parti du peuple",
+          "Les leaders doivent être durs",
+          "L'intercession est inutile"
+        ],
+        "correct": 0,
+        "explanation": "Moïse montre l'exemple d'un leader qui aime son peuple et intercède pour lui, même dans ses fautes, comme Jésus le fait pour nous."
+      },
+      {
+        "question": "Quelles sont les 'idoles modernes' que nous devons éviter aujourd'hui ?",
+        "choices": [
+          "Seulement les statues religieuses",
+          "L'argent, le succès, les biens matériels qui prennent la place de Dieu",
+          "Il n'y a plus d'idoles aujourd'hui",
+          "Seulement les fausses religions"
+        ],
+        "correct": 1,
+        "explanation": "Toute chose qui prend la première place dans notre cœur à la place de Dieu devient une idole : argent, carrière, relations, etc."
+      }
+    ],
+    "passingScore": 4,
+    "reward": {
+      "type": "badge",
+      "name": "Briseur d'Idoles",
+      "description": "Vous reconnaissez les dangers de l'idolâtrie",
+      "icon": "🔨"
+    }
+  },
+  "story_steps": [
+    "Moïse tarde à redescendre du mont Sinaï",
+    "Le peuple s'impatiente et demande des dieux à Aaron",
+    "Aaron collecte les bijoux en or du peuple",
+    "Aaron façonne un veau d'or avec l'or",
+    "Le peuple adore le veau et fait une fête",
+    "Dieu avertit Moïse de la corruption du peuple",
+    "Moïse descend avec les tables de la Loi",
+    "Moïse brise les tables en voyant le veau d'or",
+    "Moïse détruit le veau et le fait boire au peuple",
+    "Moïse intercède pour obtenir le pardon de Dieu"
+  ],
+  "mini_games": ["order_events", "quiz", "goldGame"],
+  "assets": ["veau_or_1.png", "veau_or_2.png", "veau_or_3.png"]
+}

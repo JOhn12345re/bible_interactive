@@ -1,0 +1,81 @@
+{
+  "id": "david_goliath_01",
+  "title": "David et Goliath — La victoire de la foi",
+  "path": "Le Pentateuque",
+  "reading": [
+    "L'armée d'Israël tremblait devant Goliath, géant philistin de près de trois mètres.",
+    "Pendant quarante jours, Goliath défiait Israël : 'Choisissez un homme qui combatte avec moi !'",
+    "Le jeune berger David apporta du pain à ses frères au camp.",
+    "Il entendit les insultes du géant et son cœur fut enflammé de zèle pour Dieu.",
+    "David dit au roi Saül : 'L'Éternel qui m'a délivré de la griffe du lion me délivrera de ce Philistin.'",
+    "Il refusa l'armure du roi et prit sa fronde et cinq pierres du torrent.",
+    "Goliath méprisa David : 'Suis-je un chien pour que tu viennes à moi avec des bâtons ?'",
+    "David répondit : 'Tu marches contre moi avec l'épée ; moi je marche au nom de l'Éternel !'",
+    "Il lança une pierre qui frappa le géant au front, et Goliath tomba face contre terre.",
+    "David prit l'épée du géant et lui coupa la tête. Les Philistins s'enfuirent, et Israël remporta une grande victoire."
+  ],
+  "key_verse": "Tu marches contre moi avec l'épée, la lance et le javelot ; moi, je marche contre toi au nom de l'Éternel des armées, du Dieu de l'armée d'Israël, que tu as insultée. — 1 Samuel 17:45",
+  "vocab": [
+    {
+      "word": "Goliath",
+      "hint": "Géant philistin qui défiait Israël."
+    },
+    {
+      "word": "Fronde",
+      "hint": "Arme de berger pour lancer des pierres."
+    },
+    {
+      "word": "Foi",
+      "hint": "Confiance totale en Dieu qui donne la victoire."
+    },
+    {
+      "word": "Courage",
+      "hint": "Force d'agir malgré la peur par la foi en Dieu."
+    },
+    {
+      "word": "Philistins",
+      "hint": "Peuple ennemi d'Israël établi sur la côte."
+    }
+  ],
+  "quiz": [
+    {
+      "q": "Combien de temps Goliath défia-t-il Israël ?",
+      "choices": ["Sept jours", "Quarante jours", "Un an"],
+      "answer": 1
+    },
+    {
+      "q": "Quelle était l'occupation de David ?",
+      "choices": ["Soldat", "Berger", "Forgeron"],
+      "answer": 1
+    },
+    {
+      "q": "Combien de pierres David prit-il ?",
+      "choices": ["Une", "Trois", "Cinq"],
+      "answer": 2
+    },
+    {
+      "q": "Où la pierre frappa-t-elle Goliath ?",
+      "choices": ["Au cœur", "Au front", "À la jambe"],
+      "answer": 1
+    },
+    {
+      "q": "Au nom de qui David combattit-il ?",
+      "choices": ["Du roi Saül", "De l'Éternel", "D'Israël"],
+      "answer": 1
+    }
+  ],
+  "story_steps": [
+    "Goliath défie Israël pendant quarante jours",
+    "David arrive au camp avec du pain pour ses frères",
+    "David entend les insultes du géant",
+    "David se porte volontaire pour combattre",
+    "Saül offre son armure mais David la refuse",
+    "David prend sa fronde et cinq pierres",
+    "David proclame qu'il vient au nom de l'Éternel",
+    "David lance une pierre qui frappe Goliath au front",
+    "Goliath tombe et David prend son épée",
+    "Les Philistins fuient et Israël remporte la victoire"
+  ],
+  "mini_games": ["order_events", "quiz"],
+  "assets": ["david_goliath_1.png", "david_goliath_2.png", "david_goliath_3.png"]
+}

@@ -26,17 +26,66 @@
   ],
   "key_verse": "Dieu nous donne des dons, mais il veut que nous les utilisions pour lui, et il peut nous relever même après nos erreurs.",
   "vocab": [
-    { "word": "Naziréen", "hint": "Une personne consacrée à Dieu, qui ne boit pas de vin et ne se rase pas." },
-    { "word": "Philistins", "hint": "Les ennemis d'Israël qui habitaient sur la côte." },
+    {
+      "word": "Naziréen",
+      "hint": "Une personne consacrée à Dieu, qui ne boit pas de vin et ne se rase pas."
+    },
+    {
+      "word": "Philistins",
+      "hint": "Les ennemis d'Israël qui habitaient sur la côte."
+    },
     { "word": "Vœu", "hint": "Une promesse solennelle faite à Dieu." },
-    { "word": "Délivrance", "hint": "Être sauvé ou libéré d'un danger ou d'une oppression." }
+    {
+      "word": "Délivrance",
+      "hint": "Être sauvé ou libéré d'un danger ou d'une oppression."
+    }
   ],
   "quiz": [
-    { "q": "D'où venait la force de Samson ?", "choices": ["De ses muscles", "De Dieu et de ses cheveux", "De la nourriture"], "answer": 1 },
-    { "q": "Quel était le vœu de naziréat de Samson ?", "choices": ["Ne pas manger de viande", "Ne pas se raser les cheveux", "Ne pas se marier"], "answer": 1 },
-    { "q": "Qui était Dalila ?", "choices": ["La sœur de Samson", "Une femme philistine", "La mère de Samson"], "answer": 1 },
-    { "q": "Que fit Dalila pour découvrir le secret de Samson ?", "choices": ["Elle le suivit", "Elle le flatta et le pressa", "Elle lui demanda directement"], "answer": 1 },
-    { "q": "Comment Samson mourut-il ?", "choices": ["Il fut tué par les Philistins", "Il fit tomber le temple sur lui et ses ennemis", "Il mourut de vieillesse"], "answer": 1 }
+    {
+      "q": "D'où venait la force de Samson ?",
+      "choices": [
+        "De ses muscles",
+        "De Dieu et de ses cheveux",
+        "De la nourriture"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "Quel était le vœu de naziréat de Samson ?",
+      "choices": [
+        "Ne pas manger de viande",
+        "Ne pas se raser les cheveux",
+        "Ne pas se marier"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "Qui était Dalila ?",
+      "choices": [
+        "La sœur de Samson",
+        "Une femme philistine",
+        "La mère de Samson"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "Que fit Dalila pour découvrir le secret de Samson ?",
+      "choices": [
+        "Elle le suivit",
+        "Elle le flatta et le pressa",
+        "Elle lui demanda directement"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "Comment Samson mourut-il ?",
+      "choices": [
+        "Il fut tué par les Philistins",
+        "Il fit tomber le temple sur lui et ses ennemis",
+        "Il mourut de vieillesse"
+      ],
+      "answer": 1
+    }
   ],
   "mini_games": ["order_events", "quiz"],
   "assets": ["samson_1.png", "samson_2.png", "samson_3.png"]

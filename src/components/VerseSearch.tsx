@@ -9,16 +9,17 @@ type Props = {
   className?: string;
 };
 
-export default function VerseSearch({ onClose, className = "" }: Props) {
+export default function VerseSearch({ onClose, className = '' }: Props) {
   const { contrastHigh } = useSettings();
   const [searchTerm, setSearchTerm] = useState('');
-  const { verses, loading, error, searchHistory, searchVerse, clearError } = useVerseSearch();
+  const { verses, loading, error, searchHistory, searchVerse, clearError } =
+    useVerseSearch();
   const isDemo = !import.meta.env.VITE_BIBLE_API_KEY;
 
   const handleSearch = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!searchTerm.trim()) return;
-    
+
     clearError();
     await searchVerse(searchTerm.trim());
   };
@@ -35,20 +36,23 @@ export default function VerseSearch({ onClose, className = "" }: Props) {
     'Romains 8:28',
     'Philippiens 4:13',
     'Genèse 1:1',
-    'Jonas 2:9'
+    'Jonas 2:9',
   ];
 
   return (
     <div className={`${className}`}>
-      <div className={`rounded-2xl p-6 ${
-        contrastHigh 
-          ? 'bg-contrast-bg border-2 border-contrast-text'
-          : 'bg-white shadow-xl border border-gray-200'
-      }`}>
+      <div
+        className={`rounded-2xl p-6 ${
+          contrastHigh
+            ? 'bg-contrast-bg border-2 border-contrast-text'
+            : 'bg-white shadow-xl border border-gray-200'
+        }`}
+      >
         {/* Bandeau Mode Démo */}
         {isDemo && (
           <div className="mb-4 p-3 rounded-lg border text-sm bg-amber-50 border-amber-200 text-amber-800">
-            Mode démo: les données affichées peuvent être locales. Ajoutez une clé dans .env.local pour activer l'API.
+            Mode démo: les données affichées peuvent être locales. Ajoutez une
+            clé dans .env.local pour activer l'API.
           </div>
         )}
 
@@ -56,9 +60,11 @@ export default function VerseSearch({ onClose, className = "" }: Props) {
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center space-x-3">
             <span className="text-2xl">🔍</span>
-            <h2 className={`text-xl font-bold ${
-              contrastHigh ? 'text-contrast-text' : 'text-gray-800'
-            }`}>
+            <h2
+              className={`text-xl font-bold ${
+                contrastHigh ? 'text-contrast-text' : 'text-gray-800'
+              }`}
+            >
               Recherche de versets
             </h2>
           </div>
@@ -117,9 +123,11 @@ export default function VerseSearch({ onClose, className = "" }: Props) {
 
         {/* Versets populaires */}
         <div className="mb-6">
-          <h3 className={`text-sm font-semibold mb-3 ${
-            contrastHigh ? 'text-contrast-text' : 'text-gray-600'
-          }`}>
+          <h3
+            className={`text-sm font-semibold mb-3 ${
+              contrastHigh ? 'text-contrast-text' : 'text-gray-600'
+            }`}
+          >
             Versets populaires :
           </h3>
           <div className="flex flex-wrap gap-2">
@@ -142,9 +150,11 @@ export default function VerseSearch({ onClose, className = "" }: Props) {
         {/* Historique de recherche */}
         {searchHistory.length > 0 && (
           <div className="mb-6">
-            <h3 className={`text-sm font-semibold mb-3 ${
-              contrastHigh ? 'text-contrast-text' : 'text-gray-600'
-            }`}>
+            <h3
+              className={`text-sm font-semibold mb-3 ${
+                contrastHigh ? 'text-contrast-text' : 'text-gray-600'
+              }`}
+            >
               Recherches récentes :
             </h3>
             <div className="flex flex-wrap gap-2">
@@ -181,11 +191,13 @@ export default function VerseSearch({ onClose, className = "" }: Props) {
 
         {/* Gestion des erreurs */}
         {error && !loading && (
-          <div className={`mt-6 p-4 rounded-xl border-2 border-dashed ${
-            contrastHigh 
-              ? 'border-contrast-text text-contrast-text bg-contrast-bg'
-              : 'border-yellow-300 bg-yellow-50 text-yellow-800'
-          }`}>
+          <div
+            className={`mt-6 p-4 rounded-xl border-2 border-dashed ${
+              contrastHigh
+                ? 'border-contrast-text text-contrast-text bg-contrast-bg'
+                : 'border-yellow-300 bg-yellow-50 text-yellow-800'
+            }`}
+          >
             <div className="flex items-center space-x-2">
               <span className="text-xl">⚠️</span>
               <span className="font-medium">{error}</span>
@@ -198,19 +210,25 @@ export default function VerseSearch({ onClose, className = "" }: Props) {
 
         {/* Instructions d'utilisation */}
         {!verses.length && !loading && !error && (
-          <div className={`mt-6 p-4 rounded-xl ${
-            contrastHigh 
-              ? 'bg-contrast-bg border border-contrast-text'
-              : 'bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200'
-          }`}>
-            <h4 className={`font-semibold mb-2 ${
-              contrastHigh ? 'text-contrast-text' : 'text-blue-800'
-            }`}>
+          <div
+            className={`mt-6 p-4 rounded-xl ${
+              contrastHigh
+                ? 'bg-contrast-bg border border-contrast-text'
+                : 'bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200'
+            }`}
+          >
+            <h4
+              className={`font-semibold mb-2 ${
+                contrastHigh ? 'text-contrast-text' : 'text-blue-800'
+              }`}
+            >
               Comment rechercher un verset :
             </h4>
-            <ul className={`text-sm space-y-1 ${
-              contrastHigh ? 'text-contrast-text' : 'text-blue-700'
-            }`}>
+            <ul
+              className={`text-sm space-y-1 ${
+                contrastHigh ? 'text-contrast-text' : 'text-blue-700'
+              }`}
+            >
               <li>• Un verset : "Jean 3:16"</li>
               <li>• Plusieurs versets : "Psaume 23:1-3"</li>
               <li>• Un chapitre : "Genèse 1"</li>

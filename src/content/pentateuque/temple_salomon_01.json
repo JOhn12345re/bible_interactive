@@ -1,0 +1,80 @@
+{
+  "id": "temple_salomon_01",
+  "title": "Construction du Temple — La maison de Dieu",
+  "path": "Le Pentateuque",
+  "reading": [
+    "Salomon entreprit de bâtir un temple magnifique pour l'Éternel à Jérusalem.",
+    "La construction dura sept ans avec cent quatre-vingts mille ouvriers.",
+    "Les pierres étaient taillées et ajustées avant d'arriver au chantier, aucun bruit de marteau ne résonnait.",
+    "L'intérieur du Temple était recouvert de bois de cèdre et d'or pur.",
+    "Salomon fit fabriquer le Saint des Saints où reposerait l'arche de l'alliance.",
+    "Deux chérubins en bois d'olivier recouvert d'or protégeaient le lieu très saint.",
+    "Quand le Temple fut achevé, Salomon rassembla tout Israël pour une grande dédicace.",
+    "Les sacrificateurs transportèrent l'arche dans le Saint des Saints.",
+    "La nuée de la gloire de l'Éternel remplit le Temple.",
+    "Salomon pria et bénit le peuple : 'Béni soit l'Éternel qui a donné du repos à son peuple !'"
+  ],
+  "key_verse": "La nuée remplit la maison de l'Éternel. Les sacrificateurs ne purent pas y rester pour faire le service, à cause de la nuée ; car la gloire de l'Éternel remplissait la maison de l'Éternel. — 1 Rois 8:10-11",
+  "vocab": [
+    {
+      "word": "Temple",
+      "hint": "Maison de Dieu construite par Salomon à Jérusalem."
+    },
+    {
+      "word": "Saint des Saints",
+      "hint": "Lieu très saint où était placée l'arche de l'alliance."
+    },
+    {
+      "word": "Chérubins",
+      "hint": "Anges gardiens représentés dans le Temple."
+    },
+    {
+      "word": "Gloire de Dieu",
+      "hint": "Manifestation visible de la présence divine."
+    },
+    {
+      "word": "Dédicace",
+      "hint": "Cérémonie de consécration du Temple à Dieu."
+    }
+  ],
+  "quiz": [
+    {
+      "q": "Combien de temps dura la construction du Temple ?",
+      "choices": ["Trois ans", "Sept ans", "Douze ans"],
+      "answer": 1
+    },
+    {
+      "q": "De quoi était recouvert l'intérieur du Temple ?",
+      "choices": ["De marbre", "De cèdre et d'or", "De bronze"],
+      "answer": 1
+    },
+    {
+      "q": "Que plaça-t-on dans le Saint des Saints ?",
+      "choices": ["L'autel des parfums", "L'arche de l'alliance", "Le chandelier"],
+      "answer": 1
+    },
+    {
+      "q": "Que se passa-t-il quand le Temple fut terminé ?",
+      "choices": ["Il y eut un tremblement de terre", "La gloire de Dieu remplit le Temple", "Rien de spécial"],
+      "answer": 1
+    },
+    {
+      "q": "Pourquoi les sacrificateurs ne purent-ils rester dans le Temple ?",
+      "choices": ["Il faisait trop chaud", "La gloire de Dieu était trop puissante", "Il n'y avait plus de place"],
+      "answer": 1
+    }
+  ],
+  "story_steps": [
+    "Salomon décide de construire un temple pour Dieu",
+    "Cent quatre-vingts mille ouvriers sont mobilisés",
+    "Les pierres sont taillées avant d'arriver au chantier",
+    "L'intérieur est recouvert de cèdre et d'or",
+    "Le Saint des Saints est préparé pour l'arche",
+    "Deux chérubins d'or sont placés dans le lieu très saint",
+    "Après sept ans, le Temple est achevé",
+    "L'arche est transportée dans le Saint des Saints",
+    "La gloire de Dieu remplit le Temple"
+  ],
+  "mini_games": ["order_events", "quiz"],
+  "assets": ["temple_salomon_1.png", "temple_salomon_2.png", "temple_salomon_3.png"]
+}

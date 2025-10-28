@@ -11,12 +11,12 @@ type Props = {
   className?: string;
 };
 
-export default function BibleVerseComponent({ 
-  reference, 
-  verses: initialVerses, 
+export default function BibleVerseComponent({
+  reference,
+  verses: initialVerses,
   lessonId,
   showReference = true,
-  className = "" 
+  className = '',
 }: Props) {
   const { contrastHigh } = useSettings();
   const [verses, setVerses] = useState<BibleVerse[]>(initialVerses || []);
@@ -29,7 +29,7 @@ export default function BibleVerseComponent({
     const fetchVerses = async () => {
       setLoading(true);
       setError(null);
-      
+
       try {
         const verse = await bibleApi.getVerseByReference(reference);
         if (verse) {
@@ -81,17 +81,32 @@ export default function BibleVerseComponent({
           case 'abraham_01':
             lessonVerses = await bibleApi.getAbrahamVerses();
             break;
-          case 'isaac_01':
+          case 'isaac_sacrifice_01':
+            lessonVerses = await bibleApi.getIsaacSacrificeVerses();
+            break;
+          case 'isaac_mariage_01':
             lessonVerses = await bibleApi.getIsaacVerses();
             break;
-          case 'jacob_01':
+          case 'jacob_esau_01':
             lessonVerses = await bibleApi.getJacobVerses();
+            break;
+          case 'jacob_songe_01':
+            lessonVerses = await bibleApi.getJacobSongeVerses();
             break;
           case 'joseph_01':
             lessonVerses = await bibleApi.getJosephVerses();
             break;
           case 'commandements_01':
             lessonVerses = await bibleApi.getCommandementsVerses();
+            break;
+          case 'tabernacle_01':
+            lessonVerses = await bibleApi.getTabernacleVerses();
+            break;
+          case 'terre_promise_01':
+            lessonVerses = await bibleApi.getTerrePromiseVerses();
+            break;
+          case 'josue_01':
+            lessonVerses = await bibleApi.getJosueVerses();
             break;
           case 'gedeon_01':
             lessonVerses = await bibleApi.getGedeonVerses();
@@ -114,23 +129,26 @@ export default function BibleVerseComponent({
           case 'elie_01':
             lessonVerses = await bibleApi.getElieVerses();
             break;
-        case 'ezechiel_01':
-          lessonVerses = await bibleApi.getEzechielVerses();
-          break;
-        case 'naissance_jesus':
-          lessonVerses = await bibleApi.getNaissanceJesusVerses();
-          break;
-        case 'enfance_jesus':
-          lessonVerses = await bibleApi.getEnfanceJesusVerses();
-          break;
-        case 'bapteme_jesus':
-          lessonVerses = await bibleApi.getBaptemeJesusVerses();
-          break;
-        case 'tentations_jesus':
-          lessonVerses = await bibleApi.getTentationsJesusVerses();
-          break;
+          case 'ezechiel_01':
+            lessonVerses = await bibleApi.getEzechielVerses();
+            break;
+          case 'daniel_01':
+            lessonVerses = await bibleApi.getDanielVerses();
+            break;
+          case 'naissance_jesus':
+            lessonVerses = await bibleApi.getNaissanceJesusVerses();
+            break;
+          case 'enfance_jesus':
+            lessonVerses = await bibleApi.getEnfanceJesusVerses();
+            break;
+          case 'bapteme_jesus':
+            lessonVerses = await bibleApi.getBaptemeJesusVerses();
+            break;
+          case 'tentations_jesus':
+            lessonVerses = await bibleApi.getTentationsJesusVerses();
+            break;
           default:
-            setError('Leçon non supportée par l\'API');
+            setError("Leçon non supportée par l'API");
             return;
         }
 
@@ -156,17 +174,20 @@ export default function BibleVerseComponent({
 
   if (error) {
     return (
-      <div className={`p-4 rounded-xl border-2 border-dashed ${className} ${
-        contrastHigh 
-          ? 'border-contrast-text text-contrast-text bg-contrast-bg'
-          : 'border-yellow-300 bg-yellow-50 text-yellow-800'
-      }`}>
+      <div
+        className={`p-4 rounded-xl border-2 border-dashed ${className} ${
+          contrastHigh
+            ? 'border-contrast-text text-contrast-text bg-contrast-bg'
+            : 'border-yellow-300 bg-yellow-50 text-yellow-800'
+        }`}
+      >
         <div className="flex items-center space-x-2">
           <span className="text-xl">📖</span>
           <span className="font-medium">Versets disponibles localement</span>
         </div>
         <p className="text-sm mt-2 opacity-80">
-          Les textes bibliques sont intégrés dans l'application pour une expérience sans connexion.
+          Les textes bibliques sont intégrés dans l'application pour une
+          expérience sans connexion.
         </p>
       </div>
     );
@@ -178,25 +199,27 @@ export default function BibleVerseComponent({
 
   return (
     <div className={`${className}`}>
-      <div className={`relative overflow-hidden rounded-2xl p-6 ${
-        contrastHigh 
-          ? 'bg-contrast-bg border-2 border-contrast-text'
-          : 'bg-gradient-to-br from-indigo-50 via-blue-50 to-purple-50 border border-indigo-200 shadow-lg'
-      }`}>
+      <div
+        className={`relative overflow-hidden rounded-2xl p-6 ${
+          contrastHigh
+            ? 'bg-contrast-bg border-2 border-contrast-text'
+            : 'bg-gradient-to-br from-indigo-50 via-blue-50 to-purple-50 border border-indigo-200 shadow-lg'
+        }`}
+      >
         {/* Éléments décoratifs */}
         {!contrastHigh && (
-          <div className="absolute top-2 right-2 text-4xl opacity-10">
-            📜
-          </div>
+          <div className="absolute top-2 right-2 text-4xl opacity-10">📜</div>
         )}
 
         <div className="relative z-10">
           {/* En-tête */}
           <div className="flex items-center space-x-3 mb-4">
             <span className="text-2xl">📖</span>
-            <h3 className={`text-lg font-bold ${
-              contrastHigh ? 'text-contrast-text' : 'text-indigo-800'
-            }`}>
+            <h3
+              className={`text-lg font-bold ${
+                contrastHigh ? 'text-contrast-text' : 'text-indigo-800'
+              }`}
+            >
               Parole de Dieu
             </h3>
           </div>
@@ -204,25 +227,29 @@ export default function BibleVerseComponent({
           {/* Versets */}
           <div className="space-y-3">
             {verses.map((verse, index) => (
-              <div 
+              <div
                 key={`${verse.book_id}-${verse.chapter}-${verse.verse_start}`}
                 className={`animate-fade-scale ${
                   contrastHigh ? 'text-contrast-text' : 'text-gray-700'
                 }`}
-                style={{animationDelay: `${index * 0.1}s`}}
+                style={{ animationDelay: `${index * 0.1}s` }}
               >
                 {showReference && (
-                  <span className={`inline-block px-3 py-1 rounded-full text-xs font-bold mr-3 ${
-                    contrastHigh 
-                      ? 'bg-contrast-text text-contrast-bg'
-                      : 'bg-indigo-100 text-indigo-800'
-                  }`}>
+                  <span
+                    className={`inline-block px-3 py-1 rounded-full text-xs font-bold mr-3 ${
+                      contrastHigh
+                        ? 'bg-contrast-text text-contrast-bg'
+                        : 'bg-indigo-100 text-indigo-800'
+                    }`}
+                  >
                     {verse.book_id} {verse.chapter}:{verse.verse_start}
                   </span>
                 )}
-                <span className={`text-base leading-relaxed ${
-                  contrastHigh ? 'text-contrast-text' : 'text-gray-800'
-                }`}>
+                <span
+                  className={`text-base leading-relaxed ${
+                    contrastHigh ? 'text-contrast-text' : 'text-gray-800'
+                  }`}
+                >
                   {verse.verse_text}
                 </span>
               </div>
@@ -230,11 +257,13 @@ export default function BibleVerseComponent({
           </div>
 
           {/* Attribution */}
-          <div className={`mt-6 pt-4 border-t text-center text-sm ${
-            contrastHigh 
-              ? 'border-contrast-text text-contrast-text'
-              : 'border-indigo-200 text-indigo-600'
-          }`}>
+          <div
+            className={`mt-6 pt-4 border-t text-center text-sm ${
+              contrastHigh
+                ? 'border-contrast-text text-contrast-text'
+                : 'border-indigo-200 text-indigo-600'
+            }`}
+          >
             <div className="flex items-center justify-center space-x-2">
               <span>✝️</span>
               <span className="italic">

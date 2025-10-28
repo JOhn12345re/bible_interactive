@@ -16,18 +16,58 @@
   ],
   "key_verse": "Jésus a vaincu les tentations en s'appuyant sur la Parole de Dieu, nous montrant comment résister au mal.",
   "vocab": [
-    { "word": "Tentation", "hint": "Épreuve qui pousse à faire le mal ou à désobéir à Dieu." },
-    { "word": "Jeûne", "hint": "Période où on ne mange pas pour se concentrer sur Dieu." },
-    { "word": "Diable", "hint": "L'ennemi de Dieu qui essaie de nous faire pécher." },
-    { "word": "Parole de Dieu", "hint": "Les Écritures saintes qui nous guident et nous protègent." },
+    {
+      "word": "Tentation",
+      "hint": "Épreuve qui pousse à faire le mal ou à désobéir à Dieu."
+    },
+    {
+      "word": "Jeûne",
+      "hint": "Période où on ne mange pas pour se concentrer sur Dieu."
+    },
+    {
+      "word": "Diable",
+      "hint": "L'ennemi de Dieu qui essaie de nous faire pécher."
+    },
+    {
+      "word": "Parole de Dieu",
+      "hint": "Les Écritures saintes qui nous guident et nous protègent."
+    },
     { "word": "Adoration", "hint": "Rendre honneur et gloire à Dieu seul." }
   ],
   "quiz": [
-    { "q": "Combien de temps Jésus a-t-il jeûné dans le désert ?", "choices": ["7 jours", "40 jours", "3 jours"], "answer": 1 },
-    { "q": "Quelle fut la première tentation ?", "choices": ["Se jeter du temple", "Transformer les pierres en pain", "Adorer le diable"], "answer": 1 },
-    { "q": "Comment Jésus a-t-il résisté aux tentations ?", "choices": ["En priant", "En utilisant la Parole de Dieu", "En fuyant"], "answer": 1 },
-    { "q": "Quelle fut la troisième tentation ?", "choices": ["Transformer les pierres en pain", "Se jeter du temple", "Adorer le diable pour avoir tous les royaumes"], "answer": 2 },
-    { "q": "Qui vint servir Jésus après les tentations ?", "choices": ["Les disciples", "Des anges", "Jean-Baptiste"], "answer": 1 }
+    {
+      "q": "Combien de temps Jésus a-t-il jeûné dans le désert ?",
+      "choices": ["7 jours", "40 jours", "3 jours"],
+      "answer": 1
+    },
+    {
+      "q": "Quelle fut la première tentation ?",
+      "choices": [
+        "Se jeter du temple",
+        "Transformer les pierres en pain",
+        "Adorer le diable"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "Comment Jésus a-t-il résisté aux tentations ?",
+      "choices": ["En priant", "En utilisant la Parole de Dieu", "En fuyant"],
+      "answer": 1
+    },
+    {
+      "q": "Quelle fut la troisième tentation ?",
+      "choices": [
+        "Transformer les pierres en pain",
+        "Se jeter du temple",
+        "Adorer le diable pour avoir tous les royaumes"
+      ],
+      "answer": 2
+    },
+    {
+      "q": "Qui vint servir Jésus après les tentations ?",
+      "choices": ["Les disciples", "Des anges", "Jean-Baptiste"],
+      "answer": 1
+    }
   ],
   "mini_games": ["order_events", "quiz"],
   "assets": ["tentations_1.png", "tentations_2.png", "tentations_3.png"]

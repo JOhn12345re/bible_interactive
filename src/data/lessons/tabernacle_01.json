@@ -1,0 +1,96 @@
+{
+  "title": "Le Tabernacle - Sanctuaire de Dieu",
+  "description": "Découvre comment Dieu a ordonné la construction d'un sanctuaire portatif où Il habiterait au milieu de Son peuple.",
+  "duration": 25,
+  "difficulty": "intermediate",
+  "minigame": "tabernacle-order",
+  "memoryVerse": {
+    "reference": "Exode 25:8",
+    "text": "Ils me feront un sanctuaire, et j'habiterai au milieu d'eux."
+  },
+  "reading": [
+    {
+      "paragraph": "Après avoir donné les Dix Commandements sur le mont Sinaï, Dieu a une demande spéciale pour Moïse : construire un sanctuaire. Ce ne sera pas un temple en pierre, mais une tente sacrée portable appelée le tabernacle. Pourquoi ? Parce que le peuple d'Israël voyage encore vers la Terre Promise !"
+    },
+    {
+      "paragraph": "🏛️ **Les plans divins** : Dieu montre à Moïse des plans très précis. Chaque détail a une signification : les matériaux, les couleurs, les dimensions... tout doit être fait exactement selon le modèle divin. C'est comme suivre une recette divine pour construire la maison de Dieu !"
+    },
+    {
+      "paragraph": "💰 **Les offrandes volontaires** : Pour construire ce sanctuaire magnifique, il faut de l'or, de l'argent, du bronze, des tissus précieux... Dieu demande au peuple de donner volontairement, avec joie. Et c'est extraordinaire : le peuple donne tellement que Moïse doit leur dire d'arrêter !"
+    },
+    {
+      "paragraph": "👷 **Les artisans choisis** : Dieu choisit Betsaleel et Oholiab comme maîtres artisans. Il leur donne une sagesse et une habileté spéciales pour diriger tous les travaux. C'est Dieu lui-même qui leur enseigne comment travailler l'or, l'argent, la pierre et le bois !"
+    },
+    {
+      "paragraph": "📦 **L'arche de l'alliance** : Au cœur du tabernacle, il y a l'arche de l'alliance - un coffre en or pur qui contient les tables de la Loi. C'est le trône terrestre de Dieu, l'endroit où Sa présence demeure de façon particulière."
+    },
+    {
+      "paragraph": "🕯️ **Le mobilier sacré** : La table des pains de proposition avec ses 12 pains représentant les tribus d'Israël, et le chandelier à sept branches qui éclaire constamment le lieu saint. Chaque objet raconte une histoire sur Dieu et Son peuple !"
+    },
+    {
+      "paragraph": "☁️ **La gloire de Dieu** : Quand tout est terminé, quelque chose de merveilleux se produit : la gloire de l'Éternel remplit le tabernacle sous forme d'une nuée brillante. Dieu vient habiter au milieu de Son peuple, comme Il l'avait promis !"
+    }
+  ],
+  "questions": [
+    {
+      "id": 1,
+      "text": "Pourquoi Dieu demande-t-il de construire un tabernacle plutôt qu'un temple en pierre ?",
+      "options": [
+        "Parce que c'est moins cher",
+        "Parce que le peuple voyage vers la Terre Promise",
+        "Parce qu'ils n'ont pas assez d'ouvriers",
+        "Parce que Moïse préfère les tentes"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Le tabernacle était portable car le peuple d'Israël était encore en voyage vers la Terre Promise. Dieu voulait les accompagner dans leur pèlerinage !"
+    },
+    {
+      "id": 2,
+      "text": "Qui Dieu a-t-Il choisi comme maîtres artisans pour diriger la construction ?",
+      "options": [
+        "Aaron et Miriam",
+        "Josué et Caleb",
+        "Betsaleel et Oholiab",
+        "Éléazar et Ithamar"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Dieu a spécifiquement choisi Betsaleel de la tribu de Juda et Oholiab de la tribu de Dan, leur donnant sagesse et habileté divines."
+    },
+    {
+      "id": 3,
+      "text": "Que contenait l'arche de l'alliance ?",
+      "options": [
+        "Les bijoux du peuple",
+        "Les tables de la Loi",
+        "Les offrandes d'or",
+        "Les vêtements d'Aaron"
+      ],
+      "correctAnswer": 1,
+      "explanation": "L'arche de l'alliance contenait les tables de pierre sur lesquelles Dieu avait écrit les Dix Commandements de Sa propre main."
+    },
+    {
+      "id": 4,
+      "text": "Comment le peuple a-t-il réagi à l'appel aux offrandes pour le tabernacle ?",
+      "options": [
+        "Ils ont refusé de donner",
+        "Ils ont donné à contrecœur",
+        "Ils ont donné si généreusement qu'il a fallu les arrêter",
+        "Seuls les riches ont contribué"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Le peuple d'Israël a donné avec tant de générosité et de joie que Moïse a dû proclamer qu'ils arrêtent d'apporter des offrandes car ils avaient largement assez !"
+    },
+    {
+      "id": 5,
+      "text": "Que s'est-il passé quand la construction du tabernacle a été achevée ?",
+      "options": [
+        "Ils ont fait une grande fête",
+        "Moïse a béni le peuple",
+        "La gloire de l'Éternel a rempli le tabernacle",
+        "Aaron a offert un sacrifice"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Quand tout fut achevé selon les instructions divines, la gloire de l'Éternel remplit le tabernacle, montrant que Dieu acceptait ce sanctuaire et venait habiter au milieu de Son peuple."
+    }
+  ]
+}

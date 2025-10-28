@@ -13,7 +13,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
   title,
   autoPlay = false,
   showControls = true,
-  className = ''
+  className = '',
 }) => {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -23,7 +23,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
   // Fonction pour convertir le texte en audio (utilise l'API Web Speech)
   const speakText = () => {
     if (!('speechSynthesis' in window)) {
-      setError('La synthèse vocale n\'est pas supportée sur cet appareil');
+      setError("La synthèse vocale n'est pas supportée sur cet appareil");
       return;
     }
 
@@ -31,7 +31,7 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
     window.speechSynthesis.cancel();
 
     const utterance = new SpeechSynthesisUtterance(text);
-    
+
     // Configuration de la voix
     utterance.rate = 0.8; // Vitesse de lecture (plus lente pour les enfants)
     utterance.pitch = 1.0; // Hauteur de la voix
@@ -39,10 +39,11 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
 
     // Sélectionner une voix française si disponible
     const voices = window.speechSynthesis.getVoices();
-    const frenchVoice = voices.find(voice => 
-      voice.lang.startsWith('fr') && voice.name.includes('Female')
-    ) || voices.find(voice => voice.lang.startsWith('fr'));
-    
+    const frenchVoice =
+      voices.find(
+        (voice) => voice.lang.startsWith('fr') && voice.name.includes('Female')
+      ) || voices.find((voice) => voice.lang.startsWith('fr'));
+
     if (frenchVoice) {
       utterance.voice = frenchVoice;
     }
@@ -113,11 +114,12 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
         disabled={isLoading}
         className={`
           flex items-center justify-center w-10 h-10 rounded-full transition-all duration-200
-          ${isLoading 
-            ? 'bg-gray-300 cursor-not-allowed' 
-            : isPlaying 
-              ? 'bg-red-500 hover:bg-red-600 text-white' 
-              : 'bg-blue-500 hover:bg-blue-600 text-white'
+          ${
+            isLoading
+              ? 'bg-gray-300 cursor-not-allowed'
+              : isPlaying
+                ? 'bg-red-500 hover:bg-red-600 text-white'
+                : 'bg-blue-500 hover:bg-blue-600 text-white'
           }
           transform hover:scale-105 active:scale-95
         `}
@@ -135,22 +137,30 @@ const AudioPlayer: React.FC<AudioPlayerProps> = ({
       {/* Informations sur la lecture */}
       <div className="flex-1 min-w-0">
         {title && (
-          <div className="text-sm font-medium text-gray-700 truncate">{title}</div>
+          <div className="text-sm font-medium text-gray-700 truncate">
+            {title}
+          </div>
         )}
         {isPlaying && (
-          <div className="text-xs text-blue-600 animate-pulse">Lecture en cours...</div>
+          <div className="text-xs text-blue-600 animate-pulse">
+            Lecture en cours...
+          </div>
         )}
-        {error && (
-          <div className="text-xs text-red-600">{error}</div>
-        )}
+        {error && <div className="text-xs text-red-600">{error}</div>}
       </div>
 
       {/* Indicateur de durée (simulation) */}
       {isPlaying && (
         <div className="flex items-center space-x-1">
           <div className="w-1 h-1 bg-blue-500 rounded-full animate-pulse"></div>
-          <div className="w-1 h-1 bg-blue-500 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }}></div>
-          <div className="w-1 h-1 bg-blue-500 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }}></div>
+          <div
+            className="w-1 h-1 bg-blue-500 rounded-full animate-pulse"
+            style={{ animationDelay: '0.2s' }}
+          ></div>
+          <div
+            className="w-1 h-1 bg-blue-500 rounded-full animate-pulse"
+            style={{ animationDelay: '0.4s' }}
+          ></div>
         </div>
       )}
     </div>

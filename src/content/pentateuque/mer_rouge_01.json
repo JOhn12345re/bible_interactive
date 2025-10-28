@@ -21,18 +21,152 @@
   ],
   "key_verse": "Dieu ouvre toujours un chemin de salut, même quand tout semble impossible.",
   "vocab": [
-    { "word": "Traversée", "hint": "Passer d'un côté à l'autre, traverser la mer." },
-    { "word": "À pied sec", "hint": "Marcher sans se mouiller, sur un sol sec." },
-    { "word": "Miracle", "hint": "Un événement extraordinaire que seul Dieu peut accomplir." },
-    { "word": "Délivrance", "hint": "Être sauvé, libéré d'un danger ou d'une situation difficile." }
+    {
+      "word": "Traversée",
+      "hint": "Passer d'un côté à l'autre, traverser la mer."
+    },
+    {
+      "word": "À pied sec",
+      "hint": "Marcher sans se mouiller, sur un sol sec."
+    },
+    {
+      "word": "Miracle",
+      "hint": "Un événement extraordinaire que seul Dieu peut accomplir."
+    },
+    {
+      "word": "Délivrance",
+      "hint": "Être sauvé, libéré d'un danger ou d'une situation difficile."
+    }
   ],
   "quiz": [
-    { "q": "Qui poursuivait les Israélites après leur sortie d'Égypte ?", "choices": ["Les Assyriens", "L'armée de Pharaon", "Les Babyloniens"], "answer": 1 },
-    { "q": "Que dit Moïse au peuple qui avait peur ?", "choices": ["Fuyez !", "Ne craignez rien, Dieu combattra pour vous", "Retournez en Égypte"], "answer": 1 },
-    { "q": "Comment les Israélites ont-ils traversé la mer ?", "choices": ["En bateau", "À pied sec", "En nageant"], "answer": 1 },
-    { "q": "Que s'est-il passé quand les Égyptiens ont voulu suivre ?", "choices": ["Ils ont réussi à traverser", "Les eaux les ont recouverts", "Ils ont fait demi-tour"], "answer": 1 },
-    { "q": "Que montre ce miracle ?", "choices": ["La force de Moïse", "La puissance de Dieu", "La chance des Israélites"], "answer": 1 }
+    {
+      "q": "Qui poursuivait les Israélites après leur sortie d'Égypte ?",
+      "choices": ["Les Assyriens", "L'armée de Pharaon", "Les Babyloniens"],
+      "answer": 1
+    },
+    {
+      "q": "Que dit Moïse au peuple qui avait peur ?",
+      "choices": [
+        "Fuyez !",
+        "Ne craignez rien, Dieu combattra pour vous",
+        "Retournez en Égypte"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "Comment les Israélites ont-ils traversé la mer ?",
+      "choices": ["En bateau", "À pied sec", "En nageant"],
+      "answer": 1
+    },
+    {
+      "q": "Que s'est-il passé quand les Égyptiens ont voulu suivre ?",
+      "choices": [
+        "Ils ont réussi à traverser",
+        "Les eaux les ont recouverts",
+        "Ils ont fait demi-tour"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "Que montre ce miracle ?",
+      "choices": [
+        "La force de Moïse",
+        "La puissance de Dieu",
+        "La chance des Israélites"
+      ],
+      "answer": 1
+    }
   ],
-  "mini_games": ["order_events", "quiz"],
+  "goldGame": {
+    "title": "La Mer Rouge - Questions d'Approfondissement",
+    "description": "Découvrez les leçons spirituelles de ce miracle extraordinaire",
+    "questions": [
+      {
+        "question": "Pourquoi Dieu a-t-Il permis que les Israélites soient coincés entre la mer et l'armée égyptienne ?",
+        "choices": [
+          "Pour les punir de leur manque de foi",
+          "Pour montrer Sa gloire et enseigner la confiance",
+          "Par accident",
+          "Pour les effrayer"
+        ],
+        "correct": 1,
+        "explanation": "Dieu permet parfois des situations impossibles pour révéler Sa puissance et nous apprendre à Lui faire entièrement confiance."
+      },
+      {
+        "question": "Que symbolise le passage de la mer Rouge dans la vie chrétienne ?",
+        "choices": [
+          "Le baptême et la libération du péché",
+          "Les difficultés de la vie",
+          "La mort physique",
+          "Le succès matériel"
+        ],
+        "correct": 0,
+        "explanation": "La traversée de la mer Rouge préfigure le baptême : nous passons de l'esclavage du péché à la liberté en Christ."
+      },
+      {
+        "question": "Quelle était l'attitude que Dieu attendait du peuple face au danger ?",
+        "choices": [
+          "La peur et la fuite",
+          "La foi et l'attente de Son intervention",
+          "La négociation avec l'ennemi",
+          "La résignation au destin"
+        ],
+        "correct": 1,
+        "explanation": "Dieu attend de nous la foi qui se tient tranquille et attend Son intervention, même dans les situations désespérées."
+      },
+      {
+        "question": "Que nous enseigne le fait que les mêmes eaux qui sauvent Israël détruisent l'Égypte ?",
+        "choices": [
+          "Dieu est injuste",
+          "Le même événement peut apporter salut ou jugement selon notre relation avec Dieu",
+          "C'est le hasard",
+          "Les Égyptiens étaient plus faibles"
+        ],
+        "correct": 1,
+        "explanation": "La même puissance divine qui sauve ceux qui Lui font confiance juge ceux qui s'opposent à Sa volonté."
+      },
+      {
+        "question": "Comment appliquer le message 'Ne craignez rien, Dieu combattra pour vous' aujourd'hui ?",
+        "choices": [
+          "Ne jamais avoir peur de rien",
+          "Faire confiance à Dieu dans nos épreuves et Le laisser agir",
+          "Éviter tous les problèmes",
+          "Compter uniquement sur nos forces"
+        ],
+        "correct": 1,
+        "explanation": "Ce message nous encourage à remettre nos combats à Dieu et à Lui faire confiance pour les situations qui nous dépassent."
+      },
+      {
+        "question": "Que représente le 'chemin dans la mer' que Dieu a ouvert ?",
+        "choices": [
+          "Dieu ouvre toujours un chemin quand tout semble impossible",
+          "Il faut savoir nager dans la vie",
+          "Les miracles n'arrivent qu'aux anciens",
+          "Il faut éviter les difficultés"
+        ],
+        "correct": 0,
+        "explanation": "Dieu spécialise dans l'ouverture de chemins là où il n'y en a pas, offrant des solutions divines aux problèmes humains."
+      }
+    ],
+    "passingScore": 4,
+    "reward": {
+      "type": "badge",
+      "name": "Marcheur sur les Eaux",
+      "description": "Vous comprenez la foi qui traverse l'impossible",
+      "icon": "🌊"
+    }
+  },
+  "story_steps": [
+    "Les Israélites quittent l'Égypte",
+    "L'armée de Pharaon les poursuit",
+    "Le peuple a peur devant la mer Rouge",
+    "Moïse encourage : 'Dieu combattra pour vous'",
+    "L'ange de Dieu se place derrière eux",
+    "Moïse étend sa main et la mer s'ouvre",
+    "Israël traverse à pied sec au milieu de la mer",
+    "Les Égyptiens les suivent dans la mer",
+    "Les eaux reviennent et engloutissent l'armée égyptienne"
+  ],
+  "mini_games": ["order_events", "quiz", "goldGame"],
   "assets": ["mer_rouge_1.png", "mer_rouge_2.png", "mer_rouge_3.png"]
 }

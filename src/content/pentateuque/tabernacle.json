@@ -1,0 +1,40 @@
+{
+  "id": "tabernacle",
+  "title": "Le Tabernacle",
+  "path": "Le Pentateuque",
+  "reading": [
+    "Dieu ordonne à Moïse de construire un sanctuaire mobile appelé le Tabernacle pour que Dieu habite au milieu de son peuple.",
+    "Les Israélites offrent de l'or, de l'argent, des tissus précieux et des peaux pour la construction.",
+    "Le Tabernacle est divisé en deux parties : le Lieu Saint et le Lieu Très Saint, séparés par un voile.",
+    "L'Arche de l'Alliance, symbole de la présence de Dieu, est placée dans le Lieu Très Saint.",
+    "La nuée de Dieu couvre le Tabernacle lorsque Dieu vient y habiter."
+  ],
+  "key_verse": "Ils me feront un sanctuaire, et j'habiterai au milieu d'eux. (Exode 25:8)",
+  "vocab": [
+    { "word": "Tabernacle", "hint": "Tente sacrée où Dieu rencontrait son peuple." },
+    { "word": "Sanctuaire", "hint": "Lieu consacré à Dieu." },
+    { "word": "Arche de l'Alliance", "hint": "Coffre sacré contenant les tables de la Loi." },
+    { "word": "Lieu Très Saint", "hint": "Partie la plus sacrée du Tabernacle." }
+  ],
+  "quiz": [
+    {
+      "q": "Pourquoi Dieu demande-t-il de construire le Tabernacle ?",
+      "choices": ["Pour avoir un lieu de rencontre avec son peuple", "Pour stocker des trésors", "Pour organiser des fêtes"],
+      "answer": 0
+    },
+    {
+      "q": "Qu'est-ce que l'Arche de l'Alliance ?",
+      "choices": ["Un coffre sacré", "Un autel", "Un chandelier"],
+      "answer": 0
+    },
+    {
+      "q": "Où se trouve l'Arche de l'Alliance dans le Tabernacle ?",
+      "choices": ["Dans le Lieu Saint", "Dans le Lieu Très Saint", "À l'entrée"],
+      "answer": 1
+    }
+  ],
+  "mini_games": ["order_events", "quiz"],
+  "assets": ["tabernacle_1.png", "tabernacle_2.png"],
+  "theological_message": "Dieu désire être proche de son peuple et lui donne des moyens de s'approcher de Lui.",
+  "life_application": "Dieu veut habiter dans le cœur de chacun. Préparons-lui une place dans notre vie."
+}

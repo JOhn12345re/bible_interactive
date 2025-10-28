@@ -16,36 +16,64 @@
   ],
   "key_verse": "Le serpent fut maudit entre tous les animaux des champs.",
   "vocab": [
-    { "word": "Éden", "hint": "Le jardin parfait que Dieu avait créé pour Adam et Ève." },
-    { "word": "arbre de la connaissance", "hint": "L'arbre dont Dieu avait interdit de manger le fruit." },
-    { "word": "serpent", "hint": "L'animal qui trompa Ève et représenta Satan." },
-    { "word": "chute", "hint": "La désobéissance d'Adam et Ève qui introduisit le péché dans le monde." },
-    { "word": "chérubins", "hint": "Des anges qui gardèrent l'accès à l'arbre de vie." }
-  ],
-  "quiz": [
-    { 
-      "q": "Qui trompa Ève dans le jardin d'Éden ?", 
-      "choices": ["Un ange", "Le serpent", "Adam"], 
-      "answer": 1 
+    {
+      "word": "Éden",
+      "hint": "Le jardin parfait que Dieu avait créé pour Adam et Ève."
     },
-    { 
-      "q": "De quel arbre Adam et Ève ne devaient-ils pas manger ?", 
-      "choices": ["L'arbre de vie", "L'arbre de la connaissance", "L'arbre du bien"], 
-      "answer": 1 
+    {
+      "word": "arbre de la connaissance",
+      "hint": "L'arbre dont Dieu avait interdit de manger le fruit."
     },
-    { 
-      "q": "Que se passa-t-il après qu'ils eurent mangé le fruit ?", 
-      "choices": ["Ils devinrent immortels", "Ils réalisèrent qu'ils étaient nus", "Ils devinrent comme Dieu"], 
-      "answer": 1 
+    {
+      "word": "serpent",
+      "hint": "L'animal qui trompa Ève et représenta Satan."
     },
-    { 
-      "q": "Qui garda l'accès à l'arbre de vie après la chute ?", 
-      "choices": ["Les anges", "Les chérubins", "Le serpent"], 
-      "answer": 1 
+    {
+      "word": "chute",
+      "hint": "La désobéissance d'Adam et Ève qui introduisit le péché dans le monde."
+    },
+    {
+      "word": "chérubins",
+      "hint": "Des anges qui gardèrent l'accès à l'arbre de vie."
     }
   ],
-  "mini_games": ["order_events", "quiz"],
-  "assets": ["adam_eve_1.png", "adam_eve_2.png", "adam_eve_3.png", "adam_eve_4.png"],
+  "quiz": [
+    {
+      "q": "Qui trompa Ève dans le jardin d'Éden ?",
+      "choices": ["Un ange", "Le serpent", "Adam"],
+      "answer": 1
+    },
+    {
+      "q": "De quel arbre Adam et Ève ne devaient-ils pas manger ?",
+      "choices": [
+        "L'arbre de vie",
+        "L'arbre de la connaissance",
+        "L'arbre du bien"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "Que se passa-t-il après qu'ils eurent mangé le fruit ?",
+      "choices": [
+        "Ils devinrent immortels",
+        "Ils réalisèrent qu'ils étaient nus",
+        "Ils devinrent comme Dieu"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "Qui garda l'accès à l'arbre de vie après la chute ?",
+      "choices": ["Les anges", "Les chérubins", "Le serpent"],
+      "answer": 1
+    }
+  ],
+  "mini_games": ["order_events", "timeline_cards", "quiz"],
+  "assets": [
+    "adam_eve_1.png",
+    "adam_eve_2.png",
+    "adam_eve_3.png",
+    "adam_eve_4.png"
+  ],
   "story_steps": [
     "Adam et Ève dans le jardin d'Éden",
     "Le serpent tente Ève",

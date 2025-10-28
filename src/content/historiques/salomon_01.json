@@ -26,17 +26,61 @@
   ],
   "key_verse": "Dieu honore ceux qui lui demandent un cœur sage, et il habite au milieu de son peuple quand on lui réserve une place spéciale.",
   "vocab": [
-    { "word": "Sagesse", "hint": "La capacité de faire de bons choix et de comprendre ce qui est juste." },
-    { "word": "Temple", "hint": "Un lieu sacré où les gens viennent adorer Dieu." },
-    { "word": "Arche de l'alliance", "hint": "Le coffre sacré qui contenait les tables de la loi de Moïse." },
-    { "word": "Gloire de Dieu", "hint": "La présence visible et puissante de Dieu." }
+    {
+      "word": "Sagesse",
+      "hint": "La capacité de faire de bons choix et de comprendre ce qui est juste."
+    },
+    {
+      "word": "Temple",
+      "hint": "Un lieu sacré où les gens viennent adorer Dieu."
+    },
+    {
+      "word": "Arche de l'alliance",
+      "hint": "Le coffre sacré qui contenait les tables de la loi de Moïse."
+    },
+    {
+      "word": "Gloire de Dieu",
+      "hint": "La présence visible et puissante de Dieu."
+    }
   ],
   "quiz": [
-    { "q": "Que demanda Salomon à Dieu quand il devint roi ?", "choices": ["La richesse", "La sagesse", "La victoire"], "answer": 1 },
-    { "q": "Où Salomon fit-il construire le Temple ?", "choices": ["À Samarie", "À Jérusalem", "À Bethléem"], "answer": 1 },
-    { "q": "Qu'est-ce qui fut placé dans le Temple ?", "choices": ["Les trésors du roi", "L'arche de l'alliance", "Les couronnes"], "answer": 1 },
-    { "q": "Que demanda Salomon dans sa prière de consécration ?", "choices": ["Que Dieu lui donne plus de richesse", "Que Dieu écoute les prières", "Que Dieu lui donne plus de pouvoir"], "answer": 1 },
-    { "q": "Que montre cette histoire ?", "choices": ["L'importance de la richesse", "L'importance de la sagesse et de l'adoration", "L'importance du pouvoir"], "answer": 1 }
+    {
+      "q": "Que demanda Salomon à Dieu quand il devint roi ?",
+      "choices": ["La richesse", "La sagesse", "La victoire"],
+      "answer": 1
+    },
+    {
+      "q": "Où Salomon fit-il construire le Temple ?",
+      "choices": ["À Samarie", "À Jérusalem", "À Bethléem"],
+      "answer": 1
+    },
+    {
+      "q": "Qu'est-ce qui fut placé dans le Temple ?",
+      "choices": [
+        "Les trésors du roi",
+        "L'arche de l'alliance",
+        "Les couronnes"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "Que demanda Salomon dans sa prière de consécration ?",
+      "choices": [
+        "Que Dieu lui donne plus de richesse",
+        "Que Dieu écoute les prières",
+        "Que Dieu lui donne plus de pouvoir"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "Que montre cette histoire ?",
+      "choices": [
+        "L'importance de la richesse",
+        "L'importance de la sagesse et de l'adoration",
+        "L'importance du pouvoir"
+      ],
+      "answer": 1
+    }
   ],
   "mini_games": ["order_events", "quiz"],
   "assets": ["salomon_1.png", "salomon_2.png", "salomon_3.png"]

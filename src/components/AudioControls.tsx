@@ -4,16 +4,16 @@ import { useSettings } from '../state/settingsStore';
 
 const AudioControls = () => {
   const { contrastHigh } = useSettings();
-  const { 
-    soundEnabled, 
-    musicEnabled, 
-    volume, 
-    setSoundEnabled, 
-    setMusicEnabled, 
+  const {
+    soundEnabled,
+    musicEnabled,
+    volume,
+    setSoundEnabled,
+    setMusicEnabled,
     setVolume,
-    currentMusic
+    currentMusic,
   } = useAudioStore();
-  
+
   const [showControls, setShowControls] = useState(false);
 
   return (
@@ -22,7 +22,7 @@ const AudioControls = () => {
       <button
         onClick={() => setShowControls(!showControls)}
         className={`w-12 h-12 rounded-full shadow-lg transition-all duration-300 hover:scale-110 ${
-          contrastHigh 
+          contrastHigh
             ? 'bg-contrast-text text-contrast-bg'
             : 'bg-gradient-to-br from-purple-500 to-blue-600 text-white'
         } ${showControls ? 'rotate-180' : ''}`}
@@ -33,13 +33,15 @@ const AudioControls = () => {
 
       {/* Panel de contrôles */}
       {showControls && (
-        <div className={`absolute bottom-16 right-0 p-4 rounded-xl shadow-xl border-2 min-w-[200px] transform transition-all duration-300 animate-slide-in-up ${
-          contrastHigh 
-            ? 'bg-contrast-bg border-contrast-text text-contrast-text'
-            : 'bg-white border-purple-200 text-gray-800'
-        }`}>
+        <div
+          className={`absolute bottom-16 right-0 p-4 rounded-xl shadow-xl border-2 min-w-[200px] transform transition-all duration-300 animate-slide-in-up ${
+            contrastHigh
+              ? 'bg-contrast-bg border-contrast-text text-contrast-text'
+              : 'bg-white border-purple-200 text-gray-800'
+          }`}
+        >
           <h3 className="font-bold mb-3 text-center">🎵 Audio</h3>
-          
+
           {/* Contrôle des sons */}
           <div className="mb-4">
             <label className="flex items-center justify-between cursor-pointer">
@@ -51,14 +53,24 @@ const AudioControls = () => {
                   onChange={(e) => setSoundEnabled(e.target.checked)}
                   className="sr-only"
                 />
-                <div className={`w-10 h-6 rounded-full transition-colors duration-300 ${
-                  soundEnabled 
-                    ? contrastHigh ? 'bg-contrast-text' : 'bg-green-500'
-                    : contrastHigh ? 'bg-contrast-text/30' : 'bg-gray-300'
-                }`}>
-                  <div className={`w-4 h-4 bg-white rounded-full shadow transform transition-transform duration-300 ${
-                    soundEnabled ? 'translate-x-5 translate-y-1' : 'translate-x-1 translate-y-1'
-                  }`}></div>
+                <div
+                  className={`w-10 h-6 rounded-full transition-colors duration-300 ${
+                    soundEnabled
+                      ? contrastHigh
+                        ? 'bg-contrast-text'
+                        : 'bg-green-500'
+                      : contrastHigh
+                        ? 'bg-contrast-text/30'
+                        : 'bg-gray-300'
+                  }`}
+                >
+                  <div
+                    className={`w-4 h-4 bg-white rounded-full shadow transform transition-transform duration-300 ${
+                      soundEnabled
+                        ? 'translate-x-5 translate-y-1'
+                        : 'translate-x-1 translate-y-1'
+                    }`}
+                  ></div>
                 </div>
               </div>
             </label>
@@ -75,14 +87,24 @@ const AudioControls = () => {
                   onChange={(e) => setMusicEnabled(e.target.checked)}
                   className="sr-only"
                 />
-                <div className={`w-10 h-6 rounded-full transition-colors duration-300 ${
-                  musicEnabled 
-                    ? contrastHigh ? 'bg-contrast-text' : 'bg-blue-500'
-                    : contrastHigh ? 'bg-contrast-text/30' : 'bg-gray-300'
-                }`}>
-                  <div className={`w-4 h-4 bg-white rounded-full shadow transform transition-transform duration-300 ${
-                    musicEnabled ? 'translate-x-5 translate-y-1' : 'translate-x-1 translate-y-1'
-                  }`}></div>
+                <div
+                  className={`w-10 h-6 rounded-full transition-colors duration-300 ${
+                    musicEnabled
+                      ? contrastHigh
+                        ? 'bg-contrast-text'
+                        : 'bg-blue-500'
+                      : contrastHigh
+                        ? 'bg-contrast-text/30'
+                        : 'bg-gray-300'
+                  }`}
+                >
+                  <div
+                    className={`w-4 h-4 bg-white rounded-full shadow transform transition-transform duration-300 ${
+                      musicEnabled
+                        ? 'translate-x-5 translate-y-1'
+                        : 'translate-x-1 translate-y-1'
+                    }`}
+                  ></div>
                 </div>
               </div>
             </label>
@@ -101,7 +123,7 @@ const AudioControls = () => {
               value={volume}
               onChange={(e) => setVolume(parseFloat(e.target.value))}
               className={`w-full h-2 rounded-lg appearance-none cursor-pointer ${
-                contrastHigh 
+                contrastHigh
                   ? 'bg-contrast-text/30 slider-contrast'
                   : 'bg-gray-200 slider-thumb'
               }`}
@@ -110,11 +132,13 @@ const AudioControls = () => {
 
           {/* État actuel */}
           {currentMusic && (
-            <div className={`text-xs text-center p-2 rounded ${
-              contrastHigh ? 'bg-contrast-text/10' : 'bg-purple-50'
-            }`}>
+            <div
+              className={`text-xs text-center p-2 rounded ${
+                contrastHigh ? 'bg-contrast-text/10' : 'bg-purple-50'
+              }`}
+            >
               🎵 {currentMusic === 'peaceful' && 'Ambiance Paisible'}
-              {currentMusic === 'adventure' && 'Musique d\'Aventure'}
+              {currentMusic === 'adventure' && "Musique d'Aventure"}
               {currentMusic === 'meditation' && 'Méditation'}
             </div>
           )}
@@ -124,7 +148,7 @@ const AudioControls = () => {
             <button
               onClick={() => useAudioStore.getState().playMusic('peaceful')}
               className={`p-2 rounded text-xs transition-colors ${
-                contrastHigh 
+                contrastHigh
                   ? 'bg-contrast-text/20 hover:bg-contrast-text/30'
                   : 'bg-green-100 hover:bg-green-200 text-green-800'
               }`}
@@ -135,7 +159,7 @@ const AudioControls = () => {
             <button
               onClick={() => useAudioStore.getState().playMusic('adventure')}
               className={`p-2 rounded text-xs transition-colors ${
-                contrastHigh 
+                contrastHigh
                   ? 'bg-contrast-text/20 hover:bg-contrast-text/30'
                   : 'bg-blue-100 hover:bg-blue-200 text-blue-800'
               }`}
@@ -146,7 +170,7 @@ const AudioControls = () => {
             <button
               onClick={() => useAudioStore.getState().playMusic('meditation')}
               className={`p-2 rounded text-xs transition-colors ${
-                contrastHigh 
+                contrastHigh
                   ? 'bg-contrast-text/20 hover:bg-contrast-text/30'
                   : 'bg-purple-100 hover:bg-purple-200 text-purple-800'
               }`}

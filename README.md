@@ -5,12 +5,14 @@ Une application web interactive pour découvrir les histoires bibliques à trave
 ## ✨ Fonctionnalités
 
 ### 🎮 **Jeux Interactifs**
+
 - Histoires bibliques adaptées aux enfants
 - Activités éducatives et ludiques
 - Système de badges et récompenses
 - Interface adaptée aux enfants
 
 ### 📚 **Service Bible Louis Segond**
+
 - **Traduction** : Louis Segond 1910 (français)
 - **Source** : Données locales JSON
 - **Fonctionnalités** :
@@ -20,6 +22,7 @@ Une application web interactive pour découvrir les histoires bibliques à trave
   - Interface de test intégrée
 
 ### 🎯 **Explorateur de Thèmes Bibliques**
+
 - **20 thèmes bibliques** avec versets LSG 1910
 - **Thèmes disponibles** :
   - Peur, Joie, Foi, Amour, Pardon
@@ -34,18 +37,21 @@ Une application web interactive pour découvrir les histoires bibliques à trave
   - Interface moderne et intuitive
 
 ### 🎯 **Histoires Disponibles**
+
 - **Pentateuque** : Adam et Ève, Noé, Abraham, Isaac, Jacob, Joseph, Moïse
 - **Historiques** : Gédéon, Samson, Salomon
 - **Prophétiques** : Élie, Ézéchiel
 - **Nouveau Testament** : Naissance de Jésus, Baptême, Tentations
 
 ### 📅 **Psaumes par Jour**
+
 - Calcul automatique du psaume du jour
 - Interface dédiée pour la lecture
 - Psaumes de la semaine
 - Debug intégré pour le diagnostic
 
 ### 🎨 **Interface Utilisateur**
+
 - **Design moderne** : Gradients colorés et animations fluides
 - **Responsive** : Adapté aux mobiles et tablettes
 - **Accessibilité** : Mode contraste élevé et polices adaptées
@@ -54,10 +60,12 @@ Une application web interactive pour découvrir les histoires bibliques à trave
 ## 🚀 Installation et Démarrage
 
 ### Prérequis
+
 - Node.js (version 16 ou supérieure)
 - npm ou yarn
 
 ### Installation
+
 ```bash
 # Cloner le dépôt
 git clone git@github.com:JOhn12345re/bible_interactive.git
@@ -114,6 +122,7 @@ public/
 ## 🔧 Configuration
 
 ### Variables d'Environnement
+
 Créez un fichier `.env` basé sur `.env.example` :
 
 ```env
@@ -165,17 +174,20 @@ const searchResults = await topicsService.searchTopics('amour');
 ## 🎨 Personnalisation
 
 ### Thèmes et Accessibilité
+
 - Mode contraste élevé
 - Ajustement de la taille de police
 - Police OpenDyslexic pour la dyslexie
 - Interface adaptée aux enfants
 
 ### Ajout de Nouvelles Histoires
+
 1. Créer un fichier JSON dans `public/content/`
 2. Ajouter la méthode correspondante dans `bibleApi.ts`
 3. Créer le composant de leçon
 
 ### Ajout de Nouveaux Thèmes Bibliques
+
 1. Modifier le fichier `public/api/topics.json`
 2. Ajouter le nouveau thème avec ses versets
 3. Mettre à jour les noms et descriptions dans `topicsService.ts`
@@ -183,12 +195,14 @@ const searchResults = await topicsService.searchTopics('amour');
 ## 🚀 Déploiement
 
 ### Vercel (Recommandé)
+
 ```bash
 npm run build
 vercel --prod
 ```
 
 ### Autres Plateformes
+
 ```bash
 npm run build
 # Déployer le dossier dist/
@@ -232,6 +246,7 @@ Ce projet est sous licence MIT. Voir le fichier `LICENSE` pour plus de détails.
 ## 🆕 Dernières Mises à Jour
 
 ### Version Actuelle
+
 - ✅ **Explorateur de Thèmes Bibliques** - 20 thèmes avec versets LSG 1910
 - ✅ **Interface Utilisateur Améliorée** - Design moderne et responsive
 - ✅ **Service Bible Optimisé** - Chargement local et debug intégré

@@ -8,7 +8,9 @@
 
 .sermon-card:hover {
   transform: translateY(-2px);
-  box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  box-shadow:
+    0 10px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04);
 }
 
 /* Styles pour le lecteur vidéo */
@@ -151,8 +153,12 @@
 }
 
 @keyframes sermon-spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Styles pour les messages d'erreur */
@@ -188,12 +194,12 @@
   .sermon-chapters {
     grid-template-columns: 1fr;
   }
-  
+
   .sermon-controls {
     flex-direction: column;
     gap: 0.5rem;
   }
-  
+
   .sermon-tags {
     justify-content: center;
   }
@@ -219,7 +225,9 @@
 .sermon-page-enter-active {
   opacity: 1;
   transform: translateY(0);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
 }
 
 .sermon-page-exit {
@@ -230,7 +238,9 @@
 .sermon-page-exit-active {
   opacity: 0;
   transform: translateY(-20px);
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  transition:
+    opacity 0.3s ease,
+    transform 0.3s ease;
 }
 
 /* Styles pour les raccourcis clavier */

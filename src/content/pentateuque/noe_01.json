@@ -1,26 +1,129 @@
 {
   "id": "noe_01",
-  "title": "Noé et l'Arche — Le Déluge et l'Alliance",
-  "path": "Le Pentateuque",
+  "title": "Noé et le Déluge",
+  "book": "Genèse",
+  "chapter_range": "6–9",
   "reading": [
-    "Dieu vit que les hommes faisaient beaucoup de mal sur la terre. Mais Noé était un homme juste, et Dieu lui parla.",
-    "Il lui demanda de construire une grande arche pour y mettre sa famille et des animaux de chaque espèce.",
-    "Quand le déluge arriva, l'eau recouvrit la terre pendant quarante jours et quarante nuits. Seuls ceux qui étaient dans l'arche furent sauvés.",
-    "Quand les eaux baissèrent, Noé sortit et offrit un sacrifice à Dieu. Alors Dieu fit une alliance avec lui et mit l'arc-en-ciel dans le ciel comme signe de sa promesse de ne plus jamais détruire la terre par un déluge."
+    {
+      "verse": "Genèse 6:5-7",
+      "text": "L'Éternel vit que les hommes faisaient beaucoup de mal sur la terre. Il parla à Noé, homme juste, et lui dit : 'Entre dans l'arche, toi et toute ta maison, car je vais envoyer un déluge sur la terre.'"
+    },
+    {
+      "verse": "Genèse 6:14-16",
+      "text": "Dieu donna à Noé les instructions pour construire une grande arche en bois de gopher, avec des compartiments et du goudron pour l'étanchéité. Noé suivit fidèlement ces instructions avec sa famille."
+    },
+    {
+      "verse": "Genèse 7:2-12",
+      "text": "Noé fit entrer les animaux de chaque espèce, deux par deux ou selon l'ordre de Dieu. Le déluge arriva et recouvrit toute la terre pendant quarante jours et quarante nuits. Seules les créatures dans l'arche furent sauvées."
+    },
+    {
+      "verse": "Genèse 8:13-20",
+      "text": "Quand l'eau baissa, Noé sortit de l'arche avec sa famille et tous les animaux. Il bâtit un autel et offrit des holocaustes à Dieu."
+    },
+    {
+      "verse": "Genèse 9:12-17",
+      "text": "Dieu plaça un arc-en-ciel dans le ciel comme signe de son alliance avec Noé et toute la terre : Il ne détruirait plus jamais la terre par un déluge."
+    }
+  ],
+  "memory_verse": {
+    "reference": "Genèse 9:13",
+    "text": "Je mets mon arc dans la nuée, et il servira de signe d'alliance entre moi et la terre."
+  },
+  "key_verses": [
+    {
+      "reference": "Genèse 6:13",
+      "text": "L'Éternel dit à Noé : La fin de toute chair est arrêtée devant moi ; car la terre est pleine de violence à cause d'eux ; voici, je vais les détruire avec la terre."
+    },
+    {
+      "reference": "Genèse 6:14-15",
+      "text": "Instructions pour construire l'arche."
+    },
+    {
+      "reference": "Genèse 6:18",
+      "text": "Mais j'établirai mon alliance avec toi ; tu entreras dans l'arche, toi et tes fils, ta femme et les femmes de tes fils."
+    },
+    {
+      "reference": "Genèse 7:7",
+      "text": "Noé entra dans l'arche avec ses fils, sa femme et les femmes de ses fils, à cause des eaux du déluge."
+    },
+    {
+      "reference": "Genèse 8:20",
+      "text": "Noé bâtit un autel à l'Éternel, et prit de tous les animaux purs et de toutes les volailles pures, et il offrit des holocaustes sur l'autel."
+    },
+    {
+      "reference": "Genèse 9:13",
+      "text": "Je mets mon arc dans la nuée, et il servira de signe d'alliance entre moi et la terre."
+    }
+  ],
+  "vocabulary": [
+    { "word": "Arche", "definition": "Grande embarcation construite par Noé pour sauver sa famille et les animaux." },
+    { "word": "Holocauste", "definition": "Offrande brûlée à Dieu pour lui rendre gloire et gratitude." },
+    { "word": "Coudée", "definition": "Ancienne unité de mesure, environ la longueur du bras." },
+    { "word": "Alliance", "definition": "Promesse ou engagement de Dieu envers les hommes." },
+    { "word": "Arc-en-ciel", "definition": "Signe de l'alliance de Dieu avec Noé et toute la terre." }
   ],
   "key_verse": "Dieu sauve ceux qui lui font confiance et il garde toujours ses promesses.",
-  "vocab": [
-    { "word": "Arche", "hint": "Grand bateau construit par Noé pour sauver sa famille et les animaux." },
-    { "word": "Déluge", "hint": "Grande inondation qui a recouvert toute la terre." },
-    { "word": "Alliance", "hint": "Promesse solennelle entre Dieu et les hommes." },
-    { "word": "Arc-en-ciel", "hint": "Signe de l'alliance de Dieu avec Noé." }
-  ],
   "quiz": [
-    { "q": "Pourquoi Dieu a-t-il demandé à Noé de construire une arche ?", "choices": ["Pour voyager", "Pour sauver sa famille et les animaux", "Pour pêcher"], "answer": 1 },
-    { "q": "Combien de temps a duré le déluge ?", "choices": ["7 jours", "40 jours et 40 nuits", "1 an"], "answer": 1 },
-    { "q": "Quel est le signe de l'alliance de Dieu avec Noé ?", "choices": ["Une étoile", "L'arc-en-ciel", "Un arbre"], "answer": 1 },
-    { "q": "Qui a été sauvé du déluge ?", "choices": ["Tout le monde", "Seulement Noé", "Noé, sa famille et les animaux de l'arche"], "answer": 2 }
+    {
+      "question": "Pourquoi Dieu a-t-il demandé à Noé de construire une arche ?",
+      "options": [
+        "Pour voyager",
+        "Pour sauver sa famille et les animaux",
+        "Pour pêcher"
+      ],
+      "correct": 1,
+      "explanation": "Dieu voulait sauver Noé, sa famille et les animaux du Déluge (Genèse 6:18-20)."
+    },
+    {
+      "question": "Combien de temps a duré le déluge ?",
+      "options": [
+        "7 jours",
+        "40 jours et 40 nuits",
+        "1 an"
+      ],
+      "correct": 1,
+      "explanation": "Le déluge a duré 40 jours et 40 nuits (Genèse 7:12)."
+    },
+    {
+      "question": "Quel est le signe de l'alliance de Dieu avec Noé ?",
+      "options": [
+        "Une étoile",
+        "L'arc-en-ciel",
+        "Un arbre"
+      ],
+      "correct": 1,
+      "explanation": "L'arc-en-ciel est le signe de l'alliance de Dieu (Genèse 9:13)."
+    },
+    {
+      "question": "Que fit Noé après être sorti de l'arche ?",
+      "options": [
+        "Il construisit une maison",
+        "Il bâtit un autel et offrit un sacrifice à Dieu",
+        "Il partit en voyage"
+      ],
+      "correct": 1,
+      "explanation": "Noé bâtit un autel à l'Éternel et offrit des sacrifices (Genèse 8:20)."
+    },
+    {
+      "question": "Qui est entré dans l'arche avec Noé ?",
+      "options": [
+        "Seulement Noé",
+        "Noé, sa famille et les animaux",
+        "Toute la ville"
+      ],
+      "correct": 1,
+      "explanation": "Noé, sa famille et les animaux sont entrés dans l'arche (Genèse 7:7)."
+    }
   ],
   "mini_games": ["order_events", "quiz"],
+  "story_steps": [
+    "Dieu voit la méchanceté des hommes",
+    "Dieu dit à Noé de construire une arche",
+    "Noé et les animaux entrent dans l'arche",
+    "Le déluge recouvre la terre",
+    "L'eau baisse et l'arche se pose",
+    "Noé sort et offre un sacrifice",
+    "Dieu place l'arc-en-ciel dans le ciel"
+  ],
   "assets": ["noe_1.png", "noe_2.png", "noe_3.png", "noe_4.png"]
 }

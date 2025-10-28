@@ -12,14 +12,14 @@ interface GreekTextProps {
   className?: string;
 }
 
-export function GreekText({ 
-  book, 
-  chapter, 
-  verseStart, 
-  verseEnd, 
+export function GreekText({
+  book,
+  chapter,
+  verseStart,
+  verseEnd,
   showTransliteration = false,
   showComparison = true,
-  className = ''
+  className = '',
 }: GreekTextProps) {
   const [greekVerses, setGreekVerses] = useState<LXXVerse[]>([]);
   const [frenchVerses, setFrenchVerses] = useState<BibleVerse[]>([]);
@@ -34,9 +34,9 @@ export function GreekText({
 
         // Charger les versets grecs
         const greekData = await lxxApi.getGreekVerses(
-          book, 
-          chapter, 
-          verseStart, 
+          book,
+          chapter,
+          verseStart,
           verseEnd
         );
         setGreekVerses(greekData);
@@ -91,11 +91,13 @@ export function GreekText({
     <div className={`space-y-4 ${className}`}>
       {greekVerses.map((greekVerse) => {
         const frenchVerse = frenchVerses.find(
-          v => v.chapter === greekVerse.chapter && v.verse_start === greekVerse.verse
+          (v) =>
+            v.chapter === greekVerse.chapter &&
+            v.verse_start === greekVerse.verse
         );
 
         return (
-          <div 
+          <div
             key={`${greekVerse.chapter}-${greekVerse.verse}`}
             className="border-l-4 border-indigo-500 pl-4 py-2"
           >
@@ -109,7 +111,7 @@ export function GreekText({
               <div className="text-xs uppercase tracking-wide text-indigo-600 font-semibold mb-1">
                 Grec (LXX)
               </div>
-              <p 
+              <p
                 className="text-lg leading-relaxed text-gray-800 font-serif"
                 dir="ltr"
                 style={{ fontFamily: 'Times New Roman, serif' }}
@@ -154,12 +156,16 @@ export function GreekText({
                       'N.NSM': 'Nom, nominatif singulier masculin',
                       'V.AAI3S': 'Verbe, aoriste actif indicatif, 3e singulier',
                       'RA.NSM': 'Article défini, nominatif singulier masculin',
-                      'C': 'Conjonction',
-                      'P': 'Préposition'
+                      C: 'Conjonction',
+                      P: 'Préposition',
                     };
                     const title = titles[token] || 'Morphologie grecque';
                     return (
-                      <span key={idx} title={title} className="px-1.5 py-0.5 bg-gray-100 rounded">
+                      <span
+                        key={idx}
+                        title={title}
+                        className="px-1.5 py-0.5 bg-gray-100 rounded"
+                      >
                         {token}
                       </span>
                     );
@@ -169,24 +175,25 @@ export function GreekText({
             )}
 
             {/* Numéros Strong (optionnel) */}
-            {greekVerse.strong_numbers && greekVerse.strong_numbers.length > 0 && (
-              <details className="mt-2">
-                <summary className="text-xs text-gray-500 cursor-pointer hover:text-gray-700">
-                  Numéros Strong
-                </summary>
-                <div className="mt-2 flex flex-wrap gap-1">
-                  {greekVerse.strong_numbers.map((num, index) => (
-                    <span 
-                      key={index}
-                      title={`Strong G${num}`}
-                      className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded"
-                    >
-                      G{num}
-                    </span>
-                  ))}
-                </div>
-              </details>
-            )}
+            {greekVerse.strong_numbers &&
+              greekVerse.strong_numbers.length > 0 && (
+                <details className="mt-2">
+                  <summary className="text-xs text-gray-500 cursor-pointer hover:text-gray-700">
+                    Numéros Strong
+                  </summary>
+                  <div className="mt-2 flex flex-wrap gap-1">
+                    {greekVerse.strong_numbers.map((num, index) => (
+                      <span
+                        key={index}
+                        title={`Strong G${num}`}
+                        className="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded"
+                      >
+                        G{num}
+                      </span>
+                    ))}
+                  </div>
+                </details>
+              )}
           </div>
         );
       })}
@@ -194,9 +201,9 @@ export function GreekText({
       {/* Note explicative */}
       <div className="text-xs text-gray-500 mt-4 p-3 bg-blue-50 rounded-lg">
         <p>
-          <strong>Note :</strong> Le texte grec provient de la Septante (LXX) 
-          selon l'édition de Rahlfs (1935), la traduction grecque de l'Ancien Testament 
-          utilisée par l'Église orthodoxe.
+          <strong>Note :</strong> Le texte grec provient de la Septante (LXX)
+          selon l'édition de Rahlfs (1935), la traduction grecque de l'Ancien
+          Testament utilisée par l'Église orthodoxe.
         </p>
       </div>
     </div>

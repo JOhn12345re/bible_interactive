@@ -14,30 +14,55 @@
   ],
   "key_verse": "L'Éternel envoya un grand vent sur la mer, et il y eut une grande tempête.",
   "vocab": [
-    { "word": "Ninive", "hint": "Grande capitale de l'Assyrie, ennemie d'Israël à l'époque." },
-    { "word": "Tarsis", "hint": "Ville lointaine dans la direction opposée à Ninive." },
-    { "word": "tirage au sort", "hint": "Méthode ancienne pour connaître la volonté divine." },
-    { "word": "prophète", "hint": "Personne choisie par Dieu pour transmettre son message." }
+    {
+      "word": "Ninive",
+      "hint": "Grande capitale de l'Assyrie, ennemie d'Israël à l'époque."
+    },
+    {
+      "word": "Tarsis",
+      "hint": "Ville lointaine dans la direction opposée à Ninive."
+    },
+    {
+      "word": "tirage au sort",
+      "hint": "Méthode ancienne pour connaître la volonté divine."
+    },
+    {
+      "word": "prophète",
+      "hint": "Personne choisie par Dieu pour transmettre son message."
+    }
   ],
   "quiz": [
-    { 
-      "q": "Pourquoi Jonas fuit-il sa mission ?", 
-      "choices": ["Il a peur", "Il ne veut pas que Dieu pardonne aux ennemis", "Il est malade"], 
-      "answer": 1 
+    {
+      "q": "Pourquoi Jonas fuit-il sa mission ?",
+      "choices": [
+        "Il a peur",
+        "Il ne veut pas que Dieu pardonne aux ennemis",
+        "Il est malade"
+      ],
+      "answer": 1
     },
-    { 
-      "q": "Comment les marins découvrent-ils que Jonas est responsable ?", 
-      "choices": ["Par tirage au sort", "Jonas l'avoue", "Un ange le leur dit"], 
-      "answer": 0 
+    {
+      "q": "Comment les marins découvrent-ils que Jonas est responsable ?",
+      "choices": ["Par tirage au sort", "Jonas l'avoue", "Un ange le leur dit"],
+      "answer": 0
     },
-    { 
-      "q": "Que fait Jonas pour arrêter la tempête ?", 
-      "choices": ["Il prie", "Il se jette à la mer", "Il demande aux marins de le jeter"], 
-      "answer": 2 
+    {
+      "q": "Que fait Jonas pour arrêter la tempête ?",
+      "choices": [
+        "Il prie",
+        "Il se jette à la mer",
+        "Il demande aux marins de le jeter"
+      ],
+      "answer": 2
     }
   ],
   "mini_games": ["order_events"],
-  "assets": ["jonas_fuite_1.png", "jonas_fuite_2.png", "jonas_fuite_3.png", "jonas_fuite_4.png"],
+  "assets": [
+    "jonas_fuite_1.png",
+    "jonas_fuite_2.png",
+    "jonas_fuite_3.png",
+    "jonas_fuite_4.png"
+  ],
   "historical_context": {
     "period": "Vᵉ siècle av. J.-C., période perse",
     "context": "Israël réduit à une petite province. Communauté souvent fermée aux païens.",

@@ -1,5 +1,9 @@
 import { useState, useEffect, useCallback } from 'react';
-import { bibleApi, type BibleVerse, type BibleVersion } from '../services/bibleApi';
+import {
+  bibleApi,
+  type BibleVerse,
+  type BibleVersion,
+} from '../services/bibleApi';
 
 interface UseBibleApiState {
   verses: BibleVerse[];
@@ -20,7 +24,7 @@ export function useBibleApi(): UseBibleApiReturn {
     verses: [],
     loading: false,
     error: null,
-    bibles: []
+    bibles: [],
   });
 
   const [lastRequest, setLastRequest] = useState<{
@@ -33,7 +37,7 @@ export function useBibleApi(): UseBibleApiReturn {
     const loadBibles = async () => {
       try {
         const bibles = await bibleApi.getBibles('fra');
-        setState(prev => ({ ...prev, bibles }));
+        setState((prev) => ({ ...prev, bibles }));
       } catch (error) {
         console.error('Erreur lors du chargement des Bibles:', error);
       }
@@ -43,40 +47,47 @@ export function useBibleApi(): UseBibleApiReturn {
   }, []);
 
   const clearError = useCallback(() => {
-    setState(prev => ({ ...prev, error: null }));
+    setState((prev) => ({ ...prev, error: null }));
   }, []);
 
   const fetchVerses = useCallback(async (reference: string) => {
-    setState(prev => ({ ...prev, loading: true, error: null }));
+    setState((prev) => ({ ...prev, loading: true, error: null }));
     setLastRequest({ type: 'reference', value: reference });
 
     try {
       console.log('🔍 fetchVerses: Recherche de référence:', reference);
       const verse = await bibleApi.getVerseByReference(reference);
-      console.log('📝 fetchVerses: Résultat de l\'API:', verse);
-      
+      console.log("📝 fetchVerses: Résultat de l'API:", verse);
+
       const verses = verse ? [verse] : [];
-      
-      setState(prev => ({ 
-        ...prev, 
-        verses, 
+
+      setState((prev) => ({
+        ...prev,
+        verses,
         loading: false,
-        error: verses.length === 0 ? `Verset non trouvé: "${reference}"` : null
+        error: verses.length === 0 ? `Verset non trouvé: "${reference}"` : null,
       }));
-      
-      console.log('✅ fetchVerses: État mis à jour avec', verses.length, 'verset(s)');
+
+      console.log(
+        '✅ fetchVerses: État mis à jour avec',
+        verses.length,
+        'verset(s)'
+      );
     } catch (error) {
-      console.error('❌ fetchVerses: Erreur lors du chargement du verset:', error);
-      setState(prev => ({ 
-        ...prev, 
-        loading: false, 
-        error: `Erreur lors du chargement de "${reference}": ${error instanceof Error ? error.message : 'Erreur inconnue'}` 
+      console.error(
+        '❌ fetchVerses: Erreur lors du chargement du verset:',
+        error
+      );
+      setState((prev) => ({
+        ...prev,
+        loading: false,
+        error: `Erreur lors du chargement de "${reference}": ${error instanceof Error ? error.message : 'Erreur inconnue'}`,
       }));
     }
   }, []);
 
   const fetchLessonVerses = useCallback(async (lessonId: string) => {
-    setState(prev => ({ ...prev, loading: true, error: null }));
+    setState((prev) => ({ ...prev, loading: true, error: null }));
     setLastRequest({ type: 'lesson', value: lessonId });
 
     try {
@@ -132,49 +143,55 @@ export function useBibleApi(): UseBibleApiReturn {
         case 'adam_eve_01':
           verses = await bibleApi.getAdamEveVerses();
           break;
-          case 'noe_01':
-            verses = await bibleApi.getNoeVerses();
-            break;
-          case 'babel_01':
-            verses = await bibleApi.getBabelVerses();
-            break;
-          case 'abraham_01':
-            verses = await bibleApi.getAbrahamVerses();
-            break;
-          case 'isaac_01':
-            verses = await bibleApi.getIsaacVerses();
-            break;
-          case 'jacob_01':
-            verses = await bibleApi.getJacobVerses();
-            break;
-          case 'joseph_01':
-            verses = await bibleApi.getJosephVerses();
-            break;
-          case 'commandements_01':
-            verses = await bibleApi.getCommandementsVerses();
-            break;
-          case 'gedeon_01':
-            verses = await bibleApi.getGedeonVerses();
-            break;
+        case 'noe_01':
+          verses = await bibleApi.getNoeVerses();
+          break;
+        case 'babel_01':
+          verses = await bibleApi.getBabelVerses();
+          break;
+        case 'abraham_01':
+          verses = await bibleApi.getAbrahamVerses();
+          break;
+        case 'isaac_sacrifice_01':
+          verses = await bibleApi.getIsaacSacrificeVerses();
+          break;
+        case 'isaac_mariage_01':
+          verses = await bibleApi.getIsaacVerses();
+          break;
+        case 'jacob_esau_01':
+          verses = await bibleApi.getJacobVerses();
+          break;
+        case 'jacob_songe_01':
+          verses = await bibleApi.getJacobSongeVerses();
+          break;
+        case 'joseph_01':
+          verses = await bibleApi.getJosephVerses();
+          break;
+        case 'commandements_01':
+          verses = await bibleApi.getCommandementsVerses();
+          break;
+        case 'gedeon_01':
+          verses = await bibleApi.getGedeonVerses();
+          break;
         default:
-          setState(prev => ({ 
-            ...prev, 
-            loading: false, 
-            error: 'Leçon non supportée par l\'API Bible' 
+          setState((prev) => ({
+            ...prev,
+            loading: false,
+            error: "Leçon non supportée par l'API Bible",
           }));
           return;
       }
 
-      setState(prev => ({ 
-        ...prev, 
-        verses, 
-        loading: false 
+      setState((prev) => ({
+        ...prev,
+        verses,
+        loading: false,
       }));
     } catch (error) {
-      setState(prev => ({ 
-        ...prev, 
-        loading: false, 
-        error: 'Erreur lors du chargement des versets' 
+      setState((prev) => ({
+        ...prev,
+        loading: false,
+        error: 'Erreur lors du chargement des versets',
       }));
       console.error('Erreur fetchLessonVerses:', error);
     }
@@ -195,13 +212,14 @@ export function useBibleApi(): UseBibleApiReturn {
     fetchVerses,
     fetchLessonVerses,
     clearError,
-    retryLastRequest
+    retryLastRequest,
   };
 }
 
 // Hook spécialisé pour une leçon spécifique
 export function useLessonVerses(lessonId: string) {
-  const { verses, loading, error, fetchLessonVerses, clearError } = useBibleApi();
+  const { verses, loading, error, fetchLessonVerses, clearError } =
+    useBibleApi();
 
   useEffect(() => {
     if (lessonId) {
@@ -214,7 +232,7 @@ export function useLessonVerses(lessonId: string) {
     loading,
     error,
     clearError,
-    refetch: () => fetchLessonVerses(lessonId)
+    refetch: () => fetchLessonVerses(lessonId),
   };
 }
 
@@ -230,17 +248,27 @@ export function useVerseSearch() {
     }
   });
 
-  const searchVerse = useCallback(async (reference: string) => {
-    await fetchVerses(reference);
-    
-    // Ajouter à l'historique (max 10 éléments)
-    setSearchHistory(prev => {
-      const newHistory = [reference, ...prev.filter(ref => ref !== reference)];
-      const trimmed = newHistory.slice(0, 10);
-      try { localStorage.setItem('verse-search-history', JSON.stringify(trimmed)); } catch {}
-      return trimmed;
-    });
-  }, [fetchVerses]);
+  const searchVerse = useCallback(
+    async (reference: string) => {
+      await fetchVerses(reference);
+
+      // Ajouter à l'historique (max 10 éléments)
+      setSearchHistory((prev) => {
+        const newHistory = [
+          reference,
+          ...prev.filter((ref) => ref !== reference),
+        ];
+        const trimmed = newHistory.slice(0, 10);
+        try {
+          localStorage.setItem('verse-search-history', JSON.stringify(trimmed));
+        } catch (e) {
+          console.warn("Impossible d'écrire l'historique de recherche", e);
+        }
+        return trimmed;
+      });
+    },
+    [fetchVerses]
+  );
 
   return {
     verses,
@@ -248,6 +276,6 @@ export function useVerseSearch() {
     error,
     searchHistory,
     searchVerse,
-    clearError
+    clearError,
   };
 }

@@ -1,0 +1,115 @@
+{
+  "id": "jacob_esau_01",
+  "title": "Jacob et Ésaü — Les jumeaux et la bénédiction",
+  "path": "Le Pentateuque",
+  "reading": [
+    "Isaac et Rebecca eurent deux fils jumeaux : Ésaü, le premier, devint chasseur, et Jacob, le cadet, restait près des tentes.",
+    "Un jour, Ésaü vendit son droit d'aînesse à Jacob pour un plat de lentilles, car il revenait fatigué de la chasse.",
+    "Plus tard, avec l'aide de sa mère Rebecca, Jacob se présenta devant son père Isaac et reçut la bénédiction destinée à Ésaü.",
+    "Cela provoqua la colère de son frère, et Jacob dut fuir.",
+    "Après des années, Dieu bénit Jacob, qui revint avec sa famille et retrouva Ésaü.",
+    "Au lieu de le combattre, Ésaü l'accueillit avec amour et ils se réconcilièrent.",
+    "Dieu a un plan même quand nous faisons des erreurs, et il nous appelle à vivre le pardon et la réconciliation."
+  ],
+  "key_verse": "Dieu a un plan même quand nous faisons des erreurs, et il nous appelle à vivre le pardon et la réconciliation.",
+  "book": "Genèse 25-33",
+  "image": "/images/lessons/jacob_esau.jpg",
+  "vocab": [
+    {
+      "word": "Jumeaux",
+      "hint": "Deux enfants nés en même temps de la même mère."
+    },
+    {
+      "word": "Droit d'aînesse",
+      "hint": "Privilège du fils premier-né dans une famille."
+    },
+    {
+      "word": "Bénédiction",
+      "hint": "Prière par laquelle on demande à Dieu d'accorder ses faveurs."
+    }
+  ],
+  "mini_games": ["quiz", "order_events"],
+  "quiz": {
+    "questions": [
+      {
+        "q": "Quels étaient les deux fils jumeaux d'Isaac et Rebecca ?",
+        "options": ["Jacob et Joseph", "Jacob et Ésaü", "Ésaü et Joseph", "Caïn et Abel"],
+        "correct": "Jacob et Ésaü"
+      },
+      {
+        "q": "Qui était le premier-né des jumeaux ?",
+        "options": ["Jacob", "Ésaü", "Ils sont nés en même temps", "Ce n'est pas précisé"],
+        "correct": "Ésaü"
+      },
+      {
+        "q": "Que devint Ésaü en grandissant ?",
+        "options": ["Berger", "Chasseur", "Agriculteur", "Marchand"],
+        "correct": "Chasseur"
+      },
+      {
+        "q": "Contre quoi Ésaü vendit-il son droit d'aînesse ?",
+        "options": ["De l'or", "Un plat de lentilles", "Des vêtements", "Du bétail"],
+        "correct": "Un plat de lentilles"
+      },
+      {
+        "q": "Qui aida Jacob à recevoir la bénédiction d'Isaac ?",
+        "options": ["Ésaü", "Rebecca", "Un serviteur", "Personne"],
+        "correct": "Rebecca"
+      },
+      {
+        "q": "Que fit Jacob après avoir reçu la bénédiction ?",
+        "options": ["Il resta à la maison", "Il dut fuir", "Il se maria", "Il devint roi"],
+        "correct": "Il dut fuir"
+      },
+      {
+        "q": "Comment se termina l'histoire entre Jacob et Ésaü ?",
+        "options": ["Ils se battirent", "Ils se réconcilièrent", "Ils ne se revirent jamais", "Jacob gagna"],
+        "correct": "Ils se réconcilièrent"
+      }
+    ]
+  },
+  "story_steps": [
+    {
+      "id": "birth",
+      "title": "La naissance des jumeaux",
+      "description": "Isaac et Rebecca ont deux fils jumeaux : Ésaü et Jacob",
+      "image": "/images/steps/twins_birth.jpg"
+    },
+    {
+      "id": "personalities",
+      "title": "Deux personnalités différentes",
+      "description": "Ésaü devient chasseur, Jacob reste près des tentes",
+      "image": "/images/steps/esau_hunter_jacob_tent.jpg"
+    },
+    {
+      "id": "birthright",
+      "title": "La vente du droit d'aînesse",
+      "description": "Ésaü vend son droit d'aînesse pour un plat de lentilles",
+      "image": "/images/steps/lentil_stew.jpg"
+    },
+    {
+      "id": "blessing",
+      "title": "La bénédiction volée",
+      "description": "Jacob reçoit la bénédiction destinée à Ésaü",
+      "image": "/images/steps/isaac_blessing.jpg"
+    },
+    {
+      "id": "flight",
+      "title": "La fuite de Jacob",
+      "description": "Jacob doit fuir la colère de son frère",
+      "image": "/images/steps/jacob_flees.jpg"
+    },
+    {
+      "id": "return",
+      "title": "Le retour de Jacob",
+      "description": "Jacob revient avec sa famille après des années",
+      "image": "/images/steps/jacob_returns.jpg"
+    },
+    {
+      "id": "reconciliation",
+      "title": "La réconciliation",
+      "description": "Ésaü accueille Jacob avec amour et ils se réconcilient",
+      "image": "/images/steps/brothers_reconcile.jpg"
+    }
+  ]
+}

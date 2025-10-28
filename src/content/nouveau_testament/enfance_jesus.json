@@ -20,16 +20,54 @@
   "vocab": [
     { "word": "Pâque", "hint": "Fête juive importante célébrée à Jérusalem." },
     { "word": "Docteurs", "hint": "Sages et enseignants de la loi juive." },
-    { "word": "Temple", "hint": "Lieu saint de Jérusalem où Jésus fut trouvé." },
-    { "word": "Affaires de mon Père", "hint": "Les choses qui concernent Dieu, le Père de Jésus." },
+    {
+      "word": "Temple",
+      "hint": "Lieu saint de Jérusalem où Jésus fut trouvé."
+    },
+    {
+      "word": "Affaires de mon Père",
+      "hint": "Les choses qui concernent Dieu, le Père de Jésus."
+    },
     { "word": "Sagesse", "hint": "Intelligence et compréhension profonde." }
   ],
   "quiz": [
-    { "q": "À quel âge Jésus alla-t-il au temple ?", "choices": ["10 ans", "12 ans", "15 ans"], "answer": 1 },
-    { "q": "Pourquoi Marie et Joseph allaient-ils à Jérusalem ?", "choices": ["Pour visiter", "Pour la fête de la Pâque", "Pour travailler"], "answer": 1 },
-    { "q": "Où trouvèrent-ils Jésus ?", "choices": ["Dans la rue", "Dans le temple", "Chez des amis"], "answer": 1 },
-    { "q": "Que faisait Jésus dans le temple ?", "choices": ["Il dormait", "Il écoutait et posait des questions", "Il jouait"], "answer": 1 },
-    { "q": "Que répondit Jésus à ses parents ?", "choices": ["Je me suis perdu", "Il faut que je m'occupe des affaires de mon Père", "Je voulais rester"], "answer": 1 }
+    {
+      "q": "À quel âge Jésus alla-t-il au temple ?",
+      "choices": ["10 ans", "12 ans", "15 ans"],
+      "answer": 1
+    },
+    {
+      "q": "Pourquoi Marie et Joseph allaient-ils à Jérusalem ?",
+      "choices": [
+        "Pour visiter",
+        "Pour la fête de la Pâque",
+        "Pour travailler"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "Où trouvèrent-ils Jésus ?",
+      "choices": ["Dans la rue", "Dans le temple", "Chez des amis"],
+      "answer": 1
+    },
+    {
+      "q": "Que faisait Jésus dans le temple ?",
+      "choices": [
+        "Il dormait",
+        "Il écoutait et posait des questions",
+        "Il jouait"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "Que répondit Jésus à ses parents ?",
+      "choices": [
+        "Je me suis perdu",
+        "Il faut que je m'occupe des affaires de mon Père",
+        "Je voulais rester"
+      ],
+      "answer": 1
+    }
   ],
   "mini_games": ["order_events", "quiz"],
   "assets": ["enfance_1.png", "enfance_2.png", "enfance_3.png"]

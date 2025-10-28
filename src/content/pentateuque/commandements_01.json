@@ -18,18 +18,148 @@
   ],
   "key_verse": "Dieu nous donne des règles pour nous apprendre à l'aimer et à vivre en paix avec les autres.",
   "vocab": [
-    { "word": "Mont Sinaï", "hint": "La montagne où Dieu donna les commandements à Moïse." },
-    { "word": "Idoles", "hint": "Objets ou images que les gens adorent à la place de Dieu." },
-    { "word": "Tables de pierre", "hint": "Plaques de pierre sur lesquelles étaient gravés les commandements." },
-    { "word": "Alliance", "hint": "Promesse et accord entre Dieu et son peuple." }
+    {
+      "word": "Mont Sinaï",
+      "hint": "La montagne où Dieu donna les commandements à Moïse."
+    },
+    {
+      "word": "Idoles",
+      "hint": "Objets ou images que les gens adorent à la place de Dieu."
+    },
+    {
+      "word": "Tables de pierre",
+      "hint": "Plaques de pierre sur lesquelles étaient gravés les commandements."
+    },
+    {
+      "word": "Alliance",
+      "hint": "Promesse et accord entre Dieu et son peuple."
+    }
   ],
   "quiz": [
-    { "q": "Sur quelle montagne Dieu donna-t-il les commandements à Moïse ?", "choices": ["Mont Horeb", "Mont Sinaï", "Mont Carmel"], "answer": 1 },
-    { "q": "Combien y a-t-il de commandements ?", "choices": ["Sept", "Dix", "Douze"], "answer": 1 },
-    { "q": "Sur quoi étaient gravés les commandements ?", "choices": ["Du papier", "Des tables de pierre", "Du bois"], "answer": 1 },
-    { "q": "Que dit le premier commandement ?", "choices": ["Ne pas voler", "Aimer Dieu seul", "Honorer ses parents"], "answer": 1 },
-    { "q": "Pourquoi Dieu a-t-il donné ces commandements ?", "choices": ["Pour punir", "Pour nous apprendre à l'aimer et vivre en paix", "Pour nous tester"], "answer": 1 }
+    {
+      "q": "Sur quelle montagne Dieu donna-t-il les commandements à Moïse ?",
+      "choices": ["Mont Horeb", "Mont Sinaï", "Mont Carmel"],
+      "answer": 1
+    },
+    {
+      "q": "Combien y a-t-il de commandements ?",
+      "choices": ["Sept", "Dix", "Douze"],
+      "answer": 1
+    },
+    {
+      "q": "Sur quoi étaient gravés les commandements ?",
+      "choices": ["Du papier", "Des tables de pierre", "Du bois"],
+      "answer": 1
+    },
+    {
+      "q": "Que dit le premier commandement ?",
+      "choices": ["Ne pas voler", "Aimer Dieu seul", "Honorer ses parents"],
+      "answer": 1
+    },
+    {
+      "q": "Pourquoi Dieu a-t-il donné ces commandements ?",
+      "choices": [
+        "Pour punir",
+        "Pour nous apprendre à l'aimer et vivre en paix",
+        "Pour nous tester"
+      ],
+      "answer": 1
+    }
   ],
-  "mini_games": ["order_events", "quiz"],
-  "assets": ["commandements_1.png", "commandements_2.png", "commandements_3.png"]
+  "goldGame": {
+    "title": "Les Dix Commandements - Questions d'Approfondissement",
+    "description": "Explorez la sagesse et l'amour de Dieu dans Sa loi",
+    "questions": [
+      {
+        "question": "Pourquoi les Dix Commandements commencent-ils par 'Je suis l'Éternel ton Dieu qui t'ai fait sortir d'Égypte' ?",
+        "choices": [
+          "Pour rappeler l'identité de Celui qui donne la loi",
+          "Pour faire peur au peuple",
+          "Pour se vanter de Sa puissance",
+          "Pour rappeler le passé"
+        ],
+        "correct": 0,
+        "explanation": "Dieu établit d'abord Sa relation avec nous : Il est notre Sauveur avant d'être notre Législateur. Ses lois viennent de Son amour."
+      },
+      {
+        "question": "Les quatre premiers commandements concernent notre relation avec qui ?",
+        "choices": [
+          "Nos parents",
+          "Dieu Lui-même",
+          "Nos voisins",
+          "Les autorités"
+        ],
+        "correct": 1,
+        "explanation": "Les quatre premiers commandements établissent notre relation verticale avec Dieu : pas d'idoles, respecter Son nom, observer le sabbat."
+      },
+      {
+        "question": "Que signifie 'honorer père et mère' dans un sens plus large ?",
+        "choices": [
+          "Obéir aveuglément à tout",
+          "Respecter l'autorité légitime et la sagesse des anciens",
+          "Donner de l'argent à ses parents",
+          "Ne jamais désobéir"
+        ],
+        "correct": 1,
+        "explanation": "Ce commandement enseigne le respect de l'autorité parentale et par extension, toute autorité légitime établie par Dieu."
+      },
+      {
+        "question": "Pourquoi 'tu ne tueras point' est-il plus profond qu'il n'y paraît ?",
+        "choices": [
+          "Il concerne aussi la colère et la haine qui tuent les relations",
+          "Il parle seulement de meurtre physique",
+          "Il autorise la guerre",
+          "Il ne concerne que les adultes"
+        ],
+        "correct": 0,
+        "explanation": "Jésus a enseigné que ce commandement concerne aussi nos attitudes : la colère, la haine et les paroles qui 'tuent' sont également condamnées."
+      },
+      {
+        "question": "Quel est le principe derrière 'tu ne voleras point' ?",
+        "choices": [
+          "Respecter la propriété privée seulement",
+          "Respecter ce qui appartient à autrui, y compris son temps, sa réputation, ses biens",
+          "Ne pas prendre d'argent",
+          "Éviter les magasins"
+        ],
+        "correct": 1,
+        "explanation": "Ce commandement protège tous les droits légitimes d'autrui : biens matériels, temps, réputation, travail, etc."
+      },
+      {
+        "question": "Comment les Dix Commandements révèlent-ils l'amour de Dieu ?",
+        "choices": [
+          "Ils nous protègent et nous guident vers le bonheur véritable",
+          "Ils nous limitent injustement",
+          "Ils montrent que Dieu est strict",
+          "Ils ne parlent pas d'amour"
+        ],
+        "correct": 0,
+        "explanation": "Comme un parent aimant donne des règles pour protéger son enfant, Dieu donne Ses commandements pour notre bien et notre épanouissement."
+      }
+    ],
+    "passingScore": 4,
+    "reward": {
+      "type": "badge",
+      "name": "Gardien de la Loi Divine",
+      "description": "Vous comprenez la sagesse des commandements de Dieu",
+      "icon": "📜"
+    }
+  },
+  "story_steps": [
+    "Israël arrive au mont Sinaï",
+    "Dieu appelle Moïse sur la montagne",
+    "Le peuple se sanctifie pendant trois jours",
+    "Dieu descend sur le mont avec tonnerre et éclairs",
+    "Moïse monte pour recevoir la Loi",
+    "Dieu proclame les Dix Commandements",
+    "Le peuple a peur et reste à distance",
+    "Dieu écrit les commandements sur des tables de pierre",
+    "Moïse redescend avec les tables de la Loi"
+  ],
+  "mini_games": ["order_events", "quiz", "goldGame"],
+  "assets": [
+    "commandements_1.png",
+    "commandements_2.png",
+    "commandements_3.png"
+  ]
 }

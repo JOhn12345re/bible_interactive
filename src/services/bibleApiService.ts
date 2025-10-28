@@ -33,7 +33,9 @@ class BibleApiService {
   constructor() {
     // Utiliser les données de fallback intégrées (mode offline)
     this.baseUrl = '';
-    console.log('📖 Service API Bible initialisé en mode offline avec données intégrées');
+    console.log(
+      '📖 Service API Bible initialisé en mode offline avec données intégrées'
+    );
   }
 
   // Méthode générique pour faire des requêtes
@@ -47,40 +49,40 @@ class BibleApiService {
 
       // Utiliser les données de fallback intégrées
       let data: any = null;
-      
+
       if (endpoint === '/health') {
         data = {
           success: true,
           data: {
             status: 'OK',
             timestamp: new Date().toISOString(),
-            uptime: 3600
+            uptime: 3600,
           },
-          message: 'API Bible en fonctionnement (mode offline)'
+          message: 'API Bible en fonctionnement (mode offline)',
         };
       } else if (endpoint === '/api/topics') {
         data = {
           success: true,
-          data: fallbackTopics
+          data: fallbackTopics,
         };
       } else if (endpoint.startsWith('/api/topics/')) {
         const slug = endpoint.split('/')[3];
-        const topic = fallbackTopics.find(t => t.slug === slug);
+        const topic = fallbackTopics.find((t) => t.slug === slug);
         if (topic) {
           data = {
             success: true,
-            data: topic
+            data: topic,
           };
         } else {
           data = {
             success: false,
-            error: 'Thème non trouvé'
+            error: 'Thème non trouvé',
           };
         }
       } else if (endpoint === '/api/verse-of-the-day') {
         data = {
           success: true,
-          data: fallbackVerseOfTheDay
+          data: fallbackVerseOfTheDay,
         };
       }
 
@@ -97,13 +99,15 @@ class BibleApiService {
       return {
         success: false,
         error: error instanceof Error ? error.message : 'Erreur inconnue',
-        message: 'Impossible de se connecter à l\'API Bible'
+        message: "Impossible de se connecter à l'API Bible",
       };
     }
   }
 
   // Santé de l'API
-  async getHealth(): Promise<ApiResponse<{ status: string; timestamp: string; uptime: number }>> {
+  async getHealth(): Promise<
+    ApiResponse<{ status: string; timestamp: string; uptime: number }>
+  > {
     return this.request('/health');
   }
 
@@ -123,7 +127,9 @@ class BibleApiService {
   }
 
   // Verset du jour par thème
-  async getVerseOfTheDayByTheme(theme: string): Promise<ApiResponse<VerseOfTheDay>> {
+  async getVerseOfTheDayByTheme(
+    theme: string
+  ): Promise<ApiResponse<VerseOfTheDay>> {
     return this.request(`/api/verse-of-the-day/${theme}`);
   }
 
@@ -158,38 +164,75 @@ export const fallbackTopics: TopicInfo[] = [
     name: 'Foi',
     slug: 'foi',
     verses: [
-      { verset: 'Genèse 6:13', texte: 'Dieu dit à Noé : La fin de toute chair est arrêtée devant moi ; car la terre est pleine de violence à cause d\'eux ; voici, je vais les détruire avec la terre.' },
-      { verset: 'Genèse 12:1', texte: 'L\'Éternel dit à Abram : Va-t\'en de ton pays, de ta patrie et de la maison de ton père, vers le pays que je te montrerai.' },
-      { verset: 'Hébreux 11:1', texte: 'Or la foi est une ferme assurance des choses qu\'on espère, une démonstration de celles qu\'on ne voit pas.' }
+      {
+        verset: 'Genèse 6:13',
+        texte:
+          "Dieu dit à Noé : La fin de toute chair est arrêtée devant moi ; car la terre est pleine de violence à cause d'eux ; voici, je vais les détruire avec la terre.",
+      },
+      {
+        verset: 'Genèse 12:1',
+        texte:
+          "L'Éternel dit à Abram : Va-t'en de ton pays, de ta patrie et de la maison de ton père, vers le pays que je te montrerai.",
+      },
+      {
+        verset: 'Hébreux 11:1',
+        texte:
+          "Or la foi est une ferme assurance des choses qu'on espère, une démonstration de celles qu'on ne voit pas.",
+      },
     ],
-    count: 3
+    count: 3,
   },
   {
     name: 'Amour',
     slug: 'amour',
     verses: [
-      { verset: 'Luc 2:11', texte: 'Voici, je vous annonce une bonne nouvelle, qui sera pour tout le peuple, le salut qui vous est né aujourd\'hui : c\'est un Sauveur, qui est le Christ, le Seigneur.' },
-      { verset: 'Genèse 45:7', texte: 'Dieu m\'a envoyé devant vous pour préserver la vie, afin de vous conserver un reste sur la terre et de vous sauver par un grand délivrance.' },
-      { verset: 'Jean 3:16', texte: 'Car Dieu a tant aimé le monde qu\'il a donné son Fils unique, afin que quiconque croit en lui ne périsse point, mais ait la vie éternelle.' }
+      {
+        verset: 'Luc 2:11',
+        texte:
+          "Voici, je vous annonce une bonne nouvelle, qui sera pour tout le peuple, le salut qui vous est né aujourd'hui : c'est un Sauveur, qui est le Christ, le Seigneur.",
+      },
+      {
+        verset: 'Genèse 45:7',
+        texte:
+          "Dieu m'a envoyé devant vous pour préserver la vie, afin de vous conserver un reste sur la terre et de vous sauver par un grand délivrance.",
+      },
+      {
+        verset: 'Jean 3:16',
+        texte:
+          "Car Dieu a tant aimé le monde qu'il a donné son Fils unique, afin que quiconque croit en lui ne périsse point, mais ait la vie éternelle.",
+      },
     ],
-    count: 3
+    count: 3,
   },
   {
     name: 'Joie',
     slug: 'joie',
     verses: [
-      { verset: 'Luc 2:20', texte: 'Les bergers s\'en retournèrent, glorifiant et louant Dieu pour tout ce qu\'ils avaient entendu et vu, comme cela leur avait été annoncé.' },
-      { verset: 'Genèse 12:2', texte: 'Je ferai de toi une grande nation, et je te bénirai ; je rendrai ton nom grand, et tu seras une source de bénédiction.' },
-      { verset: 'Philippiens 4:4', texte: 'Réjouissez-vous toujours dans le Seigneur ; je le répète, réjouissez-vous.' }
+      {
+        verset: 'Luc 2:20',
+        texte:
+          "Les bergers s'en retournèrent, glorifiant et louant Dieu pour tout ce qu'ils avaient entendu et vu, comme cela leur avait été annoncé.",
+      },
+      {
+        verset: 'Genèse 12:2',
+        texte:
+          'Je ferai de toi une grande nation, et je te bénirai ; je rendrai ton nom grand, et tu seras une source de bénédiction.',
+      },
+      {
+        verset: 'Philippiens 4:4',
+        texte:
+          'Réjouissez-vous toujours dans le Seigneur ; je le répète, réjouissez-vous.',
+      },
     ],
-    count: 3
-  }
+    count: 3,
+  },
 ];
 
 export const fallbackVerseOfTheDay: VerseOfTheDay = {
   verset: 'Jean 3:16',
-  texte: 'Car Dieu a tant aimé le monde qu\'il a donné son Fils unique, afin que quiconque croit en lui ne périsse point, mais ait la vie éternelle.',
+  texte:
+    "Car Dieu a tant aimé le monde qu'il a donné son Fils unique, afin que quiconque croit en lui ne périsse point, mais ait la vie éternelle.",
   reference: 'Jean 3:16',
   date: new Date().toISOString().split('T')[0],
-  theme: 'Amour'
+  theme: 'Amour',
 };

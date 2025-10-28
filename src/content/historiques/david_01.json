@@ -15,43 +15,57 @@
   ],
   "key_verse": "Tu marches contre moi avec l'épée, mais moi je marche contre toi au nom de l'Éternel.",
   "vocab": [
-    { "word": "géant", "hint": "Personne de très grande taille, ici plus de 3 mètres." },
-    { "word": "fronde", "hint": "Arme simple pour lancer des pierres avec force." },
+    {
+      "word": "géant",
+      "hint": "Personne de très grande taille, ici plus de 3 mètres."
+    },
+    {
+      "word": "fronde",
+      "hint": "Arme simple pour lancer des pierres avec force."
+    },
     { "word": "berger", "hint": "Personne qui garde et protège les moutons." },
     { "word": "foi", "hint": "Confiance totale en Dieu et en sa protection." }
   ],
   "quiz": [
-    { 
-      "q": "Quelle était la taille approximative de Goliath ?", 
-      "choices": ["2 mètres", "Plus de 3 mètres", "5 mètres"], 
-      "answer": 1 
+    {
+      "q": "Quelle était la taille approximative de Goliath ?",
+      "choices": ["2 mètres", "Plus de 3 mètres", "5 mètres"],
+      "answer": 1
     },
-    { 
-      "q": "Quel est le métier de David ?", 
-      "choices": ["Soldat", "Berger", "Forgeron"], 
-      "answer": 1 
+    {
+      "q": "Quel est le métier de David ?",
+      "choices": ["Soldat", "Berger", "Forgeron"],
+      "answer": 1
     },
-    { 
-      "q": "Avec quoi David combat-il Goliath ?", 
-      "choices": ["Une épée", "Une fronde et des pierres", "Un arc"], 
-      "answer": 1 
+    {
+      "q": "Avec quoi David combat-il Goliath ?",
+      "choices": ["Une épée", "Une fronde et des pierres", "Un arc"],
+      "answer": 1
     },
-    { 
-      "q": "Pourquoi David accepte-t-il de combattre ?", 
-      "choices": ["Il est très fort", "Il fait confiance à Dieu", "Il veut de l'or"], 
-      "answer": 1 
+    {
+      "q": "Pourquoi David accepte-t-il de combattre ?",
+      "choices": [
+        "Il est très fort",
+        "Il fait confiance à Dieu",
+        "Il veut de l'or"
+      ],
+      "answer": 1
     },
-    { 
-      "q": "Que nous enseigne cette histoire ?", 
-      "choices": ["La taille ne compte pas", "Dieu aide les courageux fidèles", "Il faut des armes"], 
-      "answer": 1 
+    {
+      "q": "Que nous enseigne cette histoire ?",
+      "choices": [
+        "La taille ne compte pas",
+        "Dieu aide les courageux fidèles",
+        "Il faut des armes"
+      ],
+      "answer": 1
     }
   ],
   "mini_games": ["order_events", "quiz"],
   "assets": ["david_1.png", "david_2.png", "david_3.png", "david_4.png"],
   "story_steps": [
     "Goliath défie Israël",
-    "David se porte volontaire", 
+    "David se porte volontaire",
     "David lance sa pierre",
     "Goliath tombe, victoire !"
   ],

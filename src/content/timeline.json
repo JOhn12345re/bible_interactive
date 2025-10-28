@@ -25,27 +25,27 @@
             "book": "Genèse 3",
             "available": true
           },
-        {
-          "id": "noe_01",
-          "title": "Noé et l'Arche — Le Déluge et l'Alliance",
-          "description": "L'histoire du déluge et de l'alliance de Dieu avec Noé",
-          "book": "Genèse 6-9",
-          "available": true
-        },
-        {
-          "id": "babel_01",
-          "title": "La Tour de Babel — La confusion des langues",
-          "description": "L'histoire de la tour de Babel et de la confusion des langues",
-          "book": "Genèse 11",
-          "available": true
-        }
+          {
+            "id": "noe_01",
+            "title": "Noé et l'Arche — Le Déluge et l'Alliance",
+            "description": "L'histoire du déluge et de l'alliance de Dieu avec Noé",
+            "book": "Genèse 6-9",
+            "available": true
+          },
+          {
+            "id": "babel_01",
+            "title": "La Tour de Babel — La confusion des langues",
+            "description": "L'histoire de la tour de Babel et de la confusion des langues",
+            "book": "Genèse 11",
+            "available": true
+          }
         ]
       },
       {
         "id": "patriarches",
         "title": "Patriarches",
         "icon": "👑",
-        "color": "#f59e0b", 
+        "color": "#f59e0b",
         "description": "Les pères du peuple élu",
         "biblical_time": "Genèse 12-50",
         "stories": [
@@ -57,17 +57,31 @@
             "available": true
           },
           {
-            "id": "isaac_01",
+            "id": "isaac_sacrifice_01",
+            "title": "Le Sacrifice d'Isaac",
+            "description": "Dieu met Abraham à l'épreuve en lui demandant de sacrifier Isaac",
+            "book": "Genèse 22:1-19",
+            "available": true
+          },
+          {
+            "id": "isaac_mariage_01",
             "title": "Isaac et Rebecca — Le mariage et la bénédiction",
             "description": "L'histoire d'Isaac et Rebecca et de la fidélité de Dieu",
             "book": "Genèse 24-26",
             "available": true
           },
           {
-            "id": "jacob_01",
+            "id": "jacob_esau_01",
             "title": "Jacob et Ésaü — Les jumeaux et la bénédiction",
             "description": "L'histoire de Jacob et Ésaü et de la réconciliation",
             "book": "Genèse 25-33",
+            "available": true
+          },
+          {
+            "id": "jacob_songe_01",
+            "title": "Le Songe de Jacob",
+            "description": "Jacob voit une échelle qui touche le ciel avec les anges de Dieu",
+            "book": "Genèse 28:10-22",
             "available": true
           },
           {
@@ -114,6 +128,27 @@
             "description": "Les dix commandements donnés par Dieu à Moïse sur le mont Sinaï",
             "book": "Exode 20",
             "available": true
+          },
+          {
+            "id": "tabernacle_01",
+            "title": "Le Tabernacle — La demeure de Dieu",
+            "description": "La construction du tabernacle, lieu de rencontre entre Dieu et son peuple",
+            "book": "Exode 25-40",
+            "available": true
+          },
+          {
+            "id": "veau_or_01",
+            "title": "Le veau d'or — L'idolâtrie d'Israël",
+            "description": "Le péché d'Israël et la miséricorde de Dieu",
+            "book": "Exode 32",
+            "available": true
+          },
+          {
+            "id": "terre_promise_01",
+            "title": "La Terre Promise — Vue du mont Nebo",
+            "description": "Moïse contemple la Terre Promise avant sa mort",
+            "book": "Deutéronome 34",
+            "available": true
           }
         ]
       },
@@ -126,9 +161,16 @@
         "biblical_time": "Josué - 2 Rois",
         "stories": [
           {
-            "id": "josue_01",
-            "title": "Josué et Jéricho",
-            "description": "La conquête par la foi",
+            "id": "traversee_jourdain",
+            "title": "La traversée du Jourdain — Entrée en Terre Promise",
+            "description": "Josué conduit le peuple à travers le Jourdain miraculeusement asséché",
+            "book": "Josué 3-4",
+            "available": true
+          },
+          {
+            "id": "jericho_01",
+            "title": "La chute de Jéricho — Victoire par la foi",
+            "description": "Les murailles de Jéricho tombent au son des trompettes",
             "book": "Josué 6",
             "available": true
           },
@@ -137,20 +179,34 @@
             "title": "Samson et Dalila — Force et faiblesse",
             "description": "L'histoire de Samson, sa force divine et sa chute",
             "book": "Juges 13-16",
-            "available": true
+            "available": false
           },
           {
-            "id": "david_01",
-            "title": "David et Goliath",
-            "description": "Le berger devient roi",
+            "id": "david_goliath_01",
+            "title": "David et Goliath — Le berger contre le géant",
+            "description": "Le jeune berger David défie Goliath au nom de l'Éternel",
             "book": "1 Samuel 17",
             "available": true
           },
           {
-            "id": "salomon_01",
-            "title": "Salomon et le Temple — Sagesse et splendeur",
-            "description": "L'histoire de Salomon, sa sagesse et la construction du Temple",
-            "book": "1 Rois 3-8",
+            "id": "david_roi_01",
+            "title": "David devient roi — L'onction royale",
+            "description": "David est établi roi sur tout Israël et Juda",
+            "book": "2 Samuel 5",
+            "available": true
+          },
+          {
+            "id": "salomon_sagesse_01",
+            "title": "La sagesse de Salomon — Le jugement royal",
+            "description": "Salomon demande la sagesse à Dieu et juge avec discernement",
+            "book": "1 Rois 3",
+            "available": true
+          },
+          {
+            "id": "temple_salomon_01",
+            "title": "Le Temple de Salomon — Maison de gloire",
+            "description": "Salomon construit le Temple et la gloire de Dieu remplit la maison",
+            "book": "1 Rois 6-8",
             "available": true
           }
         ]
@@ -168,28 +224,28 @@
             "title": "Élie et les prophètes de Baal — Duel sur le mont Carmel",
             "description": "L'histoire d'Élie et du duel spectaculaire sur le mont Carmel",
             "book": "1 Rois 18",
-            "available": true
+            "available": false
           },
           {
             "id": "jonas_01",
             "title": "Jonas et le grand poisson",
             "description": "Mission universelle",
             "book": "Jonas",
-            "available": true
+            "available": false
           },
           {
             "id": "daniel_01",
             "title": "Daniel et les lions",
             "description": "Fidélité récompensée",
             "book": "Daniel 6",
-            "available": true
+            "available": false
           },
           {
             "id": "ezechiel_01",
             "title": "Ézéchiel et les ossements desséchés — Vision de résurrection",
             "description": "L'histoire d'Ézéchiel et de sa vision des ossements qui reprennent vie",
             "book": "Ézéchiel 37",
-            "available": true
+            "available": false
           }
         ]
       },
@@ -305,12 +361,19 @@
   },
   "navigation": {
     "current_period": "creation",
-    "unlocked_periods": ["creation", "patriarches", "exode", "juges_rois", "prophetes", "christ"],
+    "unlocked_periods": [
+      "creation",
+      "patriarches",
+      "exode",
+      "juges_rois",
+      "prophetes",
+      "christ"
+    ],
     "completion_percentage": 18
   },
   "educational_goals": [
     "Comprendre la continuité du plan de Dieu",
-    "Voir les liens entre Ancien et Nouveau Testament", 
+    "Voir les liens entre Ancien et Nouveau Testament",
     "Découvrir la progression de la révélation",
     "Apprécier l'unité de l'Écriture"
   ]

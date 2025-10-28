@@ -46,7 +46,7 @@ interface GameState {
 const MiracleRaceGame = () => {
   const { contrastHigh } = useSettings();
   const { markDone } = useProgress();
-  
+
   // Définition des miracles
   const miracles: Miracle[] = [
     {
@@ -57,17 +57,17 @@ const MiracleRaceGame = () => {
       requiredItems: ['bread', 'fish', 'basket', 'faith'],
       story: 'Jésus prit les 5 pains et 2 poissons, et nourrit toute la foule.',
       biblicalReference: 'Matthieu 14:13-21 (Louis Segond 1910)',
-      difficulty: 'facile'
+      difficulty: 'facile',
     },
     {
       id: 'guerison-aveugle',
-      name: 'Guérison de l\'Aveugle',
+      name: "Guérison de l'Aveugle",
       emoji: '👁️',
-      description: 'Restaure la vue à l\'aveugle-né',
+      description: "Restaure la vue à l'aveugle-né",
       requiredItems: ['clay', 'water', 'hands', 'faith'],
-      story: 'Jésus fit de la boue et l\'appliqua sur les yeux de l\'aveugle.',
+      story: "Jésus fit de la boue et l'appliqua sur les yeux de l'aveugle.",
       biblicalReference: 'Jean 9:1-12 (Louis Segond 1910)',
-      difficulty: 'moyen'
+      difficulty: 'moyen',
     },
     {
       id: 'resurrection-lazare',
@@ -77,17 +77,17 @@ const MiracleRaceGame = () => {
       requiredItems: ['tomb', 'voice', 'prayer', 'faith'],
       story: 'Jésus cria d\'une voix forte : "Lazare, sors !"',
       biblicalReference: 'Jean 11:1-44 (Louis Segond 1910)',
-      difficulty: 'difficile'
+      difficulty: 'difficile',
     },
     {
       id: 'marche-eau',
-      name: 'Marche sur l\'Eau',
+      name: "Marche sur l'Eau",
       emoji: '🌊',
       description: 'Marche avec Jésus sur les eaux',
       requiredItems: ['boat', 'wind', 'courage', 'faith'],
       story: 'Pierre marcha sur les eaux vers Jésus pendant la tempête.',
       biblicalReference: 'Matthieu 14:22-33 (Louis Segond 1910)',
-      difficulty: 'moyen'
+      difficulty: 'moyen',
     },
     {
       id: 'guerison-paralytique',
@@ -97,8 +97,8 @@ const MiracleRaceGame = () => {
       requiredItems: ['mat', 'friends', 'roof', 'faith'],
       story: 'Ses amis descendirent le paralytique par le toit devant Jésus.',
       biblicalReference: 'Marc 2:1-12 (Louis Segond 1910)',
-      difficulty: 'facile'
-    }
+      difficulty: 'facile',
+    },
   ];
 
   // Items disponibles dans le jeu
@@ -118,7 +118,7 @@ const MiracleRaceGame = () => {
     { id: 'courage', emoji: '💪', name: 'Courage' },
     { id: 'mat', emoji: '🛏️', name: 'Grabat' },
     { id: 'friends', emoji: '👥', name: 'Amis' },
-    { id: 'roof', emoji: '🏠', name: 'Toit' }
+    { id: 'roof', emoji: '🏠', name: 'Toit' },
   ];
 
   const [gameState, setGameState] = useState<GameState>({
@@ -131,7 +131,7 @@ const MiracleRaceGame = () => {
     gameCompleted: false,
     miraclePerformed: false,
     score: 0,
-    level: 1
+    level: 1,
   });
 
   const gameAreaRef = useRef<HTMLDivElement>(null);
@@ -141,10 +141,10 @@ const MiracleRaceGame = () => {
   // Initialiser un nouveau niveau
   const initializeLevel = (miracle: Miracle) => {
     const gameItems: GameItem[] = [];
-    
+
     // Ajouter les items requis pour le miracle
     miracle.requiredItems.forEach((itemId, index) => {
-      const item = availableItems.find(i => i.id === itemId);
+      const item = availableItems.find((i) => i.id === itemId);
       if (item) {
         gameItems.push({
           id: itemId,
@@ -152,38 +152,44 @@ const MiracleRaceGame = () => {
           name: item.name,
           x: Math.random() * 500 + 50,
           y: Math.random() * 300 + 50,
-          collected: false
+          collected: false,
         });
       }
     });
 
     // Ajouter quelques items distraction
-    const distractionItems = availableItems.filter(item => 
-      !miracle.requiredItems.includes(item.id)
+    const distractionItems = availableItems.filter(
+      (item) => !miracle.requiredItems.includes(item.id)
     );
-    
+
     for (let i = 0; i < 3; i++) {
-      const item = distractionItems[Math.floor(Math.random() * distractionItems.length)];
+      const item =
+        distractionItems[Math.floor(Math.random() * distractionItems.length)];
       gameItems.push({
         id: `distraction-${i}`,
         emoji: item.emoji,
         name: item.name,
         x: Math.random() * 500 + 50,
         y: Math.random() * 300 + 50,
-        collected: false
+        collected: false,
       });
     }
 
-    setGameState(prev => ({
+    setGameState((prev) => ({
       ...prev,
       currentMiracle: miracle,
       items: gameItems,
       collectedItems: [],
-      timeLeft: miracle.difficulty === 'facile' ? 90 : miracle.difficulty === 'moyen' ? 75 : 60,
+      timeLeft:
+        miracle.difficulty === 'facile'
+          ? 90
+          : miracle.difficulty === 'moyen'
+            ? 75
+            : 60,
       gameStarted: true,
       gameCompleted: false,
       miraclePerformed: false,
-      player: { x: 200, y: 300, facing: 'down', isMoving: false }
+      player: { x: 200, y: 300, facing: 'down', isMoving: false },
     }));
   };
 
@@ -225,30 +231,30 @@ const MiracleRaceGame = () => {
     }
 
     if (newX !== gameState.player.x || newY !== gameState.player.y) {
-      setGameState(prev => ({
+      setGameState((prev) => ({
         ...prev,
-        player: { x: newX, y: newY, facing, isMoving }
+        player: { x: newX, y: newY, facing, isMoving },
       }));
 
       // Vérifier les collisions avec les items
       checkItemCollisions(newX, newY);
     } else if (gameState.player.isMoving !== isMoving) {
-      setGameState(prev => ({
+      setGameState((prev) => ({
         ...prev,
-        player: { ...prev.player, isMoving }
+        player: { ...prev.player, isMoving },
       }));
     }
   }, [gameState.gameStarted, gameState.gameCompleted, gameState.player]);
 
   // Vérifier les collisions avec les items
   const checkItemCollisions = (playerX: number, playerY: number) => {
-    setGameState(prev => {
-      const updatedItems = prev.items.map(item => {
+    setGameState((prev) => {
+      const updatedItems = prev.items.map((item) => {
         if (!item.collected) {
           const distance = Math.sqrt(
             Math.pow(playerX - item.x, 2) + Math.pow(playerY - item.y, 2)
           );
-          
+
           if (distance < 30) {
             // Item collecté
             return { ...item, collected: true };
@@ -259,33 +265,45 @@ const MiracleRaceGame = () => {
 
       // Mettre à jour les items collectés
       const newCollectedItems = updatedItems
-        .filter(item => item.collected && !prev.collectedItems.includes(item.id))
-        .map(item => item.id);
+        .filter(
+          (item) => item.collected && !prev.collectedItems.includes(item.id)
+        )
+        .map((item) => item.id);
 
       if (newCollectedItems.length > 0) {
-        const allCollectedItems = [...prev.collectedItems, ...newCollectedItems];
-        
+        const allCollectedItems = [
+          ...prev.collectedItems,
+          ...newCollectedItems,
+        ];
+
         // Vérifier si le miracle peut être accompli
-        const canPerformMiracle = prev.currentMiracle?.requiredItems.every(itemId =>
-          allCollectedItems.includes(itemId)
+        const canPerformMiracle = prev.currentMiracle?.requiredItems.every(
+          (itemId) => allCollectedItems.includes(itemId)
         );
 
         if (canPerformMiracle && !prev.miraclePerformed) {
           // Miracle accompli !
-          const points = prev.currentMiracle?.difficulty === 'facile' ? 100 : 
-                        prev.currentMiracle?.difficulty === 'moyen' ? 200 : 300;
-          
+          const points =
+            prev.currentMiracle?.difficulty === 'facile'
+              ? 100
+              : prev.currentMiracle?.difficulty === 'moyen'
+                ? 200
+                : 300;
+
           setTimeout(() => {
-            setGameState(current => ({
+            setGameState((current) => ({
               ...current,
               miraclePerformed: true,
               gameCompleted: true,
-              score: current.score + points + (current.timeLeft * 2)
+              score: current.score + points + current.timeLeft * 2,
             }));
 
             // Marquer la progression
             if (prev.currentMiracle) {
-              markDone(`miracle-${prev.currentMiracle.id}`, `Miracle ${prev.currentMiracle.name} accompli`);
+              markDone(
+                `miracle-${prev.currentMiracle.id}`,
+                `Miracle ${prev.currentMiracle.name} accompli`
+              );
             }
           }, 500);
         }
@@ -293,7 +311,7 @@ const MiracleRaceGame = () => {
         return {
           ...prev,
           items: updatedItems,
-          collectedItems: allCollectedItems
+          collectedItems: allCollectedItems,
         };
       }
 
@@ -304,11 +322,11 @@ const MiracleRaceGame = () => {
   // Boucle de jeu
   const gameLoop = useCallback(() => {
     movePlayer();
-    
+
     // Décrémenter le temps
-    setGameState(prev => {
+    setGameState((prev) => {
       if (prev.gameStarted && !prev.gameCompleted && prev.timeLeft > 0) {
-        const newTimeLeft = prev.timeLeft - 1/60; // 60 FPS
+        const newTimeLeft = prev.timeLeft - 1 / 60; // 60 FPS
         if (newTimeLeft <= 0) {
           return { ...prev, timeLeft: 0, gameCompleted: true };
         }
@@ -361,50 +379,66 @@ const MiracleRaceGame = () => {
 
   // Retour au menu
   const backToMenu = () => {
-    setGameState(prev => ({
+    setGameState((prev) => ({
       ...prev,
       gameStarted: false,
       gameCompleted: false,
-      currentMiracle: null
+      currentMiracle: null,
     }));
   };
 
   return (
-    <div className={`min-h-screen ${contrastHigh ? 'bg-contrast-bg text-contrast-text' : 'bg-gradient-to-br from-blue-50 via-white to-purple-50'}`}>
+    <div
+      className={`min-h-screen ${contrastHigh ? 'bg-contrast-bg text-contrast-text' : 'bg-gradient-to-br from-blue-50 via-white to-purple-50'}`}
+    >
       {/* Header */}
-      <header className={`py-6 px-4 sm:px-6 lg:px-8 ${contrastHigh ? 'bg-contrast-bg' : 'bg-white shadow-sm'}`}>
+      <header
+        className={`py-6 px-4 sm:px-6 lg:px-8 ${contrastHigh ? 'bg-contrast-bg' : 'bg-white shadow-sm'}`}
+      >
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-4">
-              <Link 
-                to="/games" 
+              <Link
+                to="/games"
                 className={`flex items-center space-x-2 px-4 py-2 rounded-full transition-colors ${
-                  contrastHigh ? 'hover:bg-contrast-text/20' : 'hover:bg-gray-100'
+                  contrastHigh
+                    ? 'hover:bg-contrast-text/20'
+                    : 'hover:bg-gray-100'
                 }`}
               >
                 <span className="text-2xl">←</span>
                 <span>Retour aux jeux</span>
               </Link>
               <div>
-                <h1 className={`text-2xl sm:text-3xl font-bold ${contrastHigh ? 'text-contrast-text' : 'text-gray-800'}`}>
+                <h1
+                  className={`text-2xl sm:text-3xl font-bold ${contrastHigh ? 'text-contrast-text' : 'text-gray-800'}`}
+                >
                   🏃‍♂️ Course au Miracle
                 </h1>
-                <p className={`text-sm ${contrastHigh ? 'text-contrast-text' : 'text-gray-600'}`}>
+                <p
+                  className={`text-sm ${contrastHigh ? 'text-contrast-text' : 'text-gray-600'}`}
+                >
                   Collecte les éléments et accomplis des miracles bibliques
                 </p>
-                <p className={`text-xs mt-1 ${contrastHigh ? 'text-contrast-text/70' : 'text-gray-500'}`}>
+                <p
+                  className={`text-xs mt-1 ${contrastHigh ? 'text-contrast-text/70' : 'text-gray-500'}`}
+                >
                   📖 Version Louis Segond 1910
                 </p>
               </div>
             </div>
-            
+
             {/* Stats */}
             {gameState.gameStarted && (
-              <div className={`flex items-center space-x-6 ${
-                contrastHigh ? 'text-contrast-text' : 'text-blue-600'
-              }`}>
+              <div
+                className={`flex items-center space-x-6 ${
+                  contrastHigh ? 'text-contrast-text' : 'text-blue-600'
+                }`}
+              >
                 <div className="text-center">
-                  <div className="text-xl font-bold">{Math.ceil(gameState.timeLeft)}</div>
+                  <div className="text-xl font-bold">
+                    {Math.ceil(gameState.timeLeft)}
+                  </div>
                   <div className="text-xs">Secondes</div>
                 </div>
                 <div className="text-center">
@@ -413,9 +447,10 @@ const MiracleRaceGame = () => {
                 </div>
                 <div className="text-center">
                   <div className="text-xl font-bold">
-                    {gameState.currentMiracle?.requiredItems.filter(item => 
+                    {gameState.currentMiracle?.requiredItems.filter((item) =>
                       gameState.collectedItems.includes(item)
-                    ).length || 0}/{gameState.currentMiracle?.requiredItems.length || 0}
+                    ).length || 0}
+                    /{gameState.currentMiracle?.requiredItems.length || 0}
                   </div>
                   <div className="text-xs">Éléments</div>
                 </div>
@@ -431,26 +466,35 @@ const MiracleRaceGame = () => {
           /* Menu principal */
           <div className="space-y-8">
             {/* Introduction */}
-            <div className={`rounded-2xl p-8 text-center ${
-              contrastHigh ? 'bg-contrast-bg border-2 border-contrast-text' : 'bg-white shadow-lg'
-            }`}>
+            <div
+              className={`rounded-2xl p-8 text-center ${
+                contrastHigh
+                  ? 'bg-contrast-bg border-2 border-contrast-text'
+                  : 'bg-white shadow-lg'
+              }`}
+            >
               <div className="text-6xl mb-6">🏃‍♂️✨</div>
-              <h2 className={`text-3xl font-bold mb-4 ${
-                contrastHigh ? 'text-contrast-text' : 'text-gray-800'
-              }`}>
+              <h2
+                className={`text-3xl font-bold mb-4 ${
+                  contrastHigh ? 'text-contrast-text' : 'text-gray-800'
+                }`}
+              >
                 Course au Miracle
               </h2>
-              <p className={`text-lg mb-8 max-w-2xl mx-auto ${
-                contrastHigh ? 'text-contrast-text' : 'text-gray-600'
-              }`}>
-                Aide Jésus à accomplir ses miracles ! Cours dans l'arène, collecte les bons éléments 
-                et reconstitue les miracles bibliques avant que le temps s'épuise.
+              <p
+                className={`text-lg mb-8 max-w-2xl mx-auto ${
+                  contrastHigh ? 'text-contrast-text' : 'text-gray-600'
+                }`}
+              >
+                Aide Jésus à accomplir ses miracles ! Cours dans l'arène,
+                collecte les bons éléments et reconstitue les miracles bibliques
+                avant que le temps s'épuise.
               </p>
-              
+
               <button
                 onClick={startRandomMiracle}
                 className={`px-8 py-4 rounded-xl font-bold text-xl transition-all hover:scale-105 ${
-                  contrastHigh 
+                  contrastHigh
                     ? 'bg-contrast-text text-contrast-bg hover:opacity-80'
                     : 'bg-gradient-to-r from-blue-500 to-purple-600 text-white hover:shadow-lg'
                 }`}
@@ -460,21 +504,27 @@ const MiracleRaceGame = () => {
             </div>
 
             {/* Liste des miracles */}
-            <div className={`rounded-2xl p-6 ${
-              contrastHigh ? 'bg-contrast-bg border-2 border-contrast-text' : 'bg-white shadow-lg'
-            }`}>
-              <h3 className={`text-xl font-bold mb-6 text-center ${
-                contrastHigh ? 'text-contrast-text' : 'text-gray-800'
-              }`}>
+            <div
+              className={`rounded-2xl p-6 ${
+                contrastHigh
+                  ? 'bg-contrast-bg border-2 border-contrast-text'
+                  : 'bg-white shadow-lg'
+              }`}
+            >
+              <h3
+                className={`text-xl font-bold mb-6 text-center ${
+                  contrastHigh ? 'text-contrast-text' : 'text-gray-800'
+                }`}
+              >
                 🌟 Miracles à Découvrir
               </h3>
-              
+
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                 {miracles.map((miracle) => (
                   <div
                     key={miracle.id}
                     className={`p-4 rounded-xl border transition-all hover:scale-105 cursor-pointer ${
-                      contrastHigh 
+                      contrastHigh
                         ? 'border-contrast-text/20 hover:border-contrast-text hover:bg-contrast-text/10'
                         : 'border-gray-200 hover:border-blue-300 hover:bg-blue-50'
                     }`}
@@ -482,24 +532,31 @@ const MiracleRaceGame = () => {
                   >
                     <div className="text-center">
                       <div className="text-3xl mb-2">{miracle.emoji}</div>
-                      <h4 className={`font-bold mb-1 ${
-                        contrastHigh ? 'text-contrast-text' : 'text-gray-800'
-                      }`}>
+                      <h4
+                        className={`font-bold mb-1 ${
+                          contrastHigh ? 'text-contrast-text' : 'text-gray-800'
+                        }`}
+                      >
                         {miracle.name}
                       </h4>
-                      <p className={`text-sm mb-2 ${
-                        contrastHigh ? 'text-contrast-text' : 'text-gray-600'
-                      }`}>
+                      <p
+                        className={`text-sm mb-2 ${
+                          contrastHigh ? 'text-contrast-text' : 'text-gray-600'
+                        }`}
+                      >
                         {miracle.description}
                       </p>
-                      <div className={`text-xs font-medium px-2 py-1 rounded-full inline-block ${
-                        miracle.difficulty === 'facile' 
-                          ? 'bg-green-100 text-green-800'
-                          : miracle.difficulty === 'moyen'
-                            ? 'bg-yellow-100 text-yellow-800'
-                            : 'bg-red-100 text-red-800'
-                      }`}>
-                        {miracle.difficulty.charAt(0).toUpperCase() + miracle.difficulty.slice(1)}
+                      <div
+                        className={`text-xs font-medium px-2 py-1 rounded-full inline-block ${
+                          miracle.difficulty === 'facile'
+                            ? 'bg-green-100 text-green-800'
+                            : miracle.difficulty === 'moyen'
+                              ? 'bg-yellow-100 text-yellow-800'
+                              : 'bg-red-100 text-red-800'
+                        }`}
+                      >
+                        {miracle.difficulty.charAt(0).toUpperCase() +
+                          miracle.difficulty.slice(1)}
                       </div>
                     </div>
                   </div>
@@ -508,19 +565,25 @@ const MiracleRaceGame = () => {
             </div>
 
             {/* Instructions */}
-            <div className={`rounded-2xl p-6 ${
-              contrastHigh 
-                ? 'bg-contrast-bg border-2 border-contrast-text'
-                : 'bg-gradient-to-br from-yellow-50 to-orange-50 border border-yellow-200'
-            }`}>
-              <h3 className={`font-bold mb-4 ${
-                contrastHigh ? 'text-contrast-text' : 'text-yellow-800'
-              }`}>
+            <div
+              className={`rounded-2xl p-6 ${
+                contrastHigh
+                  ? 'bg-contrast-bg border-2 border-contrast-text'
+                  : 'bg-gradient-to-br from-yellow-50 to-orange-50 border border-yellow-200'
+              }`}
+            >
+              <h3
+                className={`font-bold mb-4 ${
+                  contrastHigh ? 'text-contrast-text' : 'text-yellow-800'
+                }`}
+              >
                 🎮 Comment Jouer
               </h3>
-              <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 ${
-                contrastHigh ? 'text-contrast-text' : 'text-yellow-700'
-              }`}>
+              <div
+                className={`grid grid-cols-1 md:grid-cols-2 gap-4 ${
+                  contrastHigh ? 'text-contrast-text' : 'text-yellow-700'
+                }`}
+              >
                 <div>
                   <h4 className="font-medium mb-2">🕹️ Contrôles</h4>
                   <ul className="text-sm space-y-1">
@@ -541,86 +604,122 @@ const MiracleRaceGame = () => {
             </div>
 
             {/* Guide des Emojis */}
-            <div className={`rounded-2xl p-6 ${
-              contrastHigh 
-                ? 'bg-contrast-bg border-2 border-contrast-text'
-                : 'bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200'
-            }`}>
-              <h3 className={`font-bold mb-6 text-center ${
-                contrastHigh ? 'text-contrast-text' : 'text-blue-800'
-              }`}>
+            <div
+              className={`rounded-2xl p-6 ${
+                contrastHigh
+                  ? 'bg-contrast-bg border-2 border-contrast-text'
+                  : 'bg-gradient-to-br from-blue-50 to-purple-50 border border-blue-200'
+              }`}
+            >
+              <h3
+                className={`font-bold mb-6 text-center ${
+                  contrastHigh ? 'text-contrast-text' : 'text-blue-800'
+                }`}
+              >
                 🔍 Guide des Emojis - Que Signifie Chaque Symbole ?
               </h3>
-              
+
               {/* Emojis des Miracles */}
               <div className="mb-8">
-                <h4 className={`font-medium mb-4 ${
-                  contrastHigh ? 'text-contrast-text' : 'text-blue-700'
-                }`}>
+                <h4
+                  className={`font-medium mb-4 ${
+                    contrastHigh ? 'text-contrast-text' : 'text-blue-700'
+                  }`}
+                >
                   ✨ Emojis des Miracles
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                  <div className={`flex items-center space-x-3 p-3 rounded-lg ${
-                    contrastHigh ? 'bg-contrast-text/10' : 'bg-white/60'
-                  }`}>
+                  <div
+                    className={`flex items-center space-x-3 p-3 rounded-lg ${
+                      contrastHigh ? 'bg-contrast-text/10' : 'bg-white/60'
+                    }`}
+                  >
                     <span className="text-2xl">🍞</span>
                     <div>
-                      <div className={`font-medium ${contrastHigh ? 'text-contrast-text' : 'text-blue-800'}`}>
+                      <div
+                        className={`font-medium ${contrastHigh ? 'text-contrast-text' : 'text-blue-800'}`}
+                      >
                         Pain - Multiplication
                       </div>
-                      <div className={`text-xs ${contrastHigh ? 'text-contrast-text' : 'text-blue-600'}`}>
+                      <div
+                        className={`text-xs ${contrastHigh ? 'text-contrast-text' : 'text-blue-600'}`}
+                      >
                         Nourrir 5000 personnes
                       </div>
                     </div>
                   </div>
-                  <div className={`flex items-center space-x-3 p-3 rounded-lg ${
-                    contrastHigh ? 'bg-contrast-text/10' : 'bg-white/60'
-                  }`}>
+                  <div
+                    className={`flex items-center space-x-3 p-3 rounded-lg ${
+                      contrastHigh ? 'bg-contrast-text/10' : 'bg-white/60'
+                    }`}
+                  >
                     <span className="text-2xl">👁️</span>
                     <div>
-                      <div className={`font-medium ${contrastHigh ? 'text-contrast-text' : 'text-blue-800'}`}>
+                      <div
+                        className={`font-medium ${contrastHigh ? 'text-contrast-text' : 'text-blue-800'}`}
+                      >
                         Œil - Guérison
                       </div>
-                      <div className={`text-xs ${contrastHigh ? 'text-contrast-text' : 'text-blue-600'}`}>
+                      <div
+                        className={`text-xs ${contrastHigh ? 'text-contrast-text' : 'text-blue-600'}`}
+                      >
                         Redonner la vue
                       </div>
                     </div>
                   </div>
-                  <div className={`flex items-center space-x-3 p-3 rounded-lg ${
-                    contrastHigh ? 'bg-contrast-text/10' : 'bg-white/60'
-                  }`}>
+                  <div
+                    className={`flex items-center space-x-3 p-3 rounded-lg ${
+                      contrastHigh ? 'bg-contrast-text/10' : 'bg-white/60'
+                    }`}
+                  >
                     <span className="text-2xl">⛪</span>
                     <div>
-                      <div className={`font-medium ${contrastHigh ? 'text-contrast-text' : 'text-blue-800'}`}>
+                      <div
+                        className={`font-medium ${contrastHigh ? 'text-contrast-text' : 'text-blue-800'}`}
+                      >
                         Église - Résurrection
                       </div>
-                      <div className={`text-xs ${contrastHigh ? 'text-contrast-text' : 'text-blue-600'}`}>
+                      <div
+                        className={`text-xs ${contrastHigh ? 'text-contrast-text' : 'text-blue-600'}`}
+                      >
                         Ramener Lazare à la vie
                       </div>
                     </div>
                   </div>
-                  <div className={`flex items-center space-x-3 p-3 rounded-lg ${
-                    contrastHigh ? 'bg-contrast-text/10' : 'bg-white/60'
-                  }`}>
+                  <div
+                    className={`flex items-center space-x-3 p-3 rounded-lg ${
+                      contrastHigh ? 'bg-contrast-text/10' : 'bg-white/60'
+                    }`}
+                  >
                     <span className="text-2xl">🌊</span>
                     <div>
-                      <div className={`font-medium ${contrastHigh ? 'text-contrast-text' : 'text-blue-800'}`}>
+                      <div
+                        className={`font-medium ${contrastHigh ? 'text-contrast-text' : 'text-blue-800'}`}
+                      >
                         Vagues - Marche sur l'eau
                       </div>
-                      <div className={`text-xs ${contrastHigh ? 'text-contrast-text' : 'text-blue-600'}`}>
+                      <div
+                        className={`text-xs ${contrastHigh ? 'text-contrast-text' : 'text-blue-600'}`}
+                      >
                         Marcher avec Jésus
                       </div>
                     </div>
                   </div>
-                  <div className={`flex items-center space-x-3 p-3 rounded-lg ${
-                    contrastHigh ? 'bg-contrast-text/10' : 'bg-white/60'
-                  }`}>
+                  <div
+                    className={`flex items-center space-x-3 p-3 rounded-lg ${
+                      contrastHigh ? 'bg-contrast-text/10' : 'bg-white/60'
+                    }`}
+                  >
                     <span className="text-2xl">🏃</span>
                     <div>
-                      <div className={`font-medium ${contrastHigh ? 'text-contrast-text' : 'text-blue-800'}`}>
+                      <div
+                        className={`font-medium ${contrastHigh ? 'text-contrast-text' : 'text-blue-800'}`}
+                      >
                         Coureur - Guérison
                       </div>
-                      <div className={`text-xs ${contrastHigh ? 'text-contrast-text' : 'text-blue-600'}`}>
+                      <div
+                        className={`text-xs ${contrastHigh ? 'text-contrast-text' : 'text-blue-600'}`}
+                      >
                         Paralytique qui remarche
                       </div>
                     </div>
@@ -630,33 +729,45 @@ const MiracleRaceGame = () => {
 
               {/* Emojis des Objets à Collecter */}
               <div>
-                <h4 className={`font-medium mb-4 ${
-                  contrastHigh ? 'text-contrast-text' : 'text-blue-700'
-                }`}>
+                <h4
+                  className={`font-medium mb-4 ${
+                    contrastHigh ? 'text-contrast-text' : 'text-blue-700'
+                  }`}
+                >
                   🎯 Objets à Collecter
                 </h4>
                 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-2">
                   {availableItems.map((item) => (
-                    <div key={item.id} className={`flex items-center space-x-2 p-2 rounded-lg ${
-                      contrastHigh ? 'bg-contrast-text/10' : 'bg-white/60'
-                    }`}>
+                    <div
+                      key={item.id}
+                      className={`flex items-center space-x-2 p-2 rounded-lg ${
+                        contrastHigh ? 'bg-contrast-text/10' : 'bg-white/60'
+                      }`}
+                    >
                       <span className="text-lg">{item.emoji}</span>
-                      <div className={`text-xs font-medium ${
-                        contrastHigh ? 'text-contrast-text' : 'text-blue-800'
-                      }`}>
+                      <div
+                        className={`text-xs font-medium ${
+                          contrastHigh ? 'text-contrast-text' : 'text-blue-800'
+                        }`}
+                      >
                         {item.name}
                       </div>
                     </div>
                   ))}
                 </div>
-                <div className={`mt-4 p-3 rounded-lg ${
-                  contrastHigh ? 'bg-contrast-text/20' : 'bg-blue-100'
-                }`}>
-                  <p className={`text-sm ${
-                    contrastHigh ? 'text-contrast-text' : 'text-blue-700'
-                  }`}>
-                    💡 <strong>Astuce :</strong> Chaque miracle nécessite des objets spécifiques ! 
-                    Regarde bien les éléments requis avant de commencer à collecter.
+                <div
+                  className={`mt-4 p-3 rounded-lg ${
+                    contrastHigh ? 'bg-contrast-text/20' : 'bg-blue-100'
+                  }`}
+                >
+                  <p
+                    className={`text-sm ${
+                      contrastHigh ? 'text-contrast-text' : 'text-blue-700'
+                    }`}
+                  >
+                    💡 <strong>Astuce :</strong> Chaque miracle nécessite des
+                    objets spécifiques ! Regarde bien les éléments requis avant
+                    de commencer à collecter.
                   </p>
                 </div>
               </div>
@@ -667,31 +778,42 @@ const MiracleRaceGame = () => {
           <div className="space-y-6">
             {/* Info du miracle actuel */}
             {gameState.currentMiracle && (
-              <div className={`rounded-2xl p-6 ${
-                contrastHigh ? 'bg-contrast-bg border-2 border-contrast-text' : 'bg-white shadow-lg'
-              }`}>
+              <div
+                className={`rounded-2xl p-6 ${
+                  contrastHigh
+                    ? 'bg-contrast-bg border-2 border-contrast-text'
+                    : 'bg-white shadow-lg'
+                }`}
+              >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center space-x-4">
-                    <span className="text-4xl">{gameState.currentMiracle.emoji}</span>
+                    <span className="text-4xl">
+                      {gameState.currentMiracle.emoji}
+                    </span>
                     <div>
-                      <h3 className={`text-xl font-bold ${
-                        contrastHigh ? 'text-contrast-text' : 'text-gray-800'
-                      }`}>
+                      <h3
+                        className={`text-xl font-bold ${
+                          contrastHigh ? 'text-contrast-text' : 'text-gray-800'
+                        }`}
+                      >
                         {gameState.currentMiracle.name}
                       </h3>
-                      <p className={`text-sm ${
-                        contrastHigh ? 'text-contrast-text' : 'text-gray-600'
-                      }`}>
+                      <p
+                        className={`text-sm ${
+                          contrastHigh ? 'text-contrast-text' : 'text-gray-600'
+                        }`}
+                      >
                         {gameState.currentMiracle.biblicalReference}
                       </p>
                     </div>
                   </div>
-                  
+
                   {/* Éléments requis */}
                   <div className="flex space-x-2">
                     {gameState.currentMiracle.requiredItems.map((itemId) => {
-                      const item = availableItems.find(i => i.id === itemId);
-                      const collected = gameState.collectedItems.includes(itemId);
+                      const item = availableItems.find((i) => i.id === itemId);
+                      const collected =
+                        gameState.collectedItems.includes(itemId);
                       return (
                         <div
                           key={itemId}
@@ -713,13 +835,19 @@ const MiracleRaceGame = () => {
             )}
 
             {/* Zone de jeu */}
-            <div className={`rounded-2xl p-4 relative ${
-              contrastHigh ? 'bg-contrast-bg border-2 border-contrast-text' : 'bg-white shadow-lg'
-            }`}>
+            <div
+              className={`rounded-2xl p-4 relative ${
+                contrastHigh
+                  ? 'bg-contrast-bg border-2 border-contrast-text'
+                  : 'bg-white shadow-lg'
+              }`}
+            >
               <div
                 ref={gameAreaRef}
                 className={`relative w-full rounded-xl overflow-hidden ${
-                  contrastHigh ? 'bg-contrast-text/10' : 'bg-gradient-to-br from-green-100 to-blue-100'
+                  contrastHigh
+                    ? 'bg-contrast-text/10'
+                    : 'bg-gradient-to-br from-green-100 to-blue-100'
                 }`}
                 style={{ height: '400px' }}
               >
@@ -728,47 +856,56 @@ const MiracleRaceGame = () => {
                   className={`absolute w-8 h-8 rounded-full flex items-center justify-center text-lg transition-all duration-100 ${
                     gameState.player.isMoving ? 'animate-pulse' : ''
                   } ${
-                    contrastHigh ? 'bg-contrast-text text-contrast-bg' : 'bg-blue-500 text-white'
+                    contrastHigh
+                      ? 'bg-contrast-text text-contrast-bg'
+                      : 'bg-blue-500 text-white'
                   }`}
                   style={{
                     left: gameState.player.x,
                     top: gameState.player.y,
                     transform: `rotate(${
-                      gameState.player.facing === 'up' ? '-90deg' :
-                      gameState.player.facing === 'down' ? '90deg' :
-                      gameState.player.facing === 'left' ? '180deg' : '0deg'
+                      gameState.player.facing === 'up'
+                        ? '-90deg'
+                        : gameState.player.facing === 'down'
+                          ? '90deg'
+                          : gameState.player.facing === 'left'
+                            ? '180deg'
+                            : '0deg'
                     })`,
-                    zIndex: 100
+                    zIndex: 100,
                   }}
                 >
                   🏃‍♂️
                 </div>
 
                 {/* Items */}
-                {gameState.items.map((item) => (
-                  !item.collected && (
-                    <div
-                      key={`${item.id}-${item.x}-${item.y}`}
-                      className="absolute w-8 h-8 flex items-center justify-center text-lg animate-bounce cursor-pointer hover:scale-110 transition-transform"
-                      style={{
-                        left: item.x,
-                        top: item.y,
-                        animationDelay: `${Math.random() * 2}s`
-                      }}
-                    >
-                      {item.emoji}
-                    </div>
-                  )
-                ))}
+                {gameState.items.map(
+                  (item) =>
+                    !item.collected && (
+                      <div
+                        key={`${item.id}-${item.x}-${item.y}`}
+                        className="absolute w-8 h-8 flex items-center justify-center text-lg animate-bounce cursor-pointer hover:scale-110 transition-transform"
+                        style={{
+                          left: item.x,
+                          top: item.y,
+                          animationDelay: `${Math.random() * 2}s`,
+                        }}
+                      >
+                        {item.emoji}
+                      </div>
+                    )
+                )}
 
                 {/* Effet de miracle */}
                 {gameState.miraclePerformed && (
                   <div className="absolute inset-0 flex items-center justify-center bg-black/50 rounded-xl">
                     <div className="text-center animate-pulse">
                       <div className="text-6xl mb-4">✨🎉✨</div>
-                      <div className={`text-2xl font-bold ${
-                        contrastHigh ? 'text-contrast-text' : 'text-white'
-                      }`}>
+                      <div
+                        className={`text-2xl font-bold ${
+                          contrastHigh ? 'text-contrast-text' : 'text-white'
+                        }`}
+                      >
                         Miracle Accompli !
                       </div>
                     </div>
@@ -780,9 +917,11 @@ const MiracleRaceGame = () => {
                   <div className="absolute inset-0 flex items-center justify-center bg-black/50 rounded-xl">
                     <div className="text-center">
                       <div className="text-6xl mb-4">⏰</div>
-                      <div className={`text-2xl font-bold ${
-                        contrastHigh ? 'text-contrast-text' : 'text-white'
-                      }`}>
+                      <div
+                        className={`text-2xl font-bold ${
+                          contrastHigh ? 'text-contrast-text' : 'text-white'
+                        }`}
+                      >
                         Temps Écoulé !
                       </div>
                     </div>
@@ -797,7 +936,7 @@ const MiracleRaceGame = () => {
                 <button
                   onClick={playAgain}
                   className={`px-6 py-3 rounded-xl font-bold transition-all hover:scale-105 ${
-                    contrastHigh 
+                    contrastHigh
                       ? 'bg-contrast-text text-contrast-bg hover:opacity-80'
                       : 'bg-blue-500 text-white hover:bg-blue-600'
                   }`}
@@ -807,7 +946,7 @@ const MiracleRaceGame = () => {
                 <button
                   onClick={backToMenu}
                   className={`px-6 py-3 rounded-xl font-medium transition-colors ${
-                    contrastHigh 
+                    contrastHigh
                       ? 'bg-contrast-text/20 hover:bg-contrast-text/30'
                       : 'bg-gray-200 hover:bg-gray-300 text-gray-700'
                   }`}
@@ -819,22 +958,32 @@ const MiracleRaceGame = () => {
 
             {/* Histoire du miracle */}
             {gameState.miraclePerformed && gameState.currentMiracle && (
-              <div className={`rounded-2xl p-6 ${
-                contrastHigh ? 'bg-contrast-bg border-2 border-contrast-text' : 'bg-gradient-to-br from-green-50 to-blue-50 border border-green-200'
-              }`}>
-                <h3 className={`text-lg font-bold mb-4 ${
-                  contrastHigh ? 'text-contrast-text' : 'text-green-800'
-                }`}>
+              <div
+                className={`rounded-2xl p-6 ${
+                  contrastHigh
+                    ? 'bg-contrast-bg border-2 border-contrast-text'
+                    : 'bg-gradient-to-br from-green-50 to-blue-50 border border-green-200'
+                }`}
+              >
+                <h3
+                  className={`text-lg font-bold mb-4 ${
+                    contrastHigh ? 'text-contrast-text' : 'text-green-800'
+                  }`}
+                >
                   📖 L'Histoire du Miracle
                 </h3>
-                <p className={`mb-4 ${
-                  contrastHigh ? 'text-contrast-text' : 'text-green-700'
-                }`}>
+                <p
+                  className={`mb-4 ${
+                    contrastHigh ? 'text-contrast-text' : 'text-green-700'
+                  }`}
+                >
                   {gameState.currentMiracle.story}
                 </p>
-                <div className={`text-sm font-medium ${
-                  contrastHigh ? 'text-contrast-text' : 'text-green-600'
-                }`}>
+                <div
+                  className={`text-sm font-medium ${
+                    contrastHigh ? 'text-contrast-text' : 'text-green-600'
+                  }`}
+                >
                   📚 {gameState.currentMiracle.biblicalReference}
                 </div>
               </div>

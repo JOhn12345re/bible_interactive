@@ -14,16 +14,46 @@
   ],
   "key_verse": "Dieu nous rappelle que l'orgueil nous éloigne de lui, mais son plan est toujours de rassembler les hommes dans son amour.",
   "vocab": [
-    { "word": "Babel", "hint": "Ville où Dieu a confondu le langage des hommes." },
+    {
+      "word": "Babel",
+      "hint": "Ville où Dieu a confondu le langage des hommes."
+    },
     { "word": "Confusion", "hint": "Mélange qui empêche de comprendre." },
-    { "word": "Dispersion", "hint": "Action de se répandre dans toutes les directions." }
+    {
+      "word": "Dispersion",
+      "hint": "Action de se répandre dans toutes les directions."
+    }
   ],
   "quiz": [
-    { "q": "Pourquoi les hommes voulaient-ils construire une tour ?", "choices": ["Pour se faire un nom", "Pour se protéger", "Pour adorer Dieu"], "answer": 0 },
-    { "q": "Que fit Dieu quand il vit leur projet ?", "choices": ["Il les aida", "Il confondit leur langage", "Il détruisit la tour"], "answer": 1 },
-    { "q": "Comment s'appelait la ville où cela s'est passé ?", "choices": ["Babylone", "Babel", "Jérusalem"], "answer": 1 },
-    { "q": "Que signifie le mot 'Babel' ?", "choices": ["Confusion", "Tour", "Ciel"], "answer": 0 }
+    {
+      "q": "Pourquoi les hommes voulaient-ils construire une tour ?",
+      "choices": [
+        "Pour se faire un nom",
+        "Pour se protéger",
+        "Pour adorer Dieu"
+      ],
+      "answer": 0
+    },
+    {
+      "q": "Que fit Dieu quand il vit leur projet ?",
+      "choices": [
+        "Il les aida",
+        "Il confondit leur langage",
+        "Il détruisit la tour"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "Comment s'appelait la ville où cela s'est passé ?",
+      "choices": ["Babylone", "Babel", "Jérusalem"],
+      "answer": 1
+    },
+    {
+      "q": "Que signifie le mot 'Babel' ?",
+      "choices": ["Confusion", "Tour", "Ciel"],
+      "answer": 0
+    }
   ],
-  "mini_games": ["order_events", "quiz"],
+  "mini_games": ["timeline_cards", "quiz"],
   "assets": ["babel_1.png", "babel_2.png", "babel_3.png"]
 }

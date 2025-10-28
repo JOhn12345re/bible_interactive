@@ -36,15 +36,15 @@ const TranslationSelector: React.FC = () => {
           name: 'Louis Segond 1910',
           abbreviation: 'LSG',
           language: { code: 'fra', name: 'Français' },
-          description: 'Traduction française classique'
+          description: 'Traduction française classique',
         },
         {
           id: 'fraBDS',
           name: 'Bible du Semeur',
           abbreviation: 'BDS',
           language: { code: 'fra', name: 'Français' },
-          description: 'Traduction française moderne'
-        }
+          description: 'Traduction française moderne',
+        },
       ];
       setTranslations(defaultTranslations);
       setCurrentTranslation('fraLSG');
@@ -66,7 +66,9 @@ const TranslationSelector: React.FC = () => {
   if (loading) {
     return (
       <div className="p-4 bg-blue-50 rounded-lg">
-        <p className="text-blue-600">🔄 Chargement des traductions disponibles...</p>
+        <p className="text-blue-600">
+          🔄 Chargement des traductions disponibles...
+        </p>
       </div>
     );
   }
@@ -76,7 +78,7 @@ const TranslationSelector: React.FC = () => {
       <h3 className="text-lg font-semibold mb-3 text-gray-800">
         📚 Choisir la traduction biblique
       </h3>
-      
+
       <div className="space-y-2">
         {translations.map((translation) => (
           <label
@@ -122,8 +124,8 @@ const TranslationSelector: React.FC = () => {
           ℹ️ <strong>Mode hors ligne</strong>
         </p>
         <p className="text-xs text-blue-600 mt-1">
-          L'API externe n'est pas accessible. Les traductions affichées sont des exemples.
-          Les versets utilisent les données locales du site.
+          L'API externe n'est pas accessible. Les traductions affichées sont des
+          exemples. Les versets utilisent les données locales du site.
         </p>
         <button
           onClick={handleResetApi}

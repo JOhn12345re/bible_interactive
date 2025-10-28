@@ -15,7 +15,11 @@
     { "word": "Ninive", "hint": "Grande ville ancienne." }
   ],
   "quiz": [
-    { "q": "Pourquoi Jonas a-t-il fui ?", "choices": ["Par peur", "Par joie"], "answer": 0 }
+    {
+      "q": "Pourquoi Jonas a-t-il fui ?",
+      "choices": ["Par peur", "Par joie"],
+      "answer": 0
+    }
   ],
   "mini_games": ["order_events"],
   "assets": ["jonas_1.png", "jonas_2.png", "jonas_3.png", "jonas_4.png"]

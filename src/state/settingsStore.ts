@@ -20,16 +20,17 @@ export const useSettings = create<Settings>()(
       audioOn: true,
       fontFamily: 'default',
       setFontScale: (v) => set({ fontScale: Math.max(0.8, Math.min(1.6, v)) }),
-      toggleContrast: () => set((s) => {
-        const newContrast = !s.contrastHigh;
-        // Appliquer la classe au HTML
-        if (newContrast) {
-          document.documentElement.classList.add('contrast-high');
-        } else {
-          document.documentElement.classList.remove('contrast-high');
-        }
-        return { contrastHigh: newContrast };
-      }),
+      toggleContrast: () =>
+        set((s) => {
+          const newContrast = !s.contrastHigh;
+          // Appliquer la classe au HTML
+          if (newContrast) {
+            document.documentElement.classList.add('contrast-high');
+          } else {
+            document.documentElement.classList.remove('contrast-high');
+          }
+          return { contrastHigh: newContrast };
+        }),
       toggleAudio: () => set((s) => ({ audioOn: !s.audioOn })),
       setFont: (f) => set({ fontFamily: f }),
     }),

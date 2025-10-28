@@ -1,0 +1,80 @@
+{
+  "id": "jericho_01",
+  "title": "La Prise de Jéricho — Les murailles s'écroulent",
+  "path": "Le Pentateuque",
+  "reading": [
+    "Dieu ordonna à Josué de faire le tour de Jéricho une fois par jour pendant six jours.",
+    "Sept sacrificateurs portant sept trompettes devaient marcher devant l'arche.",
+    "Le septième jour, ils devaient faire sept fois le tour de la ville.",
+    "Au signal des trompettes, le peuple devait pousser un grand cri.",
+    "Josué obéit exactement aux ordres de Dieu.",
+    "Le peuple marcha en silence pendant six jours autour de la ville fortifiée.",
+    "Le septième jour, après le septième tour, les sacrificateurs sonnèrent des trompettes.",
+    "Le peuple poussa un grand cri, et les murailles s'écroulèrent.",
+    "Israël entra dans la ville et offrit tout à Dieu, montrant que la victoire venait de Lui seul.",
+    "Seule Rahab et sa famille furent épargnées, car elle avait caché les espions israélites."
+  ],
+  "key_verse": "Le peuple poussa des cris, et les sacrificateurs sonnèrent des trompettes. Lorsque le peuple entendit le son de la trompette, il poussa de grands cris, et la muraille s'écroula. — Josué 6:20",
+  "vocab": [
+    {
+      "word": "Jéricho",
+      "hint": "Première ville conquise en Canaan, puissamment fortifiée."
+    },
+    {
+      "word": "Trompette",
+      "hint": "Instrument du signal de Dieu pour la bataille."
+    },
+    {
+      "word": "Obéissance",
+      "hint": "Foi mise en action selon la parole de Dieu."
+    },
+    {
+      "word": "Victoire",
+      "hint": "Résultat de la confiance totale en Dieu."
+    },
+    {
+      "word": "Rahab",
+      "hint": "Femme de Jéricho qui cacha les espions et fut sauvée."
+    }
+  ],
+  "quiz": [
+    {
+      "q": "Combien de fois devaient-ils faire le tour de Jéricho le septième jour ?",
+      "choices": ["Une fois", "Trois fois", "Sept fois"],
+      "answer": 2
+    },
+    {
+      "q": "Que devait faire le peuple pendant les six premiers jours ?",
+      "choices": ["Crier fort", "Marcher en silence", "Jouer de la trompette"],
+      "answer": 1
+    },
+    {
+      "q": "Qui fut épargné à Jéricho ?",
+      "choices": ["Rahab et sa famille", "Le roi", "Personne"],
+      "answer": 0
+    },
+    {
+      "q": "Comment les murailles sont-elles tombées ?",
+      "choices": ["Par des machines de guerre", "Par la puissance de Dieu", "Par un tremblement de terre"],
+      "answer": 1
+    },
+    {
+      "q": "Que montre cette victoire ?",
+      "choices": ["La force d'Israël", "L'obéissance apporte la victoire", "La faiblesse de Jéricho"],
+      "answer": 1
+    }
+  ],
+  "story_steps": [
+    "Dieu donne ses instructions à Josué",
+    "Le peuple marche autour de Jéricho pendant 6 jours",
+    "Sept sacrificateurs portent l'arche et les trompettes",
+    "Le septième jour, ils font sept tours",
+    "Les sacrificateurs sonnent des trompettes",
+    "Le peuple pousse un grand cri",
+    "Les murailles s'écroulent miraculeusement",
+    "Israël entre dans la ville",
+    "Rahab et sa famille sont épargnées"
+  ],
+  "mini_games": ["order_events", "quiz"],
+  "assets": ["jericho_1.png", "jericho_2.png", "jericho_3.png"]
+}
