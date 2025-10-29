@@ -4,14 +4,9 @@
   "installCommand": "npm install",
   "framework": "vite",
   "rewrites": [
-    {
-      "source": "/bibles_json_6.0/(.*)",
-      "destination": "/bibles_json_6.0/$1"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+    { "source": "/assets/(.*)", "destination": "/assets/$1" },
+    { "source": "/bibles_json_6.0/(.*)", "destination": "/bibles_json_6.0/$1" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ],
   "headers": [
     {
