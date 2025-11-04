@@ -31,6 +31,8 @@ const CopticChurchHistoryPage = lazy(() => import('./pages/CopticChurchHistoryPa
 const CopticSaintsPage = lazy(() => import('./pages/CopticSaintsPage'));
 const CopticIconsPage = lazy(() => import('./pages/CopticIconsPage'));
 const CopticImportantDatesPage = lazy(() => import('./pages/CopticImportantDatesPage'));
+const ChristianHistoryPage = lazy(() => import('./pages/ChristianHistoryPage'));
+const OrthodoxPresenterPage = lazy(() => import('./pages/OrthodoxPresenterPage'));
 import MobileNavigation from './components/MobileNavigation';
 import AudioControls from './components/AudioControls';
 import AccessibilityControls from './components/AccessibilityControls';
@@ -138,10 +140,12 @@ function App() {
               <Route path="/bible" element={<BibleExplorer />} />
               <Route path="/sermons" element={<SermonSection />} />
               <Route path="/topics" element={<TopicsExplorer />} />
+              <Route path="/christian-history" element={<ChristianHistoryPage />} />
               <Route path="/coptic-church" element={<CopticChurchHistoryPage />} />
               <Route path="/coptic-church/saints" element={<CopticSaintsPage />} />
               <Route path="/coptic-church/icons" element={<CopticIconsPage />} />
               <Route path="/coptic-church/important-dates" element={<CopticImportantDatesPage />} />
+              <Route path="/orthodox-presenter" element={<OrthodoxPresenterPage />} />
               <Route path="/profile" element={<ProfileDashboard />} />
               {/* test-bible route removed */}
               {/* test/debug routes removed */}

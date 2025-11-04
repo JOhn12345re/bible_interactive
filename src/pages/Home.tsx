@@ -202,6 +202,22 @@ export default function Home() {
               2000 ans d'histoire de l'Église d'Alexandrie !
             </p>
           </Link>
+
+          {/* Orthodox Presenter */}
+          <Link 
+            to="/orthodox-presenter"
+            className={`group p-6 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl ${
+              contrastHigh 
+                ? 'bg-contrast-bg border-2 border-contrast-text'
+                : 'bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-lg'
+            }`}
+          >
+            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">📖</div>
+            <h3 className="text-xl font-bold mb-2">Services Liturgiques</h3>
+            <p className="text-sm opacity-90">
+              Prières, lectures et hymnes pour les offices !
+            </p>
+          </Link>
         </div>
 
         {/* Statistiques rapides */}
