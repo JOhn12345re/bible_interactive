@@ -186,6 +186,22 @@ export default function Home() {
               Découvre l'histoire, les saints et l'art de l'Église copte orthodoxe !
             </p>
           </Link>
+
+          {/* Histoire de l'Église Copte */}
+          <Link 
+            to="/christian-history"
+            className={`group p-6 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl ${
+              contrastHigh 
+                ? 'bg-contrast-bg border-2 border-contrast-text'
+                : 'bg-gradient-to-br from-red-500 to-pink-600 text-white shadow-lg'
+            }`}
+          >
+            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">⛪</div>
+            <h3 className="text-xl font-bold mb-2">Histoire Copte</h3>
+            <p className="text-sm opacity-90">
+              2000 ans d'histoire de l'Église d'Alexandrie !
+            </p>
+          </Link>
         </div>
 
         {/* Statistiques rapides */}
