@@ -2,17 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSettings } from '../state/settingsStore';
 
-interface Reading {
-  title: string;
-  reference: string;
-  text: string;
-}
-
 interface KatamerosData {
-  date: string;
-  copticDate: string;
-  readings: Reading[];
-  feast?: string;
+  [key: string]: any;
 }
 
 const KatamerosPage = () => {
@@ -45,6 +36,7 @@ const KatamerosPage = () => {
       }
       
       const data = await response.json();
+      console.log('Données Katameros reçues:', data); // Debug
       setKatamerosData(data);
     } catch (err) {
       setError('Impossible de charger les lectures du jour. Veuillez réessayer plus tard.');
@@ -153,7 +145,7 @@ const KatamerosPage = () => {
 
         {!loading && !error && katamerosData && (
           <div className="space-y-6">
-            {/* Information sur la date et la fête */}
+            {/* Information sur la date */}
             <div className={`p-6 rounded-xl ${contrastHigh ? 'bg-contrast-bg border-2 border-contrast-text' : 'bg-gradient-to-br from-purple-100 to-pink-100 border border-purple-300 shadow-lg'}`}>
               <div className="flex items-center space-x-4 mb-3">
                 <span className="text-4xl">📅</span>
@@ -168,52 +160,113 @@ const KatamerosPage = () => {
                   </h3>
                   {katamerosData.copticDate && (
                     <p className={`text-sm ${contrastHigh ? 'text-contrast-text' : 'text-purple-700'}`}>
-                      Date Copte : {katamerosData.copticDate}
+                      📅 Date Copte : {katamerosData.copticDate}
+                    </p>
+                  )}
+                  {katamerosData.bible && (
+                    <p className={`text-sm mt-1 ${contrastHigh ? 'text-contrast-text' : 'text-purple-600'}`}>
+                      📖 {katamerosData.bible.name}
                     </p>
                   )}
                 </div>
               </div>
-              {katamerosData.feast && (
-                <div className={`mt-4 p-4 rounded-lg ${contrastHigh ? 'bg-contrast-text/10' : 'bg-white/80'}`}>
-                  <p className={`font-bold ${contrastHigh ? 'text-contrast-text' : 'text-purple-900'}`}>
-                    🎉 Fête : {katamerosData.feast}
-                  </p>
-                </div>
-              )}
             </div>
 
-            {/* Lectures bibliques */}
-            {katamerosData.readings && katamerosData.readings.length > 0 ? (
-              katamerosData.readings.map((reading, index) => (
-                <div 
-                  key={index}
-                  className={`p-6 rounded-xl ${contrastHigh ? 'bg-contrast-bg border-2 border-contrast-text' : 'bg-white shadow-lg hover:shadow-xl transition-shadow'}`}
-                >
-                  <div className="flex items-start space-x-4 mb-4">
-                    <span className="text-4xl flex-shrink-0">📜</span>
-                    <div className="flex-1">
-                      <h4 className={`text-xl font-bold mb-2 ${contrastHigh ? 'text-contrast-text' : 'text-gray-900'}`}>
-                        {reading.title || `Lecture ${index + 1}`}
-                      </h4>
-                      <p className={`text-lg font-medium ${contrastHigh ? 'text-contrast-text' : 'text-blue-600'}`}>
-                        {reading.reference}
-                      </p>
-                    </div>
-                  </div>
-                  <div className={`p-4 rounded-lg ${contrastHigh ? 'bg-contrast-text/10' : 'bg-gray-50'}`}>
-                    <p className={`text-lg leading-relaxed whitespace-pre-wrap ${contrastHigh ? 'text-contrast-text' : 'text-gray-800'}`}>
-                      {reading.text}
-                    </p>
-                  </div>
+            {/* Sections des lectures */}
+            {katamerosData.sections && katamerosData.sections.map((section: any, sectionIdx: number) => (
+              <div key={sectionIdx} className="space-y-4">
+                {/* Titre de la section (Office) */}
+                <div className={`p-4 rounded-xl ${contrastHigh ? 'bg-contrast-bg border-2 border-contrast-text' : 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg'}`}>
+                  <h2 className="text-2xl font-bold flex items-center space-x-2">
+                    <span>✝️</span>
+                    <span>{section.title}</span>
+                  </h2>
                 </div>
-              ))
-            ) : (
-              <div className={`p-6 rounded-xl text-center ${contrastHigh ? 'bg-contrast-bg border-2 border-contrast-text' : 'bg-white shadow-lg'}`}>
-                <p className={`text-lg ${contrastHigh ? 'text-contrast-text' : 'text-gray-700'}`}>
-                  Aucune lecture disponible pour cette date.
-                </p>
+
+                {/* Sous-sections */}
+                {section.subSections && section.subSections.map((subSection: any, subIdx: number) => (
+                  <div key={subIdx} className="space-y-4">
+                    {/* Titre de la sous-section */}
+                    {subSection.title && (
+                      <div className={`p-3 rounded-lg ${contrastHigh ? 'bg-contrast-text/10' : 'bg-blue-50 border-l-4 border-blue-600'}`}>
+                        <h3 className={`text-lg font-bold ${contrastHigh ? 'text-contrast-text' : 'text-blue-900'}`}>
+                          📜 {subSection.title}
+                        </h3>
+                      </div>
+                    )}
+
+                    {/* Introduction */}
+                    {subSection.introduction && (
+                      <div className={`p-4 rounded-lg ${contrastHigh ? 'bg-contrast-text/10' : 'bg-amber-50 border border-amber-300'}`}>
+                        <p className={`italic ${contrastHigh ? 'text-contrast-text' : 'text-amber-900'}`}>
+                          {subSection.introduction}
+                        </p>
+                      </div>
+                    )}
+
+                    {/* Lectures */}
+                    {subSection.readings && subSection.readings.map((reading: any, readingIdx: number) => (
+                      <div 
+                        key={readingIdx}
+                        className={`p-6 rounded-xl ${contrastHigh ? 'bg-contrast-bg border-2 border-contrast-text' : 'bg-white shadow-lg'}`}
+                      >
+                        {/* Titre de la lecture */}
+                        {reading.title && (
+                          <h4 className={`text-xl font-bold mb-3 ${contrastHigh ? 'text-contrast-text' : 'text-gray-900'}`}>
+                            {reading.title}
+                          </h4>
+                        )}
+
+                        {/* Introduction de la lecture */}
+                        {reading.introduction && (
+                          <p className={`mb-4 italic ${contrastHigh ? 'text-contrast-text' : 'text-gray-600'}`}>
+                            {reading.introduction}
+                          </p>
+                        )}
+
+                        {/* Passages bibliques */}
+                        {reading.passages && reading.passages.map((passage: any, passageIdx: number) => (
+                          <div key={passageIdx} className="mb-4">
+                            {/* Référence */}
+                            <div className={`mb-2 flex items-center space-x-2 ${contrastHigh ? 'text-contrast-text' : 'text-blue-700'}`}>
+                              <span className="text-2xl">📖</span>
+                              <span className="font-bold text-lg">
+                                {passage.bookTranslation} {passage.chapter}:{passage.ref.split(':')[1] || ''}
+                              </span>
+                            </div>
+
+                            {/* Versets */}
+                            <div className={`p-4 rounded-lg space-y-2 ${contrastHigh ? 'bg-contrast-text/10' : 'bg-gray-50'}`}>
+                              {passage.verses && passage.verses.map((verse: any) => (
+                                <p key={verse.id} className={`leading-relaxed ${contrastHigh ? 'text-contrast-text' : 'text-gray-800'}`}>
+                                  <span className="font-semibold text-blue-600 mr-2">{verse.number}</span>
+                                  {verse.text.trim()}
+                                </p>
+                              ))}
+                            </div>
+                          </div>
+                        ))}
+
+                        {/* HTML (Synaxaire) */}
+                        {reading.html && (
+                          <div 
+                            className={`prose max-w-none ${contrastHigh ? 'text-contrast-text' : ''}`}
+                            dangerouslySetInnerHTML={{ __html: reading.html }}
+                          />
+                        )}
+
+                        {/* Conclusion */}
+                        {reading.conclusion && (
+                          <p className={`mt-4 italic font-medium ${contrastHigh ? 'text-contrast-text' : 'text-green-700'}`}>
+                            {reading.conclusion}
+                          </p>
+                        )}
+                      </div>
+                    ))}
+                  </div>
+                ))}
               </div>
-            )}
+            ))}
           </div>
         )}
 
