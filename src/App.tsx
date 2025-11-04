@@ -33,6 +33,7 @@ const CopticIconsPage = lazy(() => import('./pages/CopticIconsPage'));
 const CopticImportantDatesPage = lazy(() => import('./pages/CopticImportantDatesPage'));
 const ChristianHistoryPage = lazy(() => import('./pages/ChristianHistoryPage'));
 const OrthodoxPresenterPage = lazy(() => import('./pages/OrthodoxPresenterPage'));
+const KatamerosPage = lazy(() => import('./pages/KatamerosPage'));
 import MobileNavigation from './components/MobileNavigation';
 import AudioControls from './components/AudioControls';
 import AccessibilityControls from './components/AccessibilityControls';
@@ -146,6 +147,7 @@ function App() {
               <Route path="/coptic-church/icons" element={<CopticIconsPage />} />
               <Route path="/coptic-church/important-dates" element={<CopticImportantDatesPage />} />
               <Route path="/orthodox-presenter" element={<OrthodoxPresenterPage />} />
+              <Route path="/katameros" element={<KatamerosPage />} />
               <Route path="/profile" element={<ProfileDashboard />} />
               {/* test-bible route removed */}
               {/* test/debug routes removed */}

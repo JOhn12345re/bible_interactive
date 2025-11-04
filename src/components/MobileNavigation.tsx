@@ -14,6 +14,7 @@ const MobileNavigation: React.FC = () => {
     { path: '/timeline', label: 'Timeline', icon: '📜' },
     { path: '/christian-history', label: 'Histoire Copte', icon: '⛪' },
     { path: '/orthodox-presenter', label: 'Services Liturgiques', icon: '📖' },
+    { path: '/katameros', label: 'Lectionnaire Copte', icon: '📜' },
     { path: '/coptic-church', label: 'Église Copte', icon: '✝️' },
     { path: '/profile', label: 'Mon Profil', icon: '👤' },
   ];

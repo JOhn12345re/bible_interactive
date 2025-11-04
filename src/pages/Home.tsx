@@ -218,6 +218,22 @@ export default function Home() {
               Prières, lectures et hymnes pour les offices !
             </p>
           </Link>
+
+          {/* Katameros */}
+          <Link 
+            to="/katameros"
+            className={`group p-6 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl ${
+              contrastHigh 
+                ? 'bg-contrast-bg border-2 border-contrast-text'
+                : 'bg-gradient-to-br from-teal-500 to-cyan-600 text-white shadow-lg'
+            }`}
+          >
+            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">📜</div>
+            <h3 className="text-xl font-bold mb-2">Lectionnaire Copte</h3>
+            <p className="text-sm opacity-90">
+              Lectures quotidiennes du Katameros (Ⲕⲁⲧⲁⲙⲉⲣⲟⲥ) !
+            </p>
+          </Link>
         </div>
 
         {/* Statistiques rapides */}
