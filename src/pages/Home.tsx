@@ -234,6 +234,70 @@ export default function Home() {
               Lectures quotidiennes du Katameros (Ⲕⲁⲧⲁⲙⲉⲣⲟⲥ) !
             </p>
           </Link>
+
+          {/* Lecture Quotidienne */}
+          <Link 
+            to="/daily-reading"
+            className={`group p-6 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl ${
+              contrastHigh 
+                ? 'bg-contrast-bg border-2 border-contrast-text'
+                : 'bg-gradient-to-br from-green-500 to-emerald-600 text-white shadow-lg'
+            }`}
+          >
+            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">📖</div>
+            <h3 className="text-xl font-bold mb-2">Lecture Quotidienne</h3>
+            <p className="text-sm opacity-90">
+              Lisez la Bible entière en 365 jours avec votre plan personnalisé !
+            </p>
+          </Link>
+
+          {/* Verset du Jour */}
+          <Link 
+            to="/daily-verse"
+            className={`group p-6 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl ${
+              contrastHigh 
+                ? 'bg-contrast-bg border-2 border-contrast-text'
+                : 'bg-gradient-to-br from-yellow-500 to-orange-500 text-white shadow-lg'
+            }`}
+          >
+            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">⭐</div>
+            <h3 className="text-xl font-bold mb-2">Verset du Jour</h3>
+            <p className="text-sm opacity-90">
+              Un verset inspirant chaque jour avec réflexion et méditation !
+            </p>
+          </Link>
+
+          {/* Défis Spirituels */}
+          <Link 
+            to="/spiritual-challenges"
+            className={`group p-6 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl ${
+              contrastHigh 
+                ? 'bg-contrast-bg border-2 border-contrast-text'
+                : 'bg-gradient-to-br from-purple-500 to-indigo-600 text-white shadow-lg'
+            }`}
+          >
+            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">🎯</div>
+            <h3 className="text-xl font-bold mb-2">Défis Spirituels</h3>
+            <p className="text-sm opacity-90">
+              Relevez des défis quotidiens pour grandir dans votre foi !
+            </p>
+          </Link>
+
+          {/* Mémorisation de Versets */}
+          <Link 
+            to="/verse-memorization"
+            className={`group p-6 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl ${
+              contrastHigh 
+                ? 'bg-contrast-bg border-2 border-contrast-text'
+                : 'bg-gradient-to-br from-rose-500 to-pink-600 text-white shadow-lg'
+            }`}
+          >
+            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">🧠</div>
+            <h3 className="text-xl font-bold mb-2">Mémorisation</h3>
+            <p className="text-sm opacity-90">
+              Apprenez et mémorisez les versets avec des quiz interactifs !
+            </p>
+          </Link>
         </div>
 
         {/* Statistiques rapides */}

@@ -15,6 +15,10 @@ const MobileNavigation: React.FC = () => {
     { path: '/christian-history', label: 'Histoire Copte', icon: '⛪' },
     { path: '/orthodox-presenter', label: 'Services Liturgiques', icon: '📖' },
     { path: '/katameros', label: 'Lectionnaire Copte', icon: '📜' },
+    { path: '/daily-reading', label: 'Lecture Quotidienne', icon: '📖' },
+    { path: '/daily-verse', label: 'Verset du Jour', icon: '⭐' },
+    { path: '/spiritual-challenges', label: 'Défis Spirituels', icon: '🎯' },
+    { path: '/verse-memorization', label: 'Mémorisation', icon: '🧠' },
     { path: '/coptic-church', label: 'Église Copte', icon: '✝️' },
     { path: '/profile', label: 'Mon Profil', icon: '👤' },
   ];

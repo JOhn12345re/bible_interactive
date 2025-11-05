@@ -34,6 +34,10 @@ const CopticImportantDatesPage = lazy(() => import('./pages/CopticImportantDates
 const ChristianHistoryPage = lazy(() => import('./pages/ChristianHistoryPage'));
 const OrthodoxPresenterPage = lazy(() => import('./pages/OrthodoxPresenterPage'));
 const KatamerosPage = lazy(() => import('./pages/KatamerosPage'));
+const DailyReadingPage = lazy(() => import('./pages/DailyReadingPage'));
+const DailyVersePage = lazy(() => import('./pages/DailyVersePage'));
+const SpiritualChallengesPage = lazy(() => import('./pages/SpiritualChallengesPage'));
+const VerseMemorizationPage = lazy(() => import('./pages/VerseMemorizationPage'));
 import MobileNavigation from './components/MobileNavigation';
 import AudioControls from './components/AudioControls';
 import AccessibilityControls from './components/AccessibilityControls';
@@ -148,6 +152,10 @@ function App() {
               <Route path="/coptic-church/important-dates" element={<CopticImportantDatesPage />} />
               <Route path="/orthodox-presenter" element={<OrthodoxPresenterPage />} />
               <Route path="/katameros" element={<KatamerosPage />} />
+              <Route path="/daily-reading" element={<DailyReadingPage />} />
+              <Route path="/daily-verse" element={<DailyVersePage />} />
+              <Route path="/spiritual-challenges" element={<SpiritualChallengesPage />} />
+              <Route path="/verse-memorization" element={<VerseMemorizationPage />} />
               <Route path="/profile" element={<ProfileDashboard />} />
               {/* test-bible route removed */}
               {/* test/debug routes removed */}

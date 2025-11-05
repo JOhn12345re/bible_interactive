@@ -130,6 +130,32 @@ export default function BibleExplorer() {
     'Esaïe 40:31',
   ];
 
+  // Initialisation des paramètres URL book et chapter
+  useEffect(() => {
+    const urlBook = searchParams.get('book');
+    const urlChapter = searchParams.get('chapter');
+    const urlVerse = searchParams.get('verse');
+    
+    if (urlBook && FRENCH_BOOKS.includes(urlBook)) {
+      setBook(urlBook);
+    }
+    
+    if (urlChapter) {
+      const chapterNum = parseInt(urlChapter);
+      if (!isNaN(chapterNum) && chapterNum > 0) {
+        setChapter(chapterNum);
+      }
+    }
+    
+    if (urlVerse) {
+      const verseNum = parseInt(urlVerse);
+      if (!isNaN(verseNum) && verseNum > 0) {
+        setStart(verseNum);
+        setEnd(verseNum + 10); // Afficher 10 versets à partir du verset spécifié
+      }
+    }
+  }, [searchParams]);
+
   useEffect(() => {
     const fetchVerses = async () => {
       setLoading(true);
@@ -163,7 +189,7 @@ export default function BibleExplorer() {
       searchVerse(q.trim());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [searchParams]);
+  }, []);
 
   return (
     <div className="min-h-screen">
