@@ -234,22 +234,6 @@ export default function Home() {
               Lectures quotidiennes du Katameros (Ⲕⲁⲧⲁⲙⲉⲣⲟⲥ) !
             </p>
           </Link>
-
-          {/* Marenhos */}
-          <Link 
-            to="/marenhos"
-            className={`group p-6 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl ${
-              contrastHigh 
-                ? 'bg-contrast-bg border-2 border-contrast-text'
-                : 'bg-gradient-to-br from-pink-500 to-rose-600 text-white shadow-lg'
-            }`}
-          >
-            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">🎵</div>
-            <h3 className="text-xl font-bold mb-2">Hymnes Coptes</h3>
-            <p className="text-sm opacity-90">
-              Marenhos (Ⲙⲁⲣⲉⲛϩⲱⲥ) - Application d'hymnes liturgiques !
-            </p>
-          </Link>
         </div>
 
         {/* Statistiques rapides */}
