@@ -1,355 +1,179 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSettings } from '../state/settingsStore';
-import { useProfileStore } from '../state/profileStore';
-import { useProgress } from '../state/progressStore';
-import SettingsDialog from '../components/SettingsDialog';
-import ProfileDialog from '../components/ProfileDialog';
 
 export default function Home() {
-  const [showSettings, setShowSettings] = useState(false);
-  const [showProfile, setShowProfile] = useState(false);
-  
+  const navigate = useNavigate();
   const { contrastHigh } = useSettings();
-  const { profile, isProfileComplete } = useProfileStore();
-  const { getAllBadges } = useProgress();
-  const badges = getAllBadges();
+  const [currentFeature, setCurrentFeature] = useState(0);
+
+  const features = [
+    {
+      icon: "📖",
+      title: "Plan de Lecture Bible 365 jours",
+      description: "Parcourez toute la Bible en une année avec notre plan structuré qui vous guide jour par jour à travers l'Ancien et le Nouveau Testament."
+    },
+    {
+      icon: "🎯",
+      title: "Versets Quotidiens par Thèmes",
+      description: "Découvrez des versets inspirants organisés par thèmes spirituels : Amour, Confiance, Force, Espoir, Paix, et bien plus encore."
+    },
+    {
+      icon: "📚",
+      title: "Explorateur Bible Interactif",
+      description: "Naviguez librement dans tous les livres de la Bible avec une interface moderne et des liens de navigation intuitifs."
+    },
+    {
+      icon: "🎮",
+      title: "Défis Spirituels",
+      description: "Participez à des défis quotidiens pour approfondir votre foi et développer des habitudes spirituelles saines."
+    },
+    {
+      icon: "🧠",
+      title: "Mémorisation de Versets",
+      description: "Apprenez et mémorisez les versets bibliques avec notre système d'apprentissage interactif et de répétition espacée."
+    },
+    {
+      icon: "⛪",
+      title: "Traditions Coptes",
+      description: "Explorez l'histoire riche de l'Église copte orthodoxe, ses saints, ses traditions liturgiques et son patrimoine spirituel."
+    }
+  ];
+
+  const handleEnterSite = () => {
+    navigate('/dashboard');
+  };
 
   return (
-    <div className={`min-h-screen ${contrastHigh ? 'bg-contrast-bg text-contrast-text' : 'bg-gradient-to-br from-blue-50 via-white to-purple-50'}`}>
-      {/* Header simple et épuré */}
-      <header className={`sticky top-0 z-40 backdrop-blur-md ${contrastHigh ? 'bg-contrast-bg/95' : 'bg-white/95 shadow-sm border-b border-gray-100'}`}>
-        <div className="max-w-6xl mx-auto px-4 py-4">
-          <div className="flex justify-between items-center">
-            <div className="flex items-center space-x-3">
-              <span className="text-3xl">📖</span>
-              <div>
-                <h1 className={`text-2xl font-bold ${contrastHigh ? 'text-contrast-text' : 'text-gray-800'}`}>
-                  Bible Interactive
-                </h1>
-                <p className={`text-sm ${contrastHigh ? 'text-contrast-text' : 'text-gray-600'}`}>
-                  Découverte biblique pour enfants
-                </p>
+    <div className={`min-h-screen ${contrastHigh ? 'bg-contrast-bg text-contrast-text' : 'bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900'} relative overflow-hidden`}>
+      {/* Effet de particules en arrière-plan */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-10 left-10 w-2 h-2 bg-white rounded-full animate-pulse"></div>
+        <div className="absolute top-32 right-20 w-1 h-1 bg-yellow-300 rounded-full animate-ping"></div>
+        <div className="absolute top-64 left-32 w-1.5 h-1.5 bg-blue-300 rounded-full animate-pulse"></div>
+        <div className="absolute bottom-32 right-16 w-2 h-2 bg-purple-300 rounded-full animate-ping"></div>
+        <div className="absolute bottom-64 left-20 w-1 h-1 bg-green-300 rounded-full animate-pulse"></div>
+      </div>
+
+      {/* Navigation en haut */}
+      <nav className="relative z-10 p-6">
+        <div className="flex justify-between items-center max-w-7xl mx-auto">
+          <div className="flex items-center space-x-4">
+            <div className="text-4xl">📖</div>
+            <div>
+              <h1 className="text-2xl font-bold text-white">Bible Interactive</h1>
+              <p className="text-blue-200 text-sm">Votre companion spirituel</p>
+            </div>
+          </div>
+          <Link 
+            to="/dashboard" 
+            className="px-6 py-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-white hover:bg-white/20 transition-all duration-300"
+          >
+            Accès Direct
+          </Link>
+        </div>
+      </nav>
+
+      {/* Section Hero principale */}
+      <main className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-20">
+        <div className="max-w-4xl mx-auto">
+          {/* Icône principale animée */}
+          <div className="text-8xl mb-8 animate-bounce">✨</div>
+          
+          {/* Titre principal */}
+          <h1 className="text-6xl md:text-7xl font-bold text-white mb-6 leading-tight">
+            Bible
+            <span className="bg-gradient-to-r from-yellow-400 via-orange-400 to-red-400 bg-clip-text text-transparent"> Interactive</span>
+          </h1>
+          
+          {/* Sous-titre */}
+          <p className="text-xl md:text-2xl text-blue-100 mb-12 max-w-3xl mx-auto leading-relaxed">
+            Découvrez la Bible comme jamais auparavant avec notre plateforme spirituelle complète. 
+            Lectures guidées, versets thématiques, défis spirituels et bien plus encore.
+          </p>
+
+          {/* Bouton principal d'entrée */}
+          <button
+            onClick={handleEnterSite}
+            className="group relative px-12 py-6 bg-gradient-to-r from-blue-500 via-purple-500 to-indigo-600 rounded-full text-white text-xl font-bold shadow-2xl hover:shadow-3xl transform hover:scale-105 transition-all duration-300 mb-16"
+          >
+            <span className="relative z-10 flex items-center space-x-3">
+              <span>Entrer dans l'Aventure</span>
+              <span className="text-2xl group-hover:translate-x-2 transition-transform">🚀</span>
+            </span>
+            <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-blue-600 to-indigo-700 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+          </button>
+        </div>
+
+        {/* Section des fonctionnalités */}
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-3xl font-bold text-white mb-12">Que contient notre plateforme ?</h2>
+          
+          {/* Grille des fonctionnalités */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+            {features.map((feature, index) => (
+              <div 
+                key={index}
+                className={`group p-8 rounded-2xl backdrop-blur-sm transition-all duration-300 hover:scale-105 cursor-pointer ${
+                  currentFeature === index 
+                    ? 'bg-white/20 border-2 border-white/40' 
+                    : 'bg-white/10 border border-white/20 hover:bg-white/15'
+                }`}
+                onClick={() => setCurrentFeature(index)}
+              >
+                <div className="text-5xl mb-6 group-hover:scale-110 transition-transform">{feature.icon}</div>
+                <h3 className="text-xl font-bold text-white mb-4">{feature.title}</h3>
+                <p className="text-blue-100 leading-relaxed">{feature.description}</p>
               </div>
+            ))}
+          </div>
+
+          {/* Statistiques impressionnantes */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-16">
+            <div className="text-center">
+              <div className="text-4xl font-bold text-yellow-400 mb-2">365</div>
+              <div className="text-blue-200">Jours de Lecture</div>
             </div>
-            
-            <div className="flex items-center space-x-3">
-              {/* Badges */}
-              {badges.length > 0 && (
-                <div className={`flex items-center space-x-2 px-3 py-2 rounded-full ${
-                  contrastHigh 
-                    ? 'bg-contrast-text text-contrast-bg'
-                    : 'bg-yellow-400 text-yellow-900 shadow-md'
-                }`}>
-                  <span>🏆</span>
-                  <span className="font-bold">{badges.length}</span>
-                </div>
-              )}
-              
-              {/* Profil */}
-              <button
-                onClick={() => setShowProfile(true)}
-                className={`px-3 py-2 rounded-full font-medium transition-all hover:scale-105 ${
-                  contrastHigh 
-                    ? 'bg-contrast-text text-contrast-bg'
-                    : 'bg-blue-100 text-blue-800 hover:bg-blue-200'
-                }`}
-              >
-                👤 {profile?.firstName || 'Profil'}
-              </button>
-              
-              {/* Paramètres */}
-              <button 
-                onClick={() => setShowSettings(true)} 
-                className={`p-2 rounded-full transition-all hover:scale-110 ${
-                  contrastHigh ? 'hover:bg-contrast-text/20' : 'hover:bg-gray-200'
-                }`}
-              >
-                ⚙️
-              </button>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-green-400 mb-2">30+</div>
+              <div className="text-blue-200">Versets Thématiques</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-purple-400 mb-2">11</div>
+              <div className="text-blue-200">Thèmes Spirituels</div>
+            </div>
+            <div className="text-center">
+              <div className="text-4xl font-bold text-orange-400 mb-2">∞</div>
+              <div className="text-blue-200">Découvertes</div>
             </div>
           </div>
-        </div>
-      </header>
 
-      {/* Contenu principal */}
-      <main className="max-w-6xl mx-auto px-4 py-8">
-        {/* Section héro simplifiée */}
-        <div className="text-center mb-12">
-          <div className="text-6xl mb-4">🌟</div>
-          <h2 className={`text-4xl font-bold mb-4 ${
-            contrastHigh ? 'text-contrast-text' : 'bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent'
-          }`}>
-            Bienvenue dans l'aventure !
-          </h2>
-          <p className={`text-lg max-w-2xl mx-auto ${
-            contrastHigh ? 'text-contrast-text' : 'text-gray-600'
-          }`}>
-            Découvre les plus belles histoires de la Bible à travers des jeux interactifs et des activités amusantes.
-          </p>
-        </div>
-
-        {/* Actions principales - Grille simple */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {/* Timeline */}
-          <Link 
-            to="/timeline"
-            className={`group p-6 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl ${
-              contrastHigh 
-                ? 'bg-contrast-bg border-2 border-contrast-text'
-                : 'bg-gradient-to-br from-purple-500 to-purple-600 text-white shadow-lg'
-            }`}
-          >
-            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">📅</div>
-            <h3 className="text-xl font-bold mb-2">Frise Chronologique</h3>
-            <p className="text-sm opacity-90">
-              Voyage dans le temps de la Création à Jésus avec notre timeline interactive !
-            </p>
-          </Link>
-
-          {/* Jeux */}
-          <Link 
-            to="/games"
-            className={`group p-6 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl ${
-              contrastHigh 
-                ? 'bg-contrast-bg border-2 border-contrast-text'
-                : 'bg-gradient-to-br from-green-500 to-green-600 text-white shadow-lg'
-            }`}
-          >
-            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">🎮</div>
-            <h3 className="text-xl font-bold mb-2">Mini-Jeux</h3>
-            <p className="text-sm opacity-90">
-              Puzzles, quiz et défis pour tester tes connaissances en s'amusant !
-            </p>
-          </Link>
-
-          {/* Bible Explorer */}
-          <Link 
-            to="/bible"
-            className={`group p-6 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl ${
-              contrastHigh 
-                ? 'bg-contrast-bg border-2 border-contrast-text'
-                : 'bg-gradient-to-br from-yellow-500 to-orange-500 text-white shadow-lg'
-            }`}
-          >
-            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">📖</div>
-            <h3 className="text-xl font-bold mb-2">Explorateur Bible</h3>
-            <p className="text-sm opacity-90">
-              Navigue dans les livres et découvre des versets inspirants !
-            </p>
-          </Link>
-
-          {/* Vidéos */}
-          <Link 
-            to="/sermons"
-            className={`group p-6 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl ${
-              contrastHigh 
-                ? 'bg-contrast-bg border-2 border-contrast-text'
-                : 'bg-gradient-to-br from-red-500 to-pink-500 text-white shadow-lg'
-            }`}
-          >
-            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">🎬</div>
-            <h3 className="text-xl font-bold mb-2">Vidéos & Chants</h3>
-            <p className="text-sm opacity-90">
-              Regarde des vidéos et écoute de beaux chants chrétiens !
-            </p>
-          </Link>
-
-          {/* Journal */}
-          <Link 
-            to="/journal"
-            className={`group p-6 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl ${
-              contrastHigh 
-                ? 'bg-contrast-bg border-2 border-contrast-text'
-                : 'bg-gradient-to-br from-cyan-500 to-blue-500 text-white shadow-lg'
-            }`}
-          >
-            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">✍️</div>
-            <h3 className="text-xl font-bold mb-2">Mon Journal</h3>
-            <p className="text-sm opacity-90">
-              Écris tes pensées et tes découvertes spirituelles !
-            </p>
-          </Link>
-
-          {/* Histoire de l'Église Copte */}
-          <Link 
-            to="/coptic-church"
-            className={`group p-6 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl ${
-              contrastHigh 
-                ? 'bg-contrast-bg border-2 border-contrast-text'
-                : 'bg-gradient-to-br from-amber-500 to-orange-600 text-white shadow-lg'
-            }`}
-          >
-            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">⛪</div>
-            <h3 className="text-xl font-bold mb-2">Église Copte</h3>
-            <p className="text-sm opacity-90">
-              Découvre l'histoire, les saints et l'art de l'Église copte orthodoxe !
-            </p>
-          </Link>
-
-          {/* Histoire de l'Église Copte */}
-          <Link 
-            to="/christian-history"
-            className={`group p-6 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl ${
-              contrastHigh 
-                ? 'bg-contrast-bg border-2 border-contrast-text'
-                : 'bg-gradient-to-br from-red-500 to-pink-600 text-white shadow-lg'
-            }`}
-          >
-            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">⛪</div>
-            <h3 className="text-xl font-bold mb-2">Histoire Copte</h3>
-            <p className="text-sm opacity-90">
-              2000 ans d'histoire de l'Église d'Alexandrie !
-            </p>
-          </Link>
-
-          {/* Orthodox Presenter */}
-          <Link 
-            to="/orthodox-presenter"
-            className={`group p-6 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl ${
-              contrastHigh 
-                ? 'bg-contrast-bg border-2 border-contrast-text'
-                : 'bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-lg'
-            }`}
-          >
-            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">📖</div>
-            <h3 className="text-xl font-bold mb-2">Services Liturgiques</h3>
-            <p className="text-sm opacity-90">
-              Prières, lectures et hymnes pour les offices !
-            </p>
-          </Link>
-
-          {/* Katameros */}
-          <Link 
-            to="/katameros"
-            className={`group p-6 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl ${
-              contrastHigh 
-                ? 'bg-contrast-bg border-2 border-contrast-text'
-                : 'bg-gradient-to-br from-teal-500 to-cyan-600 text-white shadow-lg'
-            }`}
-          >
-            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">📜</div>
-            <h3 className="text-xl font-bold mb-2">Lectionnaire Copte</h3>
-            <p className="text-sm opacity-90">
-              Lectures quotidiennes du Katameros (Ⲕⲁⲧⲁⲙⲉⲣⲟⲥ) !
-            </p>
-          </Link>
-
-          {/* Lecture Quotidienne */}
-          <Link 
-            to="/daily-reading"
-            className={`group p-6 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl ${
-              contrastHigh 
-                ? 'bg-contrast-bg border-2 border-contrast-text'
-                : 'bg-gradient-to-br from-green-500 to-emerald-600 text-white shadow-lg'
-            }`}
-          >
-            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">📖</div>
-            <h3 className="text-xl font-bold mb-2">Lecture Quotidienne</h3>
-            <p className="text-sm opacity-90">
-              Lisez la Bible entière en 365 jours avec votre plan personnalisé !
-            </p>
-          </Link>
-
-          {/* Verset du Jour */}
-          <Link 
-            to="/daily-verse"
-            className={`group p-6 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl ${
-              contrastHigh 
-                ? 'bg-contrast-bg border-2 border-contrast-text'
-                : 'bg-gradient-to-br from-yellow-500 to-orange-500 text-white shadow-lg'
-            }`}
-          >
-            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">⭐</div>
-            <h3 className="text-xl font-bold mb-2">Verset du Jour</h3>
-            <p className="text-sm opacity-90">
-              Un verset inspirant chaque jour avec réflexion et méditation !
-            </p>
-          </Link>
-
-          {/* Défis Spirituels */}
-          <Link 
-            to="/spiritual-challenges"
-            className={`group p-6 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl ${
-              contrastHigh 
-                ? 'bg-contrast-bg border-2 border-contrast-text'
-                : 'bg-gradient-to-br from-purple-500 to-indigo-600 text-white shadow-lg'
-            }`}
-          >
-            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">🎯</div>
-            <h3 className="text-xl font-bold mb-2">Défis Spirituels</h3>
-            <p className="text-sm opacity-90">
-              Relevez des défis quotidiens pour grandir dans votre foi !
-            </p>
-          </Link>
-
-          {/* Mémorisation de Versets */}
-          <Link 
-            to="/verse-memorization"
-            className={`group p-6 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl ${
-              contrastHigh 
-                ? 'bg-contrast-bg border-2 border-contrast-text'
-                : 'bg-gradient-to-br from-rose-500 to-pink-600 text-white shadow-lg'
-            }`}
-          >
-            <div className="text-4xl mb-4 group-hover:scale-110 transition-transform">🧠</div>
-            <h3 className="text-xl font-bold mb-2">Mémorisation</h3>
-            <p className="text-sm opacity-90">
-              Apprenez et mémorisez les versets avec des quiz interactifs !
-            </p>
-          </Link>
-        </div>
-
-        {/* Statistiques rapides */}
-        <div className={`p-6 rounded-2xl text-center mb-8 ${
-          contrastHigh 
-            ? 'bg-contrast-bg border-2 border-contrast-text'
-            : 'bg-gradient-to-br from-green-50 to-blue-50 border border-green-200'
-        }`}>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <div>
-              <div className="text-2xl font-bold text-blue-600">12+</div>
-              <div className={`text-sm ${contrastHigh ? 'text-contrast-text' : 'text-gray-600'}`}>Histoires</div>
-            </div>
-            <div>
-              <div className="text-2xl font-bold text-purple-600">15+</div>
-              <div className={`text-sm ${contrastHigh ? 'text-contrast-text' : 'text-gray-600'}`}>Mini-jeux</div>
-            </div>
-            <div>
-              <div className="text-2xl font-bold text-green-600">{badges.length}</div>
-              <div className={`text-sm ${contrastHigh ? 'text-contrast-text' : 'text-gray-600'}`}>Badges obtenus</div>
-            </div>
-            <div>
-              <div className="text-2xl font-bold text-orange-600">∞</div>
-              <div className={`text-sm ${contrastHigh ? 'text-contrast-text' : 'text-gray-600'}`}>Découvertes</div>
-            </div>
+          {/* Citation inspirante */}
+          <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 max-w-3xl mx-auto">
+            <div className="text-6xl text-center mb-4">📜</div>
+            <blockquote className="text-xl text-white text-center italic mb-4">
+              "Ta parole est une lampe à mes pieds, et une lumière sur mon sentier."
+            </blockquote>
+            <cite className="text-blue-200 text-center block">— Psaume 119:105</cite>
           </div>
-        </div>
-
-        {/* Message d'encouragement */}
-        <div className={`p-6 rounded-2xl text-center ${
-          contrastHigh 
-            ? 'bg-contrast-bg border-2 border-contrast-text'
-            : 'bg-gradient-to-br from-blue-100 to-purple-100'
-        }`}>
-          <div className="text-4xl mb-3">🎯</div>
-          <h3 className={`text-xl font-bold mb-2 ${
-            contrastHigh ? 'text-contrast-text' : 'text-gray-800'
-          }`}>
-            {badges.length === 0 ? 'Prêt pour l\'aventure ?' : 'Continue ton aventure !'}
-          </h3>
-          <p className={`${contrastHigh ? 'text-contrast-text' : 'text-gray-600'}`}>
-            {badges.length === 0 
-              ? "Commence par une histoire pour obtenir ton premier badge !" 
-              : `Félicitations ! Tu as ${badges.length} badge${badges.length > 1 ? 's' : ''}. Continue à explorer !`
-            }
-          </p>
         </div>
       </main>
 
-      {/* Dialogs */}
-      <SettingsDialog isOpen={showSettings} onClose={() => setShowSettings(false)} />
-      <ProfileDialog isOpen={showProfile} onClose={() => setShowProfile(false)} />
+      {/* Footer avec appel à l'action */}
+      <footer className="relative z-10 text-center py-12">
+        <div className="max-w-4xl mx-auto px-6">
+          <h3 className="text-2xl font-bold text-white mb-4">Prêt à commencer votre voyage spirituel ?</h3>
+          <p className="text-blue-100 mb-8">
+            Rejoignez des milliers de personnes qui découvrent la Bible de manière interactive et enrichissante.
+          </p>
+          <button
+            onClick={handleEnterSite}
+            className="px-8 py-4 bg-white text-indigo-900 font-bold rounded-full hover:bg-blue-50 transform hover:scale-105 transition-all duration-300 shadow-xl"
+          >
+            Commencer Maintenant 🌟
+          </button>
+        </div>
+      </footer>
     </div>
   );
 }

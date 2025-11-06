@@ -38,6 +38,9 @@ const DailyReadingPage = lazy(() => import('./pages/DailyReadingPage'));
 const DailyVersePage = lazy(() => import('./pages/DailyVersePage'));
 const SpiritualChallengesPage = lazy(() => import('./pages/SpiritualChallengesPage'));
 const VerseMemorizationPage = lazy(() => import('./pages/VerseMemorizationPage'));
+const DashboardPage = lazy(() => import('./pages/DashboardPage'));
+const StoryEditorPage = lazy(() => import('./pages/StoryEditorPage'));
+const UniversalEditorPage = lazy(() => import('./pages/UniversalEditorPage'));
 import MobileNavigation from './components/MobileNavigation';
 import AudioControls from './components/AudioControls';
 import AccessibilityControls from './components/AccessibilityControls';
@@ -108,6 +111,7 @@ function App() {
           >
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route path="/dashboard" element={<DashboardPage />} />
               <Route path="/lessons" element={<LessonsPage />} />
               <Route path="/lesson/:id" element={<Lesson />} />
               <Route path="/game/:id/:gameType" element={<GamePage />} />
@@ -156,6 +160,8 @@ function App() {
               <Route path="/daily-verse" element={<DailyVersePage />} />
               <Route path="/spiritual-challenges" element={<SpiritualChallengesPage />} />
               <Route path="/verse-memorization" element={<VerseMemorizationPage />} />
+              <Route path="/story-editor" element={<StoryEditorPage />} />
+              <Route path="/universal-editor" element={<UniversalEditorPage />} />
               <Route path="/profile" element={<ProfileDashboard />} />
               {/* test-bible route removed */}
               {/* test/debug routes removed */}
