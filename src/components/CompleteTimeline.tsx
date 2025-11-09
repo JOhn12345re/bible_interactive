@@ -316,6 +316,21 @@ export default function CompleteTimeline() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 dark:from-gray-900 dark:via-blue-900 dark:to-purple-900">
       <div className="container mx-auto px-4 py-8">
+        {/* Bouton de retour */}
+        <div className="mb-6">
+          <Link
+            to="/"
+            className={`inline-flex items-center px-6 py-3 rounded-xl font-semibold transition-all duration-200 ${
+              contrastHigh
+                ? 'bg-contrast-text text-contrast-bg hover:opacity-80'
+                : 'bg-white hover:bg-gray-50 text-gray-700 shadow-lg hover:shadow-xl border border-gray-200'
+            }`}
+          >
+            <span className="text-2xl mr-2">←</span>
+            <span>Retour à l'accueil</span>
+          </Link>
+        </div>
+
         {/* En-tête */}
         <div className="text-center mb-8">
           <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">

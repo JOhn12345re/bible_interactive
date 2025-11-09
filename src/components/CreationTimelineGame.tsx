@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useSettings } from '../state/settingsStore';
 import { useProgress } from '../state/progressStore';
+import { Link } from 'react-router-dom';
 
 interface TimelineEvent {
   id: string;
@@ -125,6 +126,21 @@ const CreationTimelineGame = () => {
   return (
     <div className={`min-h-screen p-6 ${contrastHigh ? 'bg-black text-white' : 'bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50'}`}>
       <div className="max-w-6xl mx-auto">
+        {/* Bouton de retour */}
+        <div className="mb-6">
+          <Link
+            to="/lesson/creation_01"
+            className={`inline-flex items-center px-6 py-3 rounded-xl font-semibold transition-all duration-200 ${
+              contrastHigh
+                ? 'bg-white text-black hover:opacity-80'
+                : 'bg-white hover:bg-gray-50 text-gray-700 shadow-lg hover:shadow-xl border border-gray-200'
+            }`}
+          >
+            <span className="text-2xl mr-2">←</span>
+            <span>Retour à la leçon</span>
+          </Link>
+        </div>
+
         {/* En-tête */}
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold mb-2 text-gray-900 dark:text-white">
