@@ -10,6 +10,28 @@ export default defineConfig({
     }),
     VitePWA({
       registerType: 'autoUpdate',
+      manifest: {
+        name: 'Bible Interactive - Jeu Éducatif',
+        short_name: 'Bible Interactive',
+        description: 'Jeu éducatif pour découvrir la Bible de manière interactive',
+        theme_color: '#4f46e5',
+        background_color: '#ffffff',
+        display: 'standalone',
+        icons: [
+          {
+            src: 'icon-192.png',
+            sizes: '192x192',
+            type: 'image/png',
+            purpose: 'any maskable'
+          },
+          {
+            src: 'icon-512.png',
+            sizes: '512x512',
+            type: 'image/png',
+            purpose: 'any maskable'
+          }
+        ]
+      },
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
         maximumFileSizeToCacheInBytes: 10 * 1024 * 1024, // 10 MB
@@ -57,6 +79,8 @@ export default defineConfig({
     },
   },
   build: {
+    // Augmenter la limite de taille des chunks pour éviter les warnings
+    chunkSizeWarningLimit: 1000, // 1000 KB au lieu de 500 KB par défaut
     // Optimisations de sécurité
     minify: 'terser',
     terserOptions: {
