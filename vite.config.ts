@@ -4,6 +4,10 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
   base: '/',
+  // Éviter la duplication de React
+  resolve: {
+    dedupe: ['react', 'react-dom'],
+  },
   plugins: [
     react({
       jsxRuntime: 'automatic',
@@ -91,10 +95,13 @@ export default defineConfig({
     },
     rollupOptions: {
       output: {
-        // Chunking aligné avec la prod
+        // Chunking optimisé pour éviter la duplication de React
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            if (id.includes('react') || id.includes('react-dom')) return 'react-vendor';
+            // Regrouper React et React-DOM ensemble pour éviter les duplications
+            if (id.includes('react') || id.includes('react-dom') || id.includes('react/')) {
+              return 'react-vendor';
+            }
             if (id.includes('react-router-dom')) return 'router';
             if (id.includes('zustand')) return 'store';
             if (id.includes('hls.js')) return 'media';
@@ -103,7 +110,6 @@ export default defineConfig({
           }
           if (id.includes('/src/phaser/scenes/')) return 'phaser-scenes';
           if (id.includes('/src/components/SermonPlayer')) return 'media-player';
-          return undefined;
         },
       },
     },
