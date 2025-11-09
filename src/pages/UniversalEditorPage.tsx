@@ -135,12 +135,38 @@ export default function UniversalEditorPage() {
     }
   };
 
-  const handleSave = () => {
-    if (editedContent) {
-      const jsonData = JSON.stringify(editedContent, null, 2);
-      navigator.clipboard.writeText(jsonData);
-      setShowSaveSuccess(true);
-      setTimeout(() => setShowSaveSuccess(false), 3000);
+  const handleSave = async () => {
+    if (!editedContent || !selectedContent) return;
+    
+    try {
+      // Récupérer le chemin du fichier depuis l'URL source
+      const filePath = selectedContent._sourceUrl || '';
+      
+      // Envoyer au serveur API
+      const response = await fetch('http://localhost:3002/api/save-content', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          filePath: filePath,
+          content: editedContent
+        })
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setShowSaveSuccess(true);
+        setHasChanges(false);
+        setOriginalContent(JSON.parse(JSON.stringify(editedContent)));
+        setTimeout(() => setShowSaveSuccess(false), 3000);
+      } else {
+        alert(`Erreur de sauvegarde: ${result.message}`);
+      }
+    } catch (error) {
+      console.error('Erreur lors de la sauvegarde:', error);
+      alert('Erreur: Impossible de sauvegarder. Vérifiez que le serveur API est démarré.');
     }
   };
 

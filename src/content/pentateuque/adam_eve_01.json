@@ -5,7 +5,7 @@
   "book": "Genèse",
   "chapter": 3,
   "reading": [
-    "Dans le jardin d'Éden, Dieu avait donné à Adam et Ève tout ce dont ils avaient besoin.",
+    "dans le jardin d'Éden, Dieu avait donné à Adam et Ève tout ce dont ils avaient besoin.",
     "Il leur avait demandé de ne pas manger du fruit de l'arbre de la connaissance du bien et du mal.",
     "Le serpent trompa Ève en lui faisant croire qu'en mangeant de ce fruit, elle deviendrait comme Dieu.",
     "Elle en prit et en donna aussi à Adam.",
@@ -40,7 +40,11 @@
   "quiz": [
     {
       "q": "Qui trompa Ève dans le jardin d'Éden ?",
-      "choices": ["Un ange", "Le serpent", "Adam"],
+      "choices": [
+        "Un ange",
+        "Le serpent",
+        "Adam"
+      ],
       "answer": 1
     },
     {
@@ -63,11 +67,19 @@
     },
     {
       "q": "Qui garda l'accès à l'arbre de vie après la chute ?",
-      "choices": ["Les anges", "Les chérubins", "Le serpent"],
+      "choices": [
+        "Les anges",
+        "Les chérubins",
+        "Le serpent"
+      ],
       "answer": 1
     }
   ],
-  "mini_games": ["order_events", "timeline_cards", "quiz"],
+  "mini_games": [
+    "order_events",
+    "timeline_cards",
+    "quiz"
+  ],
   "assets": [
     "adam_eve_1.png",
     "adam_eve_2.png",
@@ -84,12 +96,13 @@
   "life_application": "Nous devons résister à la tentation et faire confiance à Dieu plutôt qu'à nos propres désirs.",
   "bible_verses": [
     {
-      "reference": "Genèse 3:1-6",
-      "text": "Le serpent était le plus rusé de tous les animaux des champs, que l'Éternel Dieu avait faits. Il dit à la femme: Dieu a-t-il réellement dit: Vous ne mangerez pas de tous les arbres du jardin?"
+      "reference": "Genèse 3:1-6"
     },
     {
-      "reference": "Genèse 3:15",
-      "text": "Je mettrai inimitié entre toi et la femme, entre ta postérité et sa postérité: celle-ci t'écrasera la tête, et tu lui blesseras le talon."
+      "reference": "Genèse 3:15"
+    },
+    {
+      "reference": "Genèse 3:23-24"
     }
   ]
 }
