@@ -3,6 +3,9 @@
   "outputDirectory": "dist",
   "installCommand": "npm install",
   "framework": "vite",
+  "github": {
+    "silent": true
+  },
   "rewrites": [
     { "source": "/assets/(.*)", "destination": "/assets/$1" },
     { "source": "/bibles_json_6.0/(.*)", "destination": "/bibles_json_6.0/$1" },
