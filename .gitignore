@@ -7,6 +7,24 @@ yarn-error.log*
 # Production builds
 dist/
 build/
+*.tsbuildinfo
+
+# Temporary files
+*.pdf
+*.py
+*.ps1
+*.sh
+promt.txt
+deployment-report.json
+
+# Archive folders
+.archive/
+bible-api/
+config/
+database/
+flutter_application_1/
+marenhos_old/
+api/
 
 # Environment variables
 .env
