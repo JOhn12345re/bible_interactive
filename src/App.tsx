@@ -2,6 +2,7 @@ import React, { useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useSettings } from './state/settingsStore';
 import { useProfileStore } from './state/profileStore';
+import ErrorBoundary from './components/ErrorBoundary';
 import Home from './pages/Home';
 const Lesson = lazy(() => import('./pages/Lesson'));
 const LessonsPage = lazy(() => import('./pages/LessonsPage'));
@@ -97,18 +98,26 @@ function App() {
       )}
 
       <div className="relative z-10">
-        <Router
-          future={{
-            v7_startTransition: true,
-            v7_relativeSplatPath: true,
-          }}
-        >
-          {/* Navigation mobile */}
-          <MobileNavigation />
-
-          <Suspense
-            fallback={<div className="p-8 text-center">Chargement...</div>}
+        <ErrorBoundary>
+          <Router
+            future={{
+              v7_startTransition: true,
+              v7_relativeSplatPath: true,
+            }}
           >
+            {/* Navigation mobile */}
+            <MobileNavigation />
+
+            <Suspense
+              fallback={
+                <div className="min-h-screen flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="inline-block animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-500 mb-4"></div>
+                    <p className="text-gray-600 font-semibold">Chargement...</p>
+                  </div>
+                </div>
+              }
+            >
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/dashboard" element={<DashboardPage />} />
@@ -180,7 +189,8 @@ function App() {
 
         {/* Gestionnaire de montée de niveau */}
         <LevelUpManager />
-      </div>
+      </ErrorBoundary>
+    </div>
     </div>
   );
 }

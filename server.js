@@ -10,9 +10,56 @@ const __dirname = path.dirname(__filename);
 const app = express();
 const PORT = 3002;
 
+// Rate limiting simple (à remplacer par express-rate-limit en production)
+const requestCounts = new Map();
+const RATE_LIMIT = 100; // requêtes par minute
+const RATE_WINDOW = 60 * 1000; // 1 minute
+
+const rateLimiter = (req, res, next) => {
+  const ip = req.ip || req.connection.remoteAddress;
+  const now = Date.now();
+  
+  if (!requestCounts.has(ip)) {
+    requestCounts.set(ip, { count: 1, resetTime: now + RATE_WINDOW });
+    return next();
+  }
+  
+  const record = requestCounts.get(ip);
+  
+  if (now > record.resetTime) {
+    record.count = 1;
+    record.resetTime = now + RATE_WINDOW;
+    return next();
+  }
+  
+  if (record.count >= RATE_LIMIT) {
+    return res.status(429).json({
+      success: false,
+      message: 'Trop de requêtes. Veuillez réessayer plus tard.'
+    });
+  }
+  
+  record.count++;
+  next();
+};
+
 // Middleware
-app.use(cors());
-app.use(express.json({ limit: '50mb' }));
+app.use(cors({
+  origin: process.env.NODE_ENV === 'production' 
+    ? ['https://votredomaine.vercel.app'] 
+    : ['http://localhost:3000', 'http://localhost:3001', 'http://localhost:3002', 'http://localhost:3003', 'http://localhost:3004'],
+  credentials: true
+}));
+app.use(express.json({ limit: '10mb' })); // Réduire de 50mb à 10mb
+app.use(rateLimiter);
+
+// Headers de sécurité
+app.use((req, res, next) => {
+  res.setHeader('X-Content-Type-Options', 'nosniff');
+  res.setHeader('X-Frame-Options', 'DENY');
+  res.setHeader('X-XSS-Protection', '1; mode=block');
+  next();
+});
 
 // Route pour sauvegarder un fichier
 app.post('/api/save-content', async (req, res) => {
