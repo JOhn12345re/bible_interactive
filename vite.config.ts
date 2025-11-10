@@ -105,11 +105,10 @@ export default defineConfig({
         // Chunking optimisé pour éviter la duplication de React
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            // Forcer React, React-DOM et JSX runtime dans un seul chunk
-            if (id.includes('react') || id.includes('react-dom') || id.includes('scheduler')) {
+            // Forcer React, React-DOM, scheduler, et react-router dans un seul chunk vendor-react
+            if (id.includes('react') || id.includes('scheduler') || id.includes('react-dom')) {
               return 'vendor-react';
             }
-            if (id.includes('react-router-dom')) return 'router';
             if (id.includes('zustand')) return 'store';
             if (id.includes('hls.js')) return 'media';
             if (id.includes('phaser')) return 'phaser-core';
