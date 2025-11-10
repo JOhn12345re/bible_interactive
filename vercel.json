@@ -1,5 +1,5 @@
 {
-  "buildCommand": "rm -rf node_modules .vite dist && npm ci && npm run build",
+  "buildCommand": "npm run build",
   "outputDirectory": "dist",
   "installCommand": "npm ci --legacy-peer-deps",
   "framework": "vite",

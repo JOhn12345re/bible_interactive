@@ -4,16 +4,12 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
   base: '/',
-  // Éviter la duplication de React
   resolve: {
-    dedupe: ['react', 'react-dom'],
-    alias: {
-      'react': 'react',
-      'react-dom': 'react-dom',
-    },
+    dedupe: ['react', 'react-dom', 'react/jsx-runtime'],
   },
   optimizeDeps: {
     include: ['react', 'react-dom', 'react/jsx-runtime'],
+    force: true,
   },
   plugins: [
     react({
