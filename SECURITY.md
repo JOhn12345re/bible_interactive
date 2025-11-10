@@ -1,18 +1,80 @@
 # 🔒 Guide de Sécurité - Bible Interactive
 
-## 🚨 Failles corrigées
+**Dernière mise à jour:** 10 novembre 2025  
+**Version:** 2.0.0
 
-### ✅ API PHP sécurisée
-- **Headers de sécurité** : X-Content-Type-Options, X-Frame-Options, X-XSS-Protection
-- **CORS restreint** : Domaines spécifiques au lieu de *
-- **Rate limiting** : 10 requêtes/minute par IP
-- **Validation stricte** : Sanitisation et validation de toutes les entrées
-- **Requêtes préparées** : Protection contre les injections SQL
+## 🚨 Mesures de sécurité implémentées
 
-### ✅ Gestion des secrets
-- **Variables d'environnement** : Secrets dans .env (non versionné)
-- **Fichier exemple** : env.example pour la configuration
-- **Pas de hardcoding** : Aucun secret dans le code source
+### ✅ Headers HTTP sécurisés (Vercel + Local)
+
+**Production (vercel.json):**
+- ✅ `Content-Security-Policy` - Protection contre XSS et injection de code
+- ✅ `X-Content-Type-Options: nosniff` - Prévention MIME sniffing
+- ✅ `X-Frame-Options: DENY` - Protection clickjacking
+- ✅ `X-XSS-Protection: 1; mode=block` - Protection XSS navigateur
+- ✅ `Strict-Transport-Security` - Force HTTPS (max-age=1 an)
+- ✅ `Referrer-Policy: strict-origin-when-cross-origin` - Contrôle referrers
+- ✅ `Permissions-Policy` - Désactivation APIs sensibles (camera, microphone, etc.)
+
+**Local (server.js):**
+- ✅ Headers identiques pour cohérence dev/prod
+- ✅ CORS restreint aux origines localhost en dev
+- ✅ CORS restreint au domaine Vercel en production
+
+### ✅ Protection DDoS & Rate Limiting
+
+**Local Development (server.js):**
+```javascript
+// Rate limiting simple
+- 100 requêtes par minute par IP
+- Réinitialisation automatique chaque minute
+- Réponse 429 (Too Many Requests) si dépassé
+```
+
+**Production (Recommandé - Cloudflare):**
+```
+1. Ajouter site à Cloudflare
+2. Security → WAF → Rate Limiting Rules
+3. Configuration: 200 req/min par IP
+4. Action: Challenge ou Block pour 60 secondes
+```
+
+### ✅ Gestion des erreurs React
+
+**ErrorBoundary Component:**
+- Capture erreurs React sans crash complet
+- UI de fallback conviviale
+- Logs détaillés en développement
+- Prêt pour intégration Sentry/LogRocket
+- Boutons de récupération (Retry, Home)
+
+**Utilisation:**
+```tsx
+<ErrorBoundary>
+  <YourApp />
+</ErrorBoundary>
+```
+
+### ✅ Sécurisation API Locale
+
+**server.js - Protections:**
+1. **Validation des chemins:**
+   - Accepte uniquement `/content/*` paths
+   - Bloque accès hors du dossier autorisé
+   - Normalisation des chemins (prévention path traversal)
+
+2. **Limitation de taille:**
+   - Payload max: 10 MB (réduit de 50 MB)
+   - Prévention attaques par gros fichiers
+
+3. **CORS restrictif:**
+   ```javascript
+   // Development
+   origin: ['http://localhost:3000-3004']
+   
+   // Production  
+   origin: ['https://votredomaine.vercel.app']
+   ```
 
 ### ✅ Dépendances sécurisées
 - **Audit automatique** : Script de vérification des vulnérabilités
