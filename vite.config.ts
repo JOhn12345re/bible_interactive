@@ -7,6 +7,13 @@ export default defineConfig({
   // Éviter la duplication de React
   resolve: {
     dedupe: ['react', 'react-dom'],
+    alias: {
+      'react': 'react',
+      'react-dom': 'react-dom',
+    },
+  },
+  optimizeDeps: {
+    include: ['react', 'react-dom', 'react/jsx-runtime'],
   },
   plugins: [
     react({
@@ -98,9 +105,9 @@ export default defineConfig({
         // Chunking optimisé pour éviter la duplication de React
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            // Regrouper React et React-DOM ensemble pour éviter les duplications
-            if (id.includes('react') || id.includes('react-dom') || id.includes('react/')) {
-              return 'react-vendor';
+            // Forcer React, React-DOM et JSX runtime dans un seul chunk
+            if (id.includes('react') || id.includes('react-dom') || id.includes('scheduler')) {
+              return 'vendor-react';
             }
             if (id.includes('react-router-dom')) return 'router';
             if (id.includes('zustand')) return 'store';
