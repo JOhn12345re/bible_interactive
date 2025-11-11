@@ -6,66 +6,22 @@
   "github": {
     "silent": true
   },
-  "routes": [
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
+  "headers": [
     {
-      "src": "/content/(.*\\.json)",
-      "headers": {
-        "Content-Type": "application/json",
-        "Cache-Control": "public, max-age=86400",
-        "Access-Control-Allow-Origin": "*"
-      },
-      "dest": "/content/$1"
-    },
-    {
-      "src": "/sermons/(.*\\.m3u8)",
-      "headers": {
-        "Content-Type": "application/vnd.apple.mpegurl",
-        "Cache-Control": "public, max-age=3600"
-      },
-      "dest": "/sermons/$1"
-    },
-    {
-      "src": "/sermons/(.*\\.ts)",
-      "headers": {
-        "Content-Type": "video/mp2t",
-        "Cache-Control": "public, max-age=86400"
-      },
-      "dest": "/sermons/$1"
-    },
-    {
-      "src": "/sermons/(.*\\.mp4)",
-      "headers": {
-        "Content-Type": "video/mp4",
-        "Cache-Control": "public, max-age=86400",
-        "Accept-Ranges": "bytes"
-      },
-      "dest": "/sermons/$1"
-    },
-    {
-      "src": "/sermons/(.*\\.vtt)",
-      "headers": {
-        "Content-Type": "text/vtt",
-        "Cache-Control": "public, max-age=3600"
-      },
-      "dest": "/sermons/$1"
-    },
-    {
-      "src": "/sermons/(.*\\.(jpg|jpeg|png|webp))",
-      "headers": {
-        "Cache-Control": "public, max-age=604800"
-      },
-      "dest": "/sermons/$1"
-    },
-    {
-      "src": "/(.*)",
-      "headers": {
-        "X-Content-Type-Options": "nosniff",
-        "X-Frame-Options": "DENY",
-        "X-XSS-Protection": "1; mode=block",
-        "Referrer-Policy": "strict-origin-when-cross-origin",
-        "Strict-Transport-Security": "max-age=31536000; includeSubDomains"
-      },
-      "dest": "/index.html"
+      "source": "/content/(.*\\.json)",
+      "headers": [
+        {
+          "key": "Content-Type",
+          "value": "application/json"
+        },
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
+      ]
     }
   ]
 }
