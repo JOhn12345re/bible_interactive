@@ -31,10 +31,10 @@ export default defineConfig({
         ]
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
+        globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2,json}'],
         maximumFileSizeToCacheInBytes: 10 * 1024 * 1024, // 10 MB
         globIgnores: [
-          '**/bibles_json_6.0/**/*.json', // Exclure les fichiers JSON de la bible
+          '**/bibles_json_6.0/**/*.json', // Exclure seulement les gros fichiers JSON de la bible
           '**/node_modules/**/*',
         ],
         runtimeCaching: [
@@ -46,6 +46,18 @@ export default defineConfig({
               networkTimeoutSeconds: 10,
               cacheableResponse: {
                 statuses: [0, 200],
+              },
+            },
+          },
+          {
+            // Cache pour les fichiers JSON de contenu (histoires)
+            urlPattern: /\/content\/.*\.json$/,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'content-json-cache',
+              expiration: {
+                maxEntries: 100,
+                maxAgeSeconds: 60 * 60 * 24 * 7, // 7 jours
               },
             },
           },
