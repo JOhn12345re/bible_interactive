@@ -4,17 +4,8 @@ import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig({
   base: '/',
-  resolve: {
-    dedupe: ['react', 'react-dom', 'react/jsx-runtime'],
-  },
-  optimizeDeps: {
-    include: ['react', 'react-dom', 'react/jsx-runtime'],
-    force: true,
-  },
   plugins: [
-    react({
-      jsxRuntime: 'automatic',
-    }),
+    react(),
     VitePWA({
       registerType: 'autoUpdate',
       manifest: {
@@ -86,32 +77,15 @@ export default defineConfig({
     },
   },
   build: {
-    // Augmenter la limite de taille des chunks pour Phaser (1473 KB)
-    chunkSizeWarningLimit: 2000, // 2000 KB pour accepter phaser-core
-    // Optimisations de sécurité
-    minify: 'terser',
-    terserOptions: {
-      compress: {
-        drop_console: true, // Supprimer les console.log en production
-        drop_debugger: true,
-      },
-    },
+    chunkSizeWarningLimit: 2000,
+    sourcemap: false,
     rollupOptions: {
       output: {
-        // Chunking optimisé pour éviter la duplication de React
-        manualChunks(id) {
-          if (id.includes('node_modules')) {
-            // Forcer React, React-DOM, scheduler, et react-router dans un seul chunk vendor-react
-            if (id.includes('react') || id.includes('scheduler') || id.includes('react-dom')) {
-              return 'vendor-react';
-            }
-            if (id.includes('zustand')) return 'store';
-            if (id.includes('hls.js')) return 'media';
-            if (id.includes('phaser')) return 'phaser-core';
-            return 'vendor';
-          }
-          if (id.includes('/src/phaser/scenes/')) return 'phaser-scenes';
-          if (id.includes('/src/components/SermonPlayer')) return 'media-player';
+        manualChunks: {
+          'vendor-react': ['react', 'react-dom', 'react-router-dom'],
+          'vendor-zustand': ['zustand'],
+          'vendor-phaser': ['phaser'],
+          'vendor-hls': ['hls.js'],
         },
       },
     },
