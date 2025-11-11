@@ -1,5 +1,6 @@
-// Service pour la Bible Louis Segond locale
-// Utilise les fichiers JSON du dossier bibles_json_6.0/FR-French/
+// Service pour la Bible Louis Segond
+// Utilise l'API GetBible.net (gratuite, sans clé API)
+// Fallback vers données minimales intégrées si l'API est indisponible
 
 interface BibleVersion {
   id: string;
@@ -48,11 +49,29 @@ interface LocalBibleData {
   }>;
 }
 
+// API GetBible.net interfaces
+interface GetBibleVerse {
+  verse: string;
+  text: string;
+  book_nr: number;
+  book_name: string;
+  chapter: number;
+  name: string;
+}
+
+interface GetBibleResponse {
+  book: string;
+  chapter: number;
+  verses: GetBibleVerse[];
+}
+
 class BibleApiService {
   private cache = new Map<string, any>();
   private bibleData: LocalBibleData | null = null;
   private defaultLanguage: string = 'fra';
-  private defaultTranslation: string = 'segond_1910'; // Louis Segond 1910
+  private defaultTranslation: string = 'lsg'; // Louis Segond pour GetBible API
+  private apiBaseUrl: string = 'https://getbible.net/json'; // API gratuite GetBible.net
+  private useExternalApi: boolean = true; // Utiliser l'API externe par défaut
   private frenchToEnglishBookMap: Record<string, string> = {
     // Ancien Testament
     genèse: 'Genesis',
@@ -171,51 +190,21 @@ class BibleApiService {
   };
 
   constructor() {
-    // Configuration pour la Bible locale
+    // Configuration pour l'API Bible externe (GetBible.net)
     this.defaultLanguage = import.meta.env.VITE_BIBLE_LANGUAGE || 'fra';
-    this.defaultTranslation =
-      import.meta.env.VITE_BIBLE_TRANSLATION || 'segond_1910';
+    this.defaultTranslation = 'lsg'; // Louis Segond pour GetBible.net
 
-    // Service Bible initialisé avec les données locales
-
-    // Charger les données de la Bible au démarrage
-    this.loadBibleData();
+    console.log('✅ Service Bible initialisé - API externe GetBible.net');
+    console.log('📖 Traduction: Louis Segond (LSG)');
+    
+    // Plus besoin de charger un fichier de 7.5 MB !
+    // Les versets seront chargés à la demande via l'API
   }
 
-  // Méthode pour charger les données de la Bible depuis le fichier JSON local
+  // Méthode désactivée - utilisation de l'API externe GetBible.net
   private async loadBibleData(): Promise<void> {
-    try {
-      const response = await fetch(
-        '/bibles_json_6.0/FR-French/segond_1910.json'
-      );
-      if (!response.ok) {
-        throw new Error(`Erreur lors du chargement: ${response.status}`);
-      }
-
-      const text = await response.text();
-
-      // Vérifier si la réponse est du HTML (erreur Vercel)
-      if (
-        text.trim().startsWith('<!doctype') ||
-        text.trim().startsWith('<!DOCTYPE') ||
-        text.trim().startsWith('<html')
-      ) {
-        throw new Error(
-          'Réponse HTML au lieu de JSON - fichier bloqué par Vercel'
-        );
-      }
-
-      this.bibleData = JSON.parse(text);
-      console.log('✅ Données de la Bible Louis Segond chargées avec succès');
-      console.log(`📚 ${this.bibleData?.verses.length} versets disponibles`);
-    } catch (error) {
-      console.error(
-        '❌ Erreur lors du chargement des données de la Bible:',
-        error
-      );
-      console.log('🔄 Utilisation du système de fallback intégré');
-      this.bibleData = null;
-    }
+    console.log('⏭️  API externe activée - pas de chargement local nécessaire');
+    this.bibleData = null; // Pas de données locales
   }
 
   // Méthode pour obtenir les traductions disponibles
@@ -237,11 +226,11 @@ class BibleApiService {
   private getDefaultFrenchTranslations(): BibleVersion[] {
     return [
       {
-        id: 'segond_1910',
-        name: 'Louis Segond 1910',
+        id: 'lsg',
+        name: 'Louis Segond',
         abbreviation: 'LSG',
         language: { code: 'fra', name: 'Français' },
-        description: 'Traduction française classique - Données locales',
+        description: 'Traduction française classique - API GetBible.net',
       },
     ];
   }
