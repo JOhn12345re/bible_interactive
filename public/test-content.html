@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Chargement Contenu</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .test {
+            background: white;
+            padding: 20px;
+            margin: 10px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .success { border-left: 4px solid #10b981; }
+        .error { border-left: 4px solid #ef4444; }
+        .pending { border-left: 4px solid #f59e0b; }
+        pre {
+            background: #f3f4f6;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        button {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #2563eb;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Test de Chargement du Contenu</h1>
+    <p>Cliquez sur les boutons pour tester si les fichiers JSON sont accessibles.</p>
+    
+    <button onclick="testFile('/content/pentateuque/creation_01.json')">Test: creation_01.json</button>
+    <button onclick="testFile('/content/pentateuque/adam_eve_01.json')">Test: adam_eve_01.json</button>
+    <button onclick="testFile('/content/histoire_saints/saint_antoine.json')">Test: saint_antoine.json</button>
+    <button onclick="testFile('/content/icones_coptes/icone_pantocrator.json')">Test: icone_pantocrator.json</button>
+    <button onclick="testFile('/content/timeline.json')">Test: timeline.json</button>
+    <button onclick="testAll()">🚀 Tester Tout</button>
+    
+    <div id="results"></div>
+
+    <script>
+        const files = [
+            '/content/pentateuque/creation_01.json',
+            '/content/pentateuque/adam_eve_01.json',
+            '/content/pentateuque/noe_01.json',
+            '/content/histoire_saints/saint_antoine.json',
+            '/content/icones_coptes/icone_pantocrator.json',
+            '/content/timeline.json'
+        ];
+
+        async function testFile(url) {
+            const resultsDiv = document.getElementById('results');
+            const testDiv = document.createElement('div');
+            testDiv.className = 'test pending';
+            testDiv.innerHTML = `
+                <h3>📥 Test: ${url}</h3>
+                <p>Chargement...</p>
+            `;
+            resultsDiv.insertBefore(testDiv, resultsDiv.firstChild);
+
+            try {
+                console.log(`🔍 Test de chargement: ${url}`);
+                const response = await fetch(url);
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status} ${response.statusText}`);
+                }
+
+                const contentType = response.headers.get('content-type');
+                console.log(`  Content-Type: ${contentType}`);
+
+                const text = await response.text();
+                console.log(`  Taille: ${text.length} caractères`);
+
+                // Vérifier si c'est du JSON valide
+                let data;
+                try {
+                    data = JSON.parse(text);
+                    console.log(`  ✅ JSON valide`);
+                } catch (e) {
+                    throw new Error(`JSON invalide: ${e.message}`);
+                }
+
+                testDiv.className = 'test success';
+                testDiv.innerHTML = `
+                    <h3>✅ Succès: ${url}</h3>
+                    <p><strong>Status:</strong> ${response.status} ${response.statusText}</p>
+                    <p><strong>Content-Type:</strong> ${contentType}</p>
+                    <p><strong>Taille:</strong> ${text.length} caractères</p>
+                    <p><strong>Titre:</strong> ${data.title || 'N/A'}</p>
+                    <details>
+                        <summary>Voir le JSON (premières lignes)</summary>
+                        <pre>${JSON.stringify(data, null, 2).substring(0, 500)}...</pre>
+                    </details>
+                `;
+                console.log(`✅ Test réussi pour ${url}`);
+            } catch (error) {
+                testDiv.className = 'test error';
+                testDiv.innerHTML = `
+                    <h3>❌ Erreur: ${url}</h3>
+                    <p><strong>Message:</strong> ${error.message}</p>
+                    <pre>${error.stack || error}</pre>
+                `;
+                console.error(`❌ Test échoué pour ${url}:`, error);
+            }
+        }
+
+        async function testAll() {
+            document.getElementById('results').innerHTML = '';
+            for (const file of files) {
+                await testFile(file);
+                await new Promise(resolve => setTimeout(resolve, 100));
+            }
+        }
+
+        // Test automatique au chargement
+        console.log('🚀 Page de test chargée');
+        console.log('📋 Fichiers à tester:', files);
+    </script>
+</body>
+</html>
