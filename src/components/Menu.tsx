@@ -1,5 +1,7 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { useSettings } from '../state/settingsStore';
+import { useAuth } from '../context/AuthContext';
 import LessonCard from './LessonCard';
 
 const menuItems = [
@@ -375,11 +377,52 @@ const menuItems = [
 export default function Menu() {
   const [selectedPath, setSelectedPath] = useState<string>('Le Pentateuque');
   const { contrastHigh } = useSettings();
+  const { user, isAuthenticated, logout } = useAuth();
 
   const selectedItem = menuItems.find((item) => item.title === selectedPath);
 
   return (
     <div className="max-w-6xl mx-auto px-responsive">
+      {/* Bannière d'authentification */}
+      <div className="mb-6 flex items-center justify-between bg-gradient-to-r from-blue-500 to-purple-600 text-white p-4 rounded-xl shadow-lg">
+        <div className="flex items-center space-x-3">
+          {isAuthenticated ? (
+            <>
+              <span className="text-2xl">👤</span>
+              <div>
+                <p className="font-bold">{user?.username}</p>
+                <p className="text-sm opacity-90">Progression sauvegardée automatiquement</p>
+              </div>
+            </>
+          ) : (
+            <>
+              <span className="text-2xl">⚠️</span>
+              <div>
+                <p className="font-bold">Mode invité</p>
+                <p className="text-sm opacity-90">Connectez-vous pour sauvegarder votre progression</p>
+              </div>
+            </>
+          )}
+        </div>
+        <div>
+          {isAuthenticated ? (
+            <button
+              onClick={logout}
+              className="px-4 py-2 bg-white text-blue-600 rounded-lg hover:bg-gray-100 font-semibold transition-all"
+            >
+              Déconnexion
+            </button>
+          ) : (
+            <Link
+              to="/login"
+              className="px-4 py-2 bg-white text-blue-600 rounded-lg hover:bg-gray-100 font-semibold transition-all inline-block"
+            >
+              Se connecter
+            </Link>
+          )}
+        </div>
+      </div>
+
       {/* Navigation des chemins */}
       <nav
         className="mb-12 animate-slide-up"

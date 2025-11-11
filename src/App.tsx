@@ -2,6 +2,7 @@ import React, { useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { useSettings } from './state/settingsStore';
 import { useProfileStore } from './state/profileStore';
+import { AuthProvider } from './context/AuthContext';
 import ErrorBoundary from './components/ErrorBoundary';
 import Home from './pages/Home';
 const Lesson = lazy(() => import('./pages/Lesson'));
@@ -42,6 +43,8 @@ const VerseMemorizationPage = lazy(() => import('./pages/VerseMemorizationPage')
 const DashboardPage = lazy(() => import('./pages/DashboardPage'));
 const StoryEditorPage = lazy(() => import('./pages/StoryEditorPage'));
 const UniversalEditorPage = lazy(() => import('./pages/UniversalEditorPage'));
+const LoginPage = lazy(() => import('./pages/LoginPage'));
+const RegisterPage = lazy(() => import('./pages/RegisterPage'));
 import MobileNavigation from './components/MobileNavigation';
 import AudioControls from './components/AudioControls';
 import AccessibilityControls from './components/AccessibilityControls';
@@ -99,31 +102,37 @@ function App() {
 
       <div className="relative z-10">
         <ErrorBoundary>
-          <Router
-            future={{
-              v7_startTransition: true,
-              v7_relativeSplatPath: true,
-            }}
-          >
-            {/* Navigation mobile */}
-            <MobileNavigation />
-
-            <Suspense
-              fallback={
-                <div className="min-h-screen flex items-center justify-center">
-                  <div className="text-center">
-                    <div className="inline-block animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-500 mb-4"></div>
-                    <p className="text-gray-600 font-semibold">Chargement...</p>
-                  </div>
-                </div>
-              }
+          <AuthProvider>
+            <Router
+              future={{
+                v7_startTransition: true,
+                v7_relativeSplatPath: true,
+              }}
             >
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/dashboard" element={<DashboardPage />} />
-              <Route path="/lessons" element={<LessonsPage />} />
-              <Route path="/lesson/:id" element={<Lesson />} />
-              <Route path="/game/:id/:gameType" element={<GamePage />} />
+              {/* Navigation mobile */}
+              <MobileNavigation />
+
+              <Suspense
+                fallback={
+                  <div className="min-h-screen flex items-center justify-center">
+                    <div className="text-center">
+                      <div className="inline-block animate-spin rounded-full h-16 w-16 border-t-4 border-b-4 border-blue-500 mb-4"></div>
+                      <p className="text-gray-600 font-semibold">Chargement...</p>
+                    </div>
+                  </div>
+                }
+              >
+              <Routes>
+                {/* Routes d'authentification */}
+                <Route path="/login" element={<LoginPage />} />
+                <Route path="/register" element={<RegisterPage />} />
+                
+                {/* Routes existantes */}
+                <Route path="/" element={<Home />} />
+                <Route path="/dashboard" element={<DashboardPage />} />
+                <Route path="/lessons" element={<LessonsPage />} />
+                <Route path="/lesson/:id" element={<Lesson />} />
+                <Route path="/game/:id/:gameType" element={<GamePage />} />
               <Route path="/game/adam_eve_01/timeline_cards" element={<AdamEveTimelineGame />} />
               <Route path="/game/creation_01/timeline_cards" element={<CreationTimelineGame />} />
               <Route path="/game/cain_abel_01/timeline_cards" element={<CainAbelTimelineGame />} />
@@ -189,6 +198,7 @@ function App() {
 
         {/* Gestionnaire de montée de niveau */}
         <LevelUpManager />
+      </AuthProvider>
       </ErrorBoundary>
     </div>
     </div>
