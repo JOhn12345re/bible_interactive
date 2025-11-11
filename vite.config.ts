@@ -86,8 +86,8 @@ export default defineConfig({
     },
   },
   build: {
-    // Augmenter la limite de taille des chunks pour éviter les warnings
-    chunkSizeWarningLimit: 1000, // 1000 KB au lieu de 500 KB par défaut
+    // Augmenter la limite de taille des chunks pour Phaser (1473 KB)
+    chunkSizeWarningLimit: 2000, // 2000 KB pour accepter phaser-core
     // Optimisations de sécurité
     minify: 'terser',
     terserOptions: {
