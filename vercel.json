@@ -7,143 +7,65 @@
     "silent": true
   },
   "routes": [
-    { "src": "/content/.*\\.json$", "dest": "$0" },
-    { "src": "/assets/.*", "dest": "$0" },
-    { "src": "/sermons/.*", "dest": "$0" },
-    { "src": "/(.*)", "dest": "/index.html" }
-  ],
-  "headers": [
     {
-      "source": "/(.*)",
-      "headers": [
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "X-Frame-Options",
-          "value": "DENY"
-        },
-        {
-          "key": "X-XSS-Protection",
-          "value": "1; mode=block"
-        },
-        {
-          "key": "Referrer-Policy",
-          "value": "strict-origin-when-cross-origin"
-        },
-        {
-          "key": "Permissions-Policy",
-          "value": "accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=()"
-        },
-        {
-          "key": "Strict-Transport-Security",
-          "value": "max-age=31536000; includeSubDomains"
-        },
-        {
-          "key": "Content-Security-Policy",
-          "value": "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https:; media-src 'self' blob: https:; connect-src 'self' https://api.example.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'"
-        }
-      ]
+      "src": "/content/(.*\\.json)",
+      "headers": {
+        "Content-Type": "application/json",
+        "Cache-Control": "public, max-age=86400",
+        "Access-Control-Allow-Origin": "*"
+      },
+      "dest": "/content/$1"
     },
     {
-      "source": "/content/(.*)\\.json",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/json"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=86400"
-        },
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        }
-      ]
+      "src": "/sermons/(.*\\.m3u8)",
+      "headers": {
+        "Content-Type": "application/vnd.apple.mpegurl",
+        "Cache-Control": "public, max-age=3600"
+      },
+      "dest": "/sermons/$1"
     },
     {
-      "source": "/bibles_json_6.0/(.*)\\.json",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/json"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=86400"
-        },
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        }
-      ]
+      "src": "/sermons/(.*\\.ts)",
+      "headers": {
+        "Content-Type": "video/mp2t",
+        "Cache-Control": "public, max-age=86400"
+      },
+      "dest": "/sermons/$1"
     },
     {
-      "source": "/sermons/(.*)\\.m3u8",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "application/vnd.apple.mpegurl"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600"
-        }
-      ]
+      "src": "/sermons/(.*\\.mp4)",
+      "headers": {
+        "Content-Type": "video/mp4",
+        "Cache-Control": "public, max-age=86400",
+        "Accept-Ranges": "bytes"
+      },
+      "dest": "/sermons/$1"
     },
     {
-      "source": "/sermons/(.*)\\.ts",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "video/mp2t"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=86400"
-        }
-      ]
+      "src": "/sermons/(.*\\.vtt)",
+      "headers": {
+        "Content-Type": "text/vtt",
+        "Cache-Control": "public, max-age=3600"
+      },
+      "dest": "/sermons/$1"
     },
     {
-      "source": "/sermons/(.*)\\.mp4",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "video/mp4"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=86400"
-        },
-        {
-          "key": "Accept-Ranges",
-          "value": "bytes"
-        }
-      ]
+      "src": "/sermons/(.*\\.(jpg|jpeg|png|webp))",
+      "headers": {
+        "Cache-Control": "public, max-age=604800"
+      },
+      "dest": "/sermons/$1"
     },
     {
-      "source": "/sermons/(.*)\\.vtt",
-      "headers": [
-        {
-          "key": "Content-Type",
-          "value": "text/vtt"
-        },
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=3600"
-        }
-      ]
-    },
-    {
-      "source": "/sermons/(.*)\\.(jpg|jpeg|png|webp)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=604800"
-        }
-      ]
+      "src": "/(.*)",
+      "headers": {
+        "X-Content-Type-Options": "nosniff",
+        "X-Frame-Options": "DENY",
+        "X-XSS-Protection": "1; mode=block",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "Strict-Transport-Security": "max-age=31536000; includeSubDomains"
+      },
+      "dest": "/index.html"
     }
   ]
 }
