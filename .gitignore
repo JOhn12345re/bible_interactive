@@ -119,10 +119,10 @@ jspm_packages/
 # TypeScript build info
 *.tsbuildinfo
 
-# Large Bible data files
-bibles_json_6.0/
+# Large Bible data files (kept in repo for deployment)
+# bibles_json_6.0/ - Commenté pour inclure dans le déploiement Vercel
 resources/
-public/bibles_json_6.0/
+# public/bibles_json_6.0/ - Nécessaire pour l'API Bible en production
 # Note: public/content/ contient les fichiers JSON essentiels pour les leçons et histoires
 
 # Development files
