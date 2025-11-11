@@ -1,0 +1,5 @@
+# Serve static files first, then fallback to index.html for SPA routing
+/content/*  /content/:splat  200
+/assets/*   /assets/:splat   200
+/sermons/*  /sermons/:splat  200
+/*          /index.html      200
