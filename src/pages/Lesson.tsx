@@ -82,6 +82,8 @@ interface LessonData {
 
 // Fonction utilitaire pour charger la leçon selon l'id
 async function loadLessonData(lessonId: string): Promise<LessonData> {
+  console.log(`🔍 Chargement de la leçon: ${lessonId}`);
+  
   // Essayons différents dossiers dans l'ordre de priorité
   const possiblePaths = [
     `/content/pentateuque/${lessonId}.json`,
@@ -98,19 +100,27 @@ async function loadLessonData(lessonId: string): Promise<LessonData> {
   
   for (const url of possiblePaths) {
     try {
+      console.log(`  📥 Tentative: ${url}`);
       const resp = await fetch(url);
       if (resp.ok) {
         const data = (await resp.json()) as LessonData;
+        console.log(`  ✅ Leçon trouvée dans: ${url}`);
         return data;
       } else {
-        errors.push(`${url}: ${resp.status} ${resp.statusText}`);
+        const errorMsg = `${url}: ${resp.status} ${resp.statusText}`;
+        console.log(`  ❌ ${errorMsg}`);
+        errors.push(errorMsg);
       }
     } catch (err) {
-      errors.push(`${url}: ${err}`);
+      const errorMsg = `${url}: ${err}`;
+      console.log(`  ❌ ${errorMsg}`);
+      errors.push(errorMsg);
     }
   }
   
-  throw new Error(`Leçon non trouvée pour id: ${lessonId}`);
+  console.error('❌ Tous les chemins ont échoué:');
+  console.error(errors);
+  throw new Error(`Leçon non trouvée pour id: ${lessonId}\nErreurs: ${errors.join('\n')}`);
 }
 
 // Composant principal Lesson
