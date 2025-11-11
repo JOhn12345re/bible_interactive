@@ -1,0 +1,79 @@
+{
+  "id": "traversee_jourdain",
+  "title": "La Traversée du Jourdain — L'entrée en Terre Promise",
+  "path": "Le Pentateuque",
+  "reading": [
+    "Après la mort de Moïse, Josué conduisit Israël vers la Terre promise.",
+    "Le peuple arriva au Jourdain en crue. Dieu ordonna aux prêtres portant l'arche de poser leurs pieds dans l'eau.",
+    "Le fleuve s'arrêta aussitôt, et tout Israël traversa à pied sec.",
+    "Douze pierres furent prises du lit du fleuve pour servir de souvenir des merveilles de Dieu.",
+    "Ces pierres devaient rappeler aux générations futures comment Dieu avait ouvert le chemin.",
+    "Comme à la mer Rouge, Dieu montra sa puissance en arrêtant les eaux.",
+    "Cette traversée marqua l'entrée officielle d'Israël dans la Terre Promise.",
+    "Le peuple campa à Guilgal et dressa un monument de douze pierres.",
+    "Josué dit : 'Quand vos enfants demanderont pourquoi ces pierres, vous leur raconterez comment l'Éternel a arrêté les eaux du Jourdain.'"
+  ],
+  "key_verse": "Les sacrificateurs qui portaient l'arche s'arrêtèrent sur le sec, au milieu du Jourdain, et tout Israël passa à pied sec. — Josué 3:17",
+  "vocab": [
+    {
+      "word": "Jourdain",
+      "hint": "Fleuve séparant le désert de la Terre promise."
+    },
+    {
+      "word": "Arche de l'alliance",
+      "hint": "Symbole de la présence de Dieu au milieu du peuple."
+    },
+    {
+      "word": "Souvenir",
+      "hint": "Signe visible de la fidélité de Dieu à travers les générations."
+    },
+    {
+      "word": "Foi",
+      "hint": "Confiance que Dieu ouvre le chemin impossible."
+    },
+    {
+      "word": "Guilgal",
+      "hint": "Premier campement d'Israël en Terre Promise."
+    }
+  ],
+  "quiz": [
+    {
+      "q": "Qui conduisait Israël après la mort de Moïse ?",
+      "choices": ["Aaron", "Josué", "Caleb"],
+      "answer": 1
+    },
+    {
+      "q": "Que portaient les prêtres qui devaient entrer dans l'eau ?",
+      "choices": ["L'arche de l'alliance", "Les tables de la loi", "Le tabernacle"],
+      "answer": 0
+    },
+    {
+      "q": "Que s'est-il passé quand les prêtres ont posé leurs pieds dans l'eau ?",
+      "choices": ["Il a plu", "Le fleuve s'est arrêté", "Un pont est apparu"],
+      "answer": 1
+    },
+    {
+      "q": "Combien de pierres ont été prises du Jourdain ?",
+      "choices": ["Sept", "Dix", "Douze"],
+      "answer": 2
+    },
+    {
+      "q": "À quoi servaient ces douze pierres ?",
+      "choices": ["À construire un autel", "À servir de souvenir", "À marquer la frontière"],
+      "answer": 1
+    }
+  ],
+  "story_steps": [
+    "Josué reçoit l'ordre de conduire Israël au Jourdain",
+    "Le peuple arrive au bord du fleuve en crue",
+    "Dieu ordonne aux prêtres de porter l'arche dans l'eau",
+    "Les prêtres posent leurs pieds dans le Jourdain",
+    "Les eaux du fleuve s'arrêtent miraculeusement",
+    "Tout Israël traverse à pied sec",
+    "Douze pierres sont prises du lit du fleuve",
+    "Les pierres sont dressées à Guilgal comme monument",
+    "Josué rappelle que ces pierres témoignent de la fidélité de Dieu"
+  ],
+  "mini_games": ["order_events", "quiz"],
+  "assets": ["jourdain_1.png", "jourdain_2.png", "jourdain_3.png"]
+}

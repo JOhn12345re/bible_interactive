@@ -1,0 +1,66 @@
+{
+  "id": "saint_antoine",
+  "title": "Saint Antoine le Grand - Le Père du Monachisme",
+  "category": "histoire_saints",
+  "description": "Découvre la vie extraordinaire de Saint Antoine le Grand, le père du monachisme chrétien et sa vie dans le désert égyptien.",
+  "introduction": "Saint Antoine le Grand (251-356 apr. J.-C.) est considéré comme le père du monachisme chrétien. Sa vie dans le désert égyptien a inspiré des milliers de chrétiens à travers les âges.",
+  "reading": [
+    {
+      "subtitle": "Les débuts de Saint Antoine",
+      "text": "Né en Égypte vers 251, Antoine entendit un jour à l'église les paroles du Christ : 'Si tu veux être parfait, va, vends ce que tu possèdes, donne-le aux pauvres, et tu auras un trésor dans le ciel. Puis viens, et suis-moi.' Ces paroles touchèrent profondément son cœur."
+    },
+    {
+      "subtitle": "La vie dans le désert",
+      "text": "Antoine vendit tous ses biens, donna l'argent aux pauvres, et se retira dans le désert. Il vécut dans la prière, le jeûne et la méditation, combattant les tentations du démon avec foi et courage."
+    },
+    {
+      "subtitle": "Le père des moines",
+      "text": "Sa sainteté et sa sagesse attirèrent de nombreux disciples. Il devint ainsi le père du monachisme, inaugurant une tradition qui continue jusqu'à nos jours dans l'Église copte orthodoxe."
+    },
+    {
+      "subtitle": "Son héritage",
+      "text": "Saint Antoine mourut à l'âge de 105 ans, laissant un héritage spirituel immense. Son monastère dans le désert égyptien existe encore aujourd'hui et reste un lieu de pèlerinage important."
+    }
+  ],
+  "memory_verse": {
+    "text": "Si tu veux être parfait, va, vends ce que tu possèdes, donne-le aux pauvres, et tu auras un trésor dans le ciel.",
+    "reference": "Matthieu 19:21"
+  },
+  "quiz": [
+    {
+      "question": "Quand est né Saint Antoine le Grand ?",
+      "options": ["En 251 apr. J.-C.", "En 150 apr. J.-C.", "En 350 apr. J.-C.", "En 400 apr. J.-C."],
+      "correct": 0,
+      "explanation": "Saint Antoine est né en Égypte vers 251 après Jésus-Christ."
+    },
+    {
+      "question": "Que fit Antoine après avoir entendu les paroles du Christ ?",
+      "options": ["Il devint prêtre", "Il vendit tous ses biens et se retira au désert", "Il voyagea à Jérusalem", "Il écrivit un livre"],
+      "correct": 1,
+      "explanation": "Antoine vendit tous ses biens, donna l'argent aux pauvres, et se retira dans le désert pour vivre dans la prière."
+    },
+    {
+      "question": "Pourquoi Saint Antoine est-il appelé le 'père du monachisme' ?",
+      "options": ["Il a construit la première église", "Il a écrit la première Bible", "Il a inauguré la vie monastique dans le désert", "Il était le plus âgé des saints"],
+      "correct": 2,
+      "explanation": "Antoine est appelé le père du monachisme car il a inauguré la tradition de la vie monastique dans le désert, attirant de nombreux disciples."
+    },
+    {
+      "question": "Quel âge avait Saint Antoine quand il est mort ?",
+      "options": ["85 ans", "95 ans", "105 ans", "115 ans"],
+      "correct": 2,
+      "explanation": "Saint Antoine mourut à l'âge remarquable de 105 ans, après une longue vie de sainteté."
+    }
+  ],
+  "summary": {
+    "title": "Points clés à retenir",
+    "points": [
+      "Saint Antoine le Grand est né en Égypte en 251 apr. J.-C.",
+      "Il vendit tous ses biens après avoir entendu l'appel du Christ",
+      "Il vécut dans le désert égyptien dans la prière et le jeûne",
+      "Il est considéré comme le père du monachisme chrétien",
+      "Son monastère dans le désert existe encore aujourd'hui",
+      "Il mourut à l'âge de 105 ans, laissant un héritage spirituel immense"
+    ]
+  }
+}

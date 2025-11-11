@@ -1,0 +1,42 @@
+{
+  "id": "moise_01",
+  "title": "Moïse et la traversée de la mer Rouge",
+  "path": "Le Pentateuque",
+  "reading": [
+    "Le peuple d'Israël était esclave en Égypte depuis de nombreuses années.",
+    "Dieu choisit Moïse pour libérer son peuple de l'esclavage de Pharaon.",
+    "Après les dix plaies d'Égypte, Pharaon accepte finalement de laisser partir les Israélites.",
+    "Mais il change d'avis et poursuit le peuple avec son armée jusqu'à la mer Rouge.",
+    "Moïse étend sa main sur la mer, et Dieu divise les eaux en deux.",
+    "Le peuple traverse à pied sec, puis les eaux se referment sur l'armée égyptienne.",
+    "Israël est libre ! Moïse et Miriam chantent un cantique de louange à Dieu."
+  ],
+  "key_verse": "L'Éternel combattra pour vous ; et vous, gardez le silence.",
+  "vocab": [
+    { "word": "Exode", "hint": "Sortie du peuple d'Israël d'Égypte." },
+    {
+      "word": "Miracle",
+      "hint": "Événement extraordinaire accompli par Dieu."
+    },
+    { "word": "Libération", "hint": "Action de rendre libre." }
+  ],
+  "quiz": [
+    {
+      "q": "Qui a conduit le peuple hors d'Égypte ?",
+      "choices": ["Moïse", "Aaron", "Josué"],
+      "answer": 0
+    },
+    {
+      "q": "Comment le peuple a-t-il traversé la mer ?",
+      "choices": ["En bateau", "À pied sec", "En nageant"],
+      "answer": 1
+    },
+    {
+      "q": "Que fit Dieu avec la mer Rouge ?",
+      "choices": ["Il l'assécha", "Il la divisa", "Il la calma"],
+      "answer": 1
+    }
+  ],
+  "mini_games": ["order_events"],
+  "assets": ["moise_1.png", "moise_2.png", "moise_3.png", "moise_4.png"]
+}

@@ -1,0 +1,59 @@
+﻿{
+  "id": "cain_abel_01",
+  "title": "Caïn et Abel  Le premier meurtre",
+  "path": "Le Pentateuque",
+  "book": "Genèse",
+  "summary": "Abel fut berger, et Caïn fut laboureur. Le premier meurtre de l'humanité.",
+  "reading": [
+    "Adam et Ève eurent deux fils : Caïn cultivait la terre, Abel gardait les troupeaux.",
+    "Le temps venu, chacun apporta une offrande à l'Éternel.",
+    "Caïn offrit des fruits de la terre. Abel offrit les premiers-nés de son troupeau avec leur graisse.",
+    "L'Éternel regarda favorablement Abel et son offrande, mais pas Caïn et la sienne.",
+    "Caïn fut très irrité et son visage fut abattu.",
+    "L'Éternel dit à Caïn : Si tu agis bien, ne seras-tu pas accepté ? Mais si tu agis mal, le péché se couche à ta porte.",
+    "Caïn invita Abel aux champs et le tua.",
+    "L'Éternel demanda : Où est Abel ? Caïn répondit : Suis-je le gardien de mon frère ?",
+    "Dieu le condamna à errer sur la terre et mit une marque sur lui pour le protéger."
+  ],
+  "key_verse": "Si tu agis bien, ne seras-tu pas accepté ? Mais le péché se couche à ta porte.",
+  "vocab": [
+    {"word": "Laboureur", "hint": "Personne qui cultive la terre avec une charrue."},
+    {"word": "Berger", "hint": "Personne qui garde et élève les moutons ou troupeaux."},
+    {"word": "Sacrifice", "hint": "Offrande à Dieu pour exprimer gratitude ou adoration."},
+    {"word": "Maudit", "hint": "Être frappé par une malédiction ou une conséquence divine."},
+    {"word": "Exilé", "hint": "Être éloigné ou séparé de son lieu d'origine."}
+  ],
+  "quiz": [
+    {"q": "Quel était le métier de Caïn ?", "choices": ["Berger", "Cultivateur", "Pêcheur"], "answer": 1},
+    {"q": "Quelle offrande Abel a-t-il présentée à Dieu ?", "choices": ["Des fruits de la terre", "Les premiers-nés de son troupeau", "De l'or et de l'argent"], "answer": 1},
+    {"q": "Pourquoi Caïn était-il irrité ?", "choices": ["Abel lui avait volé ses fruits", "Dieu n'accepta pas son offrande", "Ses parents préféraient Abel"], "answer": 1},
+    {"q": "Que répondit Caïn à Dieu ?", "choices": ["Il avoua son crime", "Suis-je le gardien de mon frère ?", "Je ne l'ai pas vu"], "answer": 1}
+  ],
+  "mini_games": ["order_events", "timeline_cards", "quiz"],
+  "assets": ["cain_abel_1.png", "cain_abel_2.png", "cain_abel_3.png", "cain_abel_4.png"],
+  "story_steps": [
+    "Caïn et Abel présentent leurs offrandes à Dieu",
+    "Dieu accepte l'offrande d'Abel mais pas celle de Caïn",
+    "Caïn, jaloux, tue son frère Abel dans les champs",
+    "Dieu condamne Caïn à errer et le marque pour le protéger"
+  ],
+  "theological_message": "Dieu regarde au cœur et aux intentions, pas seulement aux actes extérieurs. La jalousie et la colère peuvent mener au péché terrible.",
+  "life_application": "Nous devons surveiller nos cœurs et nos émotions, et aimer nos frères et sœurs comme Dieu nous le demande.",
+  "bible_verses": [
+    {
+      "reference": "Genèse 4:3-5"
+    },
+    {
+      "reference": "Genèse 4:6-7"
+    },
+    {
+      "reference": "Genèse 4:8"
+    },
+    {
+      "reference": "Genèse 4:9-12"
+    },
+    {
+      "reference": "Genèse 4:15"
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "id": "isaac_mariage_01",
+  "title": "Isaac et Rebecca — Le mariage et la bénédiction",
+  "path": "Le Pentateuque",
+  "reading": [
+    "Abraham voulait une épouse qui craigne Dieu pour son fils Isaac.",
+    "Il envoya son serviteur en Mésopotamie, dans la ville de Nahor, son pays d'origine, auprès de sa famille.",
+    "En arrivant près d'un puits, le serviteur pria Dieu de lui montrer la bonne jeune fille.",
+    "Rebecca vint puiser de l'eau et offrit aussi à boire à ses chameaux : c'était le signe attendu.",
+    "Le serviteur reconnut la réponse de Dieu et l'amena à Isaac.",
+    "Isaac et Rebecca se marièrent et devinrent parents de Jacob et Ésaü.",
+    "Dieu renouvela auprès d'Isaac la promesse faite à Abraham : il bénirait sa descendance et lui donnerait la terre.",
+    "Dieu conduit nos pas quand nous lui faisons confiance et il reste fidèle à ses promesses de génération en génération."
+  ],
+  "key_verse": "Dieu conduit nos pas quand nous lui faisons confiance et il reste fidèle à ses promesses de génération en génération.",
+  "book": "Genèse 24-26",
+  "image": "/images/lessons/isaac_rebecca.jpg",
+  "vocab": [
+    {
+      "word": "Mésopotamie",
+      "hint": "Région entre les fleuves Tigre et Euphrate, pays d'origine d'Abraham."
+    },
+    {
+      "word": "Nahor",
+      "hint": "Ville en Mésopotamie où vivait la famille d'Abraham."
+    },
+    {
+      "word": "Puits",
+      "hint": "Trou profond dans la terre pour puiser de l'eau."
+    }
+  ],
+  "mini_games": ["quiz", "order_events"],
+  "quiz": {
+    "questions": [
+      {
+        "q": "Où Abraham envoya-t-il son serviteur chercher une épouse ?",
+        "options": ["En Égypte", "En Mésopotamie, ville de Nahor", "À Jérusalem", "En Canaan"],
+        "correct": "En Mésopotamie, ville de Nahor"
+      },
+      {
+        "q": "Quel signe le serviteur attendait-il de Dieu ?",
+        "options": [
+          "Une jeune fille qui chante",
+          "Une jeune fille qui puise de l'eau et abreuve les chameaux",
+          "Une jeune fille qui danse",
+          "Une jeune fille qui prie"
+        ],
+        "correct": "Une jeune fille qui puise de l'eau et abreuve les chameaux"
+      },
+      {
+        "q": "Comment s'appelait la jeune fille choisie ?",
+        "options": ["Sara", "Rebecca", "Rachel", "Léa"],
+        "correct": "Rebecca"
+      },
+      {
+        "q": "Quels furent les fils d'Isaac et Rebecca ?",
+        "options": ["Moïse et Aaron", "Jacob et Ésaü", "David et Salomon", "Caïn et Abel"],
+        "correct": "Jacob et Ésaü"
+      },
+      {
+        "q": "Que renouvela Dieu auprès d'Isaac ?",
+        "options": [
+          "La promesse de sagesse",
+          "La promesse faite à Abraham",
+          "La promesse de richesse",
+          "La promesse de paix"
+        ],
+        "correct": "La promesse faite à Abraham"
+      },
+      {
+        "q": "Où le serviteur rencontra-t-il Rebecca ?",
+        "options": ["À la maison", "Au marché", "Près d'un puits", "Au temple"],
+        "correct": "Près d'un puits"
+      },
+      {
+        "q": "Que fit Rebecca pour montrer sa générosité ?",
+        "options": ["Elle donna de l'argent", "Elle offrit un repas", "Elle abreuva les chameaux", "Elle chanta"],
+        "correct": "Elle abreuva les chameaux"
+      }
+    ]
+  },
+  "story_steps": [
+    {
+      "id": "mission",
+      "title": "La mission du serviteur",
+      "description": "Abraham envoie son serviteur chercher une épouse pour Isaac",
+      "image": "/images/steps/servant_mission.jpg"
+    },
+    {
+      "id": "prayer",
+      "title": "La prière près du puits",
+      "description": "Le serviteur prie Dieu de lui montrer la bonne jeune fille",
+      "image": "/images/steps/well_prayer.jpg"
+    },
+    {
+      "id": "rebecca_arrives",
+      "title": "L'arrivée de Rebecca",
+      "description": "Rebecca vient puiser de l'eau au puits",
+      "image": "/images/steps/rebecca_well.jpg"
+    },
+    {
+      "id": "sign",
+      "title": "Le signe de Dieu",
+      "description": "Rebecca offre de l'eau aux chameaux - c'est le signe attendu",
+      "image": "/images/steps/camels_water.jpg"
+    },
+    {
+      "id": "recognition",
+      "title": "La reconnaissance",
+      "description": "Le serviteur reconnaît la réponse de Dieu",
+      "image": "/images/steps/servant_recognition.jpg"
+    },
+    {
+      "id": "marriage",
+      "title": "Le mariage",
+      "description": "Isaac et Rebecca se marient",
+      "image": "/images/steps/isaac_rebecca_marriage.jpg"
+    },
+    {
+      "id": "blessing",
+      "title": "La bénédiction de Dieu",
+      "description": "Dieu renouvelle sa promesse auprès d'Isaac",
+      "image": "/images/steps/gods_blessing.jpg"
+    }
+  ]
+}

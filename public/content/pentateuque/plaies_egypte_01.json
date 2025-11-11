@@ -1,0 +1,167 @@
+{
+  "id": "plaies_egypte_01",
+  "title": "Les dix plaies d'Égypte — Dieu libère son peuple",
+  "path": "Le Pentateuque",
+  "reading": [
+    "Dieu envoya Moïse et Aaron devant Pharaon pour demander la libération d'Israël.",
+    "Pharaon refusa de laisser partir le peuple d'Israël et endurcit son cœur.",
+    "Alors Dieu frappa l'Égypte de dix plaies pour montrer sa puissance.",
+    "Première plaie : Le Nil fut changé en sang, et tous les poissons moururent.",
+    "Deuxième plaie : Des grenouilles couvrirent tout le pays d'Égypte.",
+    "Troisième plaie : Des moustiques infestèrent les hommes et les animaux.",
+    "Quatrième plaie : Des mouches venimeuses envahirent les maisons des Égyptiens.",
+    "Cinquième plaie : Une peste frappa tous les troupeaux des Égyptiens.",
+    "Sixième plaie : Des ulcères douloureux couvrirent les hommes et les animaux.",
+    "Septième plaie : Une grêle terrible détruisit les récoltes et les arbres.",
+    "Huitième plaie : Des sauterelles dévorèrent tout ce qui restait de vert.",
+    "Neuvième plaie : Des ténèbres épaisses couvrirent l'Égypte pendant trois jours.",
+    "Dixième plaie : L'ange de la mort frappa tous les premiers-nés d'Égypte.",
+    "Alors Pharaon, brisé par cette dernière plaie, laissa enfin partir Israël.",
+    "Le peuple d'Israël se prépara à sortir d'Égypte sous la conduite de Moïse."
+  ],
+  "key_verse": "Dieu est plus grand que tous les rois et il agit avec puissance pour sauver son peuple.",
+  "vocab": [
+    {
+      "word": "Plaies",
+      "hint": "Des châtiments envoyés par Dieu pour punir l'orgueil."
+    },
+    {
+      "word": "Pharaon",
+      "hint": "Le roi d'Égypte qui refusait de libérer Israël."
+    },
+    { "word": "Premiers-nés", "hint": "Les enfants aînés de chaque famille." },
+    {
+      "word": "Endurcir le cœur",
+      "hint": "Refuser d'écouter et d'obéir à Dieu."
+    }
+  ],
+  "quiz": [
+    {
+      "q": "Combien de plaies Dieu a-t-il envoyées sur l'Égypte ?",
+      "choices": ["Sept", "Dix", "Douze"],
+      "answer": 1
+    },
+    {
+      "q": "Quelle fut la première plaie ?",
+      "choices": ["Les grenouilles", "Le Nil changé en sang", "Les moustiques"],
+      "answer": 1
+    },
+    {
+      "q": "Quelle fut la dernière plaie ?",
+      "choices": [
+        "Les ténèbres",
+        "La mort des premiers-nés",
+        "Les sauterelles"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "Pourquoi Pharaon refusait-il de laisser partir Israël ?",
+      "choices": [
+        "Il avait peur",
+        "Il endurcissait son cœur",
+        "Il ne savait pas"
+      ],
+      "answer": 1
+    },
+    {
+      "q": "Que montrent les dix plaies ?",
+      "choices": [
+        "La colère de Dieu",
+        "La puissance de Dieu",
+        "La tristesse de Dieu"
+      ],
+      "answer": 1
+    }
+  ],
+  "goldGame": {
+    "title": "Les Dix Plaies d'Égypte - Questions d'Approfondissement",
+    "description": "Approfondissez votre compréhension de la puissance et de la justice de Dieu",
+    "questions": [
+      {
+        "question": "Pourquoi Dieu a-t-Il envoyé les plaies sur l'Égypte plutôt que de libérer directement Israël ?",
+        "choices": [
+          "Pour montrer Sa puissance et Sa souveraineté à toutes les nations",
+          "Parce qu'Il était en colère contre les Égyptiens",
+          "Pour punir l'Égypte de ses péchés",
+          "Parce qu'Il n'avait pas d'autre solution"
+        ],
+        "correct": 0,
+        "explanation": "Dieu voulait que toute la terre reconnaisse qu'Il est l'Éternel et qu'aucune puissance ne peut s'opposer à Sa volonté de sauver Son peuple."
+      },
+      {
+        "question": "Que signifie 'Pharaon endurcit son cœur' ?",
+        "choices": [
+          "Il devint méchant",
+          "Il refusa obstinément d'écouter et d'obéir à Dieu",
+          "Il eut peur des plaies",
+          "Il ne comprenait pas ce qui se passait"
+        ],
+        "correct": 1,
+        "explanation": "Endurcir son cœur signifie résister volontairement à Dieu, refuser Sa volonté malgré les signes évidents de Sa puissance."
+      },
+      {
+        "question": "Pourquoi les Israélites furent-ils protégés de certaines plaies ?",
+        "choices": [
+          "Ils étaient plus forts que les Égyptiens",
+          "Dieu fait une différence entre Son peuple et les autres nations",
+          "Ils habitaient dans une région différente",
+          "Ils avaient fait des sacrifices"
+        ],
+        "correct": 1,
+        "explanation": "Dieu distinguait Son peuple pour montrer qu'Il est fidèle à Ses promesses et qu'Il protège ceux qui Lui appartiennent."
+      },
+      {
+        "question": "Quel était le but principal des dix plaies ?",
+        "choices": [
+          "Punir l'Égypte pour son idolâtrie",
+          "Libérer Israël de l'esclavage",
+          "Montrer que l'Éternel est le seul vrai Dieu",
+          "Toutes ces réponses"
+        ],
+        "correct": 3,
+        "explanation": "Les plaies avaient plusieurs buts : libérer Israël, révéler la vraie identité de Dieu, et juger l'idolâtrie égyptienne."
+      },
+      {
+        "question": "Que nous enseigne l'attitude de Pharaon sur l'orgueil humain ?",
+        "choices": [
+          "L'orgueil aveugle l'homme et l'empêche de reconnaître Dieu",
+          "Certaines personnes sont naturellement rebelles",
+          "Le pouvoir corrompt toujours",
+          "Il faut être patient avec les dirigeants"
+        ],
+        "correct": 0,
+        "explanation": "L'orgueil de Pharaon montre comment l'homme peut s'endurcir contre Dieu et refuser Sa grâce, même face à des preuves évidentes."
+      },
+      {
+        "question": "Comment cette histoire s'applique-t-elle à notre vie aujourd'hui ?",
+        "choices": [
+          "Dieu continue de libérer ceux qui sont esclaves du péché",
+          "Nous devons éviter d'endurcir notre cœur comme Pharaon",
+          "Dieu est toujours plus puissant que nos oppresseurs",
+          "Toutes ces réponses"
+        ],
+        "correct": 3,
+        "explanation": "Cette histoire nous enseigne que Dieu libère encore aujourd'hui, qu'il faut garder un cœur ouvert, et que Sa puissance surpasse tout obstacle."
+      }
+    ],
+    "passingScore": 4,
+    "reward": {
+      "type": "badge",
+      "name": "Témoin de la Puissance Divine",
+      "description": "Vous comprenez la souveraineté de Dieu dans l'histoire",
+      "icon": "⚡"
+    }
+  },
+  "story_steps": [
+    "Moïse et Aaron demandent à Pharaon de libérer Israël",
+    "Pharaon refuse et endurcit son cœur",
+    "Dieu envoie les plaies : sang, grenouilles, moustiques",
+    "Les plaies continuent : mouches, peste, ulcères",
+    "Grêle, sauterelles et ténèbres frappent l'Égypte",
+    "La mort des premiers-nés brise Pharaon",
+    "Pharaon laisse enfin partir le peuple d'Israël"
+  ],
+  "mini_games": ["order_events", "quiz", "goldGame"],
+  "assets": ["plaies_1.png", "plaies_2.png", "plaies_3.png", "plaies_4.png"]
+}

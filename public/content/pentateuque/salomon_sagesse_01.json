@@ -1,0 +1,80 @@
+{
+  "id": "salomon_sagesse_01",
+  "title": "Salomon et sa Sagesse — Le don de Dieu",
+  "path": "Le Pentateuque",
+  "reading": [
+    "Salomon, fils de David, devint roi après son père.",
+    "Une nuit, Dieu lui apparut en songe à Gabaon et dit : 'Demande ce que tu veux que je te donne.'",
+    "Salomon répondit avec humilité : 'Je ne suis qu'un jeune homme, je ne sais comment me conduire.'",
+    "Il demanda : 'Accorde à ton serviteur un cœur intelligent pour juger ton peuple et discerner le bien du mal.'",
+    "Cette prière plut à l'Éternel, car Salomon n'avait pas demandé richesse, gloire ou longue vie.",
+    "Dieu lui répondit : 'Je te donne un cœur sage et intelligent comme personne n'en a eu avant toi.'",
+    "Dieu ajouta : 'Je te donne aussi ce que tu n'as pas demandé : richesses et gloire.'",
+    "La sagesse de Salomon devint célèbre dans toutes les nations.",
+    "Des rois venaient de loin pour entendre sa sagesse.",
+    "Salomon écrivit trois mille proverbes et mille cinq cantiques."
+  ],
+  "key_verse": "Accorde donc à ton serviteur un cœur intelligent pour juger ton peuple, pour discerner le bien du mal ! — 1 Rois 3:9",
+  "vocab": [
+    {
+      "word": "Sagesse",
+      "hint": "Compréhension profonde donnée par Dieu."
+    },
+    {
+      "word": "Discernement",
+      "hint": "Capacité de distinguer le bien du mal."
+    },
+    {
+      "word": "Humilité",
+      "hint": "Reconnaissance de notre petitesse devant Dieu."
+    },
+    {
+      "word": "Proverbes",
+      "hint": "Paroles de sagesse enseignant comment vivre."
+    },
+    {
+      "word": "Gabaon",
+      "hint": "Lieu où Dieu apparut à Salomon en songe."
+    }
+  ],
+  "quiz": [
+    {
+      "q": "Qu'a demandé Salomon à Dieu ?",
+      "choices": ["Des richesses", "La sagesse", "Une longue vie"],
+      "answer": 1
+    },
+    {
+      "q": "Pourquoi Dieu fut-il content de cette demande ?",
+      "choices": ["C'était facile à donner", "Salomon pensait au peuple avant lui-même", "C'était une tradition"],
+      "answer": 1
+    },
+    {
+      "q": "Qu'est-ce que Dieu donna en plus à Salomon ?",
+      "choices": ["Richesse et gloire", "Des fils", "Des armées"],
+      "answer": 0
+    },
+    {
+      "q": "Combien de proverbes Salomon écrivit-il ?",
+      "choices": ["Mille", "Deux mille", "Trois mille"],
+      "answer": 2
+    },
+    {
+      "q": "Qui venait écouter la sagesse de Salomon ?",
+      "choices": ["Seulement les Israélites", "Des rois de toutes les nations", "Personne"],
+      "answer": 1
+    }
+  ],
+  "story_steps": [
+    "Salomon devient roi après David",
+    "Dieu apparaît à Salomon en songe à Gabaon",
+    "Dieu demande : Que veux-tu que je te donne ?",
+    "Salomon reconnaît qu'il est jeune et inexpérimenté",
+    "Salomon demande un cœur intelligent",
+    "La prière de Salomon plaît à Dieu",
+    "Dieu lui donne une sagesse incomparable",
+    "Dieu ajoute richesse et gloire",
+    "La réputation de Salomon se répand partout"
+  ],
+  "mini_games": ["order_events", "quiz"],
+  "assets": ["salomon_sagesse_1.png", "salomon_sagesse_2.png", "salomon_sagesse_3.png"]
+}

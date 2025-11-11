@@ -1,0 +1,113 @@
+{
+  "id": "isaac_sacrifice_01",
+  "title": "Le Sacrifice d'Isaac",
+  "path": "Le Pentateuque",
+  "reading": [
+    "Après ces événements, Dieu mit Abraham à l'épreuve.",
+    "Dieu dit : « Prends ton fils, ton unique, celui que tu aimes, Isaac, et va-t'en au pays de Morija. »",
+    "« Là, tu l'offriras en holocauste sur l'une des montagnes que je t'indiquerai. »",
+    "Abraham se leva de bon matin, sella son âne et prit avec lui deux de ses serviteurs et son fils Isaac.",
+    "Il fendit du bois pour l'holocauste, puis il partit vers le lieu que Dieu lui avait indiqué.",
+    "Isaac dit à Abraham son père : « Mon père ! » Il répondit : « Me voici, mon fils ! »",
+    "Isaac reprit : « Voici le feu et le bois, mais où est l'agneau pour l'holocauste ? »",
+    "Abraham répondit : « Mon fils, c'est Dieu qui pourvoira à l'agneau pour l'holocauste. »",
+    "Arrivés au lieu que Dieu lui avait indiqué, Abraham y éleva l'autel et disposa le bois.",
+    "Il lia son fils Isaac et le plaça sur l'autel, par-dessus le bois.",
+    "Abraham étendit la main et saisit le couteau pour immoler son fils.",
+    "Alors l'ange de l'Éternel l'appela des cieux : « Abraham ! Abraham ! N'avance pas ta main sur l'enfant ! »",
+    "« Car je sais maintenant que tu crains Dieu, puisque tu n'as pas refusé ton fils, ton unique. »",
+    "Abraham leva les yeux et vit un bélier retenu dans un buisson par les cornes.",
+    "Abraham alla prendre le bélier et l'offrit en holocauste à la place de son fils.",
+    "L'ange de l'Éternel appela une seconde fois Abraham des cieux et dit :",
+    "« Parce que tu as fait cela et que tu n'as pas refusé ton fils, ton unique, je te bénirai. »",
+    "« Je multiplierai ta postérité comme les étoiles du ciel et comme le sable qui est sur le bord de la mer. »",
+    "L'obéissance et la foi d'Abraham furent récompensées par les bénédictions de Dieu."
+  ],
+  "key_verse": "L'obéissance et la foi d'Abraham furent récompensées par les bénédictions de Dieu.",
+  "book": "Genèse 22:1-19",
+  "image": "/images/lessons/isaac_sacrifice.jpg",
+  "mini_games": ["quiz", "order_events"],
+  "quiz": {
+    "questions": [
+      {
+        "q": "Où Dieu demanda-t-il à Abraham d'emmener Isaac ?",
+        "options": ["Au pays de Morija", "En Égypte", "À Béthel", "À Hébron"],
+        "correct": "Au pays de Morija"
+      },
+      {
+        "q": "Que demanda Isaac à son père en chemin ?",
+        "options": ["Où allons-nous ?", "Où est l'agneau pour l'holocauste ?", "Pourquoi partons-nous ?", "Quand reviendrons-nous ?"],
+        "correct": "Où est l'agneau pour l'holocauste ?"
+      },
+      {
+        "q": "Que répondit Abraham à la question d'Isaac ?",
+        "options": ["Tu es l'agneau", "Nous trouverons un agneau", "Dieu pourvoira à l'agneau", "Il n'y a pas d'agneau"],
+        "correct": "Dieu pourvoira à l'agneau"
+      },
+      {
+        "q": "Qui arrêta Abraham au moment de sacrifier Isaac ?",
+        "options": ["Isaac lui-même", "Un serviteur", "L'ange de l'Éternel", "Une voix mystérieuse"],
+        "correct": "L'ange de l'Éternel"
+      },
+      {
+        "q": "Qu'est-ce qu'Abraham sacrifia à la place d'Isaac ?",
+        "options": ["Un agneau", "Un bélier", "Une colombe", "Un taureau"],
+        "correct": "Un bélier"
+      },
+      {
+        "q": "Pourquoi Dieu mit-il Abraham à l'épreuve ?",
+        "options": ["Pour le punir", "Pour tester sa foi", "Pour lui donner une leçon", "Pour le récompenser"],
+        "correct": "Pour tester sa foi"
+      },
+      {
+        "q": "Quelle promesse Dieu renouvela-t-il à Abraham ?",
+        "options": ["Une longue vie", "De la richesse", "Une postérité nombreuse", "Un nouveau pays"],
+        "correct": "Une postérité nombreuse"
+      }
+    ]
+  },
+  "story_steps": [
+    {
+      "id": "test",
+      "title": "Dieu met Abraham à l'épreuve",
+      "description": "Dieu demande à Abraham de sacrifier Isaac",
+      "image": "/images/steps/abraham_test.jpg"
+    },
+    {
+      "id": "journey",
+      "title": "Le voyage vers Morija",
+      "description": "Abraham, Isaac et deux serviteurs partent vers le mont Morija",
+      "image": "/images/steps/journey_morija.jpg"
+    },
+    {
+      "id": "question",
+      "title": "La question d'Isaac",
+      "description": "Isaac demande où est l'agneau pour le sacrifice",
+      "image": "/images/steps/isaac_question.jpg"
+    },
+    {
+      "id": "altar",
+      "title": "La construction de l'autel",
+      "description": "Abraham construit l'autel et lie Isaac",
+      "image": "/images/steps/altar_built.jpg"
+    },
+    {
+      "id": "intervention",
+      "title": "L'intervention divine",
+      "description": "L'ange arrête Abraham au dernier moment",
+      "image": "/images/steps/angel_intervention.jpg"
+    },
+    {
+      "id": "ram",
+      "title": "Le bélier providentiel",
+      "description": "Abraham sacrifie un bélier à la place d'Isaac",
+      "image": "/images/steps/ram_sacrifice.jpg"
+    },
+    {
+      "id": "blessing",
+      "title": "La bénédiction renouvelée",
+      "description": "Dieu renouvelle ses promesses à Abraham",
+      "image": "/images/steps/renewed_blessing.jpg"
+    }
+  ]
+}

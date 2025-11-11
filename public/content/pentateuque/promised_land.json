@@ -1,0 +1,38 @@
+{
+  "id": "promised_land",
+  "title": "La Terre Promise",
+  "path": "Le Pentateuque",
+  "reading": [
+    "Après quarante ans dans le désert, Moïse conduit le peuple d'Israël jusqu'aux portes de la Terre Promise.",
+    "Moïse monte sur le mont Nebo et Dieu lui montre tout le pays que ses descendants posséderont.",
+    "Moïse meurt sans entrer dans la Terre Promise, mais Dieu accomplit sa promesse envers Abraham, Isaac et Jacob.",
+    "Josué prend la relève pour faire entrer le peuple en Canaan."
+  ],
+  "key_verse": "Moïse monta des plaines de Moab sur le mont Nebo... et l'Éternel lui montra tout le pays. (Deutéronome 34:1)",
+  "vocab": [
+    { "word": "Terre Promise", "hint": "Pays que Dieu a promis à Abraham et à ses descendants." },
+    { "word": "Mont Nebo", "hint": "Montagne d'où Moïse voit la Terre Promise." },
+    { "word": "Canaan", "hint": "Nom ancien de la Terre Promise." }
+  ],
+  "quiz": [
+    {
+      "q": "Qui conduit le peuple jusqu'à la Terre Promise ?",
+      "choices": ["Moïse", "Josué", "Aaron"],
+      "answer": 0
+    },
+    {
+      "q": "Moïse entre-t-il dans la Terre Promise ?",
+      "choices": ["Oui", "Non", "Il hésite"],
+      "answer": 1
+    },
+    {
+      "q": "Qui succède à Moïse pour faire entrer le peuple ?",
+      "choices": ["Aaron", "Josué", "Caleb"],
+      "answer": 1
+    }
+  ],
+  "mini_games": ["order_events", "quiz"],
+  "assets": ["promised_land_1.png", "promised_land_2.png"],
+  "theological_message": "Dieu tient toujours ses promesses, même si leur accomplissement prend du temps.",
+  "life_application": "Faisons confiance à Dieu, même quand nous ne voyons pas tout de suite l'accomplissement de ses promesses."
+}

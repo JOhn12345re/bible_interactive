@@ -1,0 +1,149 @@
+{
+  "id": "serpent_airain_01",
+  "title": "Le Serpent d'airain — Guérison par la foi",
+  "path": "Le Pentateuque", 
+  "reading": [
+    "Les enfants d'Israël partirent de la montagne de Hor pour contourner le pays d'Édom.",
+    "Le peuple s'impatienta en route et parla contre Dieu et contre Moïse.",
+    "Ils dirent : 'Pourquoi nous avez-vous fait monter hors d'Égypte, pour que nous mourions dans le désert ?'",
+    "'Il n'y a point de pain, et il n'y a point d'eau, et notre âme est dégoûtée de cette misérable nourriture.'",
+    "Alors l'Éternel envoya contre le peuple des serpents brûlants qui mordirent le peuple.",
+    "Beaucoup d'Israélites moururent à cause des morsures venimeuses.",
+    "Le peuple vint vers Moïse et dit : 'Nous avons péché, car nous avons parlé contre l'Éternel et contre toi.'",
+    "'Prie l'Éternel, afin qu'il éloigne de nous ces serpents.'",
+    "Moïse pria pour le peuple, et l'Éternel lui répondit.",
+    "L'Éternel dit à Moïse : 'Fais-toi un serpent brûlant, et place-le sur une perche.'",
+    "'Quiconque aura été mordu et le regardera conservera la vie.'",
+    "Moïse fit un serpent d'airain et le plaça sur une perche.",
+    "Tous ceux qui regardaient le serpent d'airain avec foi étaient guéris et vivaient.",
+    "Ceux qui refusaient de regarder mouraient de leur morsure.",
+    "Ce serpent d'airain annonçait celui qui serait élevé pour sauver le monde."
+  ],
+  "key_verse": "Quiconque le regardera conservera la vie.",
+  "vocab": [
+    {
+      "word": "Serpents brûlants",
+      "hint": "Serpents venimeux dont la morsure causait une sensation de brûlure."
+    },
+    {
+      "word": "Airain",
+      "hint": "Métal ancien, un alliage de cuivre et d'étain, appelé aussi bronze."
+    },
+    {
+      "word": "Perche",
+      "hint": "Long bâton ou poteau dressé en hauteur."
+    },
+    {
+      "word": "Regarder avec foi",
+      "hint": "Regarder en faisant confiance à la promesse de Dieu."
+    }
+  ],
+  "quiz": [
+    {
+      "q": "Pourquoi Dieu envoya-t-il les serpents brûlants ?",
+      "choices": ["Le peuple murmurait contre Lui", "Il était en colère", "Pour les tester"],
+      "answer": 0
+    },
+    {
+      "q": "Que devait faire le peuple pour être guéri ?",
+      "choices": ["Prendre un médicament", "Regarder le serpent d'airain", "Fuir le désert"],
+      "answer": 1
+    },
+    {
+      "q": "Que fallait-il avoir en regardant le serpent d'airain ?",
+      "choices": ["De la curiosité", "La foi en la promesse de Dieu", "De la peur"],
+      "answer": 1
+    },
+    {
+      "q": "Qui Jésus dit-il que le serpent d'airain représentait ?",
+      "choices": ["Moïse", "Lui-même élevé sur la croix", "Le peuple"],
+      "answer": 1
+    },
+    {
+      "q": "Que nous enseigne cette histoire sur le salut ?",
+      "choices": ["Il faut mériter la guérison", "Le salut vient par la foi simple", "Seuls les bons sont sauvés"],
+      "answer": 1
+    }
+  ],
+  "goldGame": {
+    "title": "Le Serpent d'Airain - Questions d'Approfondissement", 
+    "description": "Découvrez la profonde prophétie du salut dans cette histoire",
+    "questions": [
+      {
+        "question": "Pourquoi Dieu demanda-t-Il à Moïse de faire un serpent, symbole du mal qui avait causé le problème ?",
+        "choices": [
+          "Pour rappeler au peuple son péché",
+          "Le serpent d'airain représentait le péché jugé et vaincu",
+          "C'était plus facile à sculpter",
+          "Pour effrayer les vrais serpents"
+        ],
+        "correct": 1,
+        "explanation": "Le serpent d'airain symbolisait le péché porté et jugé. De même, Jésus a porté nos péchés sur la croix pour nous guérir."
+      },
+      {
+        "question": "Pourquoi le remède était-il si simple : juste 'regarder' ?",
+        "choices": [
+          "Pour montrer que le salut vient par la foi simple, non par les œuvres",
+          "Parce que c'était plus pratique",
+          "Pour tester l'obéissance",
+          "Parce que les gens étaient trop faibles pour autre chose"
+        ],
+        "correct": 0,
+        "explanation": "La simplicité du remède enseigne que le salut ne dépend pas de nos efforts mais de notre foi en l'œuvre de Dieu."
+      },
+      {
+        "question": "Comment Jésus utilise-t-Il cette histoire pour expliquer Sa mission ?",
+        "choices": [
+          "Il compare Sa crucifixion à l'élévation du serpent d'airain",
+          "Il dit qu'Il est meilleur que Moïse",
+          "Il critique cette histoire",
+          "Il l'ignore complètement"
+        ],
+        "correct": 0,
+        "explanation": "Jean 3:14-15 : Jésus dit que comme Moïse éleva le serpent, Il serait élevé pour que quiconque croit ait la vie éternelle."
+      },
+      {
+        "question": "Que représentent les 'serpents brûlants' dans notre vie spirituelle ?",
+        "choices": [
+          "Les tentations",
+          "Le péché et ses conséquences mortelles",
+          "Les difficultés de la vie",
+          "Les ennemis physiques"
+        ],
+        "correct": 1,
+        "explanation": "Les serpents représentent le péché qui 'mord' l'humanité et apporte la mort spirituelle. Seul le remède divin peut guérir."
+      },
+      {
+        "question": "Pourquoi certains refusaient-ils de regarder le serpent d'airain ?",
+        "choices": [
+          "L'orgueil les empêchait d'accepter un remède si simple",
+          "Ils avaient peur des serpents",
+          "Ils ne voyaient pas le serpent d'airain",
+          "Ils préféraient leurs propres solutions"
+        ],
+        "correct": 0,
+        "explanation": "L'orgueil humain résiste souvent aux solutions simples de Dieu, préférant compter sur ses propres efforts plutôt que sur Sa grâce."
+      },
+      {
+        "question": "Quel parallèle y a-t-il entre 'regarder le serpent d'airain' et 'croire en Jésus' ?",
+        "choices": [
+          "Les deux demandent une foi simple et personnelle",
+          "Les deux sont des solutions humaines",
+          "Il n'y a aucun parallèle",
+          "Les deux sont compliqués"
+        ],
+        "correct": 0,
+        "explanation": "Dans les deux cas, le salut vient par un acte de foi simple : regarder avec confiance l'œuvre de Dieu pour notre guérison."
+      }
+    ],
+    "passingScore": 4,
+    "reward": {
+      "type": "badge",
+      "name": "Guéri par la Foi",
+      "description": "Vous comprenez le salut par la foi simple",
+      "icon": "🐍"
+    }
+  },
+  "mini_games": ["serpent-airain", "quiz", "goldGame"],
+  "assets": ["serpent_airain_1.png", "serpent_airain_2.png", "serpent_airain_3.png"]
+}

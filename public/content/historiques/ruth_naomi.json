@@ -1,0 +1,38 @@
+{
+  "id": "ruth_naomi",
+  "title": "Ruth et Naomi",
+  "path": "Historiques",
+  "reading": [
+    "Naomi, une femme israélite, perd son mari et ses deux fils en pays étranger.",
+    "Sa belle-fille Ruth décide de rester avec elle et de suivre le Dieu d'Israël.",
+    "Ruth travaille dans les champs pour subvenir à leurs besoins et rencontre Boaz, un homme bon et généreux.",
+    "Boaz épouse Ruth, et leur fils Obed deviendra l'ancêtre du roi David."
+  ],
+  "key_verse": "Ton peuple sera mon peuple, et ton Dieu sera mon Dieu. (Ruth 1:16)",
+  "vocab": [
+    { "word": "Moabite", "hint": "Personne originaire du pays de Moab, comme Ruth." },
+    { "word": "Glaner", "hint": "Ramasser les épis restés dans les champs après la moisson." },
+    { "word": "Rédempteur", "hint": "Personne qui rachète ou sauve quelqu'un de la misère." }
+  ],
+  "quiz": [
+    {
+      "q": "Qui est la belle-mère de Ruth ?",
+      "choices": ["Naomi", "Orpa", "Mara"],
+      "answer": 0
+    },
+    {
+      "q": "Quel est le pays d'origine de Ruth ?",
+      "choices": ["Israël", "Moab", "Égypte"],
+      "answer": 1
+    },
+    {
+      "q": "Qui épouse Ruth ?",
+      "choices": ["Boaz", "David", "Salomon"],
+      "answer": 0
+    }
+  ],
+  "mini_games": ["order_events", "quiz"],
+  "assets": ["ruth_1.png", "ruth_2.png"],
+  "theological_message": "Dieu accueille tous ceux qui viennent à lui avec foi, quelle que soit leur origine.",
+  "life_application": "La fidélité et la bonté sont récompensées par Dieu. Soyons fidèles dans nos relations."
+}

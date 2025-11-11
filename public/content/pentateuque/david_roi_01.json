@@ -1,0 +1,80 @@
+{
+  "id": "david_roi_01",
+  "title": "David devient Roi — Le roi selon le cœur de Dieu",
+  "path": "Le Pentateuque",
+  "reading": [
+    "Après la mort de Saül, David fut oint roi sur Juda à Hébron.",
+    "Il régna sept ans et demi sur Juda avant d'être proclamé roi sur tout Israël.",
+    "Toutes les tribus vinrent vers David et dirent : 'Nous sommes tes os et ta chair.'",
+    "Ils oignirent David roi sur Israël à l'âge de trente ans.",
+    "David conquit Jérusalem et en fit sa capitale, la Cité de David.",
+    "Il transporta l'arche de l'alliance à Jérusalem avec grande joie.",
+    "David établit un royaume fort et juste, car l'Éternel était avec lui.",
+    "Il vainquit les ennemis d'Israël : Philistins, Moabites, Ammonites.",
+    "David gouverna selon la justice et la droiture envers tout le peuple.",
+    "Dieu lui promit une descendance éternelle, annonçant le Messie."
+  ],
+  "key_verse": "Ils oignirent David pour roi sur Israël. David avait trente ans lorsqu'il devint roi, et il régna quarante ans. — 2 Samuel 5:3-4",
+  "vocab": [
+    {
+      "word": "Oindre",
+      "hint": "Verser de l'huile sur quelqu'un pour le consacrer roi."
+    },
+    {
+      "word": "Jérusalem",
+      "hint": "Capitale du royaume établie par David."
+    },
+    {
+      "word": "Arche de l'alliance",
+      "hint": "Symbole de la présence de Dieu au milieu du peuple."
+    },
+    {
+      "word": "Justice",
+      "hint": "Conduite droite selon la volonté de Dieu."
+    },
+    {
+      "word": "Messie",
+      "hint": "Roi promis de la descendance de David, Jésus-Christ."
+    }
+  ],
+  "quiz": [
+    {
+      "q": "Quel âge avait David quand il devint roi ?",
+      "choices": ["Vingt ans", "Trente ans", "Quarante ans"],
+      "answer": 1
+    },
+    {
+      "q": "Quelle ville David fit-il sa capitale ?",
+      "choices": ["Hébron", "Jérusalem", "Bethléem"],
+      "answer": 1
+    },
+    {
+      "q": "Combien de temps David régna-t-il au total ?",
+      "choices": ["Sept ans", "Quarante ans", "Cinquante ans"],
+      "answer": 1
+    },
+    {
+      "q": "Qu'apporta David à Jérusalem ?",
+      "choices": ["L'arche de l'alliance", "Le tabernacle", "Les tables de la loi"],
+      "answer": 0
+    },
+    {
+      "q": "Que promit Dieu à David ?",
+      "choices": ["Des richesses", "Une descendance éternelle", "La paix"],
+      "answer": 1
+    }
+  ],
+  "story_steps": [
+    "David est oint roi sur Juda à Hébron",
+    "Il règne sept ans et demi sur Juda",
+    "Toutes les tribus d'Israël viennent vers David",
+    "David est oint roi sur tout Israël",
+    "Il conquiert Jérusalem et en fait sa capitale",
+    "David transporte l'arche à Jérusalem",
+    "Il établit un royaume fort et juste",
+    "David vainc les ennemis d'Israël",
+    "Dieu lui promet une descendance éternelle"
+  ],
+  "mini_games": ["order_events", "quiz"],
+  "assets": ["david_roi_1.png", "david_roi_2.png", "david_roi_3.png"]
+}

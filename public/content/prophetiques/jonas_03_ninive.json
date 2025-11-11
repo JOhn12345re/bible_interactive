@@ -1,0 +1,68 @@
+{
+  "id": "jonas_03_ninive",
+  "title": "Ninive se convertit",
+  "path": "Ancien Testament",
+  "reading": [
+    "Après avoir été sauvé du poisson, Jonas accepte enfin sa mission.",
+    "Il se rend à Ninive, l'immense capitale ennemie de l'Assyrie.",
+    "Jonas parcourt la ville en criant : 'Dans 40 jours, Ninive sera détruite !'",
+    "Miracle incroyable : tous les habitants croient immédiatement au message !",
+    "Du plus petit au plus grand, tous se repentent et jeûnent.",
+    "Même le roi descend de son trône, se couvre d'un sac et ordonne le jeûne.",
+    "Les animaux aussi participent au jeûne - même les bêtes portent le sac !",
+    "Dieu voit leur repentir sincère et renonce à détruire la ville.",
+    "Mais Jonas, au lieu de se réjouir, entre dans une grande colère contre Dieu."
+  ],
+  "key_verse": "Dieu vit qu'ils revenaient de leur mauvaise voie, et il renonça au mal qu'il avait résolu de leur faire.",
+  "vocab": [
+    {
+      "word": "se repentir",
+      "hint": "Reconnaître ses fautes et décider de changer de vie."
+    },
+    {
+      "word": "jeûner",
+      "hint": "S'abstenir de manger pour montrer son repentir devant Dieu."
+    },
+    {
+      "word": "sac",
+      "hint": "Vêtement grossier porté en signe de deuil et de repentir."
+    },
+    {
+      "word": "miséricorde",
+      "hint": "Bonté et pardon de Dieu envers ceux qui se repentent."
+    }
+  ],
+  "quiz": [
+    {
+      "q": "Combien de temps Jonas donne-t-il à Ninive avant la destruction ?",
+      "choices": ["7 jours", "40 jours", "3 mois"],
+      "answer": 1
+    },
+    {
+      "q": "Comment réagissent les habitants de Ninive ?",
+      "choices": [
+        "Ils se moquent",
+        "Ils chassent Jonas",
+        "Ils se repentent immédiatement"
+      ],
+      "answer": 2
+    },
+    {
+      "q": "Pourquoi Jonas est-il en colère ?",
+      "choices": [
+        "Les gens ne l'écoutent pas",
+        "Dieu pardonne aux ennemis",
+        "Il a faim"
+      ],
+      "answer": 1
+    }
+  ],
+  "mini_games": ["order_events"],
+  "assets": ["ninive_1.png", "ninive_2.png", "ninive_3.png", "ninive_4.png"],
+  "theological_message": "La miséricorde de Dieu s'étend à tous, même aux ennemis. Le pardon divin est gratuit et universel.",
+  "reflection_questions": [
+    "Pourquoi Jonas est-il fâché que Dieu pardonne ?",
+    "Que nous enseigne la conversion immédiate de Ninive ?",
+    "Sommes-nous parfois comme Jonas, jaloux du pardon accordé aux autres ?"
+  ]
+}

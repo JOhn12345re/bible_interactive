@@ -1,0 +1,114 @@
+{
+  "id": "icone_sagesse",
+  "title": "L'Icône de la Sagesse Divine",
+  "emoji": "🤍",
+  "category": "icones_coptes",
+  "duration": "18 min",
+  "difficulty": "Avancé",
+  "colorClass": "bg-gradient-to-br from-white via-blue-100 to-purple-200",
+  "description": "Découvrez l'iconographie de Sophia, la Sagesse Divine, et sa représentation dans l'art copte.",
+  "readingContent": {
+    "title": "L'Icône de la Sagesse Divine (Sophia)",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Dans la tradition copte orthodoxe, l'icône de la Sagesse Divine (Sophia) occupe une place particulière. Elle représente la Sagesse personnifiée, souvent associée au Christ comme Logos divin."
+      },
+      {
+        "type": "heading",
+        "text": "L'Iconographie de la Sagesse"
+      },
+      {
+        "type": "paragraph",
+        "text": "L'icône de la Sagesse présente généralement une figure féminine ailée, vêtue de blanc et d'or, symbolisant la pureté et la divinité. Ses ailes déployées évoquent la protection divine qui couvre la création."
+      },
+      {
+        "type": "paragraph",
+        "text": "Les mains de la Sagesse sont souvent étendues dans un geste d'offrande ou de bénédiction, tandis que ses yeux reflètent la connaissance divine. Autour d'elle, on trouve parfois les symboles des quatre évangélistes ou des anges."
+      },
+      {
+        "type": "heading",
+        "text": "La Signification Théologique"
+      },
+      {
+        "type": "paragraph",
+        "text": "Dans la théologie copte, la Sagesse Divine est comprise comme l'expression de la connaissance parfaite de Dieu. Elle guide les croyants vers la vérité et illumine leur compréhension des mystères divins."
+      },
+      {
+        "type": "paragraph",
+        "text": "Cette icône nous invite à contempler la beauté de la sagesse divine et à rechercher cette sagesse dans notre vie spirituelle quotidienne."
+      }
+    ]
+  },
+  "quiz": [
+    {
+      "question": "Que symbolisent les ailes de la Sagesse Divine dans l'iconographie copte ?",
+      "options": [
+        "La vitesse du temps",
+        "La protection divine sur la création",
+        "Le voyage vers le ciel",
+        "La liberté spirituelle"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Les ailes déployées de la Sagesse symbolisent la protection divine qui couvre et veille sur toute la création."
+    },
+    {
+      "question": "Comment est généralement vêtue la figure de la Sagesse Divine ?",
+      "options": [
+        "En rouge et noir",
+        "En vert et marron",
+        "En blanc et or",
+        "En bleu et argent"
+      ],
+      "correctAnswer": 2,
+      "explanation": "La Sagesse Divine est traditionnellement représentée vêtue de blanc (pureté) et d'or (divinité)."
+    },
+    {
+      "question": "Quel est le rôle principal de la Sagesse Divine selon la théologie copte ?",
+      "options": [
+        "Juger les pécheurs",
+        "Guider vers la vérité et illuminer la compréhension",
+        "Protéger uniquement le clergé",
+        "Contrôler les éléments naturels"
+      ],
+      "correctAnswer": 1,
+      "explanation": "La Sagesse Divine guide les croyants vers la vérité et illumine leur compréhension des mystères divins."
+    }
+  ],
+  "order_events": {
+    "title": "🎨 L'Art de l'Icône de la Sagesse",
+    "description": "Mets dans l'ordre les étapes de création d'une icône de la Sagesse Divine",
+    "events": [
+      {
+        "id": 1,
+        "text": "📝 Méditation et prière avant de commencer",
+        "emoji": "🙏"
+      },
+      {
+        "id": 2,
+        "text": "✏️ Esquisse du visage et des ailes de la Sagesse",
+        "emoji": "✏️"
+      },
+      {
+        "id": 3,
+        "text": "🎨 Application des couleurs de base (blanc et or)",
+        "emoji": "🎨"
+      },
+      {
+        "id": 4,
+        "text": "👁️ Peinture détaillée des yeux expressifs",
+        "emoji": "👁️"
+      },
+      {
+        "id": 5,
+        "text": "✋ Finalisation des mains en geste de bénédiction",
+        "emoji": "✋"
+      },
+      {
+        "id": 6,
+        "text": "✨ Ajout des détails dorés et de l'auréole",
+        "emoji": "✨"
+      }
+    ]
+  }
+}

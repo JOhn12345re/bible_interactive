@@ -1,0 +1,60 @@
+{
+  "id": "saint_macaire",
+  "title": "Saint Macaire l'Égyptien - Le Grand Spirituel du Désert",
+  "category": "histoire_saints",
+  "description": "Découvre la vie de Saint Macaire l'Égyptien, l'un des plus grands pères du désert de Scété.",
+  "introduction": "Saint Macaire l'Égyptien (300-390 apr. J.-C.) fut l'un des moines les plus célèbres du désert de Scété. Sa sagesse spirituelle et ses nombreux miracles en ont fait une figure majeure du monachisme copte.",
+  "reading": [
+    {
+      "subtitle": "La jeunesse de Macaire",
+      "text": "Macaire naquit en Égypte vers l'an 300. Dès son jeune âge, il manifesta un grand amour pour Dieu et un désir profond de vivre dans la prière et la solitude."
+    },
+    {
+      "subtitle": "Le désert de Scété",
+      "text": "À l'âge de 30 ans, Macaire se retira dans le désert de Scété, une région aride au sud d'Alexandrie. Il y vécut dans une cellule très simple, passant ses jours et ses nuits en prière et méditation."
+    },
+    {
+      "subtitle": "Miracles et guérisons",
+      "text": "Dieu accorda à Saint Macaire le don de faire des miracles. Il guérit de nombreux malades et chassa les démons. Sa réputation de sainteté se répandit dans toute l'Égypte."
+    },
+    {
+      "subtitle": "L'enseignement spirituel",
+      "text": "Macaire devint le père spirituel de milliers de moines. Ses enseignements sur l'humilité, la prière du cœur et le combat spirituel sont encore étudiés aujourd'hui dans l'Église copte."
+    }
+  ],
+  "memory_verse": {
+    "text": "Heureux les cœurs purs, car ils verront Dieu.",
+    "reference": "Matthieu 5:8"
+  },
+  "quiz": [
+    {
+      "question": "Où Saint Macaire s'est-il retiré pour vivre dans la prière ?",
+      "options": ["Le désert de Sinaï", "Le désert de Scété", "Le désert de Judée", "Le désert d'Arabie"],
+      "correct": 1,
+      "explanation": "Saint Macaire s'est retiré dans le désert de Scété, au sud d'Alexandrie, où il vécut dans la prière et la méditation."
+    },
+    {
+      "question": "À quel âge Macaire s'est-il retiré au désert ?",
+      "options": ["20 ans", "25 ans", "30 ans", "35 ans"],
+      "correct": 2,
+      "explanation": "Macaire se retira au désert à l'âge de 30 ans pour se consacrer entièrement à Dieu."
+    },
+    {
+      "question": "Pour quoi Saint Macaire était-il particulièrement connu ?",
+      "options": ["Ses écrits", "Ses miracles et sa sagesse spirituelle", "Ses voyages", "Ses constructions"],
+      "correct": 1,
+      "explanation": "Saint Macaire était connu pour ses nombreux miracles, guérisons, et surtout pour sa profonde sagesse spirituelle."
+    }
+  ],
+  "summary": {
+    "title": "Points clés à retenir",
+    "points": [
+      "Saint Macaire l'Égyptien vécut de 300 à 390 apr. J.-C.",
+      "Il se retira dans le désert de Scété à l'âge de 30 ans",
+      "Il accomplit de nombreux miracles et guérisons",
+      "Il fut le père spirituel de milliers de moines",
+      "Ses enseignements sur la prière du cœur sont toujours étudiés",
+      "Il est l'un des plus grands pères du désert de la tradition copte"
+    ]
+  }
+}

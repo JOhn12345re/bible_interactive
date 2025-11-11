@@ -1,0 +1,132 @@
+{
+  "id": "icone_annonciation",
+  "title": "L'Icône de l'Annonciation",
+  "emoji": "👼",
+  "category": "icones_coptes",
+  "duration": "16 min",
+  "difficulty": "Moyen",
+  "colorClass": "bg-gradient-to-br from-blue-400 to-purple-600",
+  "description": "L'art sacré de l'Annonciation dans la tradition iconographique copte.",
+  "readingContent": {
+    "title": "L'Icône de l'Annonciation dans l'Art Copte",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "L'Annonciation est l'un des thèmes les plus vénérés et représentés dans l'iconographie copte. Cette scène sacrée capture le moment où l'Archange Gabriel annonce à Marie qu'elle portera le Sauveur."
+      },
+      {
+        "type": "heading",
+        "text": "La Composition Traditionnelle"
+      },
+      {
+        "type": "paragraph",
+        "text": "Dans l'iconographie copte, l'Annonciation présente généralement l'Archange Gabriel à gauche, ses ailes déployées, tenant souvent un bâton de messager. Marie se trouve à droite, souvent représentée près d'un puits ou dans sa maison."
+      },
+      {
+        "type": "paragraph",
+        "text": "Le geste de Gabriel exprime l'annonce divine, tandis que Marie montre une attitude d'humilité et d'acceptation. Ses mains peuvent être croisées sur sa poitrine ou étendues en signe de soumission à la volonté divine."
+      },
+      {
+        "type": "heading",
+        "text": "Les Symboles Particuliers"
+      },
+      {
+        "type": "paragraph",
+        "text": "L'iconographie copte inclut souvent des éléments uniques : le lys blanc symbolisant la pureté de Marie, la colombe représentant l'Esprit Saint, et parfois un rayon de lumière descendant du ciel vers Marie."
+      },
+      {
+        "type": "paragraph",
+        "text": "Les couleurs sont chargées de sens : le bleu royal de Marie exprime sa dignité royale, le blanc sa pureté, tandis que les vêtements multicolores de Gabriel reflètent sa nature céleste."
+      },
+      {
+        "type": "heading",
+        "text": "La Signification Spirituelle"
+      },
+      {
+        "type": "paragraph",
+        "text": "Cette icône invite les fidèles à méditer sur l'Incarnation, mystère central de la foi chrétienne. Elle nous rappelle l'importance de l'obéissance à Dieu et de la disponibilité à Sa volonté, à l'exemple de Marie."
+      }
+    ]
+  },
+  "quiz": [
+    {
+      "question": "Dans l'iconographie copte, où se trouve généralement l'Archange Gabriel par rapport à Marie ?",
+      "options": [
+        "À droite de Marie",
+        "Au-dessus de Marie",
+        "À gauche de Marie",
+        "Derrière Marie"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Dans la composition traditionnelle, l'Archange Gabriel est placé à gauche, tandis que Marie se trouve à droite."
+    },
+    {
+      "question": "Que symbolise le lys blanc souvent présent dans l'icône de l'Annonciation ?",
+      "options": [
+        "La royauté de Marie",
+        "La pureté de Marie",
+        "La sagesse divine",
+        "La résurrection"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Le lys blanc est un symbole traditionnel de la pureté virginale de Marie dans l'iconographie chrétienne."
+    },
+    {
+      "question": "Quelle couleur exprime particulièrement la dignité royale de Marie ?",
+      "options": [
+        "Le rouge",
+        "Le blanc",
+        "Le bleu royal",
+        "L'or"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Le bleu royal dans les vêtements de Marie exprime sa dignité royale en tant que Mère de Dieu."
+    }
+  ],
+  "order_events": {
+    "title": "👼 L'Annonciation Étape par Étape",
+    "description": "Ordonne les éléments de la scène de l'Annonciation telle qu'elle se déroule",
+    "events": [
+      {
+        "id": 1,
+        "text": "👼 L'Archange Gabriel descend du ciel",
+        "emoji": "👼"
+      },
+      {
+        "id": 2,
+        "text": "🏠 Gabriel trouve Marie dans sa demeure",
+        "emoji": "🏠"
+      },
+      {
+        "id": 3,
+        "text": "💬 'Je vous salue, Marie, pleine de grâce'",
+        "emoji": "💬"
+      },
+      {
+        "id": 4,
+        "text": "😰 Marie s'étonne et s'interroge",
+        "emoji": "😰"
+      },
+      {
+        "id": 5,
+        "text": "📢 Gabriel annonce qu'elle portera le Sauveur",
+        "emoji": "📢"
+      },
+      {
+        "id": 6,
+        "text": "🕊️ L'Esprit Saint viendra sur elle",
+        "emoji": "🕊️"
+      },
+      {
+        "id": 7,
+        "text": "🙏 'Qu'il me soit fait selon votre parole'",
+        "emoji": "🙏"
+      },
+      {
+        "id": 8,
+        "text": "✨ L'Incarnation du Verbe s'accomplit",
+        "emoji": "✨"
+      }
+    ]
+  }
+}

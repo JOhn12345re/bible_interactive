@@ -123,7 +123,7 @@ jspm_packages/
 bibles_json_6.0/
 resources/
 public/bibles_json_6.0/
-public/content/
+# Note: public/content/ contient les fichiers JSON essentiels pour les leçons et histoires
 
 # Development files
 docs/

@@ -1,0 +1,97 @@
+{
+  "id": "josue_01",
+  "title": "La Prise de Jéricho",
+  "path": "Conquête",
+  "book": "Josué",
+  "chapter": "6",
+  "key_verse": {
+    "reference": "Josué 6:20",
+    "text": "Le peuple cria, et les sacrificateurs soufflèrent des trompettes. Et le peuple fit un grand cri… et la ville fut prise."
+  },
+  "reading": [
+    "Après la mort de Moïse, Dieu choisit Josué pour conduire le peuple d'Israël dans la terre promise. La première ville à conquérir était Jéricho, une cité fortifiée aux murailles imposantes.",
+    "Dieu parla à Josué et lui dit que Jéricho serait livrée au peuple d'Israël. Il donna des instructions précises pour prendre la ville : marcher autour de ses murailles avec l'armée et l'arche de l'alliance.",
+    "L'Éternel dit à Josué : 'Voici, je livre entre tes mains Jéricho et son roi, avec ses vaillants soldats. Vous marcherez autour de la ville, vous tous les hommes de guerre.'",
+    "Pendant six jours, les Israélites firent une marche silencieuse autour des murailles chaque jour. Les prêtres portaient l'arche de l'alliance et soufflaient des trompettes.",
+    "Chaque jour, ils faisaient le tour de la ville une seule fois, puis retournaient au camp. Le peuple gardait le silence, car Josué avait dit : 'Vous ne crierez point, vous ne ferez point entendre votre voix.'",
+    "Le septième jour arriva. Cette fois, les Israélites firent sept tours autour de la ville au lieu d'un seul. À chaque tour, les trompettes résonnaient, mais le peuple restait silencieux.",
+    "À la fin du septième tour, Josué ordonna au peuple : 'Criez, car l'Éternel vous a livré la ville !' Le peuple poussa un grand cri de guerre.",
+    "Soudain, les murailles de Jéricho s'écroulèrent ! Les murs épais qui semblaient indestructibles tombèrent par la puissance de Dieu. Le peuple monta dans la ville et la prit.",
+    "La victoire de Jéricho montra que Dieu combat pour son peuple quand ils obéissent à ses instructions. Cette conquête miraculeuse ouvrit la voie à la conquête de toute la terre promise.",
+    "Tout ce qui était à Jéricho fut consacré à Dieu, et le peuple respecta l'ordre divin. Seuls Rahab et sa famille furent épargnés, car elle avait aidé les espions israélites.",
+    "Ainsi, par l'obéissance et la foi, le peuple d'Israël remporta sa première grande victoire en terre promise, accomplissant le plan que Dieu avait préparé pour eux."
+  ],
+  "vocabulary": [
+    {
+      "term": "Murailles",
+      "definition": "Les murs qui entourent et protègent une ville."
+    },
+    {
+      "term": "Arche de l'alliance",
+      "definition": "Coffre sacré représentant la présence de Dieu parmi le peuple."
+    },
+    {
+      "term": "Trompettes",
+      "definition": "Instruments utilisés pour annoncer ou célébrer des événements religieux ou militaires."
+    },
+    {
+      "term": "Consacrer",
+      "definition": "Déclarer quelque chose sacré ou réservé à Dieu."
+    },
+    {
+      "term": "Obéissance",
+      "definition": "Respect et suivi des instructions données par Dieu."
+    },
+    {
+      "term": "Victoire divine",
+      "definition": "Succès obtenu grâce à la puissance et au plan de Dieu."
+    }
+  ],
+  "quiz": [
+    {
+      "question": "Qui a donné les instructions à Josué pour prendre Jéricho ?",
+      "options": ["Moïse", "Dieu", "Les prêtres", "Le roi de Jéricho"],
+      "correct": 1,
+      "explanation": "C'est Dieu qui a parlé à Josué et lui a donné des instructions précises pour conquérir Jéricho."
+    },
+    {
+      "question": "Combien de jours les Israélites ont-ils marché autour de Jéricho ?",
+      "options": ["5 jours", "6 jours", "7 jours", "8 jours"],
+      "correct": 2,
+      "explanation": "Les Israélites ont marché 6 jours une fois par jour, puis 7 fois le septième jour, soit 7 jours au total."
+    },
+    {
+      "question": "Que portaient les prêtres pendant la marche ?",
+      "options": ["Des épées", "L'arche de l'alliance", "Des pierres", "Des bannières"],
+      "correct": 1,
+      "explanation": "Les prêtres portaient l'arche de l'alliance, qui représentait la présence de Dieu parmi le peuple."
+    },
+    {
+      "question": "Combien de tours ont fait les Israélites le septième jour ?",
+      "options": ["1 tour", "3 tours", "5 tours", "7 tours"],
+      "correct": 3,
+      "explanation": "Le septième jour, ils ont fait 7 tours autour de la ville au lieu d'un seul tour comme les jours précédents."
+    },
+    {
+      "question": "Comment les murailles de Jéricho sont-elles tombées ?",
+      "options": ["Par des machines de guerre", "Par la puissance de Dieu", "Par des tremblements de terre", "Par des explosions"],
+      "correct": 1,
+      "explanation": "Les murailles sont tombées par la puissance de Dieu, après que le peuple ait crié selon ses instructions."
+    },
+    {
+      "question": "Quelle leçon principale enseigne cette histoire ?",
+      "options": ["La guerre est nécessaire", "L'obéissance à Dieu apporte la victoire", "Les murs sont fragiles", "Il faut crier fort"],
+      "correct": 1,
+      "explanation": "L'histoire de Jéricho enseigne que l'obéissance aux instructions de Dieu apporte la victoire, même face aux défis impossibles."
+    }
+  ],
+  "story_steps": [
+    "Dieu donne à Josué les instructions pour conquérir Jéricho",
+    "Les Israélites marchent silencieusement autour de la ville pendant 6 jours",
+    "Le septième jour, ils font 7 tours autour des murailles",
+    "Josué ordonne au peuple de crier à la fin du septième tour",
+    "Les murailles de Jéricho s'effondrent par la puissance de Dieu",
+    "Le peuple monte dans la ville et la conquiert selon le plan divin"
+  ],
+  "mini_games": ["order_events", "quiz"]
+}

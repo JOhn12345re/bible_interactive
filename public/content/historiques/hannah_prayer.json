@@ -1,0 +1,38 @@
+{
+  "id": "hannah_prayer",
+  "title": "La Prière d'Anne",
+  "path": "Historiques",
+  "reading": [
+    "Anne, femme pieuse, souffre de ne pas avoir d'enfant et prie Dieu avec ferveur au temple.",
+    "Elle promet à Dieu que si elle a un fils, elle le consacrera à son service.",
+    "Dieu exauce sa prière et lui donne un fils, Samuel.",
+    "Anne remercie Dieu par un magnifique cantique de louange."
+  ],
+  "key_verse": "Anne priait dans son cœur, et l'Éternel exauça sa prière. (1 Samuel 1:13)",
+  "vocab": [
+    { "word": "Cantique", "hint": "Chant de louange à Dieu." },
+    { "word": "Consacrer", "hint": "Mettre à part pour Dieu." },
+    { "word": "Exaucer", "hint": "Répondre favorablement à une prière." }
+  ],
+  "quiz": [
+    {
+      "q": "Pourquoi Anne prie-t-elle avec tristesse ?",
+      "choices": ["Elle est malade", "Elle n'a pas d'enfant", "Elle est pauvre"],
+      "answer": 1
+    },
+    {
+      "q": "Quel est le nom du fils d'Anne ?",
+      "choices": ["Samuel", "David", "Saül"],
+      "answer": 0
+    },
+    {
+      "q": "Que promet Anne à Dieu ?",
+      "choices": ["De donner de l'argent", "De consacrer son fils", "De jeûner"],
+      "answer": 1
+    }
+  ],
+  "mini_games": ["order_events", "quiz"],
+  "assets": ["hannah_1.png", "hannah_2.png"],
+  "theological_message": "Dieu écoute les prières sincères et répond selon sa volonté.",
+  "life_application": "N'hésitons pas à confier nos désirs profonds à Dieu dans la prière."
+}

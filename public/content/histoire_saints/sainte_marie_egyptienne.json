@@ -1,0 +1,153 @@
+{
+  "id": "sainte_marie_egyptienne",
+  "title": "Sainte Marie l'Égyptienne",
+  "emoji": "🌸",
+  "category": "histoire_saints",
+  "duration": "19 min",
+  "difficulty": "Moyen",
+  "colorClass": "bg-gradient-to-br from-pink-500 to-rose-600",
+  "description": "La grande pénitente du désert, modèle de conversion et de vie ascétique.",
+  "readingContent": {
+    "title": "Sainte Marie l'Égyptienne (vers 344-421)",
+    "content": [
+      {
+        "type": "paragraph",
+        "text": "Sainte Marie l'Égyptienne est l'une des figures les plus vénérées de l'ascétisme chrétien. Sa vie extraordinaire, marquée par une conversion radicale et 47 années de pénitence dans le désert, inspire les chrétiens depuis des siècles."
+      },
+      {
+        "type": "heading",
+        "text": "Une Jeunesse Dissolue"
+      },
+      {
+        "type": "paragraph",
+        "text": "Née vers 344 en Égypte, Marie quitta sa famille à l'âge de douze ans pour mener une vie de plaisirs à Alexandrie. Pendant dix-sept ans, elle vécut dans le péché et la débauche, gagnant sa vie de manière déshonorante."
+      },
+      {
+        "type": "paragraph",
+        "text": "Poussée par la curiosité, elle se joignit à des pèlerins partant pour Jérusalem, mais sans aucune intention pieuse. Son voyage n'était motivé que par le désir de continuer sa vie de péché."
+      },
+      {
+        "type": "heading",
+        "text": "La Conversion Miraculeuse"
+      },
+      {
+        "type": "paragraph",
+        "text": "Arrivée à Jérusalem, Marie tenta d'entrer dans l'église du Saint-Sépulcre lors de la fête de l'Exaltation de la Croix. Mais une force invisible l'empêcha de franchir le seuil, la repoussant à chaque tentative."
+      },
+      {
+        "type": "paragraph",
+        "text": "Comprenant que Dieu lui-même s'opposait à son entrée, elle fut saisie de repentir. Devant une icône de la Vierge Marie, elle implora le pardon et promit de changer de vie complètement."
+      },
+      {
+        "type": "heading",
+        "text": "La Vie au Désert"
+      },
+      {
+        "type": "paragraph",
+        "text": "Après sa conversion, Marie traversa le Jourdain et s'enfonça dans le désert où elle vécut pendant 47 années dans la pénitence la plus austère. Elle ne possédait que trois pains qui durèrent miraculeusement plusieurs années."
+      },
+      {
+        "type": "paragraph",
+        "text": "Ses vêtements se désintégrèrent avec le temps, et elle vécut nue, protégée par sa longue chevelure. Sa peau devint noire sous le soleil du désert, et son corps se dessécha par les jeûnes constants."
+      },
+      {
+        "type": "heading",
+        "text": "La Rencontre avec Zosime"
+      },
+      {
+        "type": "paragraph",
+        "text": "Vers la fin de sa vie, elle rencontra le moine Zosime qui fut témoin de sa sainteté extraordinaire. Elle lui raconta sa vie et lui demanda de revenir l'année suivante pour lui apporter la communion."
+      },
+      {
+        "type": "paragraph",
+        "text": "Quand Zosime revint, il trouva Marie morte, agenouillée en prière. Un lion l'aida à creuser sa tombe. Sainte Marie l'Égyptienne mourut vers 421, laissant un exemple unique de pénitence et de sainteté."
+      }
+    ]
+  },
+  "quiz": [
+    {
+      "question": "Combien d'années Sainte Marie a-t-elle passées dans le désert ?",
+      "options": [
+        "40 années",
+        "47 années",
+        "50 années",
+        "35 années"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Sainte Marie l'Égyptienne a vécu 47 années dans le désert en pénitence après sa conversion."
+    },
+    {
+      "question": "Qu'est-ce qui empêcha Marie d'entrer dans l'église du Saint-Sépulcre ?",
+      "options": [
+        "Les gardes du temple",
+        "Une foule trop importante",
+        "Une force invisible",
+        "Un tremblement de terre"
+      ],
+      "correctAnswer": 2,
+      "explanation": "Une force invisible et divine empêchait Marie d'entrer dans l'église, la repoussant à chaque tentative."
+    },
+    {
+      "question": "Qui découvrit Sainte Marie dans le désert et témoigna de sa sainteté ?",
+      "options": [
+        "Le moine Antoine",
+        "Le moine Zosime",
+        "Le patriarche d'Alexandrie",
+        "Un ermite anonyme"
+      ],
+      "correctAnswer": 1,
+      "explanation": "Le moine Zosime rencontra Marie dans le désert et fut témoin de sa vie extraordinaire de pénitence."
+    }
+  ],
+  "order_events": {
+    "title": "🌸 La Vie de Sainte Marie l'Égyptienne",
+    "description": "Replace dans l'ordre chronologique les étapes de la vie de Sainte Marie",
+    "events": [
+      {
+        "id": 1,
+        "text": "👶 Naissance en Égypte vers 344",
+        "emoji": "👶"
+      },
+      {
+        "id": 2,
+        "text": "🏃‍♀️ Fuit sa famille à 12 ans pour Alexandrie",
+        "emoji": "🏃‍♀️"
+      },
+      {
+        "id": 3,
+        "text": "😈 17 années de vie dissolue à Alexandrie",
+        "emoji": "😈"
+      },
+      {
+        "id": 4,
+        "text": "🚢 Voyage vers Jérusalem avec des pèlerins",
+        "emoji": "🚢"
+      },
+      {
+        "id": 5,
+        "text": "⛪ Impossible d'entrer au Saint-Sépulcre",
+        "emoji": "⛪"
+      },
+      {
+        "id": 6,
+        "text": "😭 Conversion devant l'icône de Marie",
+        "emoji": "😭"
+      },
+      {
+        "id": 7,
+        "text": "🏜️ 47 années de pénitence au désert",
+        "emoji": "🏜️"
+      },
+      {
+        "id": 8,
+        "text": "👨‍🦳 Rencontre avec le moine Zosime",
+        "emoji": "👨‍🦳"
+      },
+      {
+        "id": 9,
+        "text": "☦️ Mort en prière vers 421",
+        "emoji": "☦️"
+      }
+    ]
+  }
+}
