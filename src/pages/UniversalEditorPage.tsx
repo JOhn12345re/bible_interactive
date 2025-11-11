@@ -19,6 +19,8 @@ interface ContentItem {
 
 export default function UniversalEditorPage() {
   const { contrastHigh } = useSettings();
+  const isProduction = window.location.hostname !== 'localhost' && !window.location.hostname.includes('127.0.0.1');
+  
   const [categories] = useState<ContentCategory[]>([
     { id: 'pentateuque', name: 'Pentateuque', icon: '📜', folders: ['/content/pentateuque'] },
     { id: 'nouveau_testament', name: 'Nouveau Testament', icon: '✝️', folders: ['/content/nouveau_testament'] },
@@ -138,11 +140,17 @@ export default function UniversalEditorPage() {
   const handleSave = async () => {
     if (!editedContent || !selectedContent) return;
     
+    // Vérifier si on est en production
+    if (isProduction) {
+      alert('⚠️ Sauvegarde désactivée en production\n\nL\'éditeur universel est un outil de développement.\nPour modifier le contenu :\n1. Clonez le projet localement\n2. Lancez le serveur de développement (npm run dev)\n3. Utilisez l\'éditeur en local\n4. Committez vos modifications sur Git');
+      return;
+    }
+    
     try {
       // Récupérer le chemin du fichier depuis l'URL source
       const filePath = selectedContent._sourceUrl || '';
       
-      // Envoyer au serveur API
+      // Envoyer au serveur API (localhost uniquement)
       const response = await fetch('http://localhost:3002/api/save-content', {
         method: 'POST',
         headers: {
@@ -166,7 +174,7 @@ export default function UniversalEditorPage() {
       }
     } catch (error) {
       console.error('Erreur lors de la sauvegarde:', error);
-      alert('Erreur: Impossible de sauvegarder. Vérifiez que le serveur API est démarré.');
+      alert('Erreur: Impossible de sauvegarder.\n\nAssurez-vous que :\n1. Le serveur API est démarré (npm run server)\n2. Il écoute sur le port 3002\n3. Vous êtes en environnement de développement local');
     }
   };
 
@@ -879,13 +887,28 @@ export default function UniversalEditorPage() {
 
                 {/* Boutons */}
                 <div className="sticky bottom-0 bg-white border-t-4 border-blue-500 pt-4 mt-6 shadow-lg">
+                  {isProduction && (
+                    <div className="mb-3 px-4 py-3 bg-yellow-50 border-l-4 border-yellow-400 text-yellow-800 rounded">
+                      <p className="flex items-center space-x-2">
+                        <span className="text-xl">⚠️</span>
+                        <span className="font-semibold">Mode lecture seule (Production)</span>
+                      </p>
+                      <p className="text-sm mt-1">La sauvegarde est désactivée en production. Utilisez l'éditeur en local pour modifier le contenu.</p>
+                    </div>
+                  )}
                   <div className="flex flex-col space-y-3">
                     <button
                       onClick={handleSave}
-                      className="w-full px-6 py-4 bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-xl hover:shadow-xl transition-all font-bold text-lg flex items-center justify-center space-x-3"
+                      disabled={isProduction}
+                      className={`w-full px-6 py-4 rounded-xl transition-all font-bold text-lg flex items-center justify-center space-x-3 ${
+                        isProduction 
+                          ? 'bg-gray-300 text-gray-500 cursor-not-allowed' 
+                          : 'bg-gradient-to-r from-blue-600 to-blue-700 text-white hover:shadow-xl'
+                      }`}
+                      title={isProduction ? 'Sauvegarde désactivée en production' : 'Sauvegarder les modifications'}
                     >
                       <span className="text-2xl">💾</span>
-                      <span>SAUVEGARDER LES MODIFICATIONS</span>
+                      <span>{isProduction ? 'SAUVEGARDE DÉSACTIVÉE' : 'SAUVEGARDER LES MODIFICATIONS'}</span>
                     </button>
                     
                     <div className="flex space-x-2">
