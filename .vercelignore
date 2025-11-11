@@ -10,10 +10,8 @@ node_modules/
 # Fichiers de développement
 src/content/
 public/bibles_json_6.0/
-public/content/
-public/sermons/
 
-# Fichiers volumineux
+# Fichiers volumineux (mais on garde les JSON !)
 *.mp4
 *.avi
 *.mov
