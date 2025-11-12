@@ -50,30 +50,44 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     // Charger les badges
     const badgesResult = await db.query(
-      `SELECT id, badge_id, badge_name, earned_at 
+      `SELECT badge_id, badge_name, earned_at 
        FROM user_badges 
-       WHERE user_id = $1 
-       ORDER BY earned_at DESC`,
+       WHERE user_id = $1`,
       [userId]
     );
+    const badges = badgesResult.rows.map((b: any) => ({
+      id: b.badge_id,
+      name: b.badge_name,
+      earnedAt: b.earned_at
+    }));
 
     // Charger les leçons complétées
     const lessonsResult = await db.query(
-      `SELECT id, lesson_id, completed_at, score 
+      `SELECT lesson_id, completed_at, score 
        FROM completed_lessons 
-       WHERE user_id = $1 
-       ORDER BY completed_at DESC`,
+       WHERE user_id = $1`,
       [userId]
     );
+    const completedLessons = lessonsResult.rows.map((l: any) => ({
+      id: l.lesson_id,
+      completedAt: l.completed_at,
+      score: l.score
+    }));
 
     // Charger les achievements
     const achievementsResult = await db.query(
-      `SELECT id, achievement_id, achievement_name, progress, completed, completed_at 
+      `SELECT achievement_id, achievement_name, progress, completed, completed_at 
        FROM user_achievements 
-       WHERE user_id = $1 
-       ORDER BY completed_at DESC NULLS LAST`,
+       WHERE user_id = $1`,
       [userId]
     );
+    const achievements = achievementsResult.rows.map((a: any) => ({
+      id: a.achievement_id,
+      name: a.achievement_name,
+      progress: a.progress,
+      completed: a.completed,
+      completedAt: a.completed_at
+    }));
 
     const progress = progressResult.rows[0] || {
       xp: 0,
@@ -101,29 +115,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
         totalGamesPlayed: progress.total_games_played,
         updatedAt: progress.updated_at
       },
-      badges: badgesResult.rows.map(b => ({
-        id: b.id,
-        userId,
-        badgeId: b.badge_id,
-        badgeName: b.badge_name,
-        earnedAt: b.earned_at
-      })),
-      completedLessons: lessonsResult.rows.map(l => ({
-        id: l.id,
-        userId,
-        lessonId: l.lesson_id,
-        completedAt: l.completed_at,
-        score: l.score
-      })),
-      achievements: achievementsResult.rows.map(a => ({
-        id: a.id,
-        userId,
-        achievementId: a.achievement_id,
-        achievementName: a.achievement_name,
-        progress: a.progress,
-        completed: a.completed,
-        completedAt: a.completed_at
-      }))
+      badges,
+      completedLessons,
+      achievements
     });
 
   } catch (error) {
