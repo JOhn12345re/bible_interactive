@@ -20,11 +20,10 @@ deployment-report.json
 # Archive folders
 .archive/
 bible-api/
-config/
 database/
 flutter_application_1/
 marenhos_old/
-api/
+api-backup/
 
 # Environment variables
 .env
