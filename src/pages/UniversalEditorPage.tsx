@@ -303,15 +303,15 @@ export default function UniversalEditorPage() {
   return (
     <div className={`min-h-screen ${contrastHigh ? 'bg-contrast-bg text-contrast-text' : 'bg-gradient-to-br from-slate-50 to-blue-50'}`}>
       <header className={`sticky top-0 z-40 backdrop-blur-md ${contrastHigh ? 'bg-contrast-bg/95' : 'bg-white/95 shadow-sm border-b border-gray-200'}`}>
-        <div className="max-w-7xl mx-auto px-4 py-4">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4 py-3 sm:py-4">
           <div className="flex justify-between items-center">
-            <div className="flex items-center space-x-3">
-              <span className="text-3xl">📝</span>
+            <div className="flex items-center space-x-2 sm:space-x-3">
+              <span className="text-2xl sm:text-3xl">📝</span>
               <div>
-                <h1 className={`text-2xl font-bold ${contrastHigh ? 'text-contrast-text' : 'text-gray-800'}`}>
+                <h1 className={`text-lg sm:text-2xl font-bold ${contrastHigh ? 'text-contrast-text' : 'text-gray-800'}`}>
                   Éditeur Universel de Contenu
                 </h1>
-                <p className={`text-sm ${contrastHigh ? 'text-contrast-text' : 'text-gray-600'}`}>
+                <p className={`text-xs sm:text-sm ${contrastHigh ? 'text-contrast-text' : 'text-gray-600'}`}>
                   Gérez TOUS vos contenus : Histoires bibliques, Saints, Icônes, et plus
                 </p>
               </div>
@@ -320,14 +320,14 @@ export default function UniversalEditorPage() {
         </div>
       </header>
 
-      <main className="max-w-7xl mx-auto px-4 py-8">
+      <main className="max-w-7xl mx-auto px-3 sm:px-4 py-4 sm:py-8">
         {showSaveSuccess && (
-          <div className="mb-6 p-6 bg-gradient-to-r from-green-100 to-emerald-100 border-4 border-green-500 rounded-2xl shadow-xl animate-pulse">
-            <div className="flex items-start space-x-4">
-              <span className="text-5xl">✅</span>
+          <div className="mb-4 sm:mb-6 p-4 sm:p-6 bg-gradient-to-r from-green-100 to-emerald-100 border-2 sm:border-4 border-green-500 rounded-xl sm:rounded-2xl shadow-xl animate-pulse">
+            <div className="flex items-start space-x-2 sm:space-x-4">
+              <span className="text-3xl sm:text-5xl">✅</span>
               <div className="flex-1">
-                <h3 className="text-xl font-bold text-green-800 mb-2">Sauvegarde réussie !</h3>
-                <p className="text-green-700 font-semibold mb-3">
+                <h3 className="text-base sm:text-xl font-bold text-green-800 mb-1 sm:mb-2">Sauvegarde réussie !</h3>
+                <p className="text-sm sm:text-base text-green-700 font-semibold mb-2 sm:mb-3">
                   Le contenu a été copié dans votre presse-papier.
                 </p>
                 <div className="bg-white p-3 rounded-lg border-2 border-green-300">
@@ -344,18 +344,18 @@ export default function UniversalEditorPage() {
           </div>
         )}
 
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-3 sm:gap-6">
           {/* Colonne 1: Catégories */}
-          <div className={`${contrastHigh ? 'bg-contrast-bg border-2 border-contrast-text' : 'bg-white shadow-lg'} rounded-xl p-6`}>
-            <h2 className={`text-xl font-bold mb-4 ${contrastHigh ? 'text-contrast-text' : 'text-gray-800'}`}>
+          <div className={`${contrastHigh ? 'bg-contrast-bg border-2 border-contrast-text' : 'bg-white shadow-lg'} rounded-xl p-4 sm:p-6`}>
+            <h2 className={`text-lg sm:text-xl font-bold mb-3 sm:mb-4 ${contrastHigh ? 'text-contrast-text' : 'text-gray-800'}`}>
               Catégories ({categories.length})
             </h2>
-            <div className="space-y-2 max-h-[600px] overflow-y-auto">
+            <div className="space-y-2 max-h-[300px] sm:max-h-[600px] overflow-y-auto">
               {categories.map((category) => (
                 <button
                   key={category.id}
                   onClick={() => handleCategorySelect(category.id)}
-                  className={`w-full text-left p-3 rounded-lg transition-all ${
+                  className={`w-full text-left p-2.5 sm:p-3 rounded-lg transition-all text-sm sm:text-base ${
                     selectedCategory === category.id
                       ? 'bg-blue-600 text-white'
                       : contrastHigh
@@ -364,8 +364,8 @@ export default function UniversalEditorPage() {
                   }`}
                 >
                   <div className="flex items-center space-x-2">
-                    <span className="text-2xl">{category.icon}</span>
-                    <div className="font-semibold">{category.name}</div>
+                    <span className="text-xl sm:text-2xl">{category.icon}</span>
+                    <div className="font-semibold text-sm sm:text-base">{category.name}</div>
                   </div>
                 </button>
               ))}
@@ -373,26 +373,26 @@ export default function UniversalEditorPage() {
           </div>
 
           {/* Colonne 2: Liste des contenus */}
-          <div className={`${contrastHigh ? 'bg-contrast-bg border-2 border-contrast-text' : 'bg-white shadow-lg'} rounded-xl p-6`}>
-            <h2 className={`text-xl font-bold mb-4 ${contrastHigh ? 'text-contrast-text' : 'text-gray-800'}`}>
+          <div className={`${contrastHigh ? 'bg-contrast-bg border-2 border-contrast-text' : 'bg-white shadow-lg'} rounded-xl p-4 sm:p-6`}>
+            <h2 className={`text-lg sm:text-xl font-bold mb-3 sm:mb-4 ${contrastHigh ? 'text-contrast-text' : 'text-gray-800'}`}>
               Contenus ({contentList.length})
             </h2>
             
             {/* Barre de recherche */}
             {contentList.length > 0 && (
-              <div className="mb-4">
+              <div className="mb-3 sm:mb-4">
                 <input
                   type="text"
                   placeholder="🔍 Rechercher une histoire..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full px-4 py-2 rounded-lg border-2 border-gray-300 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
+                  className="w-full px-3 sm:px-4 py-2 rounded-lg border-2 border-gray-300 text-sm focus:border-blue-500 focus:ring-2 focus:ring-blue-200"
                 />
               </div>
             )}
             
             {contentList.length > 0 ? (
-              <div className="space-y-2 max-h-[600px] overflow-y-auto">
+              <div className="space-y-2 max-h-[400px] sm:max-h-[600px] overflow-y-auto">
                 {contentList
                   .filter(item => 
                     !searchTerm || 
@@ -403,7 +403,7 @@ export default function UniversalEditorPage() {
                   <button
                     key={item.id}
                     onClick={() => handleContentSelect(item)}
-                    className={`w-full text-left p-3 rounded-lg transition-all ${
+                    className={`w-full text-left p-2.5 sm:p-3 rounded-lg transition-all text-sm sm:text-base ${
                       selectedContent?.id === item.id
                         ? 'bg-purple-600 text-white shadow-lg scale-105'
                         : contrastHigh
@@ -424,9 +424,9 @@ export default function UniversalEditorPage() {
                 ))}
               </div>
             ) : (
-              <div className="text-center py-8">
-                <span className="text-4xl mb-2 block">👈</span>
-                <p className={`text-sm ${contrastHigh ? 'text-contrast-text' : 'text-gray-500'}`}>
+              <div className="text-center py-6 sm:py-8">
+                <span className="text-3xl sm:text-4xl mb-2 block">👈</span>
+                <p className={`text-xs sm:text-sm ${contrastHigh ? 'text-contrast-text' : 'text-gray-500'}`}>
                   Choisissez une catégorie à gauche
                 </p>
               </div>
@@ -434,15 +434,15 @@ export default function UniversalEditorPage() {
           </div>
 
           {/* Colonnes 3-4: Éditeur */}
-          <div className={`lg:col-span-2 ${contrastHigh ? 'bg-contrast-bg border-2 border-contrast-text' : 'bg-white shadow-lg'} rounded-xl p-6`}>
-            <div className="flex justify-between items-center mb-4">
-              <h2 className={`text-xl font-bold ${contrastHigh ? 'text-contrast-text' : 'text-gray-800'}`}>
+          <div className={`lg:col-span-2 ${contrastHigh ? 'bg-contrast-bg border-2 border-contrast-text' : 'bg-white shadow-lg'} rounded-xl p-4 sm:p-6`}>
+            <div className="flex justify-between items-center mb-3 sm:mb-4">
+              <h2 className={`text-lg sm:text-xl font-bold ${contrastHigh ? 'text-contrast-text' : 'text-gray-800'}`}>
                 Éditeur
               </h2>
               {hasChanges && (
-                <div className="px-4 py-2 bg-orange-100 border-2 border-orange-400 rounded-lg flex items-center space-x-2 animate-pulse">
-                  <span className="text-xl">⚠️</span>
-                  <span className="text-sm font-bold text-orange-800">Modifications non sauvegardées</span>
+                <div className="px-2 sm:px-4 py-1.5 sm:py-2 bg-orange-100 border-2 border-orange-400 rounded-lg flex items-center space-x-1 sm:space-x-2 animate-pulse">
+                  <span className="text-base sm:text-xl">⚠️</span>
+                  <span className="text-xs sm:text-sm font-bold text-orange-800">Modif. non sauv.</span>
                 </div>
               )}
             </div>
@@ -450,10 +450,10 @@ export default function UniversalEditorPage() {
             {editedContent ? (
               <div>
                 {/* Onglets */}
-                <div className="flex space-x-2 mb-6 border-b border-gray-200 pb-2">
+                <div className="flex space-x-1 sm:space-x-2 mb-4 sm:mb-6 border-b border-gray-200 pb-2">
                   <button
                     onClick={() => setActiveTab('visual')}
-                    className={`px-4 py-2 rounded-t-lg font-medium transition-all ${
+                    className={`px-2 sm:px-4 py-1.5 sm:py-2 rounded-t-lg font-medium transition-all text-xs sm:text-base ${
                       activeTab === 'visual'
                         ? 'bg-blue-600 text-white'
                         : contrastHigh
@@ -465,7 +465,7 @@ export default function UniversalEditorPage() {
                   </button>
                   <button
                     onClick={() => setActiveTab('json')}
-                    className={`px-4 py-2 rounded-t-lg font-medium transition-all ${
+                    className={`px-2 sm:px-4 py-1.5 sm:py-2 rounded-t-lg font-medium transition-all text-xs sm:text-base ${
                       activeTab === 'json'
                         ? 'bg-blue-600 text-white'
                         : contrastHigh
@@ -477,16 +477,16 @@ export default function UniversalEditorPage() {
                   </button>
                 </div>
 
-                <div className="max-h-[500px] overflow-y-auto space-y-2 pr-2">
+                <div className="max-h-[350px] sm:max-h-[500px] overflow-y-auto space-y-2 pr-2">
                   {activeTab === 'visual' ? (
                     <>
                       {/* Aide principale */}
-                      <div className="mb-6 p-4 bg-blue-50 border-2 border-blue-200 rounded-xl">
-                        <div className="flex items-start space-x-3">
-                          <span className="text-3xl">💡</span>
+                      <div className="mb-4 sm:mb-6 p-3 sm:p-4 bg-blue-50 border-2 border-blue-200 rounded-xl">
+                        <div className="flex items-start space-x-2 sm:space-x-3">
+                          <span className="text-2xl sm:text-3xl">💡</span>
                           <div>
-                            <h4 className="font-bold text-blue-800 mb-1">Comment utiliser cet éditeur ?</h4>
-                            <ul className="text-sm text-blue-700 space-y-1">
+                            <h4 className="font-bold text-blue-800 mb-1 text-sm sm:text-base">Comment utiliser cet éditeur ?</h4>
+                            <ul className="text-xs sm:text-sm text-blue-700 space-y-1">
                               <li>✏️ <strong>Modifiez</strong> les textes dans les champs ci-dessous</li>
                               <li>➕ <strong>Ajoutez</strong> des sections en cliquant sur les boutons verts</li>
                               <li>🗑️ <strong>Supprimez</strong> des éléments avec l'icône corbeille</li>
@@ -516,8 +516,8 @@ export default function UniversalEditorPage() {
                       {/* Section Versets bibliques */}
                       {renderSection('Versets Bibliques', '📜', 'verses',
                         <>
-                          <div className="mb-4 p-3 bg-purple-50 rounded-lg border border-purple-200">
-                            <p className="text-sm text-purple-800">
+                          <div className="mb-3 sm:mb-4 p-2.5 sm:p-3 bg-purple-50 rounded-lg border border-purple-200">
+                            <p className="text-xs sm:text-sm text-purple-800">
                               <strong>💡 Astuce :</strong> Ajoutez ici les versets importants de l'histoire. 
                               Par exemple pour Caïn et Abel : "Genèse 4:8" avec le texte du verset.
                             </p>
@@ -530,23 +530,23 @@ export default function UniversalEditorPage() {
                               }
                               addArrayItem('bible_verses', { reference: '', text: '' });
                             }}
-                            className="w-full mb-4 px-4 py-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-lg font-semibold hover:shadow-lg transition-all flex items-center justify-center space-x-2"
+                            className="w-full mb-3 sm:mb-4 px-3 sm:px-4 py-2.5 sm:py-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-lg font-semibold hover:shadow-lg transition-all flex items-center justify-center space-x-2 text-sm sm:text-base"
                           >
                             <span className="text-xl">➕</span>
                             <span>Ajouter un nouveau verset</span>
                           </button>
                           
                           {(!editedContent.bible_verses || editedContent.bible_verses.length === 0) && (
-                            <div className="text-center py-8 border-2 border-dashed border-gray-300 rounded-lg">
-                              <span className="text-4xl mb-2 block">📖</span>
-                              <p className="text-gray-500">Aucun verset. Cliquez sur "Ajouter" ci-dessus.</p>
+                            <div className="text-center py-6 sm:py-8 border-2 border-dashed border-gray-300 rounded-lg">
+                              <span className="text-3xl sm:text-4xl mb-2 block">📖</span>
+                              <p className="text-gray-500 text-xs sm:text-sm">Aucun verset. Cliquez sur "Ajouter" ci-dessus.</p>
                             </div>
                           )}
                           
                           {editedContent.bible_verses && Array.isArray(editedContent.bible_verses) && editedContent.bible_verses.map((verse: any, index: number) => (
-                            <div key={index} className="mb-4 p-4 border-2 border-purple-300 rounded-xl bg-gradient-to-br from-purple-50 to-white shadow-sm">
+                            <div key={index} className="mb-3 sm:mb-4 p-3 sm:p-4 border-2 border-purple-300 rounded-xl bg-gradient-to-br from-purple-50 to-white shadow-sm">
                               <div className="flex justify-between items-center mb-3">
-                                <span className="px-3 py-1 bg-purple-600 text-white rounded-full text-xs font-bold">
+                                <span className="px-2 sm:px-3 py-1 bg-purple-600 text-white rounded-full text-xs font-bold">
                                   Verset {index + 1}
                                 </span>
                                 <button
