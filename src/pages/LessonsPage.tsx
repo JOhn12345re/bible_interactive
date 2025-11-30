@@ -41,6 +41,16 @@ const LessonsPage = () => {
   const lessons = [
     // Icônes coptes
     {
+      id: 'icone_annonciation',
+      title: 'L\'Annonciation',
+      description: 'L\'ange Gabriel annonce à Marie qu\'elle portera le Sauveur.',
+      emoji: '👼',
+      duration: '12 min',
+      difficulty: 'Facile',
+      category: 'icones_coptes',
+      colorClass: 'bg-gradient-to-br from-blue-500 to-indigo-600',
+    },
+    {
       id: 'icone_pantocrator',
       title: 'Le Christ Pantocrator',
       description: 'Découvre la plus célèbre des icônes du Christ Roi de l\'univers.',
@@ -80,6 +90,16 @@ const LessonsPage = () => {
       category: 'icones_coptes',
       colorClass: 'bg-gradient-to-br from-yellow-500 to-orange-600',
     },
+    {
+      id: 'icone_sagesse',
+      title: 'L\'icône de la Sagesse Divine',
+      description: 'La représentation de la Sagesse de Dieu dans l\'iconographie.',
+      emoji: '📜',
+      duration: '14 min',
+      difficulty: 'Moyen',
+      category: 'icones_coptes',
+      colorClass: 'bg-gradient-to-br from-cyan-500 to-blue-600',
+    },
     // Histoire des saints
     {
       id: 'saint_antoine',
@@ -110,6 +130,16 @@ const LessonsPage = () => {
       difficulty: 'Moyen',
       category: 'histoire_saints',
       colorClass: 'bg-gradient-to-br from-red-500 to-pink-600',
+    },
+    {
+      id: 'saint_cyrille_alexandrie',
+      title: 'Saint Cyrille d\'Alexandrie - Vie complète',
+      description: 'L\'histoire complète du grand docteur de l\'Église.',
+      emoji: '✝️',
+      duration: '20 min',
+      difficulty: 'Avancé',
+      category: 'histoire_saints',
+      colorClass: 'bg-gradient-to-br from-red-600 to-orange-600',
     },
     {
       id: 'saint_macaire',
