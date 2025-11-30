@@ -6,6 +6,14 @@ const LessonsPage = () => {
   const { contrastHigh } = useSettings();
   const [selectedCategory, setSelectedCategory] = useState('all');
 
+  // Liste des leçons disponibles (présentes dans public/content/*.json)
+  const AVAILABLE_IDS = new Set<string>([
+    // icones coptes
+    'icone_annonciation', 'icone_nativite', 'icone_pantocrator', 'icone_resurrection', 'icone_sagesse', 'icone_theotokos',
+    // saints
+    'saint_antoine', 'saint_athanase', 'saint_cyrille', 'saint_cyrille_alexandrie', 'saint_macaire', 'sainte_marie_egyptienne',
+  ]);
+
   const categories = [
     {
       id: 'all',
@@ -249,69 +257,99 @@ const LessonsPage = () => {
 
         {/* Lessons Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredLessons.map((lesson) => (
-            <Link
-              key={lesson.id}
-              to={`/lesson/${lesson.id}`}
-              className={`group relative block p-6 rounded-2xl text-white transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl ${lesson.colorClass}`}
-            >
-              {/* Background overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+          {filteredLessons.map((lesson) => {
+            const isAvailable = AVAILABLE_IDS.has(lesson.id);
+            
+            const cardContent = (
+              <>
+                {/* Badge indisponible */}
+                {!isAvailable && (
+                  <div className="absolute top-4 right-4 bg-white/30 text-white text-xs font-bold px-3 py-1 rounded-full backdrop-blur-sm">
+                    BIENTÔT
+                  </div>
+                )}
 
-              {/* Content */}
-              <div className="relative z-10">
-                {/* Icon */}
-                <div className="text-5xl mb-4 transform group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
-                  {lesson.emoji}
+                {/* Background overlay */}
+                {isAvailable && (
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
+                )}
+
+                {/* Content */}
+                <div className="relative z-10">
+                  {/* Icon */}
+                  <div className={`text-5xl mb-4 transition-transform duration-300 ${isAvailable ? 'transform group-hover:scale-110 group-hover:rotate-6' : ''}`}>
+                    {lesson.emoji}
+                  </div>
+
+                  {/* Title */}
+                  <h3 className={`text-xl font-bold mb-3 transition-colors duration-300 ${isAvailable ? 'group-hover:text-yellow-100' : ''}`}>
+                    {lesson.title}
+                  </h3>
+
+                  {/* Description */}
+                  <p className={`text-sm opacity-90 transition-opacity duration-300 mb-4 leading-relaxed ${isAvailable ? 'group-hover:opacity-100' : ''}`}>
+                    {lesson.description}
+                  </p>
+
+                  {/* Metadata */}
+                  <div className="flex items-center justify-between text-xs opacity-80">
+                    <span className="flex items-center space-x-1">
+                      <span>⏱️</span>
+                      <span>{lesson.duration}</span>
+                    </span>
+                    <span className="flex items-center space-x-1">
+                      <span>📊</span>
+                      <span>{lesson.difficulty}</span>
+                    </span>
+                  </div>
+
+                  {/* Play indicator */}
+                  <div className={`mt-4 flex items-center text-white/80 transition-colors duration-300 ${isAvailable ? 'group-hover:text-white' : ''}`}>
+                    <span className="text-sm font-medium mr-2">{isAvailable ? 'Commencer' : 'Indisponible'}</span>
+                    {isAvailable && (
+                      <svg
+                        className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h1m4 0h1m3-6l-3-3m0 0l-3 3m3-3v12"
+                        />
+                      </svg>
+                    )}
+                  </div>
                 </div>
 
-                {/* Title */}
-                <h3 className="text-xl font-bold mb-3 group-hover:text-yellow-100 transition-colors duration-300">
-                  {lesson.title}
-                </h3>
-
-                {/* Description */}
-                <p className="text-sm opacity-90 group-hover:opacity-100 transition-opacity duration-300 mb-4 leading-relaxed">
-                  {lesson.description}
-                </p>
-
-                {/* Metadata */}
-                <div className="flex items-center justify-between text-xs opacity-80">
-                  <span className="flex items-center space-x-1">
-                    <span>⏱️</span>
-                    <span>{lesson.duration}</span>
-                  </span>
-                  <span className="flex items-center space-x-1">
-                    <span>📊</span>
-                    <span>{lesson.difficulty}</span>
-                  </span>
-                </div>
-
-                {/* Play indicator */}
-                <div className="mt-4 flex items-center text-white/80 group-hover:text-white transition-colors duration-300">
-                  <span className="text-sm font-medium mr-2">Commencer</span>
-                  <svg
-                    className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h1m4 0h1m3-6l-3-3m0 0l-3 3m3-3v12"
-                    />
-                  </svg>
-                </div>
+                {/* Background pattern */}
+                {isAvailable && (
+                  <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 opacity-10 transition-transform duration-500 group-hover:rotate-12 group-hover:scale-125">
+                    {lesson.emoji}
+                  </div>
+                )}
+              </>
+            );
+            
+            return isAvailable ? (
+              <Link
+                key={lesson.id}
+                to={`/lesson/${lesson.id}`}
+                className={`group relative block p-6 rounded-2xl text-white transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl ${lesson.colorClass}`}
+              >
+                {cardContent}
+              </Link>
+            ) : (
+              <div
+                key={lesson.id}
+                className={`group relative block p-6 rounded-2xl text-white transition-all duration-300 opacity-60 cursor-not-allowed ${lesson.colorClass}`}
+              >
+                {cardContent}
               </div>
-
-              {/* Background pattern */}
-              <div className="absolute top-0 right-0 -mt-4 -mr-4 w-24 h-24 opacity-10 transition-transform duration-500 group-hover:rotate-12 group-hover:scale-125">
-                {lesson.emoji}
-              </div>
-            </Link>
-          ))}
+            );
+          })}
         </div>
 
         {/* Coming Soon Section */}
