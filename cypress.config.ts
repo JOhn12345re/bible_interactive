@@ -1,0 +1,44 @@
+import { defineConfig } from 'cypress';
+
+export default defineConfig({
+  e2e: {
+    baseUrl: 'http://localhost:5173',
+    specPattern: 'cypress/e2e/**/*.cy.{js,jsx,ts,tsx}',
+    supportFile: 'cypress/support/e2e.ts',
+    viewportWidth: 1280,
+    viewportHeight: 720,
+    video: true,
+    screenshotOnRunFailure: true,
+    
+    setupNodeEvents(on, config) {
+      // implement node event listeners here
+    },
+    
+    // Configuration des retry et timeouts
+    defaultCommandTimeout: 10000,
+    requestTimeout: 10000,
+    responseTimeout: 30000,
+    pageLoadTimeout: 60000,
+    
+    // Configuration pour les tests plus stables
+    retries: {
+      runMode: 2,
+      openMode: 0
+    },
+    
+    // Variables d'environnement
+    env: {
+      apiUrl: 'http://localhost:5173/api',
+    }
+  },
+  
+  component: {
+    devServer: {
+      framework: 'react',
+      bundler: 'vite',
+    },
+    specPattern: 'src/**/*.cy.{js,jsx,ts,tsx}',
+    supportFile: 'cypress/support/component.ts',
+  },
+});
+

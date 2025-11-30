@@ -1,0 +1,13 @@
+# Cypress artifacts
+videos/
+screenshots/
+downloads/
+results/
+
+# Test reports
+reports/
+mochawesome-report/
+
+# Cache
+.cache/
+

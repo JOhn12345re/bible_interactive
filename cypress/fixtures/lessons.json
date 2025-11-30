@@ -1,0 +1,20 @@
+{
+  "lessons": [
+    {
+      "id": "adam_eve_01",
+      "title": "Adam et Ève",
+      "category": "pentateuque"
+    },
+    {
+      "id": "creation_01",
+      "title": "La Création",
+      "category": "pentateuque"
+    },
+    {
+      "id": "noe_01",
+      "title": "Noé et l'Arche",
+      "category": "pentateuque"
+    }
+  ]
+}
+

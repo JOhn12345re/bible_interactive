@@ -5,7 +5,7 @@
   "book": "Genèse",
   "chapter": 3,
   "reading": [
-    "dans le jardin d'Éden, Dieu avait donné à Adam et Ève tout ce dont ils avaient besoin.",
+    "Dans le jardin d'Éden, Dieu avait donné à Adam et Ève tout ce dont ils avaient besoin.",
     "Il leur avait demandé de ne pas manger du fruit de l'arbre de la connaissance du bien et du mal.",
     "Le serpent trompa Ève en lui faisant croire qu'en mangeant de ce fruit, elle deviendrait comme Dieu.",
     "Elle en prit et en donna aussi à Adam.",
@@ -96,13 +96,20 @@
   "life_application": "Nous devons résister à la tentation et faire confiance à Dieu plutôt qu'à nos propres désirs.",
   "bible_verses": [
     {
-      "reference": "Genèse 3:1-6"
+      "reference": "Genèse 2:7",
+      "text": "L'Eternel Dieu forma l'homme de la poussière de la terre, il souffla dans ses narines un souffle de vie et l'homme devint un être vivant."
     },
     {
-      "reference": "Genèse 3:15"
+      "reference": "Genèse 2:18",
+      "text": "L'Eternel Dieu dit: Il n'est pas bon que l'homme soit seul; je lui ferai une aide semblable à lui."
     },
     {
-      "reference": "Genèse 3:23-24"
+      "reference": "Genèse 2:21-22",
+      "text": "Alors l'Eternel Dieu fit tomber un profond sommeil sur l'homme, qui s'endormit; il prit une de ses côtes, et referma la chair à sa place."
+    },
+    {
+      "reference": "Genèse 2:24",
+      "text": "C'est pourquoi l'homme quittera son père et sa mère, et s'attachera à sa femme, et ils deviendront une seule chair.\n"
     }
   ]
 }
