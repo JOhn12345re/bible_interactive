@@ -8,10 +8,8 @@ const LessonsPage = () => {
 
   // Liste des leçons disponibles (présentes dans public/content/*.json)
   const AVAILABLE_IDS = new Set<string>([
-    // icones coptes
-    'icone_annonciation', 'icone_nativite', 'icone_pantocrator', 'icone_resurrection', 'icone_sagesse', 'icone_theotokos',
-    // saints
-    'saint_antoine', 'saint_athanase', 'saint_cyrille', 'saint_cyrille_alexandrie', 'saint_macaire', 'sainte_marie_egyptienne',
+    // Toutes les leçons sont temporairement désactivées car en cours de développement
+    // Aucune leçon n'est disponible pour le moment
   ]);
 
   const categories = [
