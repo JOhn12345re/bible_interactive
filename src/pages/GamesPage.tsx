@@ -136,14 +136,14 @@ const GamesPage = () => {
       <main className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
         {/* Introduction */}
         <div
-          className={`mb-8 p-6 rounded-2xl ${
+          className={`mb-8 p-4 sm:p-6 rounded-2xl ${
             contrastHigh
               ? 'bg-contrast-bg border-2 border-contrast-text'
               : 'bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-200'
           }`}
         >
           <div className="flex items-start space-x-4">
-            <span className="text-4xl">🎯</span>
+            <span className="text-3xl sm:text-4xl">🎯</span>
             <div>
               <h2
                 className={`text-xl font-bold mb-2 ${
@@ -166,14 +166,14 @@ const GamesPage = () => {
         </div>
 
         {/* Games Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
           {games.map((game) => {
             if (game.available && game.link) {
               return (
                 <Link
                   key={game.id}
                   to={game.link}
-                  className={`group relative block p-6 rounded-2xl text-white transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl cursor-pointer ${game.colorClass}`}
+                  className={`group relative block p-4 sm:p-6 rounded-2xl text-white transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl cursor-pointer ${game.colorClass}`}
                 >
                   {/* Background overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
@@ -186,7 +186,7 @@ const GamesPage = () => {
                   {/* Content */}
                   <div className="relative z-10">
                     {/* Icon */}
-                    <div className="text-5xl mb-4 transform group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+                    <div className="text-4xl sm:text-5xl mb-3 sm:mb-4 transform group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
                       {game.emoji}
                     </div>
 
@@ -243,7 +243,7 @@ const GamesPage = () => {
               return (
                 <div
                   key={game.id}
-                  className={`group relative block p-6 rounded-2xl text-white transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl cursor-default ${game.colorClass}`}
+                  className={`group relative block p-4 sm:p-6 rounded-2xl text-white transition-all duration-300 transform hover:-translate-y-2 hover:shadow-2xl cursor-default ${game.colorClass}`}
                 >
                   {/* Background overlay */}
                   <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
@@ -256,7 +256,7 @@ const GamesPage = () => {
                   {/* Content */}
                   <div className="relative z-10">
                     {/* Icon */}
-                    <div className="text-5xl mb-4 transform group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
+                    <div className="text-4xl sm:text-5xl mb-3 sm:mb-4 transform group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300">
                       {game.emoji}
                     </div>
 
@@ -321,9 +321,9 @@ const GamesPage = () => {
               : 'bg-gradient-to-br from-blue-50 to-indigo-50 border border-blue-200'
           }`}
         >
-          <div className="text-6xl mb-4">🚀</div>
+          <div className="text-5xl sm:text-6xl mb-3 sm:mb-4">🚀</div>
           <h3
-            className={`text-2xl font-bold mb-4 ${
+            className={`text-xl sm:text-2xl font-bold mb-3 sm:mb-4 ${
               contrastHigh ? 'text-contrast-text' : 'text-blue-800'
             }`}
           >

@@ -29,17 +29,17 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8">
+    <div className="min-h-screen bg-gradient-to-br from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center p-3 sm:p-4">
+      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 sm:p-8">
         {/* Logo */}
-        <div className="text-center mb-8">
-          <div className="text-6xl mb-4">📖</div>
-          <h1 className="text-3xl font-bold text-gray-800">Bible Interactive</h1>
-          <p className="text-gray-600 mt-2">Connectez-vous à votre compte</p>
+        <div className="text-center mb-6 sm:mb-8">
+          <div className="text-5xl sm:text-6xl mb-3 sm:mb-4">📖</div>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">Bible Interactive</h1>
+          <p className="text-sm sm:text-base text-gray-600 mt-2">Connectez-vous à votre compte</p>
         </div>
 
         {/* Formulaire */}
-        <form onSubmit={handleSubmit} className="space-y-6">
+        <form onSubmit={handleSubmit} className="space-y-5 sm:space-y-6">
           {error && (
             <div className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 rounded">
               <p className="font-semibold">❌ {error}</p>

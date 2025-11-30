@@ -43,13 +43,13 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-green-500 via-blue-500 to-purple-500 flex items-center justify-center p-4">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8">
+    <div className="min-h-screen bg-gradient-to-br from-green-500 via-blue-500 to-purple-500 flex items-center justify-center p-3 sm:p-4">
+      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6 sm:p-8">
         {/* Logo */}
-        <div className="text-center mb-8">
-          <div className="text-6xl mb-4">✨</div>
-          <h1 className="text-3xl font-bold text-gray-800">Créer un compte</h1>
-          <p className="text-gray-600 mt-2">Rejoignez Bible Interactive</p>
+        <div className="text-center mb-6 sm:mb-8">
+          <div className="text-5xl sm:text-6xl mb-3 sm:mb-4">✨</div>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-800">Créer un compte</h1>
+          <p className="text-sm sm:text-base text-gray-600 mt-2">Rejoignez Bible Interactive</p>
         </div>
 
         {/* Formulaire */}
