@@ -384,38 +384,38 @@ export default function Menu() {
   return (
     <div className="max-w-6xl mx-auto px-responsive">
       {/* Bannière d'authentification */}
-      <div className="mb-6 flex items-center justify-between bg-gradient-to-r from-blue-500 to-purple-600 text-white p-4 rounded-xl shadow-lg">
-        <div className="flex items-center space-x-3">
+      <div className="mb-4 sm:mb-6 flex flex-col sm:flex-row items-start sm:items-center justify-between bg-gradient-to-r from-blue-500 to-purple-600 text-white p-3 sm:p-4 rounded-xl shadow-lg gap-3">
+        <div className="flex items-center space-x-2 sm:space-x-3">
           {isAuthenticated ? (
             <>
-              <span className="text-2xl">👤</span>
+              <span className="text-xl sm:text-2xl">👤</span>
               <div>
-                <p className="font-bold">{user?.username}</p>
-                <p className="text-sm opacity-90">Progression sauvegardée automatiquement</p>
+                <p className="font-bold text-sm sm:text-base">{user?.username}</p>
+                <p className="text-xs sm:text-sm opacity-90 hidden sm:block">Progression sauvegardée automatiquement</p>
               </div>
             </>
           ) : (
             <>
-              <span className="text-2xl">⚠️</span>
+              <span className="text-xl sm:text-2xl">⚠️</span>
               <div>
-                <p className="font-bold">Mode invité</p>
-                <p className="text-sm opacity-90">Connectez-vous pour sauvegarder votre progression</p>
+                <p className="font-bold text-sm sm:text-base">Mode invité</p>
+                <p className="text-xs sm:text-sm opacity-90 hidden sm:block">Connectez-vous pour sauvegarder votre progression</p>
               </div>
             </>
           )}
         </div>
-        <div>
+        <div className="w-full sm:w-auto">
           {isAuthenticated ? (
             <button
               onClick={logout}
-              className="px-4 py-2 bg-white text-blue-600 rounded-lg hover:bg-gray-100 font-semibold transition-all"
+              className="w-full sm:w-auto px-4 py-2 bg-white text-blue-600 rounded-lg hover:bg-gray-100 font-semibold transition-all text-sm sm:text-base"
             >
               Déconnexion
             </button>
           ) : (
             <Link
               to="/login"
-              className="px-4 py-2 bg-white text-blue-600 rounded-lg hover:bg-gray-100 font-semibold transition-all inline-block"
+              className="block w-full sm:w-auto text-center px-4 py-2 bg-white text-blue-600 rounded-lg hover:bg-gray-100 font-semibold transition-all text-sm sm:text-base"
             >
               Se connecter
             </Link>
@@ -425,12 +425,12 @@ export default function Menu() {
 
       {/* Navigation des chemins */}
       <nav
-        className="mb-12 animate-slide-up"
+        className="mb-8 sm:mb-12 animate-slide-up"
         role="navigation"
         aria-label="Chemins bibliques"
       >
         <h2
-          className={`text-responsive-lg font-bold mb-6 text-center lg:text-left ${
+          className={`text-responsive-lg font-bold mb-4 sm:mb-6 text-center lg:text-left ${
             contrastHigh
               ? 'text-contrast-text'
               : 'bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent'
@@ -443,7 +443,7 @@ export default function Menu() {
             <button
               key={item.title}
               onClick={() => setSelectedPath(item.title)}
-              className={`group flex flex-col items-center text-center p-4 sm:p-6 rounded-2xl font-medium transition-all duration-300 hover:scale-105 hover:shadow-xl animate-fade-scale ${
+              className={`group flex flex-col items-center text-center p-3 sm:p-4 md:p-6 rounded-2xl font-medium transition-all duration-300 hover:scale-105 hover:shadow-xl animate-fade-scale ${
                 selectedPath === item.title
                   ? contrastHigh
                     ? 'bg-contrast-text text-contrast-bg border-2 border-contrast-text'
@@ -456,13 +456,13 @@ export default function Menu() {
               aria-pressed={selectedPath === item.title}
             >
               <span
-                className={`text-3xl sm:text-4xl mb-3 transition-transform group-hover:scale-110 ${
+                className={`text-2xl sm:text-3xl md:text-4xl mb-2 sm:mb-3 transition-transform group-hover:scale-110 ${
                   selectedPath === item.title ? 'animate-bounce' : ''
                 }`}
               >
                 {item.icon}
               </span>
-              <span className="font-bold text-xs sm:text-sm lg:text-base mb-2">
+              <span className="font-bold text-xs sm:text-sm lg:text-base mb-1 sm:mb-2">
                 {item.title}
               </span>
               {item.description && (
@@ -484,7 +484,7 @@ export default function Menu() {
               {/* Indicateur de leçons disponibles */}
               {item.lessons.length > 0 && (
                 <div
-                  className={`mt-3 px-3 py-1 rounded-full text-xs font-semibold ${
+                  className={`mt-2 sm:mt-3 px-2 sm:px-3 py-1 rounded-full text-xs font-semibold ${
                     selectedPath === item.title
                       ? contrastHigh
                         ? 'bg-contrast-bg text-contrast-text'
@@ -506,7 +506,7 @@ export default function Menu() {
       {/* Leçons du chemin sélectionné */}
       <section aria-labelledby="lessons-heading" className="animate-slide-up">
         <div
-          className={`flex flex-col sm:flex-row items-start sm:items-center justify-between mb-8 p-responsive rounded-2xl gap-4 ${
+          className={`flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 sm:mb-8 p-responsive rounded-2xl gap-3 sm:gap-4 ${
             contrastHigh
               ? 'bg-contrast-bg border-2 border-contrast-text'
               : 'bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-200'
@@ -515,11 +515,11 @@ export default function Menu() {
           <div className="flex-1">
             <h3
               id="lessons-heading"
-              className={`text-responsive-md font-bold mb-2 flex items-center space-x-2 sm:space-x-3 ${
+              className={`text-responsive-md font-bold mb-2 flex items-center space-x-2 ${
                 contrastHigh ? 'text-contrast-text' : 'text-gray-800'
               }`}
             >
-              <span className="text-3xl sm:text-4xl animate-bounce">
+              <span className="text-2xl sm:text-3xl md:text-4xl animate-bounce">
                 {selectedItem?.icon}
               </span>
               <span>{selectedPath}</span>
@@ -561,17 +561,17 @@ export default function Menu() {
 
         {selectedItem?.lessons.length === 0 ? (
           <div
-            className={`text-center py-16 rounded-2xl border-2 border-dashed animate-pulse ${
+            className={`text-center py-10 sm:py-16 rounded-2xl border-2 border-dashed animate-pulse ${
               contrastHigh
                 ? 'border-contrast-text text-contrast-text bg-contrast-bg'
                 : 'border-gray-300 text-gray-500 bg-gradient-to-br from-gray-50 to-gray-100'
             }`}
           >
-            <span className="text-6xl mb-6 block animate-bounce">🚧</span>
-            <h4 className="text-xl lg:text-2xl font-bold mb-3">
+            <span className="text-4xl sm:text-6xl mb-4 sm:mb-6 block animate-bounce">🚧</span>
+            <h4 className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-3">
               Bientôt disponible !
             </h4>
-            <p className="text-lg max-w-md mx-auto leading-relaxed">
+            <p className="text-sm sm:text-base lg:text-lg max-w-md mx-auto leading-relaxed px-4">
               Les leçons de cette section sont en cours de préparation. Revenez
               bientôt pour découvrir de nouvelles aventures bibliques !
             </p>
@@ -598,7 +598,7 @@ export default function Menu() {
       </section>
 
       {/* Section frise chronologique modernisée */}
-      <section className="mt-16 animate-slide-up">
+      <section className="mt-10 sm:mt-16 animate-slide-up">
         <div
           className={`relative overflow-hidden text-center p-responsive rounded-3xl ${
             contrastHigh
@@ -622,12 +622,12 @@ export default function Menu() {
           )}
 
           <div className="relative z-10">
-            <div className="flex justify-center mb-6">
-              <span className="text-6xl lg:text-7xl animate-bounce">📜</span>
+            <div className="flex justify-center mb-4 sm:mb-6">
+              <span className="text-5xl sm:text-6xl lg:text-7xl animate-bounce">📜</span>
             </div>
 
             <h3
-              className={`text-responsive-lg font-bold mb-6 ${
+              className={`text-responsive-lg font-bold mb-4 sm:mb-6 ${
                 contrastHigh ? 'text-contrast-text' : 'text-white'
               }`}
             >
@@ -635,7 +635,7 @@ export default function Menu() {
             </h3>
 
             <p
-              className={`text-responsive-sm mb-8 max-w-2xl mx-auto leading-relaxed ${
+              className={`text-responsive-sm mb-6 sm:mb-8 max-w-2xl mx-auto leading-relaxed px-4 ${
                 contrastHigh ? 'text-contrast-text' : 'text-indigo-100'
               }`}
             >
@@ -646,7 +646,7 @@ export default function Menu() {
 
             <a
               href="/timeline-complete"
-              className={`group inline-flex items-center space-x-2 sm:space-x-3 px-6 sm:px-8 py-3 sm:py-4 rounded-2xl font-bold text-sm sm:text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
+              className={`group inline-flex items-center space-x-2 sm:space-x-3 px-5 sm:px-6 md:px-8 py-3 sm:py-4 rounded-2xl font-bold text-sm sm:text-base md:text-lg transition-all duration-300 hover:scale-105 hover:shadow-2xl ${
                 contrastHigh
                   ? 'bg-contrast-text text-contrast-bg hover:opacity-80 border-2 border-contrast-text'
                   : 'bg-white text-indigo-700 hover:bg-indigo-50 shadow-xl'
