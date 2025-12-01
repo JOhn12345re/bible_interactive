@@ -22,6 +22,13 @@ const CopticSaintsPage: React.FC = () => {
       colorClass: 'bg-gradient-to-br from-blue-500 to-indigo-600',
     },
     {
+      id: 'amba_paul',
+      title: 'Amba Paul - Le Premier Anachorète',
+      description: 'Le premier ermite du désert, nourri par un corbeau pendant 80 ans.',
+      emoji: '🦅',
+      colorClass: 'bg-gradient-to-br from-emerald-500 to-teal-600',
+    },
+    {
       id: 'saint_antoine',
       title: 'Saint Antoine le Grand',
       description: 'Le père du monachisme chrétien et ermite du désert.',

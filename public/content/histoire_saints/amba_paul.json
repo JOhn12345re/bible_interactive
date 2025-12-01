@@ -1,0 +1,230 @@
+{
+  "id": "amba_paul",
+  "title": "Amba Paul - Le Premier Anachorète",
+  "category": "histoire_saints",
+  "subcategory": "peres_desert",
+  "ageGroup": "all",
+  "duration": 25,
+  "objectives": [
+    "Découvrir la vie d'Amba Paul, premier ermite du désert",
+    "Comprendre le sens du renoncement aux biens terrestres",
+    "Apprendre la relation spirituelle entre Amba Paul et Saint Antoine"
+  ],
+  "introduction": {
+    "text": "Amba Paul naquit aux confins de la Haute-Égypte en l'an 228 après J.C. Il fut le premier des anachorètes (ermites vivant dans la solitude). L'Église Copte commémore sa mort le 2 Amshir. Découvrons ensemble la vie extraordinaire de ce saint qui vécut plus de 90 ans dans le désert.",
+    "funFact": "Amba Paul vécut 80 ans dans le désert, nourri chaque jour par un corbeau qui lui apportait un demi-pain !"
+  },
+  "content": {
+    "sections": [
+      {
+        "id": "section_1",
+        "title": "🌟 L'enfance et la jeunesse de Paul",
+        "type": "reading",
+        "content": {
+          "text": "Amba Paul naquit dans une famille chrétienne où il grandit dans la piété. Il avait un frère aîné nommé Pierre.\n\nQuand Paul atteignit ses seize ans, il se retira dans une maison familiale au milieu des plantations, dont il aimait le calme et le silence.\n\nAmba Paul était humble, vertueux et pieux, mais il était aussi très instruit et large d'esprit. Il étudia la philosophie, le grec et l'ancien égyptien.",
+          "image": null
+        }
+      },
+      {
+        "id": "section_2",
+        "title": "⚔️ Les persécutions de Décius",
+        "type": "reading",
+        "content": {
+          "text": "En l'an 250 après J.C., eurent lieu les grandes persécutions. L'empereur Décius décréta qu'il se débarrasserait de la religion chrétienne en envoyant un édit à tous les gouverneurs de l'Empire Romain : la seule religion autorisée serait celle où l'on adorait les idoles.\n\nLa persécution fut immense et s'étendit dans toutes les régions du royaume. Les gouverneurs usèrent de tous les stratagèmes pour que les chrétiens renient le Christ. Beaucoup faiblirent, d'autres firent de faux certificats, mais des milliers attendaient en prison la couronne du martyre.",
+          "image": null
+        }
+      },
+      {
+        "id": "section_3",
+        "title": "💔 Le conflit avec son frère",
+        "type": "reading",
+        "content": {
+          "text": "Durant ces événements tragiques, Pierre, le frère aîné d'Amba Paul, voulut s'approprier la plus grande part de l'héritage et essaya de le déposséder de ses biens.\n\nAmba Paul, attristé par l'état d'esprit de son frère, lui proposa d'aller devant le gouverneur pour qu'il les départage. Cependant, chemin faisant, Paul vit des funérailles et demanda qui était mort. On lui apprit que c'était une personne très riche et très réputée.\n\nPaul comprit alors que même une personne aussi importante n'avait pu emporter ses richesses avec elle. Il saisit la futilité de la vie terrestre et décida de céder tous ses biens à son frère.",
+          "verse": "« De même si l'un de vous n'écarte pas tout ce qu'il possède, il ne peut être mon disciple. » — Luc 14:33"
+        }
+      },
+      {
+        "id": "section_4",
+        "title": "🏜️ Le départ vers le désert",
+        "type": "reading",
+        "content": {
+          "text": "Amba Paul quitta la ville et chercha un endroit où s'installer. Il entra dans un cimetière délabré et y demeura 3 jours et 3 nuits sans s'alimenter, demandant à Dieu de l'éclairer.\n\nLe quatrième jour, un ange lui apparut et lui indiqua le chemin du désert oriental. Ils partirent vers une montagne non loin de la Mer Rouge. Au milieu de cette montagne se trouvait une grotte cachée.\n\nQuand Amba Paul arriva, la grotte était fermée par une grande pierre qu'il fit basculer avec difficulté. À l'intérieur, il trouva une vaste salle entourée de rochers, ouverte sur le ciel. Un palmier poussait près de la porte et une petite source d'eau jaillissait.",
+          "image": null
+        }
+      },
+      {
+        "id": "section_5",
+        "title": "🍞 La vie dans la grotte",
+        "type": "reading",
+        "content": {
+          "text": "Amba Paul se tressa un habit de palmes qu'il revêtit.\n\nLe Seigneur lui envoyait tous les jours un corbeau qui portait dans son bec un demi-pain pour le nourrir. Dieu l'aidait ainsi, comme Il l'avait fait pour le prophète Élie dans le passé.\n\nAmba Paul goûta à la beauté de la solitude et domestiqua les animaux sauvages. Il passa ainsi 80 années dans la solitude totale, consacrant sa vie à la prière et à la contemplation de Dieu.",
+          "image": null
+        }
+      },
+      {
+        "id": "section_6",
+        "title": "👴 La rencontre avec Saint Antoine",
+        "type": "reading",
+        "content": {
+          "text": "Après 80 ans de solitude, le Seigneur révéla à Saint Antoine le Grand, dans un rêve, qu'il existait un autre saint plus âgé que lui et qu'il devait aller le visiter.\n\nLe lendemain matin, Saint Antoine, déjà âgé, se mit en route. Le chemin était ardu et la chaleur accablante. Après 3 jours de marche, il vit une louve qui grimpait la montagne. Il la suivit et trouva le chemin menant à la grotte.\n\nLa grotte était fermée. Antoine implora Amba Paul de lui ouvrir. Quand la porte s'ouvrit, les deux saints se saluèrent et s'embrassèrent avec beaucoup de fraternité, remerciant Dieu de cette rencontre.",
+          "image": null
+        }
+      },
+      {
+        "id": "section_7",
+        "title": "🗣️ Les questions d'Amba Paul",
+        "type": "reading",
+        "content": {
+          "text": "Amba Paul montra ses mains ridées et desséchées à Saint Antoine en disant : « Tu aperçois devant toi un être qui reviendra très bientôt à la poussière. Néanmoins la charité de Dieu accepte tout. »\n\nAmba Paul questionna Saint Antoine avec intérêt à propos des événements du monde :\n• Comment se comportaient les hommes et les gouverneurs ?\n• Y avait-il de nouvelles maisons dans les anciennes cités ?\n• Y avait-il encore des personnes qui se prosternaient devant les idoles ?\n\nSaint Antoine répondit à toutes ses questions et lui demanda de raconter son histoire.",
+          "verse": "« Elle excuse tout, elle croit tout, elle espère tout, elle endure tout. » — 1 Corinthiens 13:7"
+        }
+      },
+      {
+        "id": "section_8",
+        "title": "✝️ La mort d'Amba Paul",
+        "type": "reading",
+        "content": {
+          "text": "À l'aube du troisième jour de la visite, Amba Paul annonça à Saint Antoine que sa fin était très proche : « Je suis pressé des deux côtés : mon souhait est de m'en aller pour être avec le Christ. »\n\nIl demanda à Antoine d'aller chercher l'habit que le patriarche Athanase lui avait offert, pour en vêtir son corps avant l'enterrement. En réalité, Amba Paul voulait épargner à Antoine le spectacle de ses derniers instants.\n\nSur le chemin du retour, Saint Antoine vit Amba Paul, lumineux comme la neige, s'élever vers le ciel parmi une myriade d'anges et de saints qui glorifiaient Dieu.",
+          "verse": "« J'ai combattu le beau combat, j'ai achevé ma course, j'ai gardé la Foi. » — 2 Timothée 4:7"
+        }
+      },
+      {
+        "id": "section_9",
+        "title": "🦁 L'enterrement miraculeux",
+        "type": "reading",
+        "content": {
+          "text": "Saint Antoine se précipita vers la grotte et trouva le corps d'Amba Paul agenouillé, les mains élevées vers le ciel.\n\nIl prépara le corps et le vêtit de l'habit du Pape Athanase. Mais comment l'enterrer ? Antoine était âgé et chétif.\n\nAlors deux lions surgirent et coururent vers lui. Antoine prit peur, mais les lions se jetèrent à ses pieds et creusèrent une fosse dans le sol. Saint Antoine y déposa le corps d'Amba Paul, puis les lions s'enfuirent.\n\nAntoine emporta l'habit de palmes tressées d'Amba Paul à Alexandrie et raconta toute l'histoire au Pape Athanase.",
+          "image": null
+        }
+      },
+      {
+        "id": "section_10",
+        "title": "✨ Les miracles après sa mort",
+        "type": "reading",
+        "content": {
+          "text": "Le Pape Athanase prit l'habitude de revêtir l'habit de palmes d'Amba Paul chaque année à Pâques. Il écrivit aussi la biographie du saint.\n\nUn jour, un jeune garçon mourut. Le Pape Athanase posa sur le mort l'habit de palmes d'Amba Paul, et le garçon ressuscita ! Ce miracle fut attesté par l'évêque Alexandre et le prêtre Antoine.\n\nLe jeudi 4 septembre 1975, une forte lumière apparut au-dessus de l'église de Saint Paul dans le monastère qui lui est dédié. Cette lumière s'éleva et prit l'apparence d'une énorme coupole. Des voyageurs sur la route de la Mer Rouge, à 12 km du monastère, témoignèrent de ce phénomène.",
+          "image": null
+        }
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Quiz sur Amba Paul",
+    "questions": [
+      {
+        "id": "q1",
+        "type": "multiple_choice",
+        "question": "En quelle année Amba Paul est-il né ?",
+        "options": ["200 après J.C.", "228 après J.C.", "250 après J.C.", "284 après J.C."],
+        "correctAnswer": 1,
+        "explanation": "Amba Paul naquit en 228 après J.C. aux confins de la Haute-Égypte."
+      },
+      {
+        "id": "q2",
+        "type": "multiple_choice",
+        "question": "Quel empereur déclencha les grandes persécutions en 250 ?",
+        "options": ["Néron", "Dioclétien", "Décius", "Constantin"],
+        "correctAnswer": 2,
+        "explanation": "L'empereur Décius décréta en 250 que la seule religion autorisée serait celle des idoles."
+      },
+      {
+        "id": "q3",
+        "type": "multiple_choice",
+        "question": "Combien de jours Amba Paul passa-t-il dans le cimetière avant que l'ange apparaisse ?",
+        "options": ["1 jour", "3 jours", "7 jours", "40 jours"],
+        "correctAnswer": 1,
+        "explanation": "Amba Paul demeura 3 jours et 3 nuits dans le cimetière avant que l'ange lui indique le chemin du désert."
+      },
+      {
+        "id": "q4",
+        "type": "multiple_choice",
+        "question": "Comment Dieu nourrissait-il Amba Paul chaque jour ?",
+        "options": ["Par des anges", "Par un corbeau avec un demi-pain", "Par la manne du ciel", "Par des voyageurs"],
+        "correctAnswer": 1,
+        "explanation": "Un corbeau apportait chaque jour un demi-pain à Amba Paul, comme Dieu l'avait fait pour Élie."
+      },
+      {
+        "id": "q5",
+        "type": "multiple_choice",
+        "question": "Combien d'années Amba Paul vécut-il dans la solitude du désert ?",
+        "options": ["40 ans", "50 ans", "70 ans", "80 ans"],
+        "correctAnswer": 3,
+        "explanation": "Amba Paul passa 80 années dans la solitude totale dans sa grotte du désert."
+      },
+      {
+        "id": "q6",
+        "type": "multiple_choice",
+        "question": "Quel animal guida Saint Antoine vers la grotte d'Amba Paul ?",
+        "options": ["Un corbeau", "Une louve", "Un lion", "Un âne"],
+        "correctAnswer": 1,
+        "explanation": "Après 3 jours de marche, Saint Antoine vit une louve grimpant la montagne et la suivit jusqu'à la grotte."
+      },
+      {
+        "id": "q7",
+        "type": "multiple_choice",
+        "question": "Quels animaux creusèrent la tombe d'Amba Paul ?",
+        "options": ["Des corbeaux", "Des chacals", "Deux lions", "Des hyènes"],
+        "correctAnswer": 2,
+        "explanation": "Deux lions surgirent et creusèrent une fosse pour que Saint Antoine puisse enterrer Amba Paul."
+      },
+      {
+        "id": "q8",
+        "type": "multiple_choice",
+        "question": "De quoi était fait l'habit d'Amba Paul ?",
+        "options": ["De lin", "De laine", "De palmes tressées", "De poils de chameau"],
+        "correctAnswer": 2,
+        "explanation": "Amba Paul se tressa un habit de palmes qu'il porta toute sa vie dans le désert."
+      },
+      {
+        "id": "q9",
+        "type": "multiple_choice",
+        "question": "Quel miracle se produisit grâce à l'habit de palmes d'Amba Paul ?",
+        "options": ["Une guérison", "Une résurrection", "Une multiplication de pains", "Une apparition"],
+        "correctAnswer": 1,
+        "explanation": "Le Pape Athanase posa l'habit sur un garçon mort, et celui-ci ressuscita."
+      },
+      {
+        "id": "q10",
+        "type": "multiple_choice",
+        "question": "Quel mois copte commémore la mort d'Amba Paul ?",
+        "options": ["Tout", "Kiahk", "Amshir", "Baramhat"],
+        "correctAnswer": 2,
+        "explanation": "L'Église Copte fête le 2 Amshir la commémoration de la mort d'Amba Paul."
+      }
+    ]
+  },
+  "memory_verse": {
+    "verse": "J'ai combattu le beau combat, j'ai achevé ma course, j'ai gardé la Foi. Dès maintenant m'est réservée la couronne de justice.",
+    "reference": "2 Timothée 4:7-8",
+    "explanation": "Ce verset résume parfaitement la vie d'Amba Paul : une vie entière consacrée à Dieu dans la prière et le renoncement, couronnée par la gloire éternelle."
+  },
+  "prayer": {
+    "title": "Prière à Amba Paul",
+    "text": "Ô Saint Amba Paul, premier anachorète, toi qui as tout quitté pour suivre le Christ, aide-nous à comprendre la futilité des biens terrestres. Apprends-nous à chercher d'abord le Royaume de Dieu. Que ton exemple de prière et de solitude nous inspire à cultiver notre vie spirituelle. Intercède pour nous auprès du Seigneur. Amen."
+  },
+  "activities": [
+    {
+      "id": "activity_1",
+      "title": "Réflexion personnelle",
+      "type": "reflection",
+      "description": "Amba Paul a compris lors des funérailles que les richesses ne nous suivent pas après la mort. Qu'est-ce qui est vraiment important dans ta vie ? Écris 3 choses qui ont une valeur éternelle."
+    },
+    {
+      "id": "activity_2",
+      "title": "Carte du voyage",
+      "type": "creative",
+      "description": "Dessine le parcours d'Amba Paul : sa maison familiale → le cimetière → le désert oriental → la grotte près de la Mer Rouge. Ajoute le palmier, la source et le corbeau."
+    }
+  ],
+  "summary": {
+    "title": "Ce que nous apprenons d'Amba Paul",
+    "points": [
+      "Le renoncement aux biens terrestres nous libère pour servir Dieu",
+      "Dieu pourvoit toujours aux besoins de ceux qui lui font confiance",
+      "La solitude et la prière nous rapprochent de Dieu",
+      "Les saints nous montrent le chemin vers le Ciel",
+      "Même les animaux sauvages obéissent à Dieu pour servir ses saints"
+    ]
+  },
+  "source": "https://eglisecopte.ch/amba-paul/"
+}
