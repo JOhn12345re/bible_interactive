@@ -8,8 +8,7 @@ const LessonsPage = () => {
 
   // Liste des leçons disponibles (présentes dans public/content/*.json)
   const AVAILABLE_IDS = new Set<string>([
-    // Toutes les leçons sont temporairement désactivées car en cours de développement
-    // Aucune leçon n'est disponible pour le moment
+    'saint_mina', // Saint Mina le Thaumaturge - disponible
   ]);
 
   const categories = [
@@ -99,6 +98,16 @@ const LessonsPage = () => {
       colorClass: 'bg-gradient-to-br from-cyan-500 to-blue-600',
     },
     // Histoire des saints
+    {
+      id: 'saint_mina',
+      title: 'Saint Mina le Thaumaturge',
+      description: 'Le héros égyptien et faiseur de miracles, martyr de la foi.',
+      emoji: '⭐',
+      duration: '18 min',
+      difficulty: 'Moyen',
+      category: 'histoire_saints',
+      colorClass: 'bg-gradient-to-br from-blue-500 to-indigo-600',
+    },
     {
       id: 'saint_antoine',
       title: 'Saint Antoine le Grand',

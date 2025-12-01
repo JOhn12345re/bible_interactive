@@ -206,6 +206,13 @@ const menuItems = [
     description: 'Les vies exemplaires des saints de l\'Église',
     lessons: [
       {
+        id: 'saint_mina',
+        title: 'Saint Mina le Thaumaturge',
+        path: 'L\'histoire des saints',
+        description: 'Le héros égyptien et faiseur de miracles, martyr de la foi.',
+        book: 'Vies des saints',
+      },
+      {
         id: 'saint_antoine',
         title: 'Saint Antoine le Grand',
         path: 'L\'histoire des saints',
