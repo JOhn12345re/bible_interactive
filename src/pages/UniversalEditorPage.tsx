@@ -27,8 +27,8 @@ export default function UniversalEditorPage() {
     { id: 'historiques', name: 'Livres Historiques', icon: '📖', folders: ['/content/historiques'] },
     { id: 'poetiques', name: 'Livres Poétiques', icon: '🎵', folders: ['/content/poetiques'] },
     { id: 'prophetiques', name: 'Livres Prophétiques', icon: '🔮', folders: ['/content/prophetiques'] },
-    { id: 'saints', name: 'Histoire des Saints', icon: '⛪', folders: ['/content/histoire_saints', '/lessons/histoire_saints'] },
-    { id: 'icones', name: 'Icônes Coptes', icon: '🖼️', folders: ['/content/icones_coptes', '/lessons/icones_coptes'] },
+    { id: 'saints', name: 'Histoire des Saints', icon: '⛪', folders: ['/content/histoire_saints'] },
+    { id: 'icones', name: 'Icônes Coptes', icon: '🖼️', folders: ['/content/icones_coptes'] },
   ]);
   
   const [selectedCategory, setSelectedCategory] = useState<string>('');

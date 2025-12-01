@@ -1,10 +1,19 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useSettings } from '../state/settingsStore';
 
 const LessonsPage = () => {
   const { contrastHigh } = useSettings();
-  const [selectedCategory, setSelectedCategory] = useState('all');
+  const [searchParams] = useSearchParams();
+  const categoryFromUrl = searchParams.get('category');
+  const [selectedCategory, setSelectedCategory] = useState(categoryFromUrl || 'all');
+
+  // Mettre à jour la catégorie si l'URL change
+  useEffect(() => {
+    if (categoryFromUrl) {
+      setSelectedCategory(categoryFromUrl);
+    }
+  }, [categoryFromUrl]);
 
   // Liste des leçons disponibles (présentes dans public/content/*.json)
   const AVAILABLE_IDS = new Set<string>([
@@ -129,20 +138,10 @@ const LessonsPage = () => {
       colorClass: 'bg-gradient-to-br from-orange-500 to-red-600',
     },
     {
-      id: 'saint_cyrille',
-      title: 'Saint Cyrille d\'Alexandrie',
-      description: 'Le pilier de la foi et théologien de l\'Incarnation.',
-      emoji: '📖',
-      duration: '17 min',
-      difficulty: 'Moyen',
-      category: 'histoire_saints',
-      colorClass: 'bg-gradient-to-br from-red-500 to-pink-600',
-    },
-    {
       id: 'saint_cyrille_alexandrie',
-      title: 'Saint Cyrille d\'Alexandrie - Vie complète',
-      description: 'L\'histoire complète du grand docteur de l\'Église.',
-      emoji: '✝️',
+      title: 'Saint Cyrille d\'Alexandrie',
+      description: 'Le grand docteur de l\'Église et défenseur de la foi.',
+      emoji: '📜',
       duration: '20 min',
       difficulty: 'Avancé',
       category: 'histoire_saints',

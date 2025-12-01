@@ -227,10 +227,10 @@ const menuItems = [
         book: 'Vies des saints',
       },
       {
-        id: 'saint_cyrille',
+        id: 'saint_cyrille_alexandrie',
         title: 'Saint Cyrille d\'Alexandrie',
         path: 'L\'histoire des saints',
-        description: 'Le pilier de la foi et théologien de l\'Incarnation.',
+        description: 'Le grand docteur de l\'Église et défenseur de la foi.',
         book: 'Vies des saints',
       },
       {

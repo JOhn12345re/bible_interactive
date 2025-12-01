@@ -30,7 +30,7 @@ export default function LessonCard({
     // icones coptes
     'icone_annonciation', 'icone_nativite', 'icone_pantocrator', 'icone_resurrection', 'icone_sagesse', 'icone_theotokos',
     // saints
-    'saint_antoine', 'saint_athanase', 'saint_cyrille', 'saint_cyrille_alexandrie', 'saint_macaire', 'sainte_marie_egyptienne', 'saint_mina',
+    'saint_antoine', 'saint_athanase', 'saint_cyrille_alexandrie', 'saint_macaire', 'sainte_marie_egyptienne', 'saint_mina',
   ]);
 
   const isAvailable = AVAILABLE_IDS.has(id);
