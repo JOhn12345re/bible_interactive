@@ -56,15 +56,48 @@ interface SummarySection {
   conclusion?: string;
 }
 
+// Interface pour les sections de contenu (format saints)
+interface ContentSection {
+  id: string;
+  title: string;
+  type: string;
+  content: {
+    text: string;
+    image?: string | null;
+    verse?: string;
+  };
+}
+
+interface SaintsContent {
+  sections: ContentSection[];
+}
+
+interface Introduction {
+  text: string;
+  funFact?: string;
+}
+
+interface MemoryVerseExtended {
+  verse: string;
+  reference: string;
+  explanation?: string;
+}
+
+interface Prayer {
+  title: string;
+  text: string;
+}
+
 interface LessonData {
   id: string;
   title: string;
-  book: string;
+  book?: string;
+  category?: string;
   chapter_range?: string;
-  reading: Array<string | ReadingParagraph>;
-  memory_verse?: MemoryVerse;
+  reading?: Array<string | ReadingParagraph>;
+  memory_verse?: MemoryVerse | MemoryVerseExtended;
   mini_games?: string[];
-  quiz?: QuizQuestion[];
+  quiz?: QuizQuestion[] | { title?: string; questions: Array<{ id: string; type: string; question: string; options: string[]; correctAnswer: number; explanation: string }> };
   goldGame?: GoldGameData;
   story_steps?: string[];
   assets?: string[];
@@ -78,6 +111,11 @@ interface LessonData {
   key_verses_display?: string[];
   spiritual_lessons?: string[];
   historical_context?: string;
+  // Format saints
+  introduction?: Introduction;
+  content?: SaintsContent;
+  prayer?: Prayer;
+  objectives?: string[];
 }
 
 // Fonction utilitaire pour charger la leçon selon l'id
@@ -228,7 +266,7 @@ export default function Lesson() {
                     contrastHigh ? 'text-contrast-text' : 'text-gray-600'
                   }`}
                 >
-                  📖 {data.book}{data.chapter_range ? ` — ${data.chapter_range}` : ''}
+                  📖 {data.book || data.category || 'Histoire des Saints'}{data.chapter_range ? ` — ${data.chapter_range}` : ''}
                 </p>
               </div>
             </div>
@@ -402,7 +440,112 @@ export default function Lesson() {
           </section>
         )}
 
-        {/* Lecture guidée */}
+        {/* Introduction (format saints) */}
+        {data.introduction && (
+          <section className="mb-8">
+            <div
+              className={`rounded-lg p-6 ${
+                contrastHigh
+                  ? 'bg-contrast-bg border-2 border-contrast-text'
+                  : 'bg-gradient-to-br from-amber-50 to-yellow-50 border border-amber-200'
+              }`}
+            >
+              <h3 className="text-xl font-bold mb-3 flex items-center">
+                📖 Introduction
+              </h3>
+              <p
+                className={`text-lg leading-relaxed mb-4 ${
+                  contrastHigh ? 'text-contrast-text' : 'text-gray-800'
+                }`}
+              >
+                {data.introduction.text}
+              </p>
+              {data.introduction.funFact && (
+                <div className={`p-4 rounded-lg ${contrastHigh ? 'border border-contrast-text' : 'bg-yellow-100'}`}>
+                  <p className={`text-base ${contrastHigh ? 'text-contrast-text' : 'text-amber-800'}`}>
+                    💡 <strong>Le saviez-vous ?</strong> {data.introduction.funFact}
+                  </p>
+                </div>
+              )}
+            </div>
+          </section>
+        )}
+
+        {/* Objectifs (format saints) */}
+        {data.objectives && data.objectives.length > 0 && (
+          <section className="mb-8">
+            <div
+              className={`rounded-lg p-6 ${
+                contrastHigh
+                  ? 'bg-contrast-bg border-2 border-contrast-text'
+                  : 'bg-blue-50 border border-blue-200'
+              }`}
+            >
+              <h3 className="text-xl font-bold mb-3 flex items-center">
+                🎯 Objectifs de la leçon
+              </h3>
+              <ul className="space-y-2">
+                {data.objectives.map((obj, idx) => (
+                  <li
+                    key={idx}
+                    className={`flex items-start text-base ${
+                      contrastHigh ? 'text-contrast-text' : 'text-gray-800'
+                    }`}
+                  >
+                    <span className="mr-2">✓</span>
+                    <span>{obj}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </section>
+        )}
+
+        {/* Contenu des sections (format saints) */}
+        {data.content && data.content.sections && data.content.sections.length > 0 && (
+          <section className="mb-8">
+            <h2 className="text-2xl font-bold mb-6">📚 L'Histoire</h2>
+            <div className="space-y-6">
+              {data.content.sections.map((section, index) => (
+                <div
+                  key={section.id || index}
+                  className={`rounded-lg p-6 ${
+                    contrastHigh
+                      ? 'bg-contrast-bg border-2 border-contrast-text'
+                      : 'bg-white border border-gray-200 shadow-sm'
+                  }`}
+                >
+                  <h3 className={`text-xl font-bold mb-4 ${contrastHigh ? 'text-contrast-text' : 'text-gray-800'}`}>
+                    {section.title}
+                  </h3>
+                  <div
+                    className={`text-lg leading-relaxed whitespace-pre-wrap ${
+                      contrastHigh ? 'text-contrast-text' : 'text-gray-700'
+                    }`}
+                  >
+                    {section.content.text}
+                  </div>
+                  {section.content.verse && (
+                    <div
+                      className={`mt-4 p-4 rounded-lg italic text-center ${
+                        contrastHigh
+                          ? 'border-2 border-contrast-text'
+                          : 'bg-blue-50 border border-blue-200'
+                      }`}
+                    >
+                      <p className={`text-base ${contrastHigh ? 'text-contrast-text' : 'text-blue-800'}`}>
+                        {section.content.verse}
+                      </p>
+                    </div>
+                  )}
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* Lecture guidée (format classique) */}
+        {data.reading && Array.isArray(data.reading) && data.reading.length > 0 && (
         <section className="mb-8">
           <h2 className="text-2xl font-bold mb-6">📚 L'Histoire</h2>
           <div
@@ -412,8 +555,7 @@ export default function Lesson() {
                 : 'bg-white border border-gray-200'
             }`}
           >
-            {Array.isArray(data.reading) &&
-              data.reading.map((paragraph, index) => {
+            {data.reading.map((paragraph, index) => {
                 if (typeof paragraph === 'string') {
                   return (
                     <div
@@ -442,7 +584,8 @@ export default function Lesson() {
               })}
             {data.memory_verse &&
               typeof data.memory_verse === 'object' &&
-              data.memory_verse.text && (
+              'text' in data.memory_verse &&
+              (data.memory_verse as MemoryVerse).text && (
                 <div
                   className={`mt-6 p-4 rounded-lg italic text-center ${
                     contrastHigh
@@ -451,12 +594,69 @@ export default function Lesson() {
                   }`}
                 >
                   <span className="text-lg">"</span>
-                  {data.memory_verse.reference} : {data.memory_verse.text}
+                  {(data.memory_verse as MemoryVerse).reference} : {(data.memory_verse as MemoryVerse).text}
                   <span className="text-lg">"</span>
                 </div>
               )}
           </div>
         </section>
+        )}
+
+        {/* Verset à mémoriser (format saints) */}
+        {data.memory_verse && 'verse' in data.memory_verse && (data.memory_verse as MemoryVerseExtended).verse && (
+          <section className="mb-8">
+            <div
+              className={`rounded-lg p-6 ${
+                contrastHigh
+                  ? 'bg-contrast-bg border-2 border-contrast-text'
+                  : 'bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200'
+              }`}
+            >
+              <h3 className="text-xl font-bold mb-3 flex items-center">
+                📜 Verset à mémoriser
+              </h3>
+              <blockquote
+                className={`text-lg italic text-center p-4 ${
+                  contrastHigh ? 'text-contrast-text' : 'text-green-800'
+                }`}
+              >
+                "{(data.memory_verse as MemoryVerseExtended).verse}"
+              </blockquote>
+              <p className={`text-center font-semibold mt-2 ${contrastHigh ? 'text-contrast-text' : 'text-green-700'}`}>
+                — {(data.memory_verse as MemoryVerseExtended).reference}
+              </p>
+              {(data.memory_verse as MemoryVerseExtended).explanation && (
+                <p className={`mt-4 text-base ${contrastHigh ? 'text-contrast-text' : 'text-gray-700'}`}>
+                  💡 {(data.memory_verse as MemoryVerseExtended).explanation}
+                </p>
+              )}
+            </div>
+          </section>
+        )}
+
+        {/* Prière (format saints) */}
+        {data.prayer && (
+          <section className="mb-8">
+            <div
+              className={`rounded-lg p-6 ${
+                contrastHigh
+                  ? 'bg-contrast-bg border-2 border-contrast-text'
+                  : 'bg-gradient-to-br from-purple-50 to-indigo-50 border border-purple-200'
+              }`}
+            >
+              <h3 className="text-xl font-bold mb-3 flex items-center">
+                🙏 {data.prayer.title}
+              </h3>
+              <p
+                className={`text-lg leading-relaxed italic ${
+                  contrastHigh ? 'text-contrast-text' : 'text-purple-800'
+                }`}
+              >
+                {data.prayer.text}
+              </p>
+            </div>
+          </section>
+        )}
 
         {/* Mots-clés et définitions importants */}
         {data.vocab && data.vocab.length > 0 && (
@@ -643,7 +843,7 @@ export default function Lesson() {
                           </button>
                         </div>
                         <InteractiveQuiz 
-                          questions={data.quiz} 
+                          questions={Array.isArray(data.quiz) ? data.quiz : []} 
                           lessonId={id || ''} 
                           title={data.title}
                         />
