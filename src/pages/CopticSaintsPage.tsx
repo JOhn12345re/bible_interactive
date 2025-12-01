@@ -22,6 +22,13 @@ const CopticSaintsPage: React.FC = () => {
       colorClass: 'bg-gradient-to-br from-blue-500 to-indigo-600',
     },
     {
+      id: 'saint_abanoub',
+      title: 'Saint Abanoub - Le Jeune Martyr',
+      description: 'Le courageux martyr de 12 ans qui confessa sa foi devant les gouverneurs.',
+      emoji: '👦',
+      colorClass: 'bg-gradient-to-br from-red-500 to-rose-600',
+    },
+    {
       id: 'amba_paul',
       title: 'Amba Paul - Le Premier Anachorète',
       description: 'Le premier ermite du désert, nourri par un corbeau pendant 80 ans.',

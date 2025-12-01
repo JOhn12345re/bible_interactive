@@ -1,0 +1,230 @@
+{
+  "id": "saint_abanoub",
+  "title": "Saint Abanoub - Le Jeune Martyr",
+  "category": "histoire_saints",
+  "subcategory": "martyrs",
+  "ageGroup": "all",
+  "duration": 20,
+  "objectives": [
+    "Découvrir le courage extraordinaire de Saint Abanoub à seulement 12 ans",
+    "Comprendre le sens du martyre et de la confession de foi",
+    "Apprendre comment l'Archange Michel protège les saints"
+  ],
+  "introduction": {
+    "text": "Saint Abanoub était un jeune garçon de 12 ans qui vécut à l'époque des persécutions de Dioclétien. Rempli de l'amour de Dieu, il n'eut pas peur de confesser sa foi devant les gouverneurs et de subir d'horribles tortures. Son histoire nous montre que la foi et le courage n'ont pas d'âge.",
+    "funFact": "Saint Abanoub avait seulement 12 ans quand il fut martyrisé, mais il encouragea plus de 8 000 chrétiens en prison à rester fidèles !"
+  },
+  "content": {
+    "sections": [
+      {
+        "id": "section_1",
+        "title": "🌟 La naissance et l'enfance d'Abanoub",
+        "type": "reading",
+        "content": {
+          "text": "Abanoub naquit à Nehissa, près de Samanoude, dans la province d'El Dakahlia en Égypte. Il était fils unique et ses parents l'éduquèrent dans la foi chrétienne comme il convient.\n\nBien qu'il fût encore un enfant, Abanoub avait un cœur rempli d'amour pour le Seigneur Jésus-Christ. Dieu avait mis en lui un esprit de courage et une soif de confesser la vérité.",
+          "image": null
+        }
+      },
+      {
+        "id": "section_2",
+        "title": "⛪ L'appel à l'église",
+        "type": "reading",
+        "content": {
+          "text": "À l'âge de douze ans, Abanoub entra un jour à l'église et entendit le prêtre prêcher. Le prêtre encourageait les fidèles à supporter et affronter les persécutions que l'empereur Dioclétien avait entreprises contre les chrétiens.\n\nC'était une époque terrible où des centaines de milliers de chrétiens furent tués pour avoir confessé leur foi.\n\nAprès avoir reçu la Sainte Communion, Abanoub sortit de l'église avec une décision ferme dans son cœur. Il distribua tous ses biens aux pauvres et pria le Seigneur de lui montrer où il pourrait confesser sa foi.",
+          "image": null
+        }
+      },
+      {
+        "id": "section_3",
+        "title": "👼 L'apparition de l'Archange Michel",
+        "type": "reading",
+        "content": {
+          "text": "Abanoub se mit à marcher vers Samanoude. Pendant qu'il priait, l'Archange Michel lui apparut, entouré d'une lumière puissante.\n\nL'enfant Abanoub, ébahi par cette scène extraordinaire, tomba par terre et couvrit son visage. L'Archange l'encouragea et lui dit qu'il allait être persécuté pendant trois jours à Samanoude, mais qu'il serait à ses côtés pour le protéger et le fortifier.\n\nFortifié par cette promesse, le jeune Abanoub continua son chemin avec courage.",
+          "image": null
+        }
+      },
+      {
+        "id": "section_4",
+        "title": "⚔️ Devant le gouverneur de Samanoude",
+        "type": "reading",
+        "content": {
+          "text": "Abanoub alla directement voir le gouverneur. Là, avec un courage remarquable, il confessa publiquement sa foi dans le Seigneur Jésus-Christ.\n\nDe plus, il condamna les statues que le gouverneur considérait comme des dieux. Le gouverneur se mit en colère et ordonna aux soldats de fouetter Abanoub sur le ventre avec une telle violence que ses entrailles sortirent.\n\nMais aussitôt, l'Archange Michel vint le guérir miraculeusement ! Le gouverneur, stupéfait, le fit mettre en prison.",
+          "image": null
+        }
+      },
+      {
+        "id": "section_5",
+        "title": "🔗 En prison : source de consolation",
+        "type": "reading",
+        "content": {
+          "text": "Dans la prison se trouvaient environ 8 000 chrétiens, tous emprisonnés pour avoir confessé leur foi en Dieu.\n\nMalgré son jeune âge, Abanoub devint pour eux une source de consolation. Il les exhorta à subir courageusement le martyre au Nom du Seigneur.\n\nGrâce à ses encouragements, tous ces chrétiens restèrent fidèles jusqu'à la mort et reçurent la couronne du martyre.",
+          "image": null
+        }
+      },
+      {
+        "id": "section_6",
+        "title": "⛵ Le voyage vers Atribe",
+        "type": "reading",
+        "content": {
+          "text": "Le gouverneur partit ensuite pour Atribe, une ville ancienne près de Benha. Il emmena Abanoub avec lui sur son navire.\n\nPour le torturer, il le suspendit au mât du navire par les pieds, la tête vers le bas. Le sang coulait abondamment du nez et de la bouche du garçon.\n\nMais le gouverneur vit alors l'Archange Michel en train d'essuyer le sang du visage d'Abanoub et de le consoler !",
+          "image": null
+        }
+      },
+      {
+        "id": "section_7",
+        "title": "🙏 La conversion du gouverneur",
+        "type": "reading",
+        "content": {
+          "text": "Au même moment, un miracle se produisit : la main du gouverneur resta collée à sa coupe et il ne pouvait plus bouger. Les soldats furent frappés de cécité.\n\nLe gouverneur s'écria : « Je confesse que Jésus-Christ, le Dieu des chrétiens, est le Vrai Dieu ! Prie ton Dieu pour qu'il me guérisse et que nous devenions tous chrétiens, car j'ai vu des merveilles ! »\n\nAbanoub répondit : « Ce que vous demandez n'aura lieu qu'à notre arrivée à Atribe, pour que tous sachent qu'il n'y a que Jésus-Christ, le Seul Vrai Dieu. »\n\nLes soldats crièrent : « Nous sommes chrétiens ! »",
+          "image": null
+        }
+      },
+      {
+        "id": "section_8",
+        "title": "✝️ Le martyre des soldats à Atribe",
+        "type": "reading",
+        "content": {
+          "text": "À leur arrivée à Atribe, les soldats ôtèrent leur uniforme et confessèrent publiquement leur foi dans le Seigneur Jésus-Christ.\n\nIls furent tous martyrisés et reçurent la couronne de leur martyre. Grâce au témoignage du jeune Abanoub, ces soldats qui étaient païens devinrent des martyrs chrétiens !",
+          "image": null
+        }
+      },
+      {
+        "id": "section_9",
+        "title": "🔥 Les terribles tortures",
+        "type": "reading",
+        "content": {
+          "text": "À Atribe, Abanoub subit de terribles tortures :\n• Il fut fouetté violemment\n• Il fut attaché à un lit de métal sous lequel un feu avait été allumé\n• Ses yeux furent crevés avec des tiges métalliques chauffées\n• Il fut pressuré entre des roues\n• Ses mains et ses jambes furent coupées\n\nMais à chaque fois, Dieu lui apparaissait, le fortifiait et le guérissait complètement ! L'Archange Michel venait aussitôt restaurer son corps.\n\nAbanoub se levait et marchait devant tous les assistants qui s'écriaient : « Il n'y a pas d'autres dieux au Ciel ou sur terre que le Dieu d'Abanoub ! »",
+          "image": null
+        }
+      },
+      {
+        "id": "section_10",
+        "title": "👑 La couronne du martyre",
+        "type": "reading",
+        "content": {
+          "text": "Le gouverneur d'Atribe envoya Abanoub, enchaîné, à Armanious, le gouverneur d'Alexandrie. Celui-ci tortura longtemps le jeune garçon.\n\nFinalement, il ordonna qu'il soit décapité le 24e jour du mois Abib (mois copte), selon le calendrier des martyrs.\n\nSaint Abanoub avait alors seulement 12 ans. Ses reliques se trouvent aujourd'hui à l'église portant son nom à Samanoude, près d'El Mahalla El Kobra, dans le Delta du Nil.\n\nÀ ceux qui demandent son intercession, Saint Abanoub accomplit, grâce à Dieu, beaucoup de miracles encore aujourd'hui.",
+          "image": null
+        }
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Quiz sur Saint Abanoub",
+    "questions": [
+      {
+        "id": "q1",
+        "type": "multiple_choice",
+        "question": "Quel âge avait Saint Abanoub quand il fut martyrisé ?",
+        "options": ["8 ans", "10 ans", "12 ans", "15 ans"],
+        "correctAnswer": 2,
+        "explanation": "Saint Abanoub avait seulement 12 ans quand il reçut la couronne du martyre."
+      },
+      {
+        "id": "q2",
+        "type": "multiple_choice",
+        "question": "Dans quelle ville Saint Abanoub est-il né ?",
+        "options": ["Alexandrie", "Nehissa", "Atribe", "Le Caire"],
+        "correctAnswer": 1,
+        "explanation": "Abanoub naquit à Nehissa, près de Samanoude, dans la province d'El Dakahlia."
+      },
+      {
+        "id": "q3",
+        "type": "multiple_choice",
+        "question": "Quel archange apparut à Abanoub pour le protéger ?",
+        "options": ["Gabriel", "Raphaël", "Michel", "Suriel"],
+        "correctAnswer": 2,
+        "explanation": "L'Archange Michel apparut à Abanoub, entouré d'une lumière puissante, et promit de l'accompagner."
+      },
+      {
+        "id": "q4",
+        "type": "multiple_choice",
+        "question": "Que fit Abanoub après avoir reçu la Sainte Communion ?",
+        "options": ["Il rentra chez lui", "Il distribua tous ses biens aux pauvres", "Il partit en voyage", "Il devint prêtre"],
+        "correctAnswer": 1,
+        "explanation": "Après la Communion, Abanoub sortit de l'église et distribua tous ses biens aux pauvres."
+      },
+      {
+        "id": "q5",
+        "type": "multiple_choice",
+        "question": "Combien de chrétiens se trouvaient en prison avec Abanoub ?",
+        "options": ["1 000", "5 000", "8 000", "10 000"],
+        "correctAnswer": 2,
+        "explanation": "Il y avait environ 8 000 chrétiens emprisonnés qu'Abanoub encouragea à rester fidèles."
+      },
+      {
+        "id": "q6",
+        "type": "multiple_choice",
+        "question": "Comment le gouverneur tortura-t-il Abanoub sur le navire ?",
+        "options": ["Il le jeta à l'eau", "Il le suspendit par les pieds au mât", "Il l'enferma dans une cage", "Il le fit ramer"],
+        "correctAnswer": 1,
+        "explanation": "Le gouverneur suspendit Abanoub au mât du navire par les pieds, la tête vers le bas."
+      },
+      {
+        "id": "q7",
+        "type": "multiple_choice",
+        "question": "Que crièrent les soldats après avoir vu les miracles ?",
+        "options": ["C'est de la magie !", "Nous sommes chrétiens !", "Tuez-le !", "C'est impossible !"],
+        "correctAnswer": 1,
+        "explanation": "Les soldats, témoins des miracles, crièrent : « Nous sommes chrétiens ! »"
+      },
+      {
+        "id": "q8",
+        "type": "multiple_choice",
+        "question": "Quel empereur persécutait les chrétiens à cette époque ?",
+        "options": ["Néron", "Constantin", "Dioclétien", "Auguste"],
+        "correctAnswer": 2,
+        "explanation": "Abanoub vécut à l'époque des persécutions de l'empereur Dioclétien contre les chrétiens."
+      },
+      {
+        "id": "q9",
+        "type": "multiple_choice",
+        "question": "Comment Saint Abanoub mourut-il finalement ?",
+        "options": ["Par le feu", "Par décapitation", "Par noyade", "Par lapidation"],
+        "correctAnswer": 1,
+        "explanation": "Abanoub fut décapité le 24 Abib sur ordre du gouverneur d'Alexandrie."
+      },
+      {
+        "id": "q10",
+        "type": "multiple_choice",
+        "question": "Où se trouvent les reliques de Saint Abanoub aujourd'hui ?",
+        "options": ["À Alexandrie", "Au Caire", "À Samanoude", "À Jérusalem"],
+        "correctAnswer": 2,
+        "explanation": "Les reliques de Saint Abanoub se trouvent à l'église portant son nom à Samanoude."
+      }
+    ]
+  },
+  "memory_verse": {
+    "verse": "Ne crains pas ce que tu vas souffrir. Sois fidèle jusqu'à la mort, et je te donnerai la couronne de vie.",
+    "reference": "Apocalypse 2:10",
+    "explanation": "Ce verset décrit parfaitement la vie de Saint Abanoub : malgré les souffrances terribles, il resta fidèle jusqu'à la mort et reçut la couronne de vie éternelle."
+  },
+  "prayer": {
+    "title": "Prière à Saint Abanoub",
+    "text": "Ô Saint Abanoub, jeune martyr courageux, toi qui à 12 ans as confessé le Christ sans crainte, intercède pour nous auprès de Dieu. Donne-nous le courage de témoigner de notre foi chaque jour. Aide les jeunes à aimer Jésus comme tu l'as aimé. Que ta bénédiction soit avec nous à la maison, à l'école, à l'église et dans toute notre vie. Amen."
+  },
+  "activities": [
+    {
+      "id": "activity_1",
+      "title": "Réflexion personnelle",
+      "type": "reflection",
+      "description": "Saint Abanoub avait le courage de confesser sa foi même devant les persécuteurs. Aujourd'hui, nous ne risquons pas le martyre, mais il existe d'autres défis. Écris 3 situations où tu peux témoigner de ta foi avec courage."
+    },
+    {
+      "id": "activity_2",
+      "title": "Carte du voyage",
+      "type": "creative",
+      "description": "Dessine le parcours de Saint Abanoub : Nehissa → Samanoude → le navire → Atribe → Alexandrie. Marque les miracles qui se sont produits à chaque endroit."
+    }
+  ],
+  "summary": {
+    "title": "Ce que nous apprenons de Saint Abanoub",
+    "points": [
+      "La foi et le courage n'ont pas d'âge - même un enfant peut être un héros de la foi",
+      "Dieu protège et guérit ceux qui le confessent courageusement",
+      "Notre témoignage peut convertir même nos persécuteurs",
+      "L'Esprit Saint nous donne la force de résister au mal",
+      "Les saints intercèdent pour nous auprès de Dieu"
+    ]
+  },
+  "source": "https://eglisecopte.ch/saint-abanoub/"
+}
