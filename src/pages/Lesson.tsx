@@ -74,7 +74,7 @@ interface LessonData {
   key_verse?: string;
   theological_message?: string;
   life_application?: string;
-  summary?: string;
+  summary?: string | { title: string; points: string[] };
   key_verses_display?: string[];
   spiritual_lessons?: string[];
   historical_context?: string;
@@ -259,15 +259,26 @@ export default function Lesson() {
               }`}
             >
               <h3 className="text-xl font-bold mb-3 flex items-center">
-                📖 Résumé
+                📖 {typeof data.summary === 'object' && data.summary.title ? data.summary.title : 'Résumé'}
               </h3>
-              <p
-                className={`text-lg leading-relaxed ${
-                  contrastHigh ? 'text-contrast-text' : 'text-gray-800'
-                }`}
-              >
-                {data.summary}
-              </p>
+              {typeof data.summary === 'string' ? (
+                <p
+                  className={`text-lg leading-relaxed ${
+                    contrastHigh ? 'text-contrast-text' : 'text-gray-800'
+                  }`}
+                >
+                  {data.summary}
+                </p>
+              ) : (
+                <ul className="space-y-2">
+                  {data.summary.points?.map((point: string, idx: number) => (
+                    <li key={idx} className={`flex items-start ${contrastHigh ? 'text-contrast-text' : 'text-gray-800'}`}>
+                      <span className="mr-2">•</span>
+                      <span>{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </div>
           </section>
         )}
