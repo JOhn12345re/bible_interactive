@@ -2,90 +2,247 @@
   "id": "saint_mina",
   "title": "Saint Mina le Thaumaturge - Le Héros Égyptien",
   "category": "histoire_saints",
-  "description": "Découvre la vie extraordinaire de Saint Mina, le héros égyptien et faiseur de miracles, martyr de la foi chrétienne.",
-  "introduction": "Saint Mina (Menas) est l'un des saints les plus vénérés de l'Église copte orthodoxe. Né en 285 en Égypte, il fut soldat romain avant de se retirer au désert puis de confesser sa foi au Christ, ce qui lui valut le martyre. Son sanctuaire à Mariout fut l'un des plus grands centres de pèlerinage du monde chrétien antique.",
-  "reading": [
-    {
-      "subtitle": "Sa famille et sa naissance miraculeuse",
-      "text": "Mina naquit vers 285 dans la province de Monoufia en Égypte. Ses parents, Eudouxious et Ofomia, étaient des chrétiens pieux. Sa mère, longtemps stérile, pria avec ferveur devant une icône de la Vierge Marie lors de sa fête. Une voix céleste lui répondit 'Amen', et elle conçut un fils qu'elle nomma 'Mina' en souvenir de ce miracle."
-    },
-    {
-      "subtitle": "Le jeune soldat et sa retraite au désert",
-      "text": "À 15 ans, Mina s'engagea dans l'armée romaine. Mais son cœur aspirait à une vie de prière et de sainteté. Voyant les persécutions contre les chrétiens, il quitta l'armée et se retira dans le désert pendant cinq années. Il y mena une vie d'ascèse, de prière et de contemplation, vivant dans la chasteté et la douceur."
-    },
-    {
-      "subtitle": "La vision céleste des martyrs",
-      "text": "Un jour, pendant sa prière, Mina eut une vision extraordinaire : il vit les cieux ouverts et les martyrs recevoir des couronnes de gloire de la main du Christ. Brûlant du désir de recevoir aussi cette couronne, il décida de confesser publiquement sa foi, sachant que cela lui vaudrait le martyre."
-    },
-    {
-      "subtitle": "Son arrestation et ses tortures",
-      "text": "Mina se rendit dans la ville et confessa courageusement sa foi en Jésus-Christ. Il fut aussitôt arrêté par les autorités romaines. Malgré les tortures terribles qu'il endura, il resta ferme dans sa foi. On dit même qu'une scie destinée à le couper fondit comme de la cire au contact de son corps."
-    },
-    {
-      "subtitle": "L'apparition du Christ et le martyre",
-      "text": "En prison, Mina reçut la visite du Christ lui-même qui le consola et l'oignit d'huile sainte. Le 15 Hatour (novembre), sous les règnes de Dioclétien et Maximien, Saint Mina fut décapité. Son corps fut jeté au feu mais resta miraculeusement intact. Les fidèles l'ensevelirent avec respect."
-    },
-    {
-      "subtitle": "Les miracles après sa mort",
-      "text": "Le corps de Saint Mina fut transporté en Égypte. Durant le voyage en mer, des monstres marins attaquèrent le navire, mais furent repoussés miraculeusement. Plus tard, un enfant paralysé découvrit son tombeau grâce à une lumière surnaturelle et fut guéri. De nombreux miracles s'ensuivirent, attirant des pèlerins du monde entier."
-    },
-    {
-      "subtitle": "Son sanctuaire et son rayonnement",
-      "text": "Le sanctuaire de Saint Mina à Mariout devint l'un des plus grands centres de pèlerinage du monde chrétien. Des ampoules à son effigie ont été retrouvées de l'Irlande jusqu'à l'Afrique australe. Le Pape Cyrille VI, qui avait une dévotion particulière pour lui, fit renaître le monastère à partir de 1959, et une partie des reliques y fut transférée en 1962."
-    }
+  "subcategory": "martyrs",
+  "ageGroup": "all",
+  "duration": 25,
+  "objectives": [
+    "Découvrir la vie extraordinaire de Saint Mina, le héros égyptien",
+    "Comprendre le courage des martyrs face aux persécutions",
+    "Apprendre l'importance de la fidélité à sa foi"
   ],
-  "memory_verse": {
-    "text": "Soyez fidèles jusqu'à la mort, et je vous donnerai la couronne de vie.",
-    "reference": "Apocalypse 2:10"
+  "introduction": {
+    "text": "Saint Mina (Menas) est l'un des saints les plus vénérés de l'Église copte orthodoxe. Né en 285 en Égypte, il fut soldat romain avant de se retirer au désert puis de confesser sa foi au Christ, ce qui lui valut le martyre. Son sanctuaire à Mariout fut l'un des plus grands centres de pèlerinage du monde chrétien antique.",
+    "funFact": "Des ampoules à l'effigie de Saint Mina ont été retrouvées de l'Irlande jusqu'à l'Afrique australe, montrant l'étendue de sa vénération dans le monde antique !"
   },
-  "quiz": [
+  "content": {
+    "sections": [
+      {
+        "id": "section_1",
+        "title": "👶 Sa famille et sa naissance miraculeuse",
+        "type": "reading",
+        "content": {
+          "text": "Mina naquit vers 285 dans la province de Monoufia en Égypte. Ses parents, Eudouxious et Ofomia, étaient des chrétiens pieux.\n\nSa mère, longtemps stérile, souffrait de ne pas avoir d'enfant. Un jour, lors de la fête de la Vierge Marie, elle pria avec ferveur devant une icône de la Mère de Dieu.\n\nSoudain, une voix céleste lui répondit « Amen » ! Ce miracle lui annonçait qu'elle allait concevoir. Quand son fils naquit, elle le nomma « Mina » en souvenir de ce « Amen » miraculeux.",
+          "image": null
+        }
+      },
+      {
+        "id": "section_2",
+        "title": "⚔️ Le jeune soldat",
+        "type": "reading",
+        "content": {
+          "text": "À l'âge de 15 ans, Mina s'engagea dans l'armée romaine, comme beaucoup de jeunes Égyptiens de son époque.\n\nMais son cœur aspirait à une vie plus profonde, une vie de prière et de sainteté. En voyant les terribles persécutions que subissaient les chrétiens sous l'empereur Dioclétien, il fut profondément troublé.\n\nIl prit alors une décision courageuse : quitter l'armée pour se consacrer entièrement à Dieu.",
+          "image": null
+        }
+      },
+      {
+        "id": "section_3",
+        "title": "🏜️ Cinq années dans le désert",
+        "type": "reading",
+        "content": {
+          "text": "Mina se retira dans le désert égyptien, loin du monde et de ses tentations.\n\nPendant cinq années, il mena une vie d'ascèse, de prière et de contemplation. Il vivait dans la chasteté et la douceur, nourrissant son âme de la parole de Dieu.\n\nLe désert devint pour lui une école de sainteté, où il apprit à connaître Dieu intimement et à fortifier sa foi.",
+          "image": null
+        }
+      },
+      {
+        "id": "section_4",
+        "title": "👑 La vision céleste des martyrs",
+        "type": "reading",
+        "content": {
+          "text": "Un jour, pendant sa prière, Mina eut une vision extraordinaire.\n\nIl vit les cieux s'ouvrir et contempla les martyrs recevant des couronnes de gloire de la main même du Christ ! Ces héros de la foi brillaient d'une lumière incomparable.\n\nBrûlant du désir de recevoir lui aussi cette couronne céleste, Mina prit une décision qui allait changer sa vie : confesser publiquement sa foi en Jésus-Christ, sachant que cela lui vaudrait le martyre.",
+          "image": null
+        }
+      },
+      {
+        "id": "section_5",
+        "title": "✝️ La confession courageuse",
+        "type": "reading",
+        "content": {
+          "text": "Mina quitta le désert et se rendit dans la ville. Devant tous, il confessa courageusement sa foi en Jésus-Christ, le seul vrai Dieu.\n\nIl fut aussitôt arrêté par les autorités romaines. Les soldats le présentèrent au gouverneur qui tenta de le faire renier sa foi par des promesses puis par des menaces.\n\nMais Mina resta inébranlable. Rien ne pouvait le séparer de l'amour du Christ.",
+          "image": null
+        }
+      },
+      {
+        "id": "section_6",
+        "title": "🔥 Les terribles tortures",
+        "type": "reading",
+        "content": {
+          "text": "Le gouverneur ordonna qu'on torture Mina pour le faire céder. Les bourreaux lui infligèrent des supplices terribles :\n\n• Il fut fouetté cruellement\n• Son corps fut déchiré avec des instruments de fer\n• On tenta de le scier, mais la scie fondit comme de la cire au contact de son corps !\n\nMalgré ces souffrances atroces, Mina gardait la paix dans son cœur et continuait à louer Dieu.",
+          "image": null
+        }
+      },
+      {
+        "id": "section_7",
+        "title": "✨ L'apparition du Christ",
+        "type": "reading",
+        "content": {
+          "text": "En prison, Mina reçut une visite extraordinaire : le Christ lui-même vint le consoler !\n\nLe Seigneur l'oignit d'huile sainte et le fortifia pour le combat final. Il lui promit la couronne de gloire qu'il avait vue dans sa vision.\n\nMina fut rempli d'une joie indescriptible, sachant que bientôt il serait avec son Seigneur pour l'éternité.",
+          "verse": "« Soyez fidèles jusqu'à la mort, et je vous donnerai la couronne de vie. » — Apocalypse 2:10"
+        }
+      },
+      {
+        "id": "section_8",
+        "title": "⚔️ Le martyre glorieux",
+        "type": "reading",
+        "content": {
+          "text": "Le 15 Hatour (novembre), sous les règnes des empereurs Dioclétien et Maximien, Saint Mina fut condamné à mort.\n\nIl fut décapité pour sa foi en Jésus-Christ. Les bourreaux jetèrent son corps au feu, mais un miracle se produisit : le corps resta miraculeusement intact, sans aucune brûlure !\n\nLes fidèles chrétiens récupérèrent son corps précieux et l'ensevelirent avec grand respect et vénération.",
+          "image": null
+        }
+      },
+      {
+        "id": "section_9",
+        "title": "🌊 Le voyage miraculeux",
+        "type": "reading",
+        "content": {
+          "text": "Le corps de Saint Mina devait être transporté en Égypte par la mer. Pendant le voyage, des monstres marins attaquèrent le navire !\n\nMais au nom de Saint Mina, les créatures furent miraculeusement repoussées. Le navire arriva sain et sauf sur les côtes égyptiennes.\n\nC'était le premier des innombrables miracles qui allaient être accomplis par l'intercession de ce saint.",
+          "image": null
+        }
+      },
+      {
+        "id": "section_10",
+        "title": "💡 La découverte miraculeuse du tombeau",
+        "type": "reading",
+        "content": {
+          "text": "Après de nombreuses années, l'emplacement du tombeau de Saint Mina fut oublié.\n\nUn jour, un berger gardait ses troupeaux dans la région de Mariout. Un de ses moutons, malade et paralysé, se roula dans une flaque d'eau à un endroit précis et fut instantanément guéri !\n\nLe berger rapporta ce miracle. Des fouilles furent entreprises et on découvrit le tombeau de Saint Mina. Une lumière surnaturelle brillait à cet endroit, et de nombreux malades furent guéris.",
+          "image": null
+        }
+      },
+      {
+        "id": "section_11",
+        "title": "⛪ Le grand sanctuaire de Mariout",
+        "type": "reading",
+        "content": {
+          "text": "Le sanctuaire de Saint Mina à Mariout devint l'un des plus grands centres de pèlerinage du monde chrétien antique.\n\nDes pèlerins venaient de partout : d'Europe, d'Afrique, d'Asie. Ils repartaient avec des petites ampoules contenant de l'eau ou de l'huile bénites, portant l'effigie de Saint Mina entre deux chameaux.\n\nCes ampoules ont été retrouvées de l'Irlande jusqu'à l'Afrique australe, témoignant du rayonnement extraordinaire de ce saint égyptien.",
+          "image": null
+        }
+      },
+      {
+        "id": "section_12",
+        "title": "🙏 La renaissance du monastère",
+        "type": "reading",
+        "content": {
+          "text": "Au 20ème siècle, le Pape Cyrille VI avait une dévotion toute particulière pour Saint Mina.\n\nÀ partir de 1959, il fit renaître le monastère de Saint Mina dans le désert de Mariout. En 1962, une partie des précieuses reliques du saint y fut transférée.\n\nAujourd'hui, le monastère de Saint Mina est un lieu de pèlerinage très fréquenté, où les fidèles viennent demander l'intercession du saint thaumaturge (faiseur de miracles).",
+          "image": null
+        }
+      }
+    ]
+  },
+  "quiz": {
+    "title": "Quiz sur Saint Mina",
+    "questions": [
+      {
+        "id": "q1",
+        "type": "multiple_choice",
+        "question": "En quelle année environ est né Saint Mina ?",
+        "options": ["En 185 apr. J.-C.", "En 285 apr. J.-C.", "En 385 apr. J.-C.", "En 485 apr. J.-C."],
+        "correctAnswer": 1,
+        "explanation": "Saint Mina est né vers 285 après Jésus-Christ dans la province de Monoufia en Égypte."
+      },
+      {
+        "id": "q2",
+        "type": "multiple_choice",
+        "question": "Pourquoi sa mère l'a-t-elle nommé 'Mina' ?",
+        "options": ["C'était le nom de son père", "En souvenir du 'Amen' qu'elle entendit", "C'était un nom de roi", "Un ange le lui ordonna"],
+        "correctAnswer": 1,
+        "explanation": "Sa mère, stérile, entendit une voix céleste lui répondre 'Amen' pendant sa prière. Elle nomma son fils 'Mina' en souvenir de ce miracle."
+      },
+      {
+        "id": "q3",
+        "type": "multiple_choice",
+        "question": "Combien d'années Saint Mina passa-t-il dans le désert ?",
+        "options": ["Deux ans", "Trois ans", "Cinq ans", "Dix ans"],
+        "correctAnswer": 2,
+        "explanation": "Saint Mina se retira dans le désert pendant cinq années de prière, d'ascèse et de contemplation."
+      },
+      {
+        "id": "q4",
+        "type": "multiple_choice",
+        "question": "Quelle vision poussa Saint Mina à confesser sa foi publiquement ?",
+        "options": ["La vision de la Vierge Marie", "La vision des martyrs recevant des couronnes", "La vision de l'archange Michel", "La vision du paradis"],
+        "correctAnswer": 1,
+        "explanation": "Mina vit les cieux ouverts et les martyrs recevoir des couronnes de gloire de la main du Christ."
+      },
+      {
+        "id": "q5",
+        "type": "multiple_choice",
+        "question": "Quel miracle se produisit quand on tenta de scier Saint Mina ?",
+        "options": ["La scie se brisa", "La scie fondit comme de la cire", "Les bourreaux furent paralysés", "Un ange arrêta la scie"],
+        "correctAnswer": 1,
+        "explanation": "La scie destinée à le couper fondit miraculeusement comme de la cire au contact de son corps."
+      },
+      {
+        "id": "q6",
+        "type": "multiple_choice",
+        "question": "Qui visita Saint Mina en prison pour le consoler ?",
+        "options": ["L'Archange Michel", "La Vierge Marie", "Le Christ lui-même", "Saint Pierre"],
+        "correctAnswer": 2,
+        "explanation": "Le Christ lui-même vint consoler Mina en prison et l'oignit d'huile sainte."
+      },
+      {
+        "id": "q7",
+        "type": "multiple_choice",
+        "question": "Quel jour du calendrier copte Saint Mina fut-il martyrisé ?",
+        "options": ["Le 15 Kiahk", "Le 15 Hatour", "Le 15 Touba", "Le 15 Baramoudah"],
+        "correctAnswer": 1,
+        "explanation": "Saint Mina fut décapité le 15 Hatour (novembre) sous les règnes de Dioclétien et Maximien."
+      },
+      {
+        "id": "q8",
+        "type": "multiple_choice",
+        "question": "Comment le tombeau de Saint Mina fut-il redécouvert ?",
+        "options": ["Par un ange", "Par un mouton malade qui fut guéri", "Par le Pape", "Par des archéologues"],
+        "correctAnswer": 1,
+        "explanation": "Un mouton malade se roula dans une flaque d'eau à l'emplacement du tombeau et fut miraculeusement guéri."
+      },
+      {
+        "id": "q9",
+        "type": "multiple_choice",
+        "question": "Où se trouve le grand sanctuaire de Saint Mina ?",
+        "options": ["À Alexandrie", "À Mariout", "Au Caire", "À Louxor"],
+        "correctAnswer": 1,
+        "explanation": "Le sanctuaire de Saint Mina se trouve à Mariout, dans le désert occidental de l'Égypte."
+      },
+      {
+        "id": "q10",
+        "type": "multiple_choice",
+        "question": "Quel Pape fit renaître le monastère de Saint Mina au 20ème siècle ?",
+        "options": ["Le Pape Chenouda III", "Le Pape Cyrille VI", "Le Pape Théophile", "Le Pape Athanase"],
+        "correctAnswer": 1,
+        "explanation": "Le Pape Cyrille VI, qui avait une dévotion particulière pour Saint Mina, fit renaître le monastère à partir de 1959."
+      }
+    ]
+  },
+  "memory_verse": {
+    "verse": "Soyez fidèles jusqu'à la mort, et je vous donnerai la couronne de vie.",
+    "reference": "Apocalypse 2:10",
+    "explanation": "Ce verset décrit parfaitement la vie de Saint Mina : il resta fidèle jusqu'au martyre et reçut la couronne de gloire qu'il avait vue dans sa vision céleste."
+  },
+  "prayer": {
+    "title": "Prière à Saint Mina",
+    "text": "Ô Saint Mina, héros égyptien et thaumaturge, toi qui as quitté l'armée terrestre pour rejoindre l'armée céleste, intercède pour nous auprès de Dieu. Toi qui as vu les cieux ouverts et les martyrs couronnés, aide-nous à garder les yeux fixés sur les réalités éternelles. Accorde-nous la grâce de rester fidèles au Christ en toutes circonstances. Amen."
+  },
+  "activities": [
     {
-      "question": "En quelle année environ est né Saint Mina ?",
-      "options": ["En 185 apr. J.-C.", "En 285 apr. J.-C.", "En 385 apr. J.-C.", "En 485 apr. J.-C."],
-      "correct": 1,
-      "explanation": "Saint Mina est né vers 285 après Jésus-Christ dans la province de Monoufia en Égypte."
+      "id": "activity_1",
+      "title": "Réflexion personnelle",
+      "type": "reflection",
+      "description": "Saint Mina a eu le courage de confesser sa foi même face à la mort. Dans quelles situations de ta vie peux-tu témoigner de ta foi avec courage ?"
     },
     {
-      "question": "Pourquoi sa mère l'a-t-elle nommé 'Mina' ?",
-      "options": ["C'était le nom de son père", "En souvenir du 'Amen' qu'elle entendit", "C'était un nom de roi", "Un ange le lui ordonna"],
-      "correct": 1,
-      "explanation": "Sa mère, stérile, entendit une voix céleste lui répondre 'Amen' pendant sa prière. Elle nomma son fils 'Mina' en souvenir de ce miracle."
-    },
-    {
-      "question": "Combien d'années Saint Mina passa-t-il dans le désert ?",
-      "options": ["Deux ans", "Trois ans", "Cinq ans", "Dix ans"],
-      "correct": 2,
-      "explanation": "Saint Mina se retira dans le désert pendant cinq années de prière, d'ascèse et de contemplation."
-    },
-    {
-      "question": "Quelle vision poussa Saint Mina à confesser sa foi publiquement ?",
-      "options": ["La vision de la Vierge Marie", "La vision des martyrs recevant des couronnes", "La vision de l'archange Michel", "La vision du paradis"],
-      "correct": 1,
-      "explanation": "Mina vit les cieux ouverts et les martyrs recevoir des couronnes de gloire de la main du Christ, ce qui l'inspira à désirer le martyre."
-    },
-    {
-      "question": "Quel jour du calendrier copte Saint Mina fut-il martyrisé ?",
-      "options": ["Le 15 Kiahk", "Le 15 Hatour", "Le 15 Toba", "Le 15 Barmuda"],
-      "correct": 1,
-      "explanation": "Saint Mina fut décapité le 15 Hatour (novembre) sous les règnes de Dioclétien et Maximien."
-    },
-    {
-      "question": "Quel Pape fit renaître le monastère de Saint Mina ?",
-      "options": ["Le Pape Chenouda III", "Le Pape Cyrille VI", "Le Pape Théophile", "Le Pape Athanase"],
-      "correct": 1,
-      "explanation": "Le Pape Cyrille VI, qui avait une dévotion particulière pour Saint Mina, fit renaître le monastère à partir de 1959."
+      "id": "activity_2",
+      "title": "L'ampoule de Saint Mina",
+      "type": "creative",
+      "description": "Dessine une ampoule de pèlerin avec Saint Mina entre deux chameaux, comme celles qu'emportaient les pèlerins antiques."
     }
   ],
   "summary": {
-    "title": "Points clés à retenir",
+    "title": "Ce que nous apprenons de Saint Mina",
     "points": [
-      "Saint Mina est né vers 285 en Égypte, de parents pieux Eudouxious et Ofomia",
-      "Son nom vient du 'Amen' que sa mère entendit en priant pour avoir un enfant",
-      "Il fut soldat romain avant de se retirer 5 ans au désert",
-      "Une vision des martyrs couronnés l'inspira à confesser sa foi",
-      "Il fut martyrisé le 15 Hatour sous Dioclétien et Maximien",
-      "Son sanctuaire à Mariout devint un grand centre de pèlerinage mondial",
-      "Le Pape Cyrille VI fit renaître son monastère en 1959"
+      "Dieu répond aux prières de ceux qui l'invoquent avec foi",
+      "La vie dans le désert prépare l'âme aux grands combats spirituels",
+      "La vision du Ciel nous donne le courage d'affronter les épreuves terrestres",
+      "Rester fidèle au Christ jusqu'au bout mène à la couronne de gloire",
+      "Les saints continuent d'intercéder pour nous et d'accomplir des miracles"
     ]
-  }
+  },
+  "source": "Tradition de l'Église Copte Orthodoxe"
 }
