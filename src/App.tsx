@@ -32,6 +32,7 @@ const CopticChurchHistoryPage = lazy(() => import('./pages/CopticChurchHistoryPa
 const CopticSaintsPage = lazy(() => import('./pages/CopticSaintsPage'));
 const CopticIconsPage = lazy(() => import('./pages/CopticIconsPage'));
 const CopticImportantDatesPage = lazy(() => import('./pages/CopticImportantDatesPage'));
+const CopticCalendarPage = lazy(() => import('./pages/CopticCalendarPage'));
 const ChristianHistoryPage = lazy(() => import('./pages/ChristianHistoryPage'));
 const OrthodoxPresenterPage = lazy(() => import('./pages/OrthodoxPresenterPage'));
 const KatamerosPage = lazy(() => import('./pages/KatamerosPage'));
@@ -170,6 +171,7 @@ function App() {
               <Route path="/coptic-church/saints" element={<CopticSaintsPage />} />
               <Route path="/coptic-church/icons" element={<CopticIconsPage />} />
               <Route path="/coptic-church/important-dates" element={<CopticImportantDatesPage />} />
+              <Route path="/coptic-church/calendar" element={<CopticCalendarPage />} />
               <Route path="/orthodox-presenter" element={<OrthodoxPresenterPage />} />
               <Route path="/katameros" element={<KatamerosPage />} />
               <Route path="/daily-reading" element={<DailyReadingPage />} />

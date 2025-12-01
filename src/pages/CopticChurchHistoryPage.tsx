@@ -36,6 +36,15 @@ const CopticChurchHistoryPage: React.FC = () => {
       items: 8
     },
     {
+      id: 'calendar',
+      title: 'Le Calendrier Copte',
+      description: 'Découvrez les 13 mois du calendrier copte, leurs noms, origines et significations spirituelles.',
+      emoji: '📆',
+      route: '/coptic-church/calendar',
+      colorClass: 'bg-gradient-to-br from-green-500 to-teal-600',
+      items: 13
+    },
+    {
       id: 'dates',
       title: 'Les Dates Importantes',
       description: 'Parcourez les événements majeurs qui ont façonné l\'histoire de l\'Église copte à travers les siècles.',
