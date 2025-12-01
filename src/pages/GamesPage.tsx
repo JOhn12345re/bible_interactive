@@ -99,30 +99,30 @@ const GamesPage = () => {
     >
       {/* Header */}
       <header
-        className={`py-6 px-4 sm:px-6 lg:px-8 ${contrastHigh ? 'bg-contrast-bg' : 'bg-white shadow-sm'}`}
+        className={`py-4 sm:py-6 px-3 sm:px-6 lg:px-8 ${contrastHigh ? 'bg-contrast-bg' : 'bg-white shadow-sm'}`}
       >
         <div className="max-w-7xl mx-auto">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center space-x-2 sm:space-x-4">
               <Link
                 to="/"
-                className={`flex items-center space-x-2 px-4 py-2 rounded-full transition-colors ${
+                className={`flex items-center space-x-1 sm:space-x-2 px-3 sm:px-4 py-2 rounded-full transition-colors text-sm sm:text-base ${
                   contrastHigh
                     ? 'hover:bg-contrast-text/20'
                     : 'hover:bg-gray-100'
                 }`}
               >
-                <span className="text-2xl">←</span>
-                <span>Retour</span>
+                <span className="text-lg sm:text-2xl">←</span>
+                <span className="hidden sm:inline">Retour</span>
               </Link>
               <div>
                 <h1
-                  className={`text-2xl sm:text-3xl font-bold ${contrastHigh ? 'text-contrast-text' : 'text-gray-800'}`}
+                  className={`text-lg sm:text-2xl md:text-3xl font-bold ${contrastHigh ? 'text-contrast-text' : 'text-gray-800'}`}
                 >
                   🎮 Mini-Jeux Bibliques
                 </h1>
                 <p
-                  className={`text-sm ${contrastHigh ? 'text-contrast-text' : 'text-gray-600'}`}
+                  className={`text-xs sm:text-sm hidden sm:block ${contrastHigh ? 'text-contrast-text' : 'text-gray-600'}`}
                 >
                   Apprends en t'amusant avec des jeux interactifs
                 </p>
@@ -133,27 +133,27 @@ const GamesPage = () => {
       </header>
 
       {/* Main Content */}
-      <main className="max-w-7xl mx-auto py-8 px-4 sm:px-6 lg:px-8">
+      <main className="max-w-7xl mx-auto py-6 sm:py-8 px-3 sm:px-6 lg:px-8">
         {/* Introduction */}
         <div
-          className={`mb-8 p-4 sm:p-6 rounded-2xl ${
+          className={`mb-6 sm:mb-8 p-4 sm:p-6 rounded-2xl ${
             contrastHigh
               ? 'bg-contrast-bg border-2 border-contrast-text'
               : 'bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-200'
           }`}
         >
-          <div className="flex items-start space-x-4">
-            <span className="text-3xl sm:text-4xl">🎯</span>
+          <div className="flex items-start space-x-3 sm:space-x-4">
+            <span className="text-2xl sm:text-4xl flex-shrink-0">🎯</span>
             <div>
               <h2
-                className={`text-xl font-bold mb-2 ${
+                className={`text-lg sm:text-xl font-bold mb-1.5 sm:mb-2 ${
                   contrastHigh ? 'text-contrast-text' : 'text-purple-800'
                 }`}
               >
                 Prêt à Jouer ?
               </h2>
               <p
-                className={`${
+                className={`text-sm sm:text-base ${
                   contrastHigh ? 'text-contrast-text' : 'text-purple-700'
                 }`}
               >
@@ -179,7 +179,7 @@ const GamesPage = () => {
                   <div className="absolute inset-0 bg-gradient-to-br from-white/10 via-transparent to-black/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl"></div>
 
                   {/* Status Badge */}
-                  <div className="absolute top-4 right-4 bg-green-400 text-green-900 text-xs font-bold px-2 py-1 rounded-full">
+                  <div className="absolute top-3 sm:top-4 right-3 sm:right-4 bg-green-400 text-green-900 text-xs font-bold px-2 py-1 rounded-full">
                     Disponible
                   </div>
 
@@ -191,17 +191,17 @@ const GamesPage = () => {
                     </div>
 
                     {/* Title */}
-                    <h3 className="text-xl font-bold mb-3 group-hover:text-yellow-100 transition-colors duration-300">
+                    <h3 className="text-lg sm:text-xl font-bold mb-2 sm:mb-3 group-hover:text-yellow-100 transition-colors duration-300">
                       {game.title}
                     </h3>
 
                     {/* Description */}
-                    <p className="text-sm opacity-90 group-hover:opacity-100 transition-opacity duration-300 mb-4 leading-relaxed">
+                    <p className="text-xs sm:text-sm opacity-90 group-hover:opacity-100 transition-opacity duration-300 mb-3 sm:mb-4 leading-relaxed">
                       {game.description}
                     </p>
 
                     {/* Metadata */}
-                    <div className="flex items-center justify-between text-xs opacity-80 mb-4">
+                    <div className="flex items-center justify-between text-xs opacity-80 mb-3 sm:mb-4">
                       <span className="flex items-center space-x-1">
                         <span>📊</span>
                         <span>{game.difficulty}</span>
@@ -214,7 +214,7 @@ const GamesPage = () => {
 
                     {/* Play indicator */}
                     <div className="flex items-center text-white/80 group-hover:text-white transition-colors duration-300">
-                      <span className="text-sm font-medium mr-2">
+                      <span className="text-xs sm:text-sm font-medium mr-2">
                         Jouer maintenant
                       </span>
                       <svg
