@@ -244,22 +244,6 @@ export default function DashboardPage() {
                   Apprenez en vous amusant avec nos puzzles, quiz et jeux interactifs bibliques.
                 </p>
               </Link>
-
-              {/* Leçons */}
-              <Link 
-                to="/lessons"
-                className={`group p-4 sm:p-6 rounded-2xl transition-all duration-300 hover:scale-105 hover:shadow-xl ${
-                  contrastHigh 
-                    ? 'bg-contrast-bg border-2 border-contrast-text'
-                    : 'bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-lg'
-                }`}
-              >
-                <div className="text-3xl sm:text-4xl mb-3 sm:mb-4 group-hover:scale-110 transition-transform">📚</div>
-                <h3 className="text-lg sm:text-xl font-bold mb-2">Leçons Interactives</h3>
-                <p className="text-xs sm:text-sm opacity-90">
-                  Découvrez les histoires bibliques à travers des leçons interactives et engageantes.
-                </p>
-              </Link>
             </div>
           </section>
 

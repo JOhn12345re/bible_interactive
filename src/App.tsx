@@ -6,7 +6,6 @@ import { AuthProvider } from './context/AuthContext';
 import ErrorBoundary from './components/ErrorBoundary';
 import Home from './pages/Home';
 const Lesson = lazy(() => import('./pages/Lesson'));
-const LessonsPage = lazy(() => import('./pages/LessonsPage'));
 const GamesPage = lazy(() => import('./pages/GamesPage'));
 const GamePage = lazy(() => import('./pages/GamePage'));
 const JournalPage = lazy(() => import('./pages/JournalPage'));
@@ -130,7 +129,6 @@ function App() {
                 {/* Routes existantes */}
                 <Route path="/" element={<Home />} />
                 <Route path="/dashboard" element={<DashboardPage />} />
-                <Route path="/lessons" element={<LessonsPage />} />
                 <Route path="/lesson/:id" element={<Lesson />} />
                 <Route path="/game/:id/:gameType" element={<GamePage />} />
               <Route path="/game/adam_eve_01/timeline_cards" element={<AdamEveTimelineGame />} />

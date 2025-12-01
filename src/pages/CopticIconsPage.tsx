@@ -1,11 +1,10 @@
 import { Navigate } from 'react-router-dom';
 
 /**
- * Cette page redirige vers /lessons avec le filtre "icones_coptes"
- * pour éviter la duplication de contenu
+ * Cette page redirige vers /coptic-church
  */
 const CopticIconsPage: React.FC = () => {
-  return <Navigate to="/lessons?category=icones_coptes" replace />;
+  return <Navigate to="/coptic-church" replace />;
 };
 
 export default CopticIconsPage;

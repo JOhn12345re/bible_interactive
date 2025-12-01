@@ -1,11 +1,10 @@
 import { Navigate } from 'react-router-dom';
 
 /**
- * Cette page redirige vers /lessons avec le filtre "histoire_saints"
- * pour éviter la duplication de contenu
+ * Cette page redirige vers /coptic-church
  */
 const CopticSaintsPage: React.FC = () => {
-  return <Navigate to="/lessons?category=histoire_saints" replace />;
+  return <Navigate to="/coptic-church" replace />;
 };
 
 export default CopticSaintsPage;
