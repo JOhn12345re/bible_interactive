@@ -17,6 +17,15 @@ const CopticSaintsPage: React.FC = () => {
 
   const saints: Saint[] = [
     {
+      id: 'saint_mina',
+      title: 'Saint Mina le Thaumaturge',
+      description: 'Le héros égyptien et faiseur de miracles, martyr de la foi.',
+      emoji: '⭐',
+      period: '285-309',
+      difficulty: 'Moyen',
+      colorClass: 'bg-gradient-to-br from-blue-500 to-indigo-600',
+    },
+    {
       id: 'saint_antoine',
       title: 'Saint Antoine le Grand',
       description: 'Le père du monachisme chrétien et ermite du désert.',
