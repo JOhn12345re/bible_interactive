@@ -15,6 +15,7 @@ dist-ssr
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
+!.vscode/settings.json
 .idea
 .DS_Store
 *.suo
@@ -30,11 +31,11 @@ cypress/downloads
 cypress/results
 .cypress-cucumber-preprocessorrc
 
-# Environment variables
+# Environment variables - NEVER commit these
 .env
-.env.local
-.env.production.local
-.env.test.local
+.env.*
+!.env.example
+*.env
 
 # Build
 build
@@ -48,3 +49,29 @@ coverage
 .vercel
 .turbo
 *.tsbuildinfo
+
+# Security - Never commit
+*.pem
+*.key
+*.crt
+secrets/
+credentials/
+
+# Backups
+*-backup/
+*.backup
+*.bak
+
+# OS files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Debug files
+*.debug
+debug/
+
+# Temp files
+tmp/
+temp/
+*.tmp

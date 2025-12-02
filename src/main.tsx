@@ -6,30 +6,31 @@ import './styles/sermon.css';
 import './styles/home-animations.css';
 import '@fontsource/opendyslexic';
 import { checkAndClearCache, getAppVersion } from './utils/cacheManager';
+import logger from './utils/logger';
 
 // Vérifier et effacer le cache si nouvelle version
 checkAndClearCache().then((cacheCleared) => {
   if (cacheCleared) {
-    console.log(`🚀 Bible Interactive v${getAppVersion()} - Cache effacé, nouvelle version chargée`);
+    logger.success(`Bible Interactive v${getAppVersion()} - Cache effacé, nouvelle version chargée`);
   } else {
-    console.log(`🚀 Bible Interactive v${getAppVersion()} - Chargement depuis le cache`);
+    logger.info(`Bible Interactive v${getAppVersion()} - Application prête`);
   }
 });
 
-// Gestionnaire d'erreur global pour le débogage
+// Gestionnaire d'erreur global (erreurs critiques uniquement en prod)
 window.addEventListener('error', (event) => {
-  console.error('Error caught:', event.error);
+  logger.error('Erreur globale:', event.error);
 });
 
 window.addEventListener('unhandledrejection', (event) => {
-  console.error('Unhandled promise rejection:', event.reason);
+  logger.error('Promise non gérée:', event.reason);
 });
 
 const rootElement = document.getElementById('root');
 
 if (!rootElement) {
-  console.error('Root element not found!');
-  document.body.innerHTML = '<div style="padding: 20px; font-family: Arial;">Error: Root element not found. Please check the HTML structure.</div>';
+  logger.error('Élément root introuvable!');
+  document.body.innerHTML = '<div style="padding: 20px; font-family: Arial; text-align: center;"><h1>⚠️ Erreur de chargement</h1><p>Veuillez rafraîchir la page.</p></div>';
 } else {
   try {
     ReactDOM.createRoot(rootElement).render(
@@ -38,7 +39,7 @@ if (!rootElement) {
       </React.StrictMode>
     );
   } catch (error) {
-    console.error('Failed to render app:', error);
-    rootElement.innerHTML = '<div style="padding: 20px; font-family: Arial;">Error loading application. Please check the console for details.</div>';
+    logger.error('Échec du rendu:', error);
+    rootElement.innerHTML = '<div style="padding: 20px; font-family: Arial; text-align: center;"><h1>⚠️ Erreur de chargement</h1><p>Veuillez rafraîchir la page ou contacter le support.</p></div>';
   }
 }
