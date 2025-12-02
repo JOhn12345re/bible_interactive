@@ -9,7 +9,6 @@ import {
   type HistoricalPeriod,
   type HistoricalEvent,
 } from '../services/completeTimelineService';
-import { timelineExportService } from '../services/timelineExportService';
 
 interface EventModalProps {
   event: HistoricalEvent | null;
@@ -383,68 +382,6 @@ export default function CompleteTimeline() {
             </div>
           )}
           
-          {/* Boutons d'export */}
-          <div className="flex justify-center space-x-4 mb-4">
-            <button
-              onClick={async () => {
-                const exportData = await timelineExportService.getExportData();
-                const markdown = timelineExportService.generateMarkdownContent(exportData);
-                const blob = new Blob([markdown], { type: 'text/markdown' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'frise-chronologique-biblique.md';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-              }}
-              className="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2"
-            >
-              <span>📄</span>
-              <span>Export Markdown</span>
-            </button>
-            
-            <button
-              onClick={async () => {
-                const exportData = await timelineExportService.getExportData();
-                const pythonData = timelineExportService.generatePythonData(exportData);
-                const blob = new Blob([pythonData], { type: 'text/python' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'timeline_data.py';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-              }}
-              className="bg-orange-600 hover:bg-orange-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2"
-            >
-              <span>🐍</span>
-              <span>Export Python</span>
-            </button>
-            
-            <button
-              onClick={async () => {
-                const exportData = await timelineExportService.getExportData();
-                const jsonData = JSON.stringify(exportData, null, 2);
-                const blob = new Blob([jsonData], { type: 'application/json' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = 'timeline-data.json';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
-                URL.revokeObjectURL(url);
-              }}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded-lg font-medium transition-colors flex items-center space-x-2"
-            >
-              <span>📊</span>
-              <span>Export JSON</span>
-            </button>
-          </div>
         </div>
 
         {/* Sélecteur de périodes */}
