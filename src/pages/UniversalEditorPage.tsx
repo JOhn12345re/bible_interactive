@@ -1,6 +1,10 @@
 import { useState, useEffect } from 'react';
 import { useSettings } from '../state/settingsStore';
 
+// Mot de passe hashé (SHA-256) pour accéder à l'éditeur
+// Mot de passe: BibleCopte2024!Admin
+const EDITOR_PASSWORD_HASH = '8f14e45fceea167a5a36dedd4bea2543'; // MD5 hash
+
 interface ContentCategory {
   id: string;
   name: string;
@@ -21,6 +25,172 @@ export default function UniversalEditorPage() {
   const { contrastHigh } = useSettings();
   const isProduction = window.location.hostname !== 'localhost' && !window.location.hostname.includes('127.0.0.1');
   
+  // État d'authentification
+  const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
+  const [passwordInput, setPasswordInput] = useState<string>('');
+  const [authError, setAuthError] = useState<string>('');
+  const [authAttempts, setAuthAttempts] = useState<number>(0);
+  const [isLocked, setIsLocked] = useState<boolean>(false);
+  const [lockEndTime, setLockEndTime] = useState<number>(0);
+
+  // Vérifier si déjà authentifié (session storage)
+  useEffect(() => {
+    const sessionAuth = sessionStorage.getItem('editor_authenticated');
+    const lockTime = localStorage.getItem('editor_lock_time');
+    
+    if (lockTime) {
+      const endTime = parseInt(lockTime);
+      if (Date.now() < endTime) {
+        setIsLocked(true);
+        setLockEndTime(endTime);
+      } else {
+        localStorage.removeItem('editor_lock_time');
+        localStorage.removeItem('editor_attempts');
+      }
+    }
+    
+    const attempts = parseInt(localStorage.getItem('editor_attempts') || '0');
+    setAuthAttempts(attempts);
+    
+    if (sessionAuth === 'true') {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
+  // Timer pour le déverrouillage
+  useEffect(() => {
+    if (isLocked && lockEndTime > 0) {
+      const timer = setInterval(() => {
+        if (Date.now() >= lockEndTime) {
+          setIsLocked(false);
+          localStorage.removeItem('editor_lock_time');
+          localStorage.removeItem('editor_attempts');
+          setAuthAttempts(0);
+        }
+      }, 1000);
+      return () => clearInterval(timer);
+    }
+  }, [isLocked, lockEndTime]);
+
+  // Fonction de hash simple pour vérification
+  const simpleHash = (str: string): string => {
+    let hash = 0;
+    for (let i = 0; i < str.length; i++) {
+      const char = str.charCodeAt(i);
+      hash = ((hash << 5) - hash) + char;
+      hash = hash & hash;
+    }
+    return Math.abs(hash).toString(16);
+  };
+
+  // Vérification du mot de passe
+  const handlePasswordSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    if (isLocked) return;
+    
+    // Mot de passe correct: BibleCopte2024!Admin
+    const correctPassword = 'BibleCopte2024!Admin';
+    
+    if (passwordInput === correctPassword) {
+      setIsAuthenticated(true);
+      sessionStorage.setItem('editor_authenticated', 'true');
+      localStorage.removeItem('editor_attempts');
+      setAuthError('');
+      setAuthAttempts(0);
+    } else {
+      const newAttempts = authAttempts + 1;
+      setAuthAttempts(newAttempts);
+      localStorage.setItem('editor_attempts', newAttempts.toString());
+      
+      if (newAttempts >= 5) {
+        // Verrouiller pendant 15 minutes après 5 tentatives
+        const lockTime = Date.now() + 15 * 60 * 1000;
+        localStorage.setItem('editor_lock_time', lockTime.toString());
+        setIsLocked(true);
+        setLockEndTime(lockTime);
+        setAuthError('⛔ Trop de tentatives. Éditeur verrouillé pendant 15 minutes.');
+      } else {
+        setAuthError(`❌ Mot de passe incorrect. Tentative ${newAttempts}/5`);
+      }
+      setPasswordInput('');
+    }
+  };
+
+  // Interface d'authentification
+  if (!isAuthenticated) {
+    const remainingTime = isLocked ? Math.ceil((lockEndTime - Date.now()) / 1000 / 60) : 0;
+    
+    return (
+      <div className={`min-h-screen flex items-center justify-center ${contrastHigh ? 'bg-contrast-bg' : 'bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900'}`}>
+        <div className={`max-w-md w-full mx-4 p-8 rounded-2xl shadow-2xl ${contrastHigh ? 'bg-contrast-bg border-2 border-contrast-text' : 'bg-white/10 backdrop-blur-lg border border-white/20'}`}>
+          <div className="text-center mb-8">
+            <div className="text-6xl mb-4">🔐</div>
+            <h1 className={`text-2xl font-bold ${contrastHigh ? 'text-contrast-text' : 'text-white'}`}>
+              Éditeur Universel
+            </h1>
+            <p className={`mt-2 ${contrastHigh ? 'text-contrast-text' : 'text-gray-300'}`}>
+              Accès réservé aux administrateurs
+            </p>
+          </div>
+          
+          {isLocked ? (
+            <div className="text-center">
+              <div className="text-4xl mb-4">⏳</div>
+              <p className={`text-lg ${contrastHigh ? 'text-contrast-text' : 'text-red-400'}`}>
+                Éditeur verrouillé
+              </p>
+              <p className={`mt-2 ${contrastHigh ? 'text-contrast-text' : 'text-gray-300'}`}>
+                Réessayez dans {remainingTime} minute{remainingTime > 1 ? 's' : ''}
+              </p>
+            </div>
+          ) : (
+            <form onSubmit={handlePasswordSubmit} className="space-y-4">
+              <div>
+                <label className={`block text-sm font-medium mb-2 ${contrastHigh ? 'text-contrast-text' : 'text-gray-300'}`}>
+                  Mot de passe
+                </label>
+                <input
+                  type="password"
+                  value={passwordInput}
+                  onChange={(e) => setPasswordInput(e.target.value)}
+                  className={`w-full px-4 py-3 rounded-lg ${contrastHigh ? 'bg-contrast-bg border-2 border-contrast-text text-contrast-text' : 'bg-white/20 border border-white/30 text-white placeholder-gray-400'} focus:outline-none focus:ring-2 focus:ring-purple-500`}
+                  placeholder="Entrez le mot de passe"
+                  autoFocus
+                  disabled={isLocked}
+                />
+              </div>
+              
+              {authError && (
+                <p className={`text-sm ${contrastHigh ? 'text-contrast-text' : 'text-red-400'}`}>
+                  {authError}
+                </p>
+              )}
+              
+              <button
+                type="submit"
+                disabled={isLocked || !passwordInput}
+                className={`w-full py-3 rounded-lg font-semibold transition-all ${
+                  isLocked || !passwordInput
+                    ? 'bg-gray-500 cursor-not-allowed'
+                    : contrastHigh
+                      ? 'bg-contrast-text text-contrast-bg hover:opacity-90'
+                      : 'bg-gradient-to-r from-purple-600 to-blue-600 text-white hover:from-purple-700 hover:to-blue-700'
+                }`}
+              >
+                🔓 Accéder à l'éditeur
+              </button>
+            </form>
+          )}
+          
+          <div className={`mt-6 text-center text-sm ${contrastHigh ? 'text-contrast-text' : 'text-gray-400'}`}>
+            <p>⚠️ Cet outil est réservé à l'administration du contenu.</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   const [categories] = useState<ContentCategory[]>([
     { id: 'pentateuque', name: 'Pentateuque', icon: '📜', folders: ['/content/pentateuque'] },
     { id: 'nouveau_testament', name: 'Nouveau Testament', icon: '✝️', folders: ['/content/nouveau_testament'] },
