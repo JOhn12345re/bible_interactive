@@ -50,14 +50,15 @@ export default defineConfig({
             },
           },
           {
-            // Cache pour les fichiers JSON de contenu (histoires)
+            // Cache pour les fichiers JSON de contenu (histoires) - NetworkFirst pour toujours avoir la dernière version
             urlPattern: /\/content\/.*\.json$/,
-            handler: 'CacheFirst',
+            handler: 'NetworkFirst',
             options: {
               cacheName: 'content-json-cache',
+              networkTimeoutSeconds: 5,
               expiration: {
                 maxEntries: 100,
-                maxAgeSeconds: 60 * 60 * 24 * 7, // 7 jours
+                maxAgeSeconds: 60 * 60 * 24, // 1 jour seulement
               },
             },
           },

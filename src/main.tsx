@@ -5,6 +5,16 @@ import './styles/index.css';
 import './styles/sermon.css';
 import './styles/home-animations.css';
 import '@fontsource/opendyslexic';
+import { checkAndClearCache, getAppVersion } from './utils/cacheManager';
+
+// Vérifier et effacer le cache si nouvelle version
+checkAndClearCache().then((cacheCleared) => {
+  if (cacheCleared) {
+    console.log(`🚀 Bible Interactive v${getAppVersion()} - Cache effacé, nouvelle version chargée`);
+  } else {
+    console.log(`🚀 Bible Interactive v${getAppVersion()} - Chargement depuis le cache`);
+  }
+});
 
 // Gestionnaire d'erreur global pour le débogage
 window.addEventListener('error', (event) => {

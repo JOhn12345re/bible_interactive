@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSettings } from '../state/settingsStore';
+import { clearCacheAndReload, getAppVersion } from '../utils/cacheManager';
 
 const AccessibilityControls = () => {
   const {
@@ -255,6 +256,25 @@ const AccessibilityControls = () => {
                 aria-label="Fermer les contrôles d'accessibilité"
               >
                 ✅ Fermer
+              </button>
+            </div>
+
+            {/* Bouton effacer le cache */}
+            <div className="mt-3">
+              <button
+                onClick={() => {
+                  if (confirm('Effacer le cache et recharger la page ?')) {
+                    clearCacheAndReload();
+                  }
+                }}
+                className={`w-full p-2 rounded text-xs transition-colors ${
+                  contrastHigh
+                    ? 'bg-red-600 hover:bg-red-700 text-white'
+                    : 'bg-red-100 hover:bg-red-200 text-red-800'
+                }`}
+                aria-label="Effacer le cache et recharger"
+              >
+                🗑️ Effacer le cache (v{getAppVersion()})
               </button>
             </div>
 
