@@ -33,6 +33,34 @@ export default function UniversalEditorPage() {
   const [isLocked, setIsLocked] = useState<boolean>(false);
   const [lockEndTime, setLockEndTime] = useState<number>(0);
 
+  // États de l'éditeur (doivent être déclarés AVANT tout return)
+  const [categories] = useState<ContentCategory[]>([
+    { id: 'pentateuque', name: 'Pentateuque', icon: '📜', folders: ['/content/pentateuque'] },
+    { id: 'nouveau_testament', name: 'Nouveau Testament', icon: '✝️', folders: ['/content/nouveau_testament'] },
+    { id: 'historiques', name: 'Livres Historiques', icon: '📖', folders: ['/content/historiques'] },
+    { id: 'poetiques', name: 'Livres Poétiques', icon: '🎵', folders: ['/content/poetiques'] },
+    { id: 'prophetiques', name: 'Livres Prophétiques', icon: '🔮', folders: ['/content/prophetiques'] },
+    { id: 'saints', name: 'Histoire des Saints', icon: '⛪', folders: ['/content/histoire_saints'] },
+    { id: 'icones', name: 'Icônes Coptes', icon: '🖼️', folders: ['/content/icones_coptes'] },
+  ]);
+  
+  const [selectedCategory, setSelectedCategory] = useState<string>('');
+  const [contentList, setContentList] = useState<ContentItem[]>([]);
+  const [selectedContent, setSelectedContent] = useState<ContentItem | null>(null);
+  const [editedContent, setEditedContent] = useState<any>(null);
+  const [showSaveSuccess, setShowSaveSuccess] = useState(false);
+  const [activeTab, setActiveTab] = useState<'json' | 'visual'>('visual');
+  const [searchTerm, setSearchTerm] = useState<string>('');
+  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
+    basic: true,
+    verses: false,
+    reading: false,
+    quiz: false,
+    timeline: false
+  });
+  const [hasChanges, setHasChanges] = useState<boolean>(false);
+  const [originalContent, setOriginalContent] = useState<any>(null);
+
   // Vérifier si déjà authentifié (session storage)
   useEffect(() => {
     const sessionAuth = sessionStorage.getItem('editor_authenticated');
@@ -72,17 +100,6 @@ export default function UniversalEditorPage() {
     }
   }, [isLocked, lockEndTime]);
 
-  // Fonction de hash simple pour vérification
-  const simpleHash = (str: string): string => {
-    let hash = 0;
-    for (let i = 0; i < str.length; i++) {
-      const char = str.charCodeAt(i);
-      hash = ((hash << 5) - hash) + char;
-      hash = hash & hash;
-    }
-    return Math.abs(hash).toString(16);
-  };
-
   // Vérification du mot de passe
   const handlePasswordSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -115,6 +132,32 @@ export default function UniversalEditorPage() {
       }
       setPasswordInput('');
     }
+  };
+
+  // Liste des fichiers connus
+  const knownFiles: Record<string, string[]> = {
+    'pentateuque': [
+      'abraham_01', 'adam_eve_01', 'babel_01', 'buisson_ardent_nouveau', 'cain_abel_01',
+      'commandements_01', 'creation_01', 'david_goliath_01', 'david_roi_01', 'isaac_mariage_01',
+      'isaac_sacrifice_01', 'jacob_esau_01', 'jacob_songe_01', 'jericho_01', 'joseph_01',
+      'josue_01', 'mer_rouge_01', 'moise_01', 'moise_buisson_01', 'moise_buisson_nouveau',
+      'noe_01', 'plaies_egypte_01', 'promised_land', 'salomon_sagesse_01', 'serpent_airain_01',
+      'tabernacle', 'tabernacle_01', 'temple_salomon_01', 'terre_promise_01', 'test_buisson_complet',
+      'traversee_jourdain', 'veau_or_01'
+    ],
+    'nouveau_testament': [
+      'bapteme_jesus', 'enfance_jesus', 'naissance_jesus', 'tentations_jesus'
+    ],
+    'historiques': [
+      'daniel_01', 'david_01', 'gedeon_01', 'hannah_prayer', 'josue_01',
+      'ruth_naomi', 'salomon_01', 'samson_01', 'samuel_call'
+    ],
+    'poetiques': [],
+    'prophetiques': [
+      'elie_01', 'ezechiel_01', 'jonas_01', 'jonas_02_fuite', 'jonas_03_ninive', 'jonas_04_ricin'
+    ],
+    'saints': ['saint_athanase', 'saint_cyrille_alexandrie', 'sainte_marie_egyptienne'],
+    'icones': ['icone_annonciation', 'icone_sagesse', 'icone_theotokos']
   };
 
   // Interface d'authentification
@@ -190,58 +233,6 @@ export default function UniversalEditorPage() {
       </div>
     );
   }
-
-  const [categories] = useState<ContentCategory[]>([
-    { id: 'pentateuque', name: 'Pentateuque', icon: '📜', folders: ['/content/pentateuque'] },
-    { id: 'nouveau_testament', name: 'Nouveau Testament', icon: '✝️', folders: ['/content/nouveau_testament'] },
-    { id: 'historiques', name: 'Livres Historiques', icon: '📖', folders: ['/content/historiques'] },
-    { id: 'poetiques', name: 'Livres Poétiques', icon: '🎵', folders: ['/content/poetiques'] },
-    { id: 'prophetiques', name: 'Livres Prophétiques', icon: '🔮', folders: ['/content/prophetiques'] },
-    { id: 'saints', name: 'Histoire des Saints', icon: '⛪', folders: ['/content/histoire_saints'] },
-    { id: 'icones', name: 'Icônes Coptes', icon: '🖼️', folders: ['/content/icones_coptes'] },
-  ]);
-  
-  const [selectedCategory, setSelectedCategory] = useState<string>('');
-  const [contentList, setContentList] = useState<ContentItem[]>([]);
-  const [selectedContent, setSelectedContent] = useState<ContentItem | null>(null);
-  const [editedContent, setEditedContent] = useState<any>(null);
-  const [showSaveSuccess, setShowSaveSuccess] = useState(false);
-  const [activeTab, setActiveTab] = useState<'json' | 'visual'>('visual');
-  const [searchTerm, setSearchTerm] = useState<string>('');
-  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
-    basic: true,
-    verses: false,
-    reading: false,
-    quiz: false,
-    timeline: false
-  });
-  const [hasChanges, setHasChanges] = useState<boolean>(false);
-  const [originalContent, setOriginalContent] = useState<any>(null);
-
-  const knownFiles: Record<string, string[]> = {
-    'pentateuque': [
-      'abraham_01', 'adam_eve_01', 'babel_01', 'buisson_ardent_nouveau', 'cain_abel_01',
-      'commandements_01', 'creation_01', 'david_goliath_01', 'david_roi_01', 'isaac_mariage_01',
-      'isaac_sacrifice_01', 'jacob_esau_01', 'jacob_songe_01', 'jericho_01', 'joseph_01',
-      'josue_01', 'mer_rouge_01', 'moise_01', 'moise_buisson_01', 'moise_buisson_nouveau',
-      'noe_01', 'plaies_egypte_01', 'promised_land', 'salomon_sagesse_01', 'serpent_airain_01',
-      'tabernacle', 'tabernacle_01', 'temple_salomon_01', 'terre_promise_01', 'test_buisson_complet',
-      'traversee_jourdain', 'veau_or_01'
-    ],
-    'nouveau_testament': [
-      'bapteme_jesus', 'enfance_jesus', 'naissance_jesus', 'tentations_jesus'
-    ],
-    'historiques': [
-      'daniel_01', 'david_01', 'gedeon_01', 'hannah_prayer', 'josue_01',
-      'ruth_naomi', 'salomon_01', 'samson_01', 'samuel_call'
-    ],
-    'poetiques': [],
-    'prophetiques': [
-      'elie_01', 'ezechiel_01', 'jonas_01', 'jonas_02_fuite', 'jonas_03_ninive', 'jonas_04_ricin'
-    ],
-    'saints': ['saint_athanase', 'saint_cyrille_alexandrie', 'sainte_marie_egyptienne'],
-    'icones': ['icone_annonciation', 'icone_sagesse', 'icone_theotokos']
-  };
 
   const handleCategorySelect = async (categoryId: string) => {
     setSelectedCategory(categoryId);
