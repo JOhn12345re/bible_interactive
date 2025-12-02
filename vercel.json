@@ -17,18 +17,14 @@
       "use": "@vercel/node"
     }
   ],
-  "routes": [
+  "rewrites": [
     {
-      "src": "/api/(.*)",
-      "dest": "/api/$1"
+      "source": "/api/:path*",
+      "destination": "/api/:path*"
     },
     {
-      "src": "/(content|assets|sermons)/(.+)",
-      "dest": "/$1/$2"
-    },
-    {
-      "src": "/(.*)",
-      "dest": "/index.html"
+      "source": "/:path*",
+      "destination": "/index.html"
     }
   ],
   "headers": [
