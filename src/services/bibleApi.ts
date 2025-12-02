@@ -845,8 +845,78 @@ class BibleApiService {
         "Révélation de Jésus-Christ, que Dieu lui a donnée pour montrer à ses serviteurs les choses qui doivent arriver bientôt, et qu'il a fait connaître, par l'envoi de son ange, à son serviteur Jean,",
     };
 
+    // Correspondance anglais → français pour les noms de livres
+    const englishToFrench: Record<string, string> = {
+      genesis: 'genèse',
+      exodus: 'exode',
+      leviticus: 'lévitique',
+      numbers: 'nombres',
+      deuteronomy: 'deutéronome',
+      joshua: 'josué',
+      judges: 'juges',
+      ruth: 'ruth',
+      '1 samuel': '1 samuel',
+      '2 samuel': '2 samuel',
+      '1 kings': '1 rois',
+      '2 kings': '2 rois',
+      '1 chronicles': '1 chroniques',
+      '2 chronicles': '2 chroniques',
+      ezra: 'esdras',
+      nehemiah: 'néhémie',
+      esther: 'esther',
+      job: 'job',
+      psalms: 'psaumes',
+      proverbs: 'proverbes',
+      ecclesiastes: 'ecclésiaste',
+      'song of solomon': 'cantique des cantiques',
+      isaiah: 'esaïe',
+      jeremiah: 'jérémie',
+      lamentations: 'lamentations',
+      ezekiel: 'ézéchiel',
+      daniel: 'daniel',
+      hosea: 'osée',
+      joel: 'joël',
+      amos: 'amos',
+      obadiah: 'abdias',
+      jonah: 'jonas',
+      micah: 'michée',
+      nahum: 'nahum',
+      habakkuk: 'habacuc',
+      zephaniah: 'sophonie',
+      haggai: 'aggée',
+      zechariah: 'zacharie',
+      malachi: 'malachie',
+      matthew: 'matthieu',
+      mark: 'marc',
+      luke: 'luc',
+      john: 'jean',
+      acts: 'actes',
+      romans: 'romains',
+      '1 corinthians': '1 corinthiens',
+      '2 corinthians': '2 corinthiens',
+      galatians: 'galates',
+      ephesians: 'éphésiens',
+      philippians: 'philippiens',
+      colossians: 'colossiens',
+      '1 thessalonians': '1 thessaloniciens',
+      '2 thessalonians': '2 thessaloniciens',
+      '1 timothy': '1 timothée',
+      '2 timothy': '2 timothée',
+      titus: 'tite',
+      philemon: 'philémon',
+      hebrews: 'hébreux',
+      james: 'jacques',
+      '1 peter': '1 pierre',
+      '2 peter': '2 pierre',
+      '1 john': '1 jean',
+      '2 john': '2 jean',
+      '3 john': '3 jean',
+      jude: 'jude',
+      revelation: 'apocalypse',
+    };
+
     // Normaliser le nom du livre
-    const normalizedBookName = bookName
+    let normalizedBookName = bookName
       .toLowerCase()
       .replace(/[àáâäã]/g, 'a')
       .replace(/[èéêë]/g, 'e')
@@ -856,6 +926,11 @@ class BibleApiService {
       .replace(/ç/g, 'c')
       .replace(/ñ/g, 'n')
       .trim();
+
+    // Convertir de l'anglais au français si nécessaire
+    if (englishToFrench[normalizedBookName]) {
+      normalizedBookName = englishToFrench[normalizedBookName];
+    }
 
     // Chercher le verset de fallback
     let fallbackText = fallbackVerses[normalizedBookName];
