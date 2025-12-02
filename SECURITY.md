@@ -1,7 +1,7 @@
 # 🔒 Guide de Sécurité - Bible Interactive
 
 **Dernière mise à jour:** 2 décembre 2025  
-**Version:** 2.0.4
+**Version:** 2.1.0
 
 ## 🛡️ Score de Sécurité Estimé: A+
 
@@ -24,6 +24,37 @@
 | `Cross-Origin-Opener-Policy` | same-origin | Attaques cross-origin |
 | `Cross-Origin-Resource-Policy` | same-origin | Lecture cross-origin |
 
+### ✅ Authentification sécurisée
+
+**Fichiers:** `api/lib/db.ts`, `api/auth/login.ts`, `api/auth/register.ts`
+
+| Fonctionnalité | Implémentation | Protection |
+|----------------|----------------|------------|
+| Hash de mots de passe | PBKDF2 avec 100,000 itérations + salt aléatoire | Attaques par dictionnaire |
+| Tokens JWT | HMAC-SHA256 avec secret en variable d'environnement | Falsification de tokens |
+| Rate limiting login | 5 tentatives max, verrouillage 15 min | Attaques brute-force |
+| Rate limiting register | 3 inscriptions/heure par IP | Spam/abus |
+| Validation mot de passe | Min 8 chars, majuscule, minuscule, chiffre | Mots de passe faibles |
+| Timing-safe comparison | Comparaison à temps constant | Timing attacks |
+
+### ✅ CORS sécurisé
+
+**Configuration dans toutes les API:**
+
+```javascript
+// Seules les origines autorisées peuvent accéder à l'API
+const ALLOWED_ORIGINS = [
+  'https://bible-interactive.vercel.app',
+  'https://bible-interactive.netlify.app',
+  process.env.ALLOWED_ORIGIN
+];
+
+// En développement uniquement
+if (process.env.NODE_ENV !== 'production') {
+  ALLOWED_ORIGINS.push('http://localhost:3000', 'http://localhost:5173');
+}
+```
+
 ### ✅ Content Security Policy (CSP) détaillée
 
 ```
@@ -38,13 +69,6 @@ base-uri 'self';
 form-action 'self'
 ```
 
-### ✅ Protection de l'Éditeur Universel
-
-- 🔐 **Mot de passe requis** pour accéder à l'éditeur
-- ⏳ **Verrouillage automatique** après 5 tentatives échouées (15 min)
-- 💾 **Session storage** - Déconnexion à la fermeture de l'onglet
-- 🚫 **Sauvegarde désactivée** en production
-
 ### ✅ Sanitization du contenu
 
 **Fichier:** `src/utils/security.ts`
@@ -56,77 +80,69 @@ form-action 'self'
 - `sanitizeFilename()` - Valide les noms de fichiers
 - `containsDangerousContent()` - Détecte le contenu malveillant
 
-### ✅ Protection DDoS & Rate Limiting
+### ✅ Validation des entrées API
 
-**Local Development (server.js):**
-```javascript
-// Rate limiting simple
-- 100 requêtes par minute par IP
-- Réinitialisation automatique chaque minute
-- Réponse 429 (Too Many Requests) si dépassé
+**Implémenté dans:** `api/progress/save.ts`
+
+```typescript
+// Validation stricte des données de progression
+function validateProgressData(data: any): boolean {
+  if (data.xp !== undefined && (typeof data.xp !== 'number' || data.xp < 0 || data.xp > 10000000)) {
+    return false;
+  }
+  // ... autres validations
+}
+
+// Sanitization des chaînes
+function sanitizeString(str: string, maxLength: number = 255): string {
+  return str.slice(0, maxLength).replace(/[<>'"]/g, '');
+}
 ```
 
-**Production (Recommandé - Cloudflare):**
-```
-1. Ajouter site à Cloudflare
-2. Security → WAF → Rate Limiting Rules
-3. Configuration: 200 req/min par IP
-4. Action: Challenge ou Block pour 60 secondes
-```
+### ✅ Gestion des erreurs sécurisée
 
-### ✅ Gestion des erreurs React
+- **Pas de logs sensibles en production**: `console.log` conditionnel sur `NODE_ENV`
+- **Messages d'erreur génériques**: Pas d'exposition de détails internes
+- **ErrorBoundary React**: Capture les erreurs sans crash
 
-**ErrorBoundary Component:**
-- Capture erreurs React sans crash complet
-- UI de fallback conviviale
-- Logs détaillés en développement
-- Prêt pour intégration Sentry/LogRocket
-- Boutons de récupération (Retry, Home)
+### ✅ Protection de l'Éditeur Universel
 
-**Utilisation:**
-```tsx
-<ErrorBoundary>
-  <YourApp />
-</ErrorBoundary>
-```
-
-### ✅ Sécurisation API Locale
-
-**server.js - Protections:**
-1. **Validation des chemins:**
-   - Accepte uniquement `/content/*` paths
-   - Bloque accès hors du dossier autorisé
-   - Normalisation des chemins (prévention path traversal)
-
-2. **Limitation de taille:**
-   - Payload max: 10 MB (réduit de 50 MB)
-   - Prévention attaques par gros fichiers
-
-3. **CORS restrictif:**
-   ```javascript
-   // Development
-   origin: ['http://localhost:3000-3004']
-   
-   // Production  
-   origin: ['https://votredomaine.vercel.app']
-   ```
-
-### ✅ Dépendances sécurisées
-- **Audit automatique** : Script de vérification des vulnérabilités
-- **Mise à jour régulière** : npm audit pour détecter les failles
+- 🔐 **Mot de passe requis** pour accéder à l'éditeur
+- ⏳ **Verrouillage automatique** après 5 tentatives échouées (15 min)
+- 💾 **Session storage** - Déconnexion à la fermeture de l'onglet
+- 🚫 **Sauvegarde désactivée** en production
 
 ## 🛡️ Configuration de production
 
-### 1. Variables d'environnement
+### 1. Variables d'environnement OBLIGATOIRES
+
 ```bash
 # Copier le fichier exemple
 cp env.example .env
 
-# Éditer avec vos valeurs sécurisées
-nano .env
+# Variables CRITIQUES à configurer:
+JWT_SECRET=<clé-64-caractères-minimum>
+ALLOWED_ORIGIN=https://votre-domaine.vercel.app
+NODE_ENV=production
 ```
 
-### 2. Base de données
+**Générer un JWT_SECRET sécurisé:**
+```bash
+openssl rand -base64 64
+```
+
+### 2. Configuration Vercel
+
+Dans le dashboard Vercel → Settings → Environment Variables:
+
+| Variable | Valeur |
+|----------|--------|
+| `JWT_SECRET` | Votre clé secrète de 64+ caractères |
+| `ALLOWED_ORIGIN` | `https://votre-domaine.vercel.app` |
+| `NODE_ENV` | `production` |
+
+### 3. Base de données
+
 ```sql
 -- Créer un utilisateur dédié (pas root)
 CREATE USER 'bible_app'@'localhost' IDENTIFIED BY 'mot_de_passe_tres_complexe';
@@ -134,101 +150,58 @@ GRANT SELECT, INSERT, UPDATE ON bible_interactive.* TO 'bible_app'@'localhost';
 FLUSH PRIVILEGES;
 ```
 
-### 3. Serveur web (Apache/Nginx)
-```apache
-# .htaccess pour Apache
-<IfModule mod_headers.c>
-    Header always set X-Content-Type-Options nosniff
-    Header always set X-Frame-Options DENY
-    Header always set X-XSS-Protection "1; mode=block"
-    Header always set Referrer-Policy "strict-origin-when-cross-origin"
-    Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
-</IfModule>
-
-# Limiter l'accès aux fichiers sensibles
-<Files ".env">
-    Order allow,deny
-    Deny from all
-</Files>
-```
-
 ### 4. HTTPS obligatoire
+
+Le HSTS est configuré avec preload. Pour les serveurs personnalisés:
 ```bash
-# Certificat SSL (Let's Encrypt)
 sudo certbot --apache -d votre-domaine.com
 ```
 
 ## 🔍 Audit de sécurité
 
-### Exécuter l'audit
+### Vérifications automatiques
 ```bash
 # Audit des dépendances
 npm audit
 
-# Audit complet du projet
-node scripts/security-audit.js
+# Vérification des vulnérabilités critiques
+npm audit --audit-level=critical
 ```
 
-### Vérifications manuelles
-- [ ] Aucun secret dans le code source
-- [ ] HTTPS activé en production
-- [ ] Firewall configuré
-- [ ] Sauvegardes automatiques
-- [ ] Logs de sécurité activés
-- [ ] Mise à jour des dépendances
+### Checklist de sécurité
+
+- [x] JWT_SECRET configuré et secret
+- [x] CORS limité aux origines autorisées
+- [x] Rate limiting activé sur l'authentification
+- [x] Mots de passe hashés avec PBKDF2 + salt
+- [x] Validation stricte des entrées
+- [x] Headers de sécurité HTTP configurés
+- [x] Pas de logs sensibles en production
+- [x] HTTPS forcé via HSTS
 
 ## 🚨 Réponse aux incidents
 
 ### En cas de compromission
 1. **Isoler** le serveur compromis
-2. **Analyser** les logs d'accès
-3. **Changer** tous les mots de passe
-4. **Mettre à jour** les certificats SSL
-5. **Restaurer** depuis une sauvegarde propre
-6. **Notifier** les utilisateurs si nécessaire
+2. **Révoquer** tous les tokens JWT (changer JWT_SECRET)
+3. **Analyser** les logs d'accès
+4. **Changer** tous les mots de passe
+5. **Mettre à jour** les certificats SSL
+6. **Restaurer** depuis une sauvegarde propre
+7. **Notifier** les utilisateurs si nécessaire
 
-### Contacts d'urgence
-- **Administrateur système** : [votre-email]
-- **Hébergeur** : [support-hébergeur]
-- **Certificat SSL** : [support-ssl]
+## 📋 Historique des améliorations de sécurité
 
-## 📋 Checklist de déploiement sécurisé
-
-### Avant la mise en production
-- [ ] Variables d'environnement configurées
-- [ ] Base de données sécurisée
-- [ ] HTTPS activé
-- [ ] Headers de sécurité configurés
-- [ ] Rate limiting activé
-- [ ] Logs de sécurité activés
-- [ ] Sauvegardes configurées
-- [ ] Firewall configuré
-- [ ] Audit de sécurité passé
-- [ ] Tests de pénétration effectués
-
-### Après la mise en production
-- [ ] Monitoring activé
-- [ ] Alertes de sécurité configurées
-- [ ] Plan de réponse aux incidents
-- [ ] Documentation de sécurité
-- [ ] Formation de l'équipe
-
-## 🔄 Maintenance de sécurité
-
-### Hebdomadaire
-- Vérifier les logs de sécurité
-- Mettre à jour les dépendances
-- Vérifier les certificats SSL
-
-### Mensuel
-- Audit complet de sécurité
-- Test de sauvegarde
-- Révision des accès
-
-### Trimestriel
-- Test de pénétration
-- Mise à jour des politiques
-- Formation de l'équipe
+### Version 2.1.0 (Décembre 2025)
+- ✅ Implémentation PBKDF2 avec 100,000 itérations pour les mots de passe
+- ✅ JWT signé avec HMAC-SHA256 (au lieu de signature faible)
+- ✅ Rate limiting sur login (5 tentatives) et register (3/heure)
+- ✅ CORS restrictif (plus de wildcard `*`)
+- ✅ Validation renforcée des mots de passe (8+ chars, majuscule, minuscule, chiffre)
+- ✅ Comparaison timing-safe pour éviter les timing attacks
+- ✅ Suppression des logs sensibles en production
+- ✅ Suppression du fichier de test API exposé
+- ✅ Validation et sanitization de toutes les entrées API
 
 ---
 

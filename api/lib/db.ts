@@ -3,6 +3,15 @@
 
 let db: any;
 
+// Configuration sécurisée
+const JWT_SECRET = process.env.JWT_SECRET;
+const JWT_EXPIRY_HOURS = 24;
+
+// Validation du secret JWT au démarrage
+if (!JWT_SECRET && process.env.NODE_ENV === 'production') {
+  console.error('⚠️ ATTENTION: JWT_SECRET non défini en production !');
+}
+
 // Fonction pour obtenir la connexion DB
 export async function getDb() {
   if (db) return db;
@@ -21,7 +30,9 @@ export async function getDb() {
 
   // Fallback : en local ou si Vercel Postgres non configuré
   // On utilise un stockage en mémoire temporaire
-  console.warn('⚠️ Pas de base de données configurée - utilisation mémoire temporaire');
+  if (process.env.NODE_ENV !== 'production') {
+    console.warn('⚠️ Mode développement - utilisation mémoire temporaire');
+  }
   db = createInMemoryDb();
   return db;
 }
@@ -30,16 +41,9 @@ export async function getDb() {
 function createInMemoryDb() {
   const users: any[] = [];
   const progress: any[] = [];
-  const badges: any[] = [];
-  const lessons: any[] = [];
-  const quizzes: any[] = [];
-  const achievements: any[] = [];
 
   return {
     query: async (text: string, params: any[] = []) => {
-      // Simuler les requêtes SQL en mémoire
-      console.log('🔍 Query:', text.substring(0, 50) + '...');
-      
       // INSERT INTO users
       if (text.includes('INSERT INTO users')) {
         const [email, password_hash, username] = params;
@@ -85,49 +89,198 @@ function createInMemoryDb() {
   };
 }
 
-// Fonction utilitaire pour hash de password (simple pour démo)
+/**
+ * Hash sécurisé de mot de passe avec PBKDF2 et salt aléatoire
+ * Format: salt:hash (hex)
+ */
 export async function hashPassword(password: string): Promise<string> {
-  // En production, utiliser bcrypt
-  // Pour l'instant, hash simple avec crypto
+  // Générer un salt cryptographiquement sécurisé (16 bytes)
+  const salt = crypto.getRandomValues(new Uint8Array(16));
+  const saltHex = Array.from(salt).map(b => b.toString(16).padStart(2, '0')).join('');
+  
+  // Encoder le mot de passe
   const encoder = new TextEncoder();
-  const data = encoder.encode(password);
-  const hash = await crypto.subtle.digest('SHA-256', data);
-  return Array.from(new Uint8Array(hash))
+  const passwordData = encoder.encode(password);
+  
+  // Importer la clé pour PBKDF2
+  const baseKey = await crypto.subtle.importKey(
+    'raw',
+    passwordData,
+    'PBKDF2',
+    false,
+    ['deriveBits']
+  );
+  
+  // Dériver le hash avec PBKDF2 (100000 itérations, SHA-256)
+  const derivedBits = await crypto.subtle.deriveBits(
+    {
+      name: 'PBKDF2',
+      salt: salt,
+      iterations: 100000,
+      hash: 'SHA-256'
+    },
+    baseKey,
+    256
+  );
+  
+  const hashHex = Array.from(new Uint8Array(derivedBits))
     .map(b => b.toString(16).padStart(2, '0'))
     .join('');
+  
+  // Retourner salt:hash
+  return `${saltHex}:${hashHex}`;
 }
 
-// Fonction pour vérifier password
-export async function verifyPassword(password: string, hash: string): Promise<boolean> {
-  const newHash = await hashPassword(password);
-  return newHash === hash;
+/**
+ * Vérification sécurisée du mot de passe
+ */
+export async function verifyPassword(password: string, storedHash: string): Promise<boolean> {
+  try {
+    // Extraire salt et hash du format salt:hash
+    const [saltHex, expectedHash] = storedHash.split(':');
+    
+    if (!saltHex || !expectedHash) {
+      return false;
+    }
+    
+    // Reconstruire le salt
+    const salt = new Uint8Array(saltHex.match(/.{2}/g)!.map(byte => parseInt(byte, 16)));
+    
+    // Encoder le mot de passe
+    const encoder = new TextEncoder();
+    const passwordData = encoder.encode(password);
+    
+    // Importer la clé pour PBKDF2
+    const baseKey = await crypto.subtle.importKey(
+      'raw',
+      passwordData,
+      'PBKDF2',
+      false,
+      ['deriveBits']
+    );
+    
+    // Dériver le hash avec les mêmes paramètres
+    const derivedBits = await crypto.subtle.deriveBits(
+      {
+        name: 'PBKDF2',
+        salt: salt,
+        iterations: 100000,
+        hash: 'SHA-256'
+      },
+      baseKey,
+      256
+    );
+    
+    const computedHash = Array.from(new Uint8Array(derivedBits))
+      .map(b => b.toString(16).padStart(2, '0'))
+      .join('');
+    
+    // Comparaison en temps constant pour éviter les timing attacks
+    return timingSafeEqual(computedHash, expectedHash);
+  } catch {
+    return false;
+  }
 }
 
-// Fonction pour générer JWT token
-export function generateToken(userId: number, email: string): string {
+/**
+ * Comparaison en temps constant pour éviter les timing attacks
+ */
+function timingSafeEqual(a: string, b: string): boolean {
+  if (a.length !== b.length) return false;
+  
+  let result = 0;
+  for (let i = 0; i < a.length; i++) {
+    result |= a.charCodeAt(i) ^ b.charCodeAt(i);
+  }
+  return result === 0;
+}
+
+/**
+ * Génère un token JWT sécurisé avec HMAC-SHA256
+ */
+export async function generateToken(userId: number, email: string): Promise<string> {
+  const secret = JWT_SECRET || (process.env.NODE_ENV !== 'production' ? 'dev-secret-key-do-not-use-in-prod' : '');
+  
+  if (!secret) {
+    throw new Error('JWT_SECRET non configuré');
+  }
+  
   const header = { alg: 'HS256', typ: 'JWT' };
   const payload = {
     userId,
     email,
     iat: Math.floor(Date.now() / 1000),
-    exp: Math.floor(Date.now() / 1000) + (24 * 60 * 60) // 24h
+    exp: Math.floor(Date.now() / 1000) + (JWT_EXPIRY_HOURS * 60 * 60)
   };
 
-  const secret = process.env.JWT_SECRET || 'bible-interactive-secret-key-change-in-production';
+  const encodedHeader = base64UrlEncode(JSON.stringify(header));
+  const encodedPayload = base64UrlEncode(JSON.stringify(payload));
   
-  // JWT simple (en production, utiliser jsonwebtoken)
-  const encodedHeader = Buffer.from(JSON.stringify(header)).toString('base64url');
-  const encodedPayload = Buffer.from(JSON.stringify(payload)).toString('base64url');
-  const signature = Buffer.from(secret + encodedHeader + encodedPayload).toString('base64url');
+  // Signature HMAC-SHA256
+  const encoder = new TextEncoder();
+  const key = await crypto.subtle.importKey(
+    'raw',
+    encoder.encode(secret),
+    { name: 'HMAC', hash: 'SHA-256' },
+    false,
+    ['sign']
+  );
+  
+  const signatureData = await crypto.subtle.sign(
+    'HMAC',
+    key,
+    encoder.encode(`${encodedHeader}.${encodedPayload}`)
+  );
+  
+  const signature = base64UrlEncode(String.fromCharCode(...new Uint8Array(signatureData)));
   
   return `${encodedHeader}.${encodedPayload}.${signature}`;
 }
 
-// Fonction pour vérifier JWT token
-export function verifyToken(token: string): { userId: number; email: string } | null {
+/**
+ * Vérifie un token JWT avec validation de signature HMAC-SHA256
+ */
+export async function verifyToken(token: string): Promise<{ userId: number; email: string } | null> {
   try {
-    const [header, payload, signature] = token.split('.');
-    const decodedPayload = JSON.parse(Buffer.from(payload, 'base64url').toString());
+    const secret = JWT_SECRET || (process.env.NODE_ENV !== 'production' ? 'dev-secret-key-do-not-use-in-prod' : '');
+    
+    if (!secret) {
+      return null;
+    }
+    
+    const [encodedHeader, encodedPayload, signature] = token.split('.');
+    
+    if (!encodedHeader || !encodedPayload || !signature) {
+      return null;
+    }
+    
+    // Vérifier la signature HMAC-SHA256
+    const encoder = new TextEncoder();
+    const key = await crypto.subtle.importKey(
+      'raw',
+      encoder.encode(secret),
+      { name: 'HMAC', hash: 'SHA-256' },
+      false,
+      ['verify']
+    );
+    
+    const signatureBytes = Uint8Array.from(
+      base64UrlDecode(signature).split('').map(c => c.charCodeAt(0))
+    );
+    
+    const isValid = await crypto.subtle.verify(
+      'HMAC',
+      key,
+      signatureBytes,
+      encoder.encode(`${encodedHeader}.${encodedPayload}`)
+    );
+    
+    if (!isValid) {
+      return null;
+    }
+    
+    // Décoder le payload
+    const decodedPayload = JSON.parse(base64UrlDecode(encodedPayload));
     
     // Vérifier expiration
     if (decodedPayload.exp < Math.floor(Date.now() / 1000)) {
@@ -138,7 +291,26 @@ export function verifyToken(token: string): { userId: number; email: string } | 
       userId: decodedPayload.userId,
       email: decodedPayload.email
     };
-  } catch (error) {
+  } catch {
     return null;
   }
+}
+
+/**
+ * Encode en Base64 URL-safe
+ */
+function base64UrlEncode(str: string): string {
+  const base64 = Buffer.from(str).toString('base64');
+  return base64.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
+}
+
+/**
+ * Decode depuis Base64 URL-safe
+ */
+function base64UrlDecode(str: string): string {
+  let base64 = str.replace(/-/g, '+').replace(/_/g, '/');
+  while (base64.length % 4) {
+    base64 += '=';
+  }
+  return Buffer.from(base64, 'base64').toString();
 }

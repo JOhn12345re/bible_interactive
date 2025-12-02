@@ -2,11 +2,55 @@
 import type { VercelRequest, VercelResponse } from '@vercel/node';
 import { getDb, verifyToken } from '../lib/db';
 
+// Configuration CORS sécurisée
+const ALLOWED_ORIGINS = [
+  'https://bible-interactive.vercel.app',
+  'https://bible-interactive.netlify.app',
+  process.env.ALLOWED_ORIGIN,
+].filter(Boolean) as string[];
+
+// En développement, autoriser localhost
+if (process.env.NODE_ENV !== 'production') {
+  ALLOWED_ORIGINS.push('http://localhost:3000', 'http://localhost:3001', 'http://localhost:5173');
+}
+
+function getCorsOrigin(requestOrigin: string | undefined): string | null {
+  if (!requestOrigin) return null;
+  return ALLOWED_ORIGINS.includes(requestOrigin) ? requestOrigin : null;
+}
+
+// Validation des données de progression
+function validateProgressData(data: any): boolean {
+  if (data.xp !== undefined && (typeof data.xp !== 'number' || data.xp < 0 || data.xp > 10000000)) {
+    return false;
+  }
+  if (data.level !== undefined && (typeof data.level !== 'number' || data.level < 1 || data.level > 1000)) {
+    return false;
+  }
+  if (data.coins !== undefined && (typeof data.coins !== 'number' || data.coins < 0 || data.coins > 10000000)) {
+    return false;
+  }
+  if (data.streakDays !== undefined && (typeof data.streakDays !== 'number' || data.streakDays < 0 || data.streakDays > 10000)) {
+    return false;
+  }
+  return true;
+}
+
+// Sanitize string pour éviter les injections
+function sanitizeString(str: string, maxLength: number = 255): string {
+  if (typeof str !== 'string') return '';
+  return str.slice(0, maxLength).replace(/[<>'"]/g, '');
+}
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
-  // CORS headers
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  // CORS sécurisé
+  const origin = getCorsOrigin(req.headers.origin);
+  if (origin) {
+    res.setHeader('Access-Control-Allow-Origin', origin);
+  }
   res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
 
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
@@ -27,7 +71,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     const token = authHeader.substring(7);
-    const decoded = verifyToken(token);
+    const decoded = await verifyToken(token);
 
     if (!decoded) {
       return res.status(401).json({
@@ -48,6 +92,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       achievement
     } = req.body;
 
+    // Validation des données
+    if (!validateProgressData(req.body)) {
+      return res.status(400).json({
+        success: false,
+        message: 'Données de progression invalides'
+      });
+    }
+
     const db = await getDb();
 
     // Mettre à jour la progression générale
@@ -58,19 +110,19 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
       if (xp !== undefined) {
         updates.push(`xp = $${paramIndex++}`);
-        values.push(xp);
+        values.push(Math.max(0, Math.min(xp, 10000000))); // Limiter les valeurs
       }
       if (level !== undefined) {
         updates.push(`level = $${paramIndex++}`);
-        values.push(level);
+        values.push(Math.max(1, Math.min(level, 1000)));
       }
       if (coins !== undefined) {
         updates.push(`coins = $${paramIndex++}`);
-        values.push(coins);
+        values.push(Math.max(0, Math.min(coins, 10000000)));
       }
       if (streakDays !== undefined) {
         updates.push(`streak_days = $${paramIndex++}`);
-        values.push(streakDays);
+        values.push(Math.max(0, Math.min(streakDays, 10000)));
       }
 
       updates.push(`last_activity_date = CURRENT_DATE`);
@@ -84,15 +136,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     // Enregistrer une leçon complétée
-    if (completedLesson) {
+    if (completedLesson && typeof completedLesson === 'string') {
+      const sanitizedLessonId = sanitizeString(completedLesson, 255);
       await db.query(
         `INSERT INTO completed_lessons (user_id, lesson_id, completed_at) 
          VALUES ($1, $2, NOW()) 
          ON CONFLICT (user_id, lesson_id) DO NOTHING`,
-        [userId, completedLesson]
+        [userId, sanitizedLessonId]
       );
 
-      // Incrémenter le compteur de leçons
       await db.query(
         `UPDATE user_progress 
          SET total_lessons_completed = total_lessons_completed + 1 
@@ -102,14 +154,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     // Enregistrer un quiz complété
-    if (completedQuiz) {
+    if (completedQuiz && typeof completedQuiz === 'object') {
+      const sanitizedQuizId = sanitizeString(completedQuiz.quizId || '', 255);
+      const score = Math.max(0, Math.min(Number(completedQuiz.score) || 0, 1000));
+      const maxScore = Math.max(1, Math.min(Number(completedQuiz.maxScore) || 100, 1000));
+      
       await db.query(
         `INSERT INTO completed_quizzes (user_id, quiz_id, score, max_score, completed_at) 
          VALUES ($1, $2, $3, $4, NOW())`,
-        [userId, completedQuiz.quizId, completedQuiz.score, completedQuiz.maxScore]
+        [userId, sanitizedQuizId, score, maxScore]
       );
 
-      // Incrémenter le compteur de quiz
       await db.query(
         `UPDATE user_progress 
          SET total_quizzes_completed = total_quizzes_completed + 1 
@@ -119,27 +174,33 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     // Enregistrer un nouveau badge
-    if (newBadge) {
+    if (newBadge && typeof newBadge === 'object') {
+      const sanitizedBadgeId = sanitizeString(newBadge.badgeId || '', 100);
+      const sanitizedBadgeName = sanitizeString(newBadge.badgeName || '', 255);
+      
       await db.query(
         `INSERT INTO user_badges (user_id, badge_id, badge_name, earned_at) 
          VALUES ($1, $2, $3, NOW()) 
          ON CONFLICT (user_id, badge_id) DO NOTHING`,
-        [userId, newBadge.badgeId, newBadge.badgeName]
+        [userId, sanitizedBadgeId, sanitizedBadgeName]
       );
     }
 
     // Mettre à jour un achievement
-    if (achievement) {
+    if (achievement && typeof achievement === 'object') {
+      const sanitizedAchievementId = sanitizeString(achievement.achievementId || '', 100);
+      const sanitizedAchievementName = sanitizeString(achievement.achievementName || '', 255);
+      const progress = Math.max(0, Math.min(Number(achievement.progress) || 0, 100));
+      const completed = Boolean(achievement.completed);
+      
       await db.query(
         `INSERT INTO user_achievements (user_id, achievement_id, achievement_name, progress, completed, completed_at) 
-         VALUES ($1, $2, $3, $4, $5, ${achievement.completed ? 'NOW()' : 'NULL'}) 
+         VALUES ($1, $2, $3, $4, $5, ${completed ? 'NOW()' : 'NULL'}) 
          ON CONFLICT (user_id, achievement_id) 
-         DO UPDATE SET progress = $4, completed = $5, completed_at = ${achievement.completed ? 'NOW()' : 'user_achievements.completed_at'}`,
-        [userId, achievement.achievementId, achievement.achievementName, achievement.progress, achievement.completed]
+         DO UPDATE SET progress = $4, completed = $5, completed_at = ${completed ? 'NOW()' : 'user_achievements.completed_at'}`,
+        [userId, sanitizedAchievementId, sanitizedAchievementName, progress, completed]
       );
     }
-
-    console.log('✅ Progression sauvegardée pour user:', userId);
 
     return res.status(200).json({
       success: true,
@@ -147,7 +208,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     });
 
   } catch (error) {
-    console.error('❌ Erreur sauvegarde progression:', error);
+    if (process.env.NODE_ENV !== 'production') {
+      console.error('❌ Erreur sauvegarde progression:', error);
+    }
     return res.status(500).json({
       success: false,
       message: 'Erreur serveur lors de la sauvegarde'

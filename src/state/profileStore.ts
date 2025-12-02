@@ -1,9 +1,5 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import {
-  mockApi,
-  type UserProfile as MockUserProfile,
-} from '../services/mockApi';
 
 export interface Achievement {
   id: string;
@@ -198,6 +194,9 @@ const extendOldProfile = (oldProfile: any): UserProfile => {
   };
 };
 
+// Storage key pour le profil local
+const PROFILE_STORAGE_KEY = 'bible_interactive_profile';
+
 export const useProfileStore = create<ProfileState>()(
   persist(
     (set, get) => ({
@@ -282,117 +281,41 @@ export const useProfileStore = create<ProfileState>()(
 
       saveProfileToServer: async (profile) => {
         try {
-          // En production (Vercel), utiliser directement le service mock
-          if (import.meta.env.PROD) {
-            console.log('Mode production: sauvegarde avec le service mock');
-            const mockResult = await mockApi.saveProfile(
-              profile as MockUserProfile
-            );
-            if (mockResult.success) {
-              set({ profile: { ...profile, id: mockResult.id } });
-              return true;
-            }
-            return false;
-          }
+          // Générer un ID si nécessaire
+          const profileToSave = {
+            ...profile,
+            id: profile.id || Date.now().toString(),
+            updatedAt: new Date().toISOString(),
+            createdAt: profile.createdAt || new Date().toISOString(),
+          };
 
-          // En développement, essayer d'abord l'API PHP
-          const response = await fetch('/api/profile.php', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(profile),
-          });
-
-          if (response.ok) {
-            const result = await response.json();
-            if (result.success) {
-              set({ profile: { ...profile, id: result.id } });
-              return true;
-            }
-          }
-
-          // Si l'API PHP échoue, utiliser le service mock
-          console.warn('API PHP indisponible, utilisation du service mock');
-          const mockResult = await mockApi.saveProfile(
-            profile as MockUserProfile
-          );
-          if (mockResult.success) {
-            set({ profile: { ...profile, id: mockResult.id } });
-            return true;
-          }
-
-          return false;
+          // Sauvegarder dans localStorage
+          localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(profileToSave));
+          
+          // Mettre à jour le state
+          set({ profile: profileToSave });
+          
+          return true;
         } catch (error) {
           console.error('Erreur sauvegarde profil:', error);
-
-          // En cas d'erreur, essayer le service mock
-          try {
-            console.warn('Tentative de sauvegarde avec le service mock');
-            const mockResult = await mockApi.saveProfile(
-              profile as MockUserProfile
-            );
-            if (mockResult.success) {
-              set({ profile: { ...profile, id: mockResult.id } });
-              return true;
-            }
-          } catch (mockError) {
-            console.error('Erreur service mock:', mockError);
-          }
-
           return false;
         }
       },
 
       loadProfileFromServer: async (userId) => {
         try {
-          // En production (Vercel), utiliser directement le service mock
-          // car l'API PHP n'est pas disponible
-          if (import.meta.env.PROD) {
-            console.log('Mode production: utilisation du service mock');
-            const mockResult = await mockApi.loadProfile(userId);
-            if (mockResult.success && mockResult.profile) {
-              const extendedProfile = extendOldProfile(
-                mockResult.profile as any
-              );
-              const isComplete = !!(
-                extendedProfile.firstName &&
-                extendedProfile.lastName &&
-                extendedProfile.age > 0 &&
-                extendedProfile.church
-              );
-              set({ profile: extendedProfile, isProfileComplete: isComplete });
-              return true;
+          // Charger depuis localStorage
+          const stored = localStorage.getItem(PROFILE_STORAGE_KEY);
+          
+          if (stored) {
+            const parsedProfile = JSON.parse(stored);
+            
+            // Si userId est fourni, vérifier que c'est le bon profil
+            if (userId && parsedProfile.id !== userId) {
+              return false;
             }
-            return false;
-          }
-
-          // En développement, essayer d'abord l'API PHP
-          const url = userId
-            ? `/api/profile.php?id=${userId}`
-            : '/api/profile.php';
-          const response = await fetch(url);
-
-          if (response.ok) {
-            const result = await response.json();
-            if (result.success && result.profile) {
-              const extendedProfile = extendOldProfile(result.profile);
-              const isComplete = !!(
-                extendedProfile.firstName &&
-                extendedProfile.lastName &&
-                extendedProfile.age > 0 &&
-                extendedProfile.church
-              );
-              set({ profile: extendedProfile, isProfileComplete: isComplete });
-              return true;
-            }
-          }
-
-          // Si l'API PHP échoue, utiliser le service mock
-          console.warn('API PHP indisponible, utilisation du service mock');
-          const mockResult = await mockApi.loadProfile(userId);
-          if (mockResult.success && mockResult.profile) {
-            const extendedProfile = extendOldProfile(mockResult.profile as any);
+            
+            const extendedProfile = extendOldProfile(parsedProfile);
             const isComplete = !!(
               extendedProfile.firstName &&
               extendedProfile.lastName &&
@@ -402,32 +325,10 @@ export const useProfileStore = create<ProfileState>()(
             set({ profile: extendedProfile, isProfileComplete: isComplete });
             return true;
           }
-
+          
           return false;
         } catch (error) {
           console.error('Erreur chargement profil:', error);
-
-          // En cas d'erreur, essayer le service mock
-          try {
-            console.warn('Tentative de chargement avec le service mock');
-            const mockResult = await mockApi.loadProfile(userId);
-            if (mockResult.success && mockResult.profile) {
-              const extendedProfile = extendOldProfile(
-                mockResult.profile as any
-              );
-              const isComplete = !!(
-                extendedProfile.firstName &&
-                extendedProfile.lastName &&
-                extendedProfile.age > 0 &&
-                extendedProfile.church
-              );
-              set({ profile: extendedProfile, isProfileComplete: isComplete });
-              return true;
-            }
-          } catch (mockError) {
-            console.error('Erreur service mock:', mockError);
-          }
-
           return false;
         }
       },
@@ -443,7 +344,6 @@ export const useProfileStore = create<ProfileState>()(
         );
 
         if (achievementExists) {
-          console.log(`🏆 Achievement "${achievement.id}" déjà débloqué`);
           return;
         }
 
