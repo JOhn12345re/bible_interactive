@@ -8,6 +8,9 @@ export default defineConfig({
     react(),
     VitePWA({
       registerType: 'autoUpdate',
+      devOptions: {
+        enabled: false, // Désactiver SW en développement pour éviter les erreurs
+      },
       manifest: {
         name: 'Bible Interactive - Jeu Éducatif',
         short_name: 'Bible Interactive',
