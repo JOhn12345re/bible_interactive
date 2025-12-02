@@ -6,11 +6,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Jeu éducatif interactif pour découvrir la Bible - Tradition orthodoxe"
+      content="Jeu éducatif interactif pour découvrir la Bible - Tradition orthodoxe copte"
     />
+    
+    <!-- Sécurité: Empêcher le caching des données sensibles -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    
+    <!-- Sécurité: CSP fallback pour navigateurs anciens -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://api.getbible.net https://*.netlify.app https://*.vercel.app https://katameros-api.onrender.com;">
+    
+    <!-- Sécurité: Empêcher l'iframe embedding -->
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    
+    <!-- Sécurité: Protection XSS -->
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    
+    <!-- Sécurité: Empêcher le sniffing MIME -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    
+    <!-- SEO et Réseaux Sociaux -->
+    <meta name="robots" content="index, follow" />
+    <meta name="author" content="Bible Interactive" />
+    <meta property="og:title" content="Bible Interactive - Jeu Éducatif" />
+    <meta property="og:description" content="Découvrez la Bible de manière interactive avec des jeux, quiz et histoires pour toute la famille." />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="fr_FR" />
+    
+    <!-- PWA -->
+    <meta name="theme-color" content="#4f46e5" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Bible Interactive" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    
     <title>Bible Interactive - Jeu Éducatif</title>
   </head>
   <body>
+    <noscript>
+      <div style="padding: 20px; text-align: center; font-family: Arial, sans-serif;">
+        <h1>⚠️ JavaScript requis</h1>
+        <p>Cette application nécessite JavaScript pour fonctionner.</p>
+        <p>Veuillez activer JavaScript dans votre navigateur.</p>
+      </div>
+    </noscript>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

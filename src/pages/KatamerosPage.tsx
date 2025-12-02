@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useSettings } from '../state/settingsStore';
+import { sanitizeHtml } from '../utils/security';
 
 interface KatamerosData {
   [key: string]: any;
@@ -247,11 +248,11 @@ const KatamerosPage = () => {
                           </div>
                         ))}
 
-                        {/* HTML (Synaxaire) */}
+                        {/* HTML (Synaxaire) - Sanitized for security */}
                         {reading.html && (
                           <div 
                             className={`prose max-w-none ${contrastHigh ? 'text-contrast-text' : ''}`}
-                            dangerouslySetInnerHTML={{ __html: reading.html }}
+                            dangerouslySetInnerHTML={{ __html: sanitizeHtml(reading.html) }}
                           />
                         )}
 

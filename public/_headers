@@ -1,0 +1,66 @@
+# Headers de sécurité pour Netlify/Cloudflare Pages
+# Bible Interactive - Configuration de sécurité robuste
+
+/*
+  # Protection contre le clickjacking
+  X-Frame-Options: DENY
+  
+  # Protection contre le sniffing MIME
+  X-Content-Type-Options: nosniff
+  
+  # Protection XSS (navigateurs anciens)
+  X-XSS-Protection: 1; mode=block
+  
+  # Politique de référent stricte
+  Referrer-Policy: strict-origin-when-cross-origin
+  
+  # HSTS - Force HTTPS pendant 1 an
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  
+  # Politique de permissions (désactiver les fonctionnalités non utilisées)
+  Permissions-Policy: accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), payment=(), usb=(), interest-cohort=()
+  
+  # Content Security Policy (CSP) - Protection XSS avancée
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: https: blob:; connect-src 'self' https://api.getbible.net https://*.netlify.app https://*.vercel.app https://katameros-api.onrender.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'
+  
+  # Protection contre les attaques de téléchargement
+  X-Download-Options: noopen
+  
+  # Cross-Origin policies
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Embedder-Policy: credentialless
+  Cross-Origin-Resource-Policy: same-origin
+
+# Cache pour les assets statiques (1 an)
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.js
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.css
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache pour les images (1 an)
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.ico
+  Cache-Control: public, max-age=31536000, immutable
+
+# Cache pour le contenu JSON (1 heure - permet les mises à jour)
+/content/*
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+# Pas de cache pour l'API
+/api/*
+  Cache-Control: no-store, no-cache, must-revalidate

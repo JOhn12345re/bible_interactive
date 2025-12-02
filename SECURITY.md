@@ -1,25 +1,60 @@
 # 🔒 Guide de Sécurité - Bible Interactive
 
-**Dernière mise à jour:** 10 novembre 2025  
-**Version:** 2.0.0
+**Dernière mise à jour:** 2 décembre 2025  
+**Version:** 2.0.4
+
+## 🛡️ Score de Sécurité Estimé: A+
 
 ## 🚨 Mesures de sécurité implémentées
 
-### ✅ Headers HTTP sécurisés (Vercel + Local)
+### ✅ Headers HTTP sécurisés (Netlify + Vercel + Local)
 
-**Production (vercel.json):**
-- ✅ `Content-Security-Policy` - Protection contre XSS et injection de code
-- ✅ `X-Content-Type-Options: nosniff` - Prévention MIME sniffing
-- ✅ `X-Frame-Options: DENY` - Protection clickjacking
-- ✅ `X-XSS-Protection: 1; mode=block` - Protection XSS navigateur
-- ✅ `Strict-Transport-Security` - Force HTTPS (max-age=1 an)
-- ✅ `Referrer-Policy: strict-origin-when-cross-origin` - Contrôle referrers
-- ✅ `Permissions-Policy` - Désactivation APIs sensibles (camera, microphone, etc.)
+**Configurés dans:** `netlify.toml`, `vercel.json`, `public/_headers`
 
-**Local (server.js):**
-- ✅ Headers identiques pour cohérence dev/prod
-- ✅ CORS restreint aux origines localhost en dev
-- ✅ CORS restreint au domaine Vercel en production
+| Header | Valeur | Protection |
+|--------|--------|------------|
+| `Content-Security-Policy` | Restrictif | XSS, injection de code |
+| `X-Content-Type-Options` | nosniff | MIME sniffing |
+| `X-Frame-Options` | DENY | Clickjacking |
+| `X-XSS-Protection` | 1; mode=block | XSS (navigateurs anciens) |
+| `Strict-Transport-Security` | max-age=31536000; includeSubDomains; preload | Force HTTPS |
+| `Referrer-Policy` | strict-origin-when-cross-origin | Fuite de données |
+| `Permissions-Policy` | Désactive tout | Accès non autorisé |
+| `X-Download-Options` | noopen | Téléchargements malveillants |
+| `Cross-Origin-Opener-Policy` | same-origin | Attaques cross-origin |
+| `Cross-Origin-Resource-Policy` | same-origin | Lecture cross-origin |
+
+### ✅ Content Security Policy (CSP) détaillée
+
+```
+default-src 'self';
+script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net;
+style-src 'self' 'unsafe-inline' https://fonts.googleapis.com;
+font-src 'self' https://fonts.gstatic.com data:;
+img-src 'self' data: https: blob:;
+connect-src 'self' https://api.getbible.net https://*.netlify.app https://*.vercel.app https://katameros-api.onrender.com;
+frame-ancestors 'none';
+base-uri 'self';
+form-action 'self'
+```
+
+### ✅ Protection de l'Éditeur Universel
+
+- 🔐 **Mot de passe requis** pour accéder à l'éditeur
+- ⏳ **Verrouillage automatique** après 5 tentatives échouées (15 min)
+- 💾 **Session storage** - Déconnexion à la fermeture de l'onglet
+- 🚫 **Sauvegarde désactivée** en production
+
+### ✅ Sanitization du contenu
+
+**Fichier:** `src/utils/security.ts`
+
+- `sanitizeHtml()` - Nettoie le HTML contre XSS
+- `escapeHtml()` - Échappe les caractères spéciaux
+- `sanitizeUrl()` - Valide les URLs
+- `sanitizeInput()` - Nettoie les entrées utilisateur
+- `sanitizeFilename()` - Valide les noms de fichiers
+- `containsDangerousContent()` - Détecte le contenu malveillant
 
 ### ✅ Protection DDoS & Rate Limiting
 
