@@ -4,7 +4,7 @@
  */
 
 // Version de l'application - À incrémenter à chaque mise à jour importante
-const APP_VERSION = '2.0.1';
+const APP_VERSION = '2.0.2';
 const CACHE_VERSION_KEY = 'bible_interactive_cache_version';
 
 /**

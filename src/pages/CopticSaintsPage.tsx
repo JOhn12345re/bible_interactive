@@ -64,6 +64,13 @@ const CopticSaintsPage: React.FC = () => {
       colorClass: 'bg-gradient-to-br from-orange-500 to-red-600',
     },
     {
+      id: 'saint_abraham_eveque',
+      title: 'Saint Abraham l\'Évêque',
+      description: 'Le Père des pauvres, évêque de Fayoum (1829-1914).',
+      emoji: '🍞',
+      colorClass: 'bg-gradient-to-br from-amber-500 to-orange-600',
+    },
+    {
       id: 'sainte_marie_egyptienne',
       title: 'Sainte Marie l\'Égyptienne',
       description: 'La grande pénitente du désert.',
