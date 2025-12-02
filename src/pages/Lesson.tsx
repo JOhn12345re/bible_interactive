@@ -58,10 +58,14 @@ interface SummarySection {
 
 // Interface pour les sections de contenu (format saints)
 interface ContentSection {
-  id: string;
+  id?: string;
   title: string;
-  type: string;
-  content: {
+  type?: string;
+  // Format simplifié (nouveau)
+  text?: string;
+  verse?: string;
+  // Format avec objet content (ancien)
+  content?: {
     text: string;
     image?: string | null;
     verse?: string;
@@ -84,7 +88,7 @@ interface MemoryVerseExtended {
 }
 
 interface Prayer {
-  title: string;
+  title?: string;
   text: string;
 }
 
@@ -97,7 +101,7 @@ interface LessonData {
   reading?: Array<string | ReadingParagraph>;
   memory_verse?: MemoryVerse | MemoryVerseExtended;
   mini_games?: string[];
-  quiz?: QuizQuestion[] | { title?: string; questions: Array<{ id: string; type: string; question: string; options: string[]; correctAnswer: number; explanation: string }> };
+  quiz?: QuizQuestion[] | { title?: string; questions: Array<{ id?: string; type?: string; question: string; options: string[]; correctAnswer: number; explanation?: string }> };
   goldGame?: GoldGameData;
   story_steps?: string[];
   assets?: string[];
@@ -112,9 +116,9 @@ interface LessonData {
   spiritual_lessons?: string[];
   historical_context?: string;
   // Format saints
-  introduction?: Introduction;
+  introduction?: string | Introduction;
   content?: SaintsContent;
-  prayer?: Prayer;
+  prayer?: string | Prayer;
   objectives?: string[];
 }
 
@@ -458,9 +462,9 @@ export default function Lesson() {
                   contrastHigh ? 'text-contrast-text' : 'text-gray-800'
                 }`}
               >
-                {data.introduction.text}
+                {typeof data.introduction === 'string' ? data.introduction : data.introduction.text}
               </p>
-              {data.introduction.funFact && (
+              {typeof data.introduction === 'object' && data.introduction.funFact && (
                 <div className={`p-4 rounded-lg ${contrastHigh ? 'border border-contrast-text' : 'bg-yellow-100'}`}>
                   <p className={`text-base ${contrastHigh ? 'text-contrast-text' : 'text-amber-800'}`}>
                     💡 <strong>Le saviez-vous ?</strong> {data.introduction.funFact}
@@ -506,40 +510,46 @@ export default function Lesson() {
           <section className="mb-8">
             <h2 className="text-2xl font-bold mb-6">📚 L'Histoire</h2>
             <div className="space-y-6">
-              {data.content.sections.map((section, index) => (
-                <div
-                  key={section.id || index}
-                  className={`rounded-lg p-6 ${
-                    contrastHigh
-                      ? 'bg-contrast-bg border-2 border-contrast-text'
-                      : 'bg-white border border-gray-200 shadow-sm'
-                  }`}
-                >
-                  <h3 className={`text-xl font-bold mb-4 ${contrastHigh ? 'text-contrast-text' : 'text-gray-800'}`}>
-                    {section.title}
-                  </h3>
+              {data.content.sections.map((section, index) => {
+                // Support des deux formats: section.text ou section.content.text
+                const sectionText = (section as { text?: string }).text || section.content?.text;
+                const sectionVerse = (section as { verse?: string }).verse || section.content?.verse;
+                
+                return (
                   <div
-                    className={`text-lg leading-relaxed whitespace-pre-wrap ${
-                      contrastHigh ? 'text-contrast-text' : 'text-gray-700'
+                    key={section.id || index}
+                    className={`rounded-lg p-6 ${
+                      contrastHigh
+                        ? 'bg-contrast-bg border-2 border-contrast-text'
+                        : 'bg-white border border-gray-200 shadow-sm'
                     }`}
                   >
-                    {section.content.text}
-                  </div>
-                  {section.content.verse && (
+                    <h3 className={`text-xl font-bold mb-4 ${contrastHigh ? 'text-contrast-text' : 'text-gray-800'}`}>
+                      {section.title}
+                    </h3>
                     <div
-                      className={`mt-4 p-4 rounded-lg italic text-center ${
-                        contrastHigh
-                          ? 'border-2 border-contrast-text'
-                          : 'bg-blue-50 border border-blue-200'
+                      className={`text-lg leading-relaxed whitespace-pre-wrap ${
+                        contrastHigh ? 'text-contrast-text' : 'text-gray-700'
                       }`}
                     >
-                      <p className={`text-base ${contrastHigh ? 'text-contrast-text' : 'text-blue-800'}`}>
-                        {section.content.verse}
-                      </p>
+                      {sectionText}
                     </div>
-                  )}
-                </div>
-              ))}
+                    {sectionVerse && (
+                      <div
+                        className={`mt-4 p-4 rounded-lg italic text-center ${
+                          contrastHigh
+                            ? 'border-2 border-contrast-text'
+                            : 'bg-blue-50 border border-blue-200'
+                        }`}
+                      >
+                        <p className={`text-base ${contrastHigh ? 'text-contrast-text' : 'text-blue-800'}`}>
+                          {sectionVerse}
+                        </p>
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </section>
         )}
@@ -645,14 +655,14 @@ export default function Lesson() {
               }`}
             >
               <h3 className="text-xl font-bold mb-3 flex items-center">
-                🙏 {data.prayer.title}
+                🙏 {typeof data.prayer === 'object' && data.prayer.title ? data.prayer.title : 'Prière'}
               </h3>
               <p
                 className={`text-lg leading-relaxed italic ${
                   contrastHigh ? 'text-contrast-text' : 'text-purple-800'
                 }`}
               >
-                {data.prayer.text}
+                {typeof data.prayer === 'string' ? data.prayer : data.prayer.text}
               </p>
             </div>
           </section>
