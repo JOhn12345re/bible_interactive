@@ -1,3 +1,5 @@
+import { getLocalVerse } from '../data/bibleVerses';
+
 // Service pour la Bible Louis Segond
 // Utilise l'API GetBible.net (gratuite, sans clé API)
 // Fallback vers données minimales intégrées si l'API est indisponible
@@ -932,7 +934,26 @@ class BibleApiService {
       normalizedBookName = englishToFrench[normalizedBookName];
     }
 
-    // Chercher le verset de fallback
+    // 1. Essayer d'abord de trouver le verset exact dans notre base de données locale
+    const specificVerse = getLocalVerse(normalizedBookName, chapter, verse);
+    if (specificVerse) {
+      return {
+        success: true,
+        data: [
+          {
+            id: Math.floor(Math.random() * 10000) + 3000,
+            book_id: Math.floor(Math.random() * 66) + 1,
+            chapter_id: chapter,
+            verse_number: verse,
+            text: specificVerse,
+            created_at: new Date().toISOString(),
+          },
+        ],
+        message: `${bookName} ${chapter}:${verse}`,
+      };
+    }
+
+    // 2. Si pas trouvé, chercher le verset de fallback (premier verset du livre)
     let fallbackText = fallbackVerses[normalizedBookName];
 
     // Si pas trouvé, essayer quelques variantes
