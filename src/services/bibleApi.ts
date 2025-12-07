@@ -723,13 +723,127 @@ class BibleApiService {
     return null;
   }
 
+  // Méthode utilitaire pour normaliser les noms de livres vers le français
+  private normalizeBookNameToFrench(bookName: string): string {
+    // Correspondance anglais → français pour les noms de livres
+    const englishToFrench: Record<string, string> = {
+      genesis: 'genese',
+      exodus: 'exode',
+      leviticus: 'levitique',
+      numbers: 'nombres',
+      deuteronomy: 'deuteronome',
+      joshua: 'josue',
+      judges: 'juges',
+      ruth: 'ruth',
+      '1 samuel': '1 samuel',
+      '2 samuel': '2 samuel',
+      '1 kings': '1 rois',
+      '2 kings': '2 rois',
+      '1 chronicles': '1 chroniques',
+      '2 chronicles': '2 chroniques',
+      ezra: 'esdras',
+      nehemiah: 'nehemie',
+      esther: 'esther',
+      job: 'job',
+      psalms: 'psaumes',
+      proverbs: 'proverbes',
+      ecclesiastes: 'ecclesiaste',
+      'song of solomon': 'cantique des cantiques',
+      isaiah: 'esaie',
+      jeremiah: 'jeremie',
+      lamentations: 'lamentations',
+      ezekiel: 'ezechiel',
+      daniel: 'daniel',
+      hosea: 'osee',
+      joel: 'joel',
+      amos: 'amos',
+      obadiah: 'abdias',
+      jonah: 'jonas',
+      micah: 'michee',
+      nahum: 'nahum',
+      habakkuk: 'habacuc',
+      zephaniah: 'sophonie',
+      haggai: 'aggee',
+      zechariah: 'zacharie',
+      malachi: 'malachie',
+      matthew: 'matthieu',
+      mark: 'marc',
+      luke: 'luc',
+      john: 'jean',
+      acts: 'actes',
+      romans: 'romains',
+      '1 corinthians': '1 corinthiens',
+      '2 corinthians': '2 corinthiens',
+      galatians: 'galates',
+      ephesians: 'ephesiens',
+      philippians: 'philippiens',
+      colossians: 'colossiens',
+      '1 thessalonians': '1 thessaloniciens',
+      '2 thessalonians': '2 thessaloniciens',
+      '1 timothy': '1 timothee',
+      '2 timothy': '2 timothee',
+      titus: 'tite',
+      philemon: 'philemon',
+      hebrews: 'hebreux',
+      james: 'jacques',
+      '1 peter': '1 pierre',
+      '2 peter': '2 pierre',
+      '1 john': '1 jean',
+      '2 john': '2 jean',
+      '3 john': '3 jean',
+      jude: 'jude',
+      revelation: 'apocalypse',
+    };
+
+    // Normaliser le nom du livre
+    let normalized = bookName
+      .toLowerCase()
+      .replace(/[àáâäã]/g, 'a')
+      .replace(/[èéêë]/g, 'e')
+      .replace(/[ìíîï]/g, 'i')
+      .replace(/[òóôöõ]/g, 'o')
+      .replace(/[ùúûü]/g, 'u')
+      .replace(/ç/g, 'c')
+      .replace(/ñ/g, 'n')
+      .trim();
+
+    // Convertir de l'anglais au français si nécessaire
+    if (englishToFrench[normalized]) {
+      normalized = englishToFrench[normalized];
+    }
+
+    return normalized;
+  }
+
   // Méthode pour générer automatiquement des versets de fallback pour tous les livres bibliques
   private generateFallbackVerse(
     bookName: string,
     chapter: number,
     verse: number
   ): any {
-    // Dictionnaire des premiers versets de chaque livre biblique
+    // Normaliser le nom du livre pour recherche locale
+    const normalizedBookName = this.normalizeBookNameToFrench(bookName);
+
+    // PRIORITÉ 1: Vérifier d'abord notre base de données locale
+    const localVerse = getLocalVerse(normalizedBookName, chapter, verse);
+    if (localVerse) {
+      return {
+        success: true,
+        data: [
+          {
+            id: Math.floor(Math.random() * 10000) + 3000,
+            book_id: Math.floor(Math.random() * 66) + 1,
+            chapter_id: chapter,
+            verse_number: verse,
+            text: localVerse,
+            created_at: new Date().toISOString(),
+          },
+        ],
+        message: `${bookName} ${chapter}:${verse}`,
+      };
+    }
+
+    // PRIORITÉ 2: Dictionnaire des premiers versets de chaque livre biblique
     const fallbackVerses: Record<string, string> = {
       // Ancien Testament
       genese: 'Au commencement, Dieu créa les cieux et la terre.',
@@ -847,113 +961,7 @@ class BibleApiService {
         "Révélation de Jésus-Christ, que Dieu lui a donnée pour montrer à ses serviteurs les choses qui doivent arriver bientôt, et qu'il a fait connaître, par l'envoi de son ange, à son serviteur Jean,",
     };
 
-    // Correspondance anglais → français pour les noms de livres
-    const englishToFrench: Record<string, string> = {
-      genesis: 'genese',
-      exodus: 'exode',
-      leviticus: 'levitique',
-      numbers: 'nombres',
-      deuteronomy: 'deuteronome',
-      joshua: 'josue',
-      judges: 'juges',
-      ruth: 'ruth',
-      '1 samuel': '1 samuel',
-      '2 samuel': '2 samuel',
-      '1 kings': '1 rois',
-      '2 kings': '2 rois',
-      '1 chronicles': '1 chroniques',
-      '2 chronicles': '2 chroniques',
-      ezra: 'esdras',
-      nehemiah: 'nehemie',
-      esther: 'esther',
-      job: 'job',
-      psalms: 'psaumes',
-      proverbs: 'proverbes',
-      ecclesiastes: 'ecclesiaste',
-      'song of solomon': 'cantique des cantiques',
-      isaiah: 'esaie',
-      jeremiah: 'jeremie',
-      lamentations: 'lamentations',
-      ezekiel: 'ezechiel',
-      daniel: 'daniel',
-      hosea: 'osee',
-      joel: 'joel',
-      amos: 'amos',
-      obadiah: 'abdias',
-      jonah: 'jonas',
-      micah: 'michee',
-      nahum: 'nahum',
-      habakkuk: 'habacuc',
-      zephaniah: 'sophonie',
-      haggai: 'aggee',
-      zechariah: 'zacharie',
-      malachi: 'malachie',
-      matthew: 'matthieu',
-      mark: 'marc',
-      luke: 'luc',
-      john: 'jean',
-      acts: 'actes',
-      romans: 'romains',
-      '1 corinthians': '1 corinthiens',
-      '2 corinthians': '2 corinthiens',
-      galatians: 'galates',
-      ephesians: 'ephesiens',
-      philippians: 'philippiens',
-      colossians: 'colossiens',
-      '1 thessalonians': '1 thessaloniciens',
-      '2 thessalonians': '2 thessaloniciens',
-      '1 timothy': '1 timothee',
-      '2 timothy': '2 timothee',
-      titus: 'tite',
-      philemon: 'philemon',
-      hebrews: 'hebreux',
-      james: 'jacques',
-      '1 peter': '1 pierre',
-      '2 peter': '2 pierre',
-      '1 john': '1 jean',
-      '2 john': '2 jean',
-      '3 john': '3 jean',
-      jude: 'jude',
-      revelation: 'apocalypse',
-    };
-
-    // Normaliser le nom du livre
-    let normalizedBookName = bookName
-      .toLowerCase()
-      .replace(/[àáâäã]/g, 'a')
-      .replace(/[èéêë]/g, 'e')
-      .replace(/[ìíîï]/g, 'i')
-      .replace(/[òóôöõ]/g, 'o')
-      .replace(/[ùúûü]/g, 'u')
-      .replace(/ç/g, 'c')
-      .replace(/ñ/g, 'n')
-      .trim();
-
-    // Convertir de l'anglais au français si nécessaire
-    if (englishToFrench[normalizedBookName]) {
-      normalizedBookName = englishToFrench[normalizedBookName];
-    }
-
-    // 1. Essayer d'abord de trouver le verset exact dans notre base de données locale
-    const specificVerse = getLocalVerse(normalizedBookName, chapter, verse);
-    if (specificVerse) {
-      return {
-        success: true,
-        data: [
-          {
-            id: Math.floor(Math.random() * 10000) + 3000,
-            book_id: Math.floor(Math.random() * 66) + 1,
-            chapter_id: chapter,
-            verse_number: verse,
-            text: specificVerse,
-            created_at: new Date().toISOString(),
-          },
-        ],
-        message: `${bookName} ${chapter}:${verse}`,
-      };
-    }
-
-    // 2. Si pas trouvé, chercher le verset de fallback (premier verset du livre)
+    // 2. Si pas trouvé dans la base locale, chercher le verset de fallback (premier verset du livre)
     let fallbackText = fallbackVerses[normalizedBookName];
 
     // Si pas trouvé, essayer quelques variantes
@@ -2604,9 +2612,6 @@ class BibleApiService {
       const startVerse = parts[parts.length - 2];
 
       if (!isNaN(chapter) && startVerse) {
-        console.log(
-          `🔧 Génération automatique de fallback pour: ${bookName} ${chapter}:${startVerse}`
-        );
         return this.generateFallbackVerse(
           bookName,
           chapter,
@@ -2847,7 +2852,7 @@ class BibleApiService {
     console.log(`⚠️ Verset non trouvé dans la base locale, utilisation du fallback`);
     
     // Si pas trouvé, utiliser le fallback (premier verset du livre)
-    const normalizedBook = this.normalizeBookName(bookName);
+    const normalizedBook = this.normalizeBookNameToFrench(bookName);
     const verses = await this.getVersesDefault(normalizedBook, chapter, verseStart, verseEnd);
 
     if (verses.length > 0) {
