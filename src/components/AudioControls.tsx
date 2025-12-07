@@ -6,12 +6,9 @@ const AudioControls = () => {
   const { contrastHigh } = useSettings();
   const {
     soundEnabled,
-    musicEnabled,
     volume,
     setSoundEnabled,
-    setMusicEnabled,
     setVolume,
-    currentMusic,
   } = useAudioStore();
 
   const [showControls, setShowControls] = useState(false);
@@ -67,40 +64,6 @@ const AudioControls = () => {
                   <div
                     className={`w-4 h-4 bg-white rounded-full shadow transform transition-transform duration-300 ${
                       soundEnabled
-                        ? 'translate-x-5 translate-y-1'
-                        : 'translate-x-1 translate-y-1'
-                    }`}
-                  ></div>
-                </div>
-              </div>
-            </label>
-          </div>
-
-          {/* Contrôle de la musique */}
-          <div className="mb-4">
-            <label className="flex items-center justify-between cursor-pointer">
-              <span className="text-sm font-medium">Musique 🎶</span>
-              <div className="relative">
-                <input
-                  type="checkbox"
-                  checked={musicEnabled}
-                  onChange={(e) => setMusicEnabled(e.target.checked)}
-                  className="sr-only"
-                />
-                <div
-                  className={`w-10 h-6 rounded-full transition-colors duration-300 ${
-                    musicEnabled
-                      ? contrastHigh
-                        ? 'bg-contrast-text'
-                        : 'bg-blue-500'
-                      : contrastHigh
-                        ? 'bg-contrast-text/30'
-                        : 'bg-gray-300'
-                  }`}
-                >
-                  <div
-                    className={`w-4 h-4 bg-white rounded-full shadow transform transition-transform duration-300 ${
-                      musicEnabled
                         ? 'translate-x-5 translate-y-1'
                         : 'translate-x-1 translate-y-1'
                     }`}

@@ -2,15 +2,10 @@ import { create } from 'zustand';
 
 interface AudioState {
   soundEnabled: boolean;
-  musicEnabled: boolean;
   volume: number;
-  currentMusic: string | null;
   setSoundEnabled: (enabled: boolean) => void;
-  setMusicEnabled: (enabled: boolean) => void;
   setVolume: (volume: number) => void;
   playSound: (soundType: string) => void;
-  playMusic: (musicType: string) => void;
-  stopMusic: () => void;
 }
 
 // Sons disponibles (on peut les remplacer par de vrais fichiers audio plus tard)
@@ -90,114 +85,13 @@ const SOUNDS = {
   },
 };
 
-// Musiques d'ambiance (synthétisées pour l'instant)
-const createAmbientMusic = (type: string) => {
-  const ctx = new AudioContext();
-
-  switch (type) {
-    case 'peaceful':
-      // Musique paisible pour la lecture
-      return createPeacefulAmbient(ctx);
-    case 'adventure':
-      // Musique d'aventure pour les jeux
-      return createAdventureAmbient(ctx);
-    case 'meditation':
-      // Musique de méditation pour le journal
-      return createMeditationAmbient(ctx);
-    default:
-      return null;
-  }
-};
-
-const createPeacefulAmbient = (ctx: AudioContext) => {
-  // Créer une ambiance paisible avec des tons doux
-  const osc1 = ctx.createOscillator();
-  const osc2 = ctx.createOscillator();
-  const gain1 = ctx.createGain();
-  const gain2 = ctx.createGain();
-  const filter = ctx.createBiquadFilter();
-
-  osc1.connect(gain1);
-  osc2.connect(gain2);
-  gain1.connect(filter);
-  gain2.connect(filter);
-  filter.connect(ctx.destination);
-
-  osc1.frequency.setValueAtTime(220, ctx.currentTime); // La grave
-  osc2.frequency.setValueAtTime(330, ctx.currentTime); // Mi
-
-  filter.type = 'lowpass';
-  filter.frequency.setValueAtTime(800, ctx.currentTime);
-
-  gain1.gain.setValueAtTime(0.02, ctx.currentTime);
-  gain2.gain.setValueAtTime(0.015, ctx.currentTime);
-
-  osc1.start();
-  osc2.start();
-
-  return { osc1, osc2, gain1, gain2, filter };
-};
-
-const createAdventureAmbient = (ctx: AudioContext) => {
-  // Musique plus dynamique pour les jeux
-  const osc = ctx.createOscillator();
-  const gain = ctx.createGain();
-  const filter = ctx.createBiquadFilter();
-
-  osc.connect(gain);
-  gain.connect(filter);
-  filter.connect(ctx.destination);
-
-  osc.frequency.setValueAtTime(440, ctx.currentTime);
-  filter.type = 'bandpass';
-  filter.frequency.setValueAtTime(1000, ctx.currentTime);
-
-  gain.gain.setValueAtTime(0.03, ctx.currentTime);
-
-  osc.start();
-
-  return { osc, gain, filter };
-};
-
-const createMeditationAmbient = (ctx: AudioContext) => {
-  // Sons très doux pour la méditation
-  const osc = ctx.createOscillator();
-  const gain = ctx.createGain();
-  const filter = ctx.createBiquadFilter();
-
-  osc.connect(gain);
-  gain.connect(filter);
-  filter.connect(ctx.destination);
-
-  osc.frequency.setValueAtTime(174, ctx.currentTime); // Fréquence de guérison
-  filter.type = 'lowpass';
-  filter.frequency.setValueAtTime(500, ctx.currentTime);
-
-  gain.gain.setValueAtTime(0.01, ctx.currentTime);
-
-  osc.start();
-
-  return { osc, gain, filter };
-};
-
 export const useAudioStore = create<AudioState>((set, get) => ({
   soundEnabled: true,
-  musicEnabled: false,
   volume: 0.5,
-  currentMusic: null,
 
   setSoundEnabled: (enabled: boolean) => {
     set({ soundEnabled: enabled });
     localStorage.setItem('bible-sound-enabled', JSON.stringify(enabled));
-  },
-
-  setMusicEnabled: (enabled: boolean) => {
-    set({ musicEnabled: enabled });
-    localStorage.setItem('bible-music-enabled', JSON.stringify(enabled));
-
-    if (!enabled) {
-      get().stopMusic();
-    }
   },
 
   setVolume: (volume: number) => {
@@ -218,43 +112,16 @@ export const useAudioStore = create<AudioState>((set, get) => ({
       console.log('Son non disponible:', soundType);
     }
   },
-
-  playMusic: (musicType: string) => {
-    const { musicEnabled, volume } = get();
-    if (!musicEnabled) return;
-
-    try {
-      // Arrêter la musique actuelle
-      get().stopMusic();
-
-      // Démarrer la nouvelle musique
-      const music = createAmbientMusic(musicType);
-      if (music) {
-        set({ currentMusic: musicType });
-      }
-    } catch (error) {
-      console.log('Musique non disponible:', musicType);
-    }
-  },
-
-  stopMusic: () => {
-    // Note: Dans une vraie implémentation, on arrêterait les oscillateurs ici
-    set({ currentMusic: null });
-  },
 }));
 
 // Hook pour utiliser facilement les sons
 export const useAudio = () => {
-  const { playSound, playMusic, stopMusic } = useAudioStore();
+  const { playSound } = useAudioStore();
 
   return {
     playClick: () => playSound('click'),
     playSuccess: () => playSound('success'),
     playError: () => playSound('error'),
     playNotification: () => playSound('notification'),
-    playPeacefulMusic: () => playMusic('peaceful'),
-    playAdventureMusic: () => playMusic('adventure'),
-    playMeditationMusic: () => playMusic('meditation'),
-    stopMusic,
   };
 };
