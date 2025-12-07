@@ -2823,202 +2823,40 @@ class BibleApiService {
     }
 
     const [, rawBook, ch, vStart, vEnd] = match;
-    const bookName = rawBook.trim(); // Nettoyer les espaces
-    console.log(
-      `📖 Livre: "${bookName}", Chapitre: ${ch}, Verset: ${vStart}${vEnd ? `-${vEnd}` : ''}`
-    );
+    const bookName = rawBook.trim();
+    const chapter = parseInt(ch);
+    const verseStart = parseInt(vStart);
+    const verseEnd = vEnd ? parseInt(vEnd) : verseStart;
 
-    // Gestion spéciale pour les psaumes
-    if (bookName.toLowerCase().includes('psaume')) {
-      console.log(
-        "🎵 Détection d'un psaume, utilisation de la méthode spécialisée"
-      );
-      const psalmNumber = parseInt(ch);
-      const verses = await this.getPsalm(psalmNumber);
+    console.log(`📖 Livre: "${bookName}", Chapitre: ${chapter}, Verset: ${verseStart}${vEnd ? `-${verseEnd}` : ''}`);
 
-      // Filtrer le verset spécifique si demandé
-      if (vStart) {
-        const specificVerse = verses.find(
-          (v) => v.verse_start === parseInt(vStart)
-        );
-        console.log(
-          `📋 Verset spécifique trouvé: ${specificVerse ? 'Oui' : 'Non'}`
-        );
-        return specificVerse || null;
-      }
-
-      console.log(`📋 ${verses.length} versets du psaume trouvés`);
-      return verses[0] || null;
+    // Essayer d'abord avec notre base de données locale de versets clés
+    const localVerseText = getLocalVerse(bookName, chapter, verseStart);
+    
+    if (localVerseText) {
+      console.log(`✅ Verset trouvé dans la base locale !`);
+      return {
+        book_id: bookName.toUpperCase(),
+        chapter: chapter,
+        verse_start: verseStart,
+        verse_end: verseEnd,
+        verse_text: localVerseText,
+      };
     }
 
-    // Gestion spéciale pour Romains (debug)
-    if (bookName.toLowerCase().includes('romains')) {
-      console.log('📖 Détection de Romains, debug spécial activé');
-      console.log('🔍 Recherche avec différents noms possibles...');
-
-      // Essayer différents noms possibles
-      const possibleNames = ['Romains', 'Romans', 'ROMAINS', 'ROMANS'];
-
-      for (const name of possibleNames) {
-        console.log(`🔄 Test avec le nom: "${name}"`);
-        const verses = await this.getVersesFromLocalData(
-          name,
-          parseInt(ch),
-          parseInt(vStart),
-          vEnd ? parseInt(vEnd) : undefined
-        );
-
-        if (verses.length > 0) {
-          console.log(`✅ Versets trouvés avec "${name}": ${verses.length}`);
-          return verses[0];
-        } else {
-          console.log(`❌ Aucun verset trouvé avec "${name}"`);
-        }
-      }
-
-      console.log('⚠️ Aucun verset trouvé avec aucun nom testé');
-      return null;
-    }
-
-    // Gestion spéciale pour Jean (debug)
-    if (bookName.toLowerCase().includes('jean')) {
-      console.log('📖 Détection de Jean, debug spécial activé');
-      console.log('🔍 Recherche avec différents noms possibles...');
-
-      // Essayer différents noms possibles
-      const possibleNames = ['Jean', 'John', 'JEAN', 'JOHN'];
-
-      for (const name of possibleNames) {
-        console.log(`🔄 Test avec le nom: "${name}"`);
-        const verses = await this.getVersesFromLocalData(
-          name,
-          parseInt(ch),
-          parseInt(vStart),
-          vEnd ? parseInt(vEnd) : undefined
-        );
-
-        if (verses.length > 0) {
-          console.log(`✅ Versets trouvés avec "${name}": ${verses.length}`);
-          return verses[0];
-        } else {
-          console.log(`❌ Aucun verset trouvé avec "${name}"`);
-        }
-      }
-
-      console.log('⚠️ Aucun verset trouvé avec aucun nom testé');
-      return null;
-    }
-
-    // Gestion spéciale pour Matthieu (debug)
-    if (bookName.toLowerCase().includes('matthieu')) {
-      console.log('📖 Détection de Matthieu, debug spécial activé');
-      console.log('🔍 Recherche avec différents noms possibles...');
-
-      // Essayer différents noms possibles
-      const possibleNames = ['Matthieu', 'Matthew', 'MATTHIEU', 'MATTHEW'];
-
-      for (const name of possibleNames) {
-        console.log(`🔄 Test avec le nom: "${name}"`);
-        const verses = await this.getVersesFromLocalData(
-          name,
-          parseInt(ch),
-          parseInt(vStart),
-          vEnd ? parseInt(vEnd) : undefined
-        );
-
-        if (verses.length > 0) {
-          console.log(`✅ Versets trouvés avec "${name}": ${verses.length}`);
-          return verses[0];
-        } else {
-          console.log(`❌ Aucun verset trouvé avec "${name}"`);
-        }
-      }
-
-      console.log('⚠️ Aucun verset trouvé avec aucun nom testé');
-      return null;
-    }
-
-    // Gestion spéciale pour Jonas (debug)
-    if (bookName.toLowerCase().includes('jonas')) {
-      console.log('📖 Détection de Jonas, debug spécial activé');
-      console.log('🔍 Recherche avec différents noms possibles...');
-
-      // Essayer différents noms possibles
-      const possibleNames = ['Jonas', 'Jonah', 'JONAS', 'JONAH'];
-
-      for (const name of possibleNames) {
-        console.log(`🔄 Test avec le nom: "${name}"`);
-        const verses = await this.getVersesFromLocalData(
-          name,
-          parseInt(ch),
-          parseInt(vStart),
-          vEnd ? parseInt(vEnd) : undefined
-        );
-
-        if (verses.length > 0) {
-          console.log(`✅ Versets trouvés avec "${name}": ${verses.length}`);
-          return verses[0];
-        } else {
-          console.log(`❌ Aucun verset trouvé avec "${name}"`);
-        }
-      }
-
-      console.log('⚠️ Aucun verset trouvé avec aucun nom testé');
-      return null;
-    }
-
-    // Gestion spéciale pour Philippiens (debug)
-    if (bookName.toLowerCase().includes('philippiens')) {
-      console.log('📖 Détection de Philippiens, debug spécial activé');
-      console.log('🔍 Recherche avec différents noms possibles...');
-
-      // Essayer différents noms possibles
-      const possibleNames = [
-        'Philippiens',
-        'Philippians',
-        'PHILIPPIENS',
-        'PHILIPPIANS',
-      ];
-
-      for (const name of possibleNames) {
-        console.log(`🔄 Test avec le nom: "${name}"`);
-        const verses = await this.getVersesFromLocalData(
-          name,
-          parseInt(ch),
-          parseInt(vStart),
-          vEnd ? parseInt(vEnd) : undefined
-        );
-
-        if (verses.length > 0) {
-          console.log(`✅ Versets trouvés avec "${name}": ${verses.length}`);
-          return verses[0];
-        } else {
-          console.log(`❌ Aucun verset trouvé avec "${name}"`);
-        }
-      }
-
-      console.log('⚠️ Aucun verset trouvé avec aucun nom testé');
-      return null;
-    }
-
+    console.log(`⚠️ Verset non trouvé dans la base locale, utilisation du fallback`);
+    
+    // Si pas trouvé, utiliser le fallback (premier verset du livre)
     const normalizedBook = this.normalizeBookName(bookName);
-    console.log(`🔄 Livre normalisé: "${normalizedBook}"`);
+    const verses = await this.getVersesDefault(normalizedBook, chapter, verseStart, verseEnd);
 
-    const verses = await this.getVersesDefault(
-      normalizedBook,
-      parseInt(ch),
-      parseInt(vStart),
-      vEnd ? parseInt(vEnd) : undefined
-    );
-
-    console.log(`📋 ${verses.length} versets trouvés`);
     if (verses.length > 0) {
-      console.log(
-        `✅ Premier verset: ${verses[0].book_id} ${verses[0].chapter}:${verses[0].verse_start}`
-      );
+      console.log(`✅ Fallback utilisé: ${verses[0].book_id} ${verses[0].chapter}:${verses[0].verse_start}`);
+      return verses[0];
     }
 
-    return verses[0] || null;
+    console.log(`❌ Aucun verset trouvé`);
+    return null;
   }
 }
 
