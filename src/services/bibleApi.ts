@@ -730,16 +730,16 @@ class BibleApiService {
     // Dictionnaire des premiers versets de chaque livre biblique
     const fallbackVerses: Record<string, string> = {
       // Ancien Testament
-      genèse: 'Au commencement, Dieu créa les cieux et la terre.',
+      genese: 'Au commencement, Dieu créa les cieux et la terre.',
       exode:
         "Voici les noms des fils d'Israël, venus en Égypte avec Jacob et la famille de chacun d'eux:",
-      lévitique:
+      levitique:
         "L'Éternel appela Moïse; de la tente d'assignation, il lui parla et dit:",
       nombres:
         "L'Éternel parla à Moïse dans le désert de Sinaï, dans la tente d'assignation, le premier jour du second mois, la seconde année après leur sortie du pays d'Égypte. Il dit:",
-      deutéronome:
+      deuteronome:
         "Voici les paroles que Moïse adressa à tout Israël, de l'autre côté du Jourdain, dans le désert, dans la plaine, vis-à-vis de Suph, entre Paran, Tophel, Laban, Hatséroth et Di-Zahab.",
-      josué:
+      josue:
         "Après la mort de Moïse, serviteur de l'Éternel, l'Éternel dit à Josué, fils de Nun, serviteur de Moïse:",
       juges:
         "Après la mort de Josué, les enfants d'Israël consultèrent l'Éternel, en disant: Qui de nous montera le premier contre les Cananéens, pour les attaquer?",
@@ -756,7 +756,7 @@ class BibleApiService {
         "Salomon, fils de David, s'affermit dans son royaume. L'Éternel, son Dieu, était avec lui, et l'éleva à un haut degré.",
       esdras:
         "La première année de Cyrus, roi de Perse, afin que s'accomplît la parole de l'Éternel prononcée par la bouche de Jérémie, l'Éternel réveilla l'esprit de Cyrus, roi de Perse, qui fit faire de vive voix et par écrit cette publication dans tout son royaume:",
-      néhémie:
+      nehemie:
         "Paroles de Néhémie, fils de Hacalia. Au mois de Kisleu, la vingtième année, comme j'étais à Suse, dans la citadelle,",
       esther:
         "C'était du temps d'Assuérus, de cet Assuérus qui régnait depuis l'Inde jusqu'en Éthiopie sur cent vingt-sept provinces.",
@@ -764,32 +764,32 @@ class BibleApiService {
       psaumes:
         "Heureux l'homme qui ne marche pas selon le conseil des méchants, Qui ne s'arrête pas sur la voie des pécheurs, Et qui ne s'assied pas en compagnie des moqueurs,",
       proverbes: "Proverbes de Salomon, fils de David, roi d'Israël,",
-      ecclésiaste: "Paroles de l'Ecclésiaste, fils de David, roi de Jérusalem.",
+      ecclesiaste: "Paroles de l'Ecclésiaste, fils de David, roi de Jérusalem.",
       'cantique des cantiques': 'Le cantique des cantiques, de Salomon.',
-      esaïe:
+      esaie:
         "Prophétie d'Esaïe, fils d'Amots, sur Juda et Jérusalem, au temps d'Ozias, de Jotham, d'Achaz, d'Ézéchias, rois de Juda.",
-      jérémie:
+      jeremie:
         "Paroles de Jérémie, fils de Hilkija, l'un des sacrificateurs d'Anathoth, dans le pays de Benjamin.",
       lamentations:
         'Eh quoi! elle est assise solitaire, cette ville si peuplée! Elle est comme une veuve, celle qui était grande entre les nations!',
-      ézéchiel:
+      ezechiel:
         "La trentième année, le cinquième jour du quatrième mois, comme j'étais parmi les captifs du fleuve du Kebar, les cieux s'ouvrirent, et j'eus des visions divines.",
       daniel:
         'La troisième année du règne de Jojakim, roi de Juda, Nebucadnetsar, roi de Babylone, vint assiéger Jérusalem.',
-      osée: "La parole de l'Éternel qui fut adressée à Osée, fils de Beéri, au temps d'Ozias, de Jotham, d'Achaz, d'Ézéchias, rois de Juda, et au temps de Jéroboam, fils de Joas, roi d'Israël.",
-      joël: "La parole de l'Éternel qui fut adressée à Joël, fils de Pethuel.",
+      osee: "La parole de l'Éternel qui fut adressée à Osée, fils de Beéri, au temps d'Ozias, de Jotham, d'Achaz, d'Ézéchias, rois de Juda, et au temps de Jéroboam, fils de Joas, roi d'Israël.",
+      joel: "La parole de l'Éternel qui fut adressée à Joël, fils de Pethuel.",
       amos: "Paroles d'Amos, l'un des bergers de Tekoa, visions qu'il eut sur Israël, au temps d'Ozias, roi de Juda, et au temps de Jéroboam, fils de Joas, roi d'Israël, deux ans avant le tremblement de terre.",
       abdias:
         "Prophétie d'Abdias. Ainsi parle le Seigneur, l'Éternel, sur Édom: -Nous avons appris une nouvelle de la part de l'Éternel, Et un messager a été envoyé parmi les nations: Levez-vous, marchons contre Édom pour lui faire la guerre!",
       jonas:
-        "La parole de l'Éternel fut adressée à Jonas, fils d'Amitthaï, en ces mots:",
-      michée:
+        "La parole de l'Éternel fut adressée à Jonas, fils de Amitthaï, en ces mots:",
+      michee:
         "La parole de l'Éternel qui fut adressée à Michée, de Moréscheth, au temps de Jotham, d'Achaz, d'Ézéchias, rois de Juda, prophétie sur Samarie et Jérusalem.",
       nahum: "Oracle sur Ninive. Livre de la prophétie de Nahum, d'Elkosch.",
       habacuc: 'Oracle révélé à Habacuc, le prophète.',
       sophonie:
         "La parole de l'Éternel qui fut adressée à Sophonie, fils de Cuschi, fils de Guedalia, fils d'Amaria, fils d'Ézéchias, au temps de Josias, fils d'Amon, roi de Juda.",
-      aggée:
+      aggee:
         "La seconde année du roi Darius, le premier jour du sixième mois, la parole de l'Éternel fut adressée par Aggée, le prophète, à Zorobabel, fils de Schealthiel, gouverneur de Juda, et à Josué, fils de Jotsadak, le souverain sacrificateur, en ces mots:",
       zacharie:
         "Le huitième mois, la seconde année de Darius, la parole de l'Éternel fut adressée à Zacharie, fils de Bérékia, fils d'Iddo, le prophète, en ces mots:",
@@ -827,7 +827,7 @@ class BibleApiService {
       tite: 'Paul, serviteur de Dieu, et apôtre de Jésus-Christ pour la foi des élus de Dieu et la connaissance de la vérité qui est selon la piété,',
       philémon:
         "Paul, prisonnier de Jésus-Christ, et le frère Timothée, à Philémon, notre bien-aimé et notre compagnon d'œuvre,",
-      hébreux:
+      hebreux:
         'Après avoir autrefois, à plusieurs reprises et de plusieurs manières, parlé à nos pères par les prophètes, Dieu,',
       jacques:
         'Jacques, serviteur de Dieu et du Seigneur Jésus-Christ, aux douze tribus qui sont dans la dispersion, salut!',
@@ -847,12 +847,12 @@ class BibleApiService {
 
     // Correspondance anglais → français pour les noms de livres
     const englishToFrench: Record<string, string> = {
-      genesis: 'genèse',
+      genesis: 'genese',
       exodus: 'exode',
-      leviticus: 'lévitique',
+      leviticus: 'levitique',
       numbers: 'nombres',
-      deuteronomy: 'deutéronome',
-      joshua: 'josué',
+      deuteronomy: 'deuteronome',
+      joshua: 'josue',
       judges: 'juges',
       ruth: 'ruth',
       '1 samuel': '1 samuel',
@@ -862,28 +862,28 @@ class BibleApiService {
       '1 chronicles': '1 chroniques',
       '2 chronicles': '2 chroniques',
       ezra: 'esdras',
-      nehemiah: 'néhémie',
+      nehemiah: 'nehemie',
       esther: 'esther',
       job: 'job',
       psalms: 'psaumes',
       proverbs: 'proverbes',
-      ecclesiastes: 'ecclésiaste',
+      ecclesiastes: 'ecclesiaste',
       'song of solomon': 'cantique des cantiques',
-      isaiah: 'esaïe',
-      jeremiah: 'jérémie',
+      isaiah: 'esaie',
+      jeremiah: 'jeremie',
       lamentations: 'lamentations',
-      ezekiel: 'ézéchiel',
+      ezekiel: 'ezechiel',
       daniel: 'daniel',
-      hosea: 'osée',
-      joel: 'joël',
+      hosea: 'osee',
+      joel: 'joel',
       amos: 'amos',
       obadiah: 'abdias',
       jonah: 'jonas',
-      micah: 'michée',
+      micah: 'michee',
       nahum: 'nahum',
       habakkuk: 'habacuc',
       zephaniah: 'sophonie',
-      haggai: 'aggée',
+      haggai: 'aggee',
       zechariah: 'zacharie',
       malachi: 'malachie',
       matthew: 'matthieu',
@@ -895,16 +895,16 @@ class BibleApiService {
       '1 corinthians': '1 corinthiens',
       '2 corinthians': '2 corinthiens',
       galatians: 'galates',
-      ephesians: 'éphésiens',
+      ephesians: 'ephesiens',
       philippians: 'philippiens',
       colossians: 'colossiens',
       '1 thessalonians': '1 thessaloniciens',
       '2 thessalonians': '2 thessaloniciens',
-      '1 timothy': '1 timothée',
-      '2 timothy': '2 timothée',
+      '1 timothy': '1 timothee',
+      '2 timothy': '2 timothee',
       titus: 'tite',
-      philemon: 'philémon',
-      hebrews: 'hébreux',
+      philemon: 'philemon',
+      hebrews: 'hebreux',
       james: 'jacques',
       '1 peter': '1 pierre',
       '2 peter': '2 pierre',
