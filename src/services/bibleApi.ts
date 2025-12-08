@@ -1539,6 +1539,149 @@ class BibleApiService {
         ],
         message: 'Genèse 11 (La Tour de Babel)',
       },
+      genesis_4: {
+        data: [
+          {
+            id: 205,
+            book_id: 1,
+            chapter_id: 4,
+            verse_number: 3,
+            text: "Au bout de quelque temps, Caïn fit à l'Éternel une offrande des fruits de la terre.",
+            created_at: new Date().toISOString(),
+          },
+          {
+            id: 206,
+            book_id: 1,
+            chapter_id: 4,
+            verse_number: 4,
+            text: "Abel offrit aussi des premiers-nés de son troupeau et de leur graisse. L'Éternel porta un regard favorable sur Abel et sur son offrande,",
+            created_at: new Date().toISOString(),
+          },
+          {
+            id: 207,
+            book_id: 1,
+            chapter_id: 4,
+            verse_number: 5,
+            text: "mais il ne porta pas un regard favorable sur Caïn et sur son offrande. Caïn fut très irrité, et son visage fut abattu.",
+            created_at: new Date().toISOString(),
+          },
+          {
+            id: 208,
+            book_id: 1,
+            chapter_id: 4,
+            verse_number: 7,
+            text: "Si tu agis bien, ne seras-tu pas accepté? Et si tu n'agis pas bien, le péché se couche à la porte, et ses désirs se portent vers toi: mais toi, domine sur lui.",
+            created_at: new Date().toISOString(),
+          },
+          {
+            id: 209,
+            book_id: 1,
+            chapter_id: 4,
+            verse_number: 8,
+            text: "Cependant, Caïn adressa la parole à son frère Abel; mais, comme ils étaient dans les champs, Caïn se jeta sur son frère Abel, et le tua.",
+            created_at: new Date().toISOString(),
+          },
+          {
+            id: 210,
+            book_id: 1,
+            chapter_id: 4,
+            verse_number: 9,
+            text: "L'Éternel dit à Caïn: Où est ton frère Abel? Il répondit: Je ne sais pas; suis-je le gardien de mon frère?",
+            created_at: new Date().toISOString(),
+          },
+        ],
+        message: 'Genèse 4 (Caïn et Abel)',
+      },
+      genesis_22: {
+        data: [
+          {
+            id: 211,
+            book_id: 1,
+            chapter_id: 22,
+            verse_number: 1,
+            text: "Après ces choses, Dieu mit Abraham à l'épreuve, et lui dit: Abraham! Et il répondit: Me voici!",
+            created_at: new Date().toISOString(),
+          },
+          {
+            id: 212,
+            book_id: 1,
+            chapter_id: 22,
+            verse_number: 2,
+            text: "Dieu dit: Prends ton fils, ton unique, celui que tu aimes, Isaac; va-t'en au pays de Morija, et là offre-le en holocauste sur l'une des montagnes que je te dirai.",
+            created_at: new Date().toISOString(),
+          },
+          {
+            id: 213,
+            book_id: 1,
+            chapter_id: 22,
+            verse_number: 7,
+            text: "Alors Isaac adressa la parole à Abraham, son père, et dit: Mon père! Et il répondit: Me voici, mon fils! Isaac reprit: Voici le feu et le bois; mais où est l'agneau pour l'holocauste?",
+            created_at: new Date().toISOString(),
+          },
+          {
+            id: 214,
+            book_id: 1,
+            chapter_id: 22,
+            verse_number: 8,
+            text: "Abraham répondit: Mon fils, Dieu se pourvoira lui-même de l'agneau pour l'holocauste. Et ils marchaient tous deux ensemble.",
+            created_at: new Date().toISOString(),
+          },
+          {
+            id: 215,
+            book_id: 1,
+            chapter_id: 22,
+            verse_number: 11,
+            text: "Alors l'ange de l'Éternel l'appela des cieux, et dit: Abraham! Abraham! Et il répondit: Me voici!",
+            created_at: new Date().toISOString(),
+          },
+          {
+            id: 216,
+            book_id: 1,
+            chapter_id: 22,
+            verse_number: 12,
+            text: "L'ange dit: N'avance pas ta main sur l'enfant, et ne lui fais rien; car je sais maintenant que tu crains Dieu, et que tu ne m'as pas refusé ton fils, ton unique.",
+            created_at: new Date().toISOString(),
+          },
+        ],
+        message: "Genèse 22 (Le Sacrifice d'Isaac)",
+      },
+      genesis_28: {
+        data: [
+          {
+            id: 217,
+            book_id: 1,
+            chapter_id: 28,
+            verse_number: 11,
+            text: "Il arriva dans un lieu où il passa la nuit; car le soleil était couché. Il y prit une pierre, dont il fit son chevet, et il se coucha dans ce lieu-là.",
+            created_at: new Date().toISOString(),
+          },
+          {
+            id: 218,
+            book_id: 1,
+            chapter_id: 28,
+            verse_number: 12,
+            text: "Il eut un songe. Et voici, une échelle était appuyée sur la terre, et son sommet touchait au ciel. Et voici, les anges de Dieu montaient et descendaient par cette échelle.",
+            created_at: new Date().toISOString(),
+          },
+          {
+            id: 219,
+            book_id: 1,
+            chapter_id: 28,
+            verse_number: 13,
+            text: "Et voici, l'Éternel se tenait au-dessus d'elle; et il dit: Je suis l'Éternel, le Dieu d'Abraham, ton père, et le Dieu d'Isaac.",
+            created_at: new Date().toISOString(),
+          },
+          {
+            id: 220,
+            book_id: 1,
+            chapter_id: 28,
+            verse_number: 15,
+            text: "Voici, je suis avec toi, je te garderai partout où tu iras, et je te ramènerai dans ce pays; car je ne t'abandonnerai point, que je n'aie exécuté ce que je te dis.",
+            created_at: new Date().toISOString(),
+          },
+        ],
+        message: 'Genèse 28 (Le Songe de Jacob)',
+      },
       genesis_12_25: {
         data: [
           {
@@ -1809,6 +1952,138 @@ class BibleApiService {
         ],
         message: 'Juges 6-8 (Gédéon et les 300 hommes)',
       },
+      josue_3: {
+        data: [
+          {
+            id: 820,
+            book_id: 6,
+            chapter_id: 3,
+            verse_number: 13,
+            text: "Et dès que les sacrificateurs qui portent l'arche de l'Éternel, le Seigneur de toute la terre, poseront la plante des pieds dans les eaux du Jourdain, les eaux du Jourdain seront coupées, les eaux qui descendent d'en haut, et elles s'arrêteront en un monceau.",
+            created_at: new Date().toISOString(),
+          },
+          {
+            id: 821,
+            book_id: 6,
+            chapter_id: 3,
+            verse_number: 14,
+            text: "Le peuple sortit de ses tentes pour passer le Jourdain, et les sacrificateurs qui portaient l'arche de l'alliance marchèrent devant le peuple.",
+            created_at: new Date().toISOString(),
+          },
+          {
+            id: 822,
+            book_id: 6,
+            chapter_id: 3,
+            verse_number: 17,
+            text: "Les sacrificateurs qui portaient l'arche de l'alliance de l'Éternel s'arrêtèrent de pied ferme sur le sec, au milieu du Jourdain, pendant que tout Israël passait à sec, jusqu'à ce que toute la nation eût achevé de passer le Jourdain.",
+            created_at: new Date().toISOString(),
+          },
+        ],
+        message: 'Josué 3 (Traversée du Jourdain)',
+      },
+      josue_6: {
+        data: [
+          {
+            id: 823,
+            book_id: 6,
+            chapter_id: 6,
+            verse_number: 4,
+            text: "Sept sacrificateurs porteront devant l'arche sept trompettes retentissantes; le septième jour, vous ferez sept fois le tour de la ville; et les sacrificateurs sonneront des trompettes.",
+            created_at: new Date().toISOString(),
+          },
+          {
+            id: 824,
+            book_id: 6,
+            chapter_id: 6,
+            verse_number: 5,
+            text: "Quand ils sonneront de la corne retentissante, quand vous entendrez le son de la trompette, tout le peuple poussera de grands cris. Alors la muraille de la ville s'écroulera, et le peuple montera, chacun devant soi.",
+            created_at: new Date().toISOString(),
+          },
+          {
+            id: 825,
+            book_id: 6,
+            chapter_id: 6,
+            verse_number: 20,
+            text: "Le peuple poussa des cris, et les sacrificateurs sonnèrent des trompettes. Lorsque le peuple entendit le son de la trompette, il poussa de grands cris, et la muraille s'écroula; le peuple monta dans la ville, chacun devant soi. Ils s'emparèrent de la ville,",
+            created_at: new Date().toISOString(),
+          },
+        ],
+        message: 'Josué 6 (La chute de Jéricho)',
+      },
+      samuel_17: {
+        data: [
+          {
+            id: 826,
+            book_id: 9,
+            chapter_id: 17,
+            verse_number: 4,
+            text: "Un homme sortit alors du camp des Philistins et s'avança entre les deux armées. Il se nommait Goliath, il était de Gath, et avait une taille de six coudées et un empan.",
+            created_at: new Date().toISOString(),
+          },
+          {
+            id: 827,
+            book_id: 9,
+            chapter_id: 17,
+            verse_number: 45,
+            text: "David dit au Philistin: Tu marches contre moi avec l'épée, la lance et le javelot; et moi, je marche contre toi au nom de l'Éternel des armées, du Dieu de l'armée d'Israël, que tu as insultée.",
+            created_at: new Date().toISOString(),
+          },
+          {
+            id: 828,
+            book_id: 9,
+            chapter_id: 17,
+            verse_number: 49,
+            text: "Il mit la main dans sa gibecière, y prit une pierre, et la lança avec sa fronde; il frappa le Philistin au front, et la pierre s'enfonça dans le front du Philistin, qui tomba le visage contre terre.",
+            created_at: new Date().toISOString(),
+          },
+          {
+            id: 829,
+            book_id: 9,
+            chapter_id: 17,
+            verse_number: 50,
+            text: "Ainsi, avec une fronde et une pierre, David fut plus fort que le Philistin; il le terrassa et lui ôta la vie, sans avoir d'épée à la main.",
+            created_at: new Date().toISOString(),
+          },
+        ],
+        message: '1 Samuel 17 (David et Goliath)',
+      },
+      samuel_5: {
+        data: [
+          {
+            id: 830,
+            book_id: 10,
+            chapter_id: 5,
+            verse_number: 3,
+            text: "Ainsi tous les anciens d'Israël vinrent auprès du roi à Hébron, et le roi David fit alliance avec eux à Hébron, devant l'Éternel. Ils oignirent David pour roi sur Israël.",
+            created_at: new Date().toISOString(),
+          },
+          {
+            id: 831,
+            book_id: 10,
+            chapter_id: 5,
+            verse_number: 4,
+            text: "David avait trente ans lorsqu'il devint roi, et il régna quarante ans.",
+            created_at: new Date().toISOString(),
+          },
+          {
+            id: 832,
+            book_id: 10,
+            chapter_id: 5,
+            verse_number: 7,
+            text: "David s'empara de la forteresse de Sion: c'est la cité de David.",
+            created_at: new Date().toISOString(),
+          },
+          {
+            id: 833,
+            book_id: 10,
+            chapter_id: 5,
+            verse_number: 10,
+            text: "David devenait de plus en plus grand, et l'Éternel, le Dieu des armées, était avec lui.",
+            created_at: new Date().toISOString(),
+          },
+        ],
+        message: '2 Samuel 5 (David devient roi)',
+      },
       exode_3: {
         data: [
           {
@@ -1853,6 +2128,72 @@ class BibleApiService {
           },
         ],
         message: 'Exode 3 (Moïse et le buisson ardent)',
+      },
+      exode_32: {
+        data: [
+          {
+            id: 905,
+            book_id: 2,
+            chapter_id: 32,
+            verse_number: 1,
+            text: "Le peuple, voyant que Moïse tardait à descendre de la montagne, s'assembla autour d'Aaron, et lui dit: Allons! fais-nous un dieu qui marche devant nous, car ce Moïse, cet homme qui nous a fait sortir du pays d'Égypte, nous ne savons ce qu'il est devenu.",
+            created_at: new Date().toISOString(),
+          },
+          {
+            id: 906,
+            book_id: 2,
+            chapter_id: 32,
+            verse_number: 4,
+            text: "Il les reçut de leurs mains, jeta l'or dans un moule, et fit un veau en fonte. Et ils dirent: Israël! voici ton dieu, qui t'a fait sortir du pays d'Égypte.",
+            created_at: new Date().toISOString(),
+          },
+          {
+            id: 907,
+            book_id: 2,
+            chapter_id: 32,
+            verse_number: 19,
+            text: "Et, comme il approchait du camp, il vit le veau et les danses. La colère de Moïse s'enflamma; il jeta de ses mains les tables, et les brisa au pied de la montagne.",
+            created_at: new Date().toISOString(),
+          },
+          {
+            id: 908,
+            book_id: 2,
+            chapter_id: 32,
+            verse_number: 20,
+            text: "Il prit le veau qu'ils avaient fait, et le brûla au feu; il le réduisit en poudre, répandit cette poudre à la surface de l'eau, et fit boire les enfants d'Israël.",
+            created_at: new Date().toISOString(),
+          },
+        ],
+        message: "Exode 32 (Le Veau d'or)",
+      },
+      deuteronome_34: {
+        data: [
+          {
+            id: 909,
+            book_id: 5,
+            chapter_id: 34,
+            verse_number: 1,
+            text: "Moïse monta des plaines de Moab sur le mont Nebo, au sommet du Pisga, vis-à-vis de Jéricho. Et l'Éternel lui fit voir tout le pays:",
+            created_at: new Date().toISOString(),
+          },
+          {
+            id: 910,
+            book_id: 5,
+            chapter_id: 34,
+            verse_number: 4,
+            text: "L'Éternel lui dit: C'est là le pays que j'ai juré de donner à Abraham, à Isaac et à Jacob, en disant: Je le donnerai à ta postérité. Je te l'ai fait voir de tes yeux; mais tu n'y entreras point.",
+            created_at: new Date().toISOString(),
+          },
+          {
+            id: 911,
+            book_id: 5,
+            chapter_id: 34,
+            verse_number: 10,
+            text: "Il n'a plus paru en Israël de prophète semblable à Moïse, que l'Éternel connaissait face à face.",
+            created_at: new Date().toISOString(),
+          },
+        ],
+        message: 'Deutéronome 34 (La Terre Promise)',
       },
       exode_7_12: {
         data: [
@@ -2680,8 +3021,16 @@ class BibleApiService {
     // Fallback vers les données mockées si les données locales ne sont pas disponibles
     const normalizedBook = this.normalizeBookName(book);
     const cacheKey = `${book.toLowerCase()}_${chapter}_${verseStart || 'all'}_${verseEnd || 'all'}`;
+    
+    // Essayer d'abord avec la clé complète
+    let mockData = this.getMockData(cacheKey);
+    
+    // Si pas trouvé, essayer avec la clé simplifiée (livre_chapitre)
+    if (!mockData) {
+      const simpleCacheKey = `${book.toLowerCase()}_${chapter}`;
+      mockData = this.getMockData(simpleCacheKey);
+    }
 
-    const mockData = this.getMockData(cacheKey);
     if (mockData && mockData.data) {
       return mockData.data.map((verse: any) => ({
         book_id: normalizedBook.toUpperCase(),
