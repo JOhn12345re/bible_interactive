@@ -2816,6 +2816,34 @@ class BibleApiService {
     return this.getVersesDefault('Luc', 2, 8, 14);
   }
 
+  async getVeauOrVerses(): Promise<BibleVerse[]> {
+    return this.getVersesDefault('Exode', 32, 1, 35);
+  }
+
+  async getJerichoVerses(): Promise<BibleVerse[]> {
+    return this.getVersesDefault('Josué', 6, 1, 27);
+  }
+
+  async getDavidGoliathVerses(): Promise<BibleVerse[]> {
+    return this.getVersesDefault('1 Samuel', 17, 1, 58);
+  }
+
+  async getDavidRoiVerses(): Promise<BibleVerse[]> {
+    return this.getVersesDefault('2 Samuel', 5, 1, 25);
+  }
+
+  async getSalomonSagesseVerses(): Promise<BibleVerse[]> {
+    return this.getVersesDefault('1 Rois', 3, 1, 28);
+  }
+
+  async getTempleSalomonVerses(): Promise<BibleVerse[]> {
+    return this.getVersesDefault('1 Rois', 6, 1, 8);
+  }
+
+  async getTraverseeJourdainVerses(): Promise<BibleVerse[]> {
+    return this.getVersesDefault('Josué', 3, 1, 4);
+  }
+
   // Méthode pour obtenir un verset spécifique par référence
   async getVerseByReference(reference: string): Promise<BibleVerse | null> {
     console.log(`🔍 Recherche de verset par référence: "${reference}"`);

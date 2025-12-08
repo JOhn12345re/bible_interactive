@@ -72,6 +72,9 @@ export default function BibleVerseComponent({
           case 'adam_eve_01':
             lessonVerses = await bibleApi.getAdamEveVerses();
             break;
+          case 'cain_abel_01':
+            lessonVerses = await bibleApi.getCainAbelVerses();
+            break;
           case 'noe_01':
             lessonVerses = await bibleApi.getNoeVerses();
             break;
@@ -146,6 +149,27 @@ export default function BibleVerseComponent({
             break;
           case 'tentations_jesus':
             lessonVerses = await bibleApi.getTentationsJesusVerses();
+            break;
+          case 'veau_or_01':
+            lessonVerses = await bibleApi.getVeauOrVerses();
+            break;
+          case 'jericho_01':
+            lessonVerses = await bibleApi.getJerichoVerses();
+            break;
+          case 'david_goliath_01':
+            lessonVerses = await bibleApi.getDavidGoliathVerses();
+            break;
+          case 'david_roi_01':
+            lessonVerses = await bibleApi.getDavidRoiVerses();
+            break;
+          case 'salomon_sagesse_01':
+            lessonVerses = await bibleApi.getSalomonSagesseVerses();
+            break;
+          case 'temple_salomon_01':
+            lessonVerses = await bibleApi.getTempleSalomonVerses();
+            break;
+          case 'traversee_jourdain':
+            lessonVerses = await bibleApi.getTraverseeJourdainVerses();
             break;
           default:
             setError("Leçon non supportée par l'API");
