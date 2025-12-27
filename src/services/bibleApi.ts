@@ -72,7 +72,9 @@ class BibleApiService {
   private bibleData: LocalBibleData | null = null;
   private defaultLanguage: string = 'fra';
   private defaultTranslation: string = 'lsg'; // Louis Segond pour GetBible API
-  private apiBaseUrl: string = 'https://getbible.net/json'; // API gratuite GetBible.net
+  private apiBaseUrl: string = 'https://api.scripture.api.bible/v1'; // API Bible.com officielle
+  private apiKey: string = this.getApiKey();
+  private bibleId: string = 'fbbbe2a7b0bc35e0-01'; // LSG 1910 (Louis Segond 1910)
   private useExternalApi: boolean = true; // Utiliser l'API externe par défaut
   private frenchToEnglishBookMap: Record<string, string> = {
     // Ancien Testament
@@ -191,22 +193,138 @@ class BibleApiService {
     révélation: 'Revelation',
   };
 
-  constructor() {
-    // Configuration pour l'API Bible externe (GetBible.net)
-    this.defaultLanguage = import.meta.env.VITE_BIBLE_LANGUAGE || 'fra';
-    this.defaultTranslation = 'lsg'; // Louis Segond pour GetBible.net
+  // Méthode utilitaire pour obtenir la clé API (compatible Node et Browser)
+  private getApiKey(): string {
+    // Dans un environnement Node.js (tests)
+    if (typeof process !== 'undefined' && process.env?.VITE_BIBLE_API_KEY) {
+      return process.env.VITE_BIBLE_API_KEY;
+    }
+    // Dans un environnement Browser (Vite)
+    if (typeof import.meta !== 'undefined' && import.meta.env?.VITE_BIBLE_API_KEY) {
+      return import.meta.env.VITE_BIBLE_API_KEY;
+    }
+    return '';
+  }
 
-    console.log('✅ Service Bible initialisé - API externe GetBible.net');
-    console.log('📖 Traduction: Louis Segond (LSG)');
+  constructor() {
+    // Configuration pour l'API Bible.com officielle
+    this.defaultLanguage = typeof import.meta !== 'undefined' && import.meta.env?.VITE_BIBLE_LANGUAGE ? import.meta.env.VITE_BIBLE_LANGUAGE : 'fra';
+    this.apiKey = this.getApiKey();
+    this.bibleId = 'fbbbe2a7b0bc35e0-01'; // LSG 1910 (Louis Segond 1910)
+
+    if (this.apiKey) {
+      console.log('✅ Service Bible initialisé - API Bible.com officielle');
+      console.log('📖 Traduction: Louis Segond 1910 (LSG)');
+      console.log('🔑 Clé API configurée');
+    } else {
+      console.warn('⚠️ Clé API Bible non configurée - utilisation des données mockées uniquement');
+    }
     
     // Plus besoin de charger un fichier de 7.5 MB !
     // Les versets seront chargés à la demande via l'API
   }
 
-  // Méthode désactivée - utilisation de l'API externe GetBible.net
+  // Méthode désactivée - utilisation de l'API externe Bible.com
   private async loadBibleData(): Promise<void> {
     console.log('⏭️  API externe activée - pas de chargement local nécessaire');
     this.bibleData = null; // Pas de données locales
+  }
+
+  // Mapping des noms de livres français vers les IDs de l'API Bible.com
+  private frenchBookToApiId: Record<string, string> = {
+    'genèse': 'GEN', 'genese': 'GEN', 'genesis': 'GEN',
+    'exode': 'EXO', 'exodus': 'EXO',
+    'lévitique': 'LEV', 'levitique': 'LEV', 'leviticus': 'LEV',
+    'nombres': 'NUM', 'numbers': 'NUM',
+    'deutéronome': 'DEU', 'deuteronome': 'DEU', 'deuteronomy': 'DEU',
+    'josué': 'JOS', 'josue': 'JOS', 'joshua': 'JOS',
+    'juges': 'JDG', 'judges': 'JDG',
+    'ruth': 'RUT',
+    '1 samuel': '1SA', '1samuel': '1SA',
+    '2 samuel': '2SA', '2samuel': '2SA',
+    '1 rois': '1KI', '1rois': '1KI', '1 kings': '1KI',
+    '2 rois': '2KI', '2rois': '2KI', '2 kings': '2KI',
+    'matthieu': 'MAT', 'matthew': 'MAT',
+    'marc': 'MRK', 'mark': 'MRK',
+    'luc': 'LUK', 'luke': 'LUK',
+    'jean': 'JHN', 'john': 'JHN',
+    'actes': 'ACT', 'acts': 'ACT',
+    'romains': 'ROM', 'romans': 'ROM',
+  };
+
+  // Méthode pour appeler l'API Bible.com officielle
+  private async fetchFromBibleApi(
+    book: string,
+    chapter: number,
+    verseStart?: number,
+    verseEnd?: number
+  ): Promise<BibleVerse[]> {
+    if (!this.apiKey) {
+      console.warn('⚠️ Clé API Bible non configurée');
+      return [];
+    }
+
+    const bookId = this.frenchBookToApiId[book.toLowerCase()];
+    if (!bookId) {
+      console.warn(`⚠️ Livre non trouvé dans le mapping: ${book}`);
+      return [];
+    }
+
+    try {
+      // Construire la référence (ex: GEN.1.1-GEN.1.10)
+      let passage = `${bookId}.${chapter}`;
+      if (verseStart) {
+        passage += `.${verseStart}`;
+        if (verseEnd && verseEnd !== verseStart) {
+          passage += `-${bookId}.${chapter}.${verseEnd}`;
+        }
+      }
+
+      console.log(`📡 Appel API Bible.com: ${passage}`);
+      
+      const url = `${this.apiBaseUrl}/bibles/${this.bibleId}/passages/${passage}?content-type=text&include-notes=false&include-titles=false&include-chapter-numbers=false&include-verse-numbers=true&include-verse-spans=false`;
+      
+      const response = await fetch(url, {
+        headers: {
+          'api-key': this.apiKey,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error(`API Bible error: ${response.status}`);
+      }
+
+      const data = await response.json();
+      
+      if (data.data && data.data.content) {
+        console.log(`✅ Versets récupérés depuis API Bible.com`);
+        
+        // Parser le texte pour extraire les versets
+        const content = data.data.content;
+        const verses: BibleVerse[] = [];
+        
+        // Le contenu est au format: [1] texte [2] texte etc.
+        const verseMatches = content.matchAll(/\[(\d+)\]\s*([^\[]+)/g);
+        
+        for (const match of verseMatches) {
+          const verseNum = parseInt(match[1]);
+          const verseText = match[2].trim();
+          
+          verses.push({
+            book_id: book.toUpperCase(),
+            chapter: chapter,
+            verse_start: verseNum,
+            verse_text: verseText,
+          });
+        }
+        
+        return verses;
+      }
+    } catch (error) {
+      console.error(`❌ Erreur API Bible.com:`, error);
+    }
+
+    return [];
   }
 
   // Méthode pour obtenir les traductions disponibles
@@ -3018,7 +3136,15 @@ class BibleApiService {
       return this.getVersesFromLocalData(book, chapter, verseStart, verseEnd);
     }
 
-    // Fallback vers les données mockées si les données locales ne sont pas disponibles
+    // Essayer l'API Bible.com officielle en premier (si clé API configurée)
+    if (this.apiKey) {
+      const apiVerses = await this.fetchFromBibleApi(book, chapter, verseStart, verseEnd);
+      if (apiVerses.length > 0) {
+        return apiVerses;
+      }
+    }
+
+    // Fallback vers les données mockées si l'API externe échoue
     const normalizedBook = this.normalizeBookName(book);
     const cacheKey = `${book.toLowerCase()}_${chapter}_${verseStart || 'all'}_${verseEnd || 'all'}`;
     
@@ -3032,6 +3158,7 @@ class BibleApiService {
     }
 
     if (mockData && mockData.data) {
+      console.log(`📚 Utilisation des données mockées pour ${book} ${chapter}`);
       return mockData.data.map((verse: any) => ({
         book_id: normalizedBook.toUpperCase(),
         chapter: chapter,
@@ -3244,4 +3371,5 @@ class BibleApiService {
 
 // Instance singleton
 export const bibleApi = new BibleApiService();
+export { BibleApiService };
 export type { BibleVersion, BibleVerse, BibleFileset };
